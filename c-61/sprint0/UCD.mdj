@@ -4552,7 +4552,7 @@
 											"top": 1638,
 											"width": 420.52587890625,
 											"height": 13,
-											"text": "-products: Vector<Products>",
+											"text": "-products: ArrayList<Products>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -5226,7 +5226,7 @@
 											"top": 2328,
 											"width": 893.41357421875,
 											"height": 13,
-											"text": "«get/set»-cout: double",
+											"text": "«get/set»-cost: double",
 											"horizontalAlignment": 0
 										},
 										{
@@ -6119,35 +6119,6 @@
 							"points": "2605:1607;2624:1589"
 						},
 						{
-							"_type": "UMLNoteView",
-							"_id": "AAAAAAGDPaefupjbOw4=",
-							"_parent": {
-								"$ref": "AAAAAAFF+qBtyKM79qY="
-							},
-							"font": "Arial;13;0",
-							"left": 2712,
-							"top": 1744,
-							"width": 145,
-							"height": 103,
-							"text": "Vector parce que resizable, et indexable, array only sized at compile-time"
-						},
-						{
-							"_type": "UMLNoteLinkView",
-							"_id": "AAAAAAGDPaefy5jk6sE=",
-							"_parent": {
-								"$ref": "AAAAAAFF+qBtyKM79qY="
-							},
-							"font": "Arial;13;0",
-							"head": {
-								"$ref": "AAAAAAGDPaefupjbOw4="
-							},
-							"tail": {
-								"$ref": "AAAAAAGDLjhqY5FVd+s="
-							},
-							"lineStyle": 1,
-							"points": "2685:1863;2711:1845"
-						},
-						{
 							"_type": "UMLClassView",
 							"_id": "AAAAAAGDPbmai6GtK48=",
 							"_parent": {
@@ -6350,7 +6321,7 @@
 											"top": 1375,
 											"width": 249.31689453125,
 											"height": 13,
-											"text": "-getExpenses(): Vector<Expenses>",
+											"text": "-getExpenses(): ArrayList<Expenses>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -6580,7 +6551,7 @@
 											"top": 1716,
 											"width": 313.5869140625,
 											"height": 13,
-											"text": "-otherExpenses: Vector<Expenses>",
+											"text": "-otherExpenses: ArrayList<Expenses>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -6665,7 +6636,7 @@
 											"top": 1784,
 											"width": 313.5869140625,
 											"height": 13,
-											"text": "-getExpenses(): Vector<Expenses>",
+											"text": "-getExpenses(): ArrayList<Expenses>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -8963,35 +8934,6 @@
 							"templateParameterCompartment": {
 								"$ref": "AAAAAAGDQnWzlPtDRjs="
 							}
-						},
-						{
-							"_type": "UMLNoteView",
-							"_id": "AAAAAAGDQneMMP4xnb0=",
-							"_parent": {
-								"$ref": "AAAAAAFF+qBtyKM79qY="
-							},
-							"font": "Arial;13;0",
-							"left": 2224,
-							"top": 2096,
-							"width": 100,
-							"height": 50,
-							"text": "COUT → COST"
-						},
-						{
-							"_type": "UMLNoteLinkView",
-							"_id": "AAAAAAGDQneMRf46AlA=",
-							"_parent": {
-								"$ref": "AAAAAAFF+qBtyKM79qY="
-							},
-							"font": "Arial;13;0",
-							"head": {
-								"$ref": "AAAAAAGDQneMMP4xnb0="
-							},
-							"tail": {
-								"$ref": "AAAAAAGDPSkplWHrDeQ="
-							},
-							"lineStyle": 1,
-							"points": "2426:2207;2319:2146"
 						},
 						{
 							"_type": "UMLDependencyView",
@@ -11590,7 +11532,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGDPSkplGHpuEw="
 									},
-									"name": "cout",
+									"name": "cost",
 									"stereotype": "get/set",
 									"visibility": "private",
 									"type": "double"
@@ -12012,7 +11954,7 @@
 							},
 							"name": "products",
 							"visibility": "private",
-							"type": "Vector<Products>"
+							"type": "ArrayList<Products>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -12434,7 +12376,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGDQfKVFtrVGlQ="
 									},
-									"type": "Vector<Expenses>",
+									"type": "ArrayList<Expenses>",
 									"direction": "return"
 								}
 							]
@@ -12604,7 +12546,7 @@
 							},
 							"name": "otherExpenses",
 							"visibility": "private",
-							"type": "Vector<Expenses>"
+							"type": "ArrayList<Expenses>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -12672,7 +12614,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGDPeZqy8HAgp4="
 									},
-									"type": "Vector<Expenses>",
+									"type": "ArrayList<Expenses>",
 									"direction": "return"
 								}
 							]
