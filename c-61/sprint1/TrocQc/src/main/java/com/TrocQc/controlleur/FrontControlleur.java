@@ -14,6 +14,7 @@ public class FrontControlleur{
 	
 	@GetMapping("/Authentification")
 	public String GetAuthentification(Model theModel) {
+		
 		return "Authentification"; //return the view
 	}
 	

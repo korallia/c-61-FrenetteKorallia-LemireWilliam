@@ -44,7 +44,7 @@ public class UserDao extends SpringJdbcConfig {
 		params.put("email", "tomea@gmail.com");
 		params.put("address", "USA");
 		 
-		template.update(sql, params);
+		JdbcTemplate.update(sql, params);
 	}
 	
 	
