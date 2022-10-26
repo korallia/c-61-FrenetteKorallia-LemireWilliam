@@ -16,6 +16,10 @@ public class User {
 	@Column(name="id")
 	private int id;
 	
+	@Column(name="productCategory")
+	private String productCategory;
+	
+	
 	@Column(name="firstname")
 	private String firstName;
 	
@@ -40,10 +44,25 @@ public class User {
 	@Column(name="postalCode")
 	private String postalCode;
 
-	public User(int id, String firstName, String lastName, String email, String password, String username,
+	public User(int id,String productCategory, String firstName, String lastName, String email, String password, String username,
 			String adress, String city, String postalCode) {
 		super();
 		this.id = id;
+		this.productCategory = productCategory;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.username = username;
+		this.adress = adress;
+		this.city = city;
+		this.postalCode = postalCode;
+	}
+	
+	public User(String productCategory,String firstName, String lastName, String email, String password, String username,
+			String adress, String city, String postalCode) {
+		super();
+		this.productCategory = productCategory;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -56,6 +75,10 @@ public class User {
 
 	public int getId() {
 		return id;
+	}
+
+	public String getProductCategory() {
+		return productCategory;
 	}
 
 	public String getFirstName() {

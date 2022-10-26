@@ -12,10 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class FrontControlleur{
 	
-	@GetMapping("/Authentification")
+	@GetMapping("/Login")
 	public String GetAuthentification(Model theModel) {
 		
-		return "Authentification"; //return the view
+		return "login"; //return the view
+	}
+	
+	@GetMapping("/Inscription")
+	public String GetInscription(Model theModel) {
+		
+		return "creercompte"; //return the view
 	}
 	
 }

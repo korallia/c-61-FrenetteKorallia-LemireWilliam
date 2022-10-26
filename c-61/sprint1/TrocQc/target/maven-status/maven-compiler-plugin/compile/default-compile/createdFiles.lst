@@ -1,0 +1,8 @@
+com\TrocQc\config\WebMvcConfig.class
+com\TrocQc\config\SpringJdbcConfig.class
+com\TrocQc\DAO\UserDao.class
+com\TrocQc\servlets\InscriptionUsagerServlet.class
+com\TrocQc\config\AppInitializer.class
+com\TrocQc\controlleur\FrontControlleur.class
+com\TrocQc\Entity\User.class
+com\TrocQc\servlets\LoginServlet.class
