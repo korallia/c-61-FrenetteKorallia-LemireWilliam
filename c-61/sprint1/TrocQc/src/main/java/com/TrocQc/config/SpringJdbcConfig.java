@@ -27,8 +27,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan({ "com.TrocQc" })
 
 public class SpringJdbcConfig {
-	@Bean
+	
 	public DataSource
+
 mysqlDataSource() {
 		DriverManagerDataSource
 dataSource = new
@@ -36,13 +37,12 @@ DriverManagerDataSource();
 		
 dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 
-dataSource.setUrl("jdbc:mysql://localhost:3306/springjdbc");
+dataSource.setUrl("jdbc:mysql://localhost:3306/trocqc");
 dataSource.setUsername("trocqc");
 dataSource.setPassword("BBBbbb222");
 	return dataSource;
 	}
 	
-	@Bean
 	public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
 	      return new NamedParameterJdbcTemplate(mysqlDataSource());
 	   }

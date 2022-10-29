@@ -19,9 +19,6 @@ import com.TrocQc.Entity.User;
 @WebServlet("/inscriptionUsagerServlet")
 public class InscriptionUsagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-	@Autowired
-	private UserDao userDao;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,11 +30,7 @@ public class InscriptionUsagerServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -45,9 +38,8 @@ public class InscriptionUsagerServlet extends HttpServlet {
 		User user = new User( "vêtements",request.getParameter("firstname"),request.getParameter("lastname"),request.getParameter("email"),
 				request.getParameter("password"),request.getParameter("accountname"),request.getParameter("address"),
 				request.getParameter("city"),request.getParameter("postalcode"));
-		userDao.AddUser(user);
-		
-		//doGet(request, response);
+		UserDao userDao = new UserDao();
+    	userDao.AddUser(user);
 		
 	}
 

@@ -3,7 +3,7 @@
 </head>
 
 <body>
-	<form action="inscriptionUsagerServlet">
+	<form action="inscriptionUsagerServlet" method="POST">
 		<div class="container-fluid">
 			<div class = "row h-100 ">
 				<div class="col w-25 "> </div>

@@ -44,6 +44,10 @@ public class User {
 	@Column(name="postalCode")
 	private String postalCode;
 
+	public User() {
+	
+	}
+	
 	public User(int id,String productCategory, String firstName, String lastName, String email, String password, String username,
 			String adress, String city, String postalCode) {
 		super();
@@ -124,6 +128,46 @@ public class User {
 
 	public String getPostalCode() {
 		return postalCode;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setAdress(String adress) {
+		this.adress = adress;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
 	}
 
 	

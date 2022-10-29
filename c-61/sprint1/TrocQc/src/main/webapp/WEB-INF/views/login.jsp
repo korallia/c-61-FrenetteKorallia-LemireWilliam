@@ -13,7 +13,7 @@
 		
 		<div class="row justify-content-center align-items-center">
 				<div class="loginContainer align-items-center">
-					<form action="helloServlet" method="post">
+					<form action="loginServlet" method="post">
 						<br>
 						<div class="justify-content-center">
 							COMPTE USAGER: <br> <input type="text" name="username" size="20"> <br>
