@@ -52,10 +52,10 @@ public class User {
 	@Column(name="siteWeb")
 	private String siteWeb;
 	
-	@Column(name="avatar")
-	private Blob avatar;
+	@Column(name="Avatar")
+	private String URL_avatar;
 	
-	 static Set<String> ProductCategorySet = new HashSet<String>() {{
+	 public static Set<String> ProductCategorySet = new HashSet<String>() {{
 	 add("vêtements");
 	 add("appareils électroniques");
 	 add("produits pour animaux");
@@ -76,7 +76,7 @@ public class User {
 	}
 	
 	public User(int id,String productCategory, String firstName, String lastName, String email, String password, String username,
-			String adress, String city, String postalCode,String siteweb,Blob avatar) {
+			String adress, String city, String postalCode,String siteweb,String avatar) {
 		super();
 		this.id = id;
 		this.productCategory = productCategory;
@@ -89,10 +89,11 @@ public class User {
 		this.city = city;
 		this.postalCode = postalCode;
 		this.siteWeb = siteweb;
+		this.URL_avatar = avatar;
 	}
 	
 	public User(String productCategory,String firstName, String lastName, String email, String password, String username,
-			String adress, String city, String postalCode,String siteweb,Blob avatar) {
+			String adress, String city, String postalCode,String siteweb,String avatar) {
 		super();
 		this.productCategory = productCategory;
 		this.firstName = firstName;
@@ -103,8 +104,8 @@ public class User {
 		this.adress = adress;
 		this.city = city;
 		this.postalCode = postalCode;
-		this.postalCode = postalCode;
 		this.siteWeb = siteweb;
+		this.URL_avatar = avatar;
 	}
 
 	public int getId() {
@@ -208,12 +209,12 @@ public class User {
 		this.siteWeb = siteWeb;
 	}
 
-	public Blob getAvatar() {
-		return avatar;
+	public String getAvatar() {
+		return URL_avatar;
 	}
 
-	public void setAvatar(Blob avatar) {
-		this.avatar = avatar;
+	public void setAvatar(String avatar) {
+		this.URL_avatar = avatar;
 	}
 	
 	

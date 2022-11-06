@@ -1,9 +1,10 @@
 <%@include file="header.jsp"%>
 <title>trOqc - Créer Compte</title>
+
 </head>
 
 <body>
-	<form action="inscriptionUsagerServlet" method="POST">
+	<form action="inscriptionUsagerServlet" method="POST" enctype="multipart/form-data">
 		<div class="container-fluid">
 			<div class = "row h-100 ">
 				<div class="col w-25 "> </div>
@@ -45,13 +46,11 @@
 					 	</div>
 					 	
 					 	<div class="row justify-content-center"  >
-							<select class="select text-align" >
-							  <option value="0" >- CATÉGORIE DE PRODUITS - </option>
-							  <option value="1">One</option>
-							  <option value="2">Two</option>
-							  <option value="3">Three</option>
-							  <option value="4">Four</option>
-							  <option value="5">Five</option>
+							<select class="select text-align" name="categorie" >
+							 <option value="0" >- CATÉGORIE DE PRODUITS - </option>
+							<c:forEach items="${ProductCategorySet}" var="category">
+							  <option value="${category}">${category}</option>
+							</c:forEach>
 							</select>
 						</div>
 							
@@ -60,6 +59,7 @@
 					 		
 					 		<div class="col avatar text-center">
 					 			<a class="align-items-center">TÉLÉVERSER AVATAR</a> <img alt="" src="images/uploadBlk.png" >
+					 			<input type="file" name="file" accept="image/png, image/jpeg" />
 					 		</div> 
 					 	</div>
 					 	

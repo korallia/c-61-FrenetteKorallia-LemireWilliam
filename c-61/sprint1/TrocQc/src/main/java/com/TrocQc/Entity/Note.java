@@ -16,13 +16,13 @@ public class Note {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="body")
+	@Column(name="note_text")
 	private String body;
 	
-	@Column(name="xVal")
+	@Column(name="posX")
 	private int xVal;
 	
-	@Column(name="yVal")
+	@Column(name="posY")
 	private int yVal;
 	
 	public Note(int id, String body, int xVal, int yVal) {

@@ -36,7 +36,9 @@ public class LoginServlet extends HttpServlet {
     	UserDao userDao = new UserDao();
     	User user = userDao.Authenticate(username, password);
     	if(user != null) {
-    		//https://docs.spring.io/spring-framework/docs/1.2.x/reference/beans.html
+    			//rediriger vers lobby
+    		response.sendRedirect("/TrocQc/Lobby");
+    		// ou response.setHeader("Location", request.getContextPath() + "/lobby");
     	}
     }
  

@@ -28,9 +28,15 @@ public class UserDao extends SpringJdbcConfig {
 		params.put("username", username);
 		params.put("password", password);
 				
+		try {
 		User user = (User) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(User.class));
+				
 		if(user != null) {return user;}
+		
 		else {return null;}
+		}catch(Exception e ) {
+			return null;
+		}
 		
 		}
 	
@@ -40,7 +46,7 @@ public class UserDao extends SpringJdbcConfig {
 	
 		return jdbcTemplate().update(
 			
-			    "INSERT INTO user (productCategory, firstName,lastName,password,username,adress,city,postalcode, email ) VALUES (?, ?, ?, ?,?,?,?, ?,?)",
+			    "INSERT INTO user (productCategory, firstName,lastName,password,username,adress,city,postalcode, email,siteWeb,Avatar ) VALUES (?, ?, ?, ?,?,?,?, ?,?,?,?)",
 			    user.getProductCategory(), 
 			    user.getFirstName(), 
 			    user.getLastName(), 
@@ -49,10 +55,12 @@ public class UserDao extends SpringJdbcConfig {
 			    user.getAdress(),
 			    user.getCity(),
 			    user.getPostalCode(),
-			    user.getEmail()
+			    user.getEmail(),
+			    user.getSiteWeb(),
+			    user.getAvatar()
 			    );
 			    
 	}
-	
+	//TODO: add siteweb and image avatar
 	
 }
