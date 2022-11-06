@@ -1,11 +1,16 @@
 package com.TrocQc.Entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.mysql.cj.jdbc.Blob;
 
 @Entity
 @Table(name="user")
@@ -43,13 +48,35 @@ public class User {
 	
 	@Column(name="postalCode")
 	private String postalCode;
+	
+	@Column(name="siteWeb")
+	private String siteWeb;
+	
+	@Column(name="avatar")
+	private Blob avatar;
+	
+	 static Set<String> ProductCategorySet = new HashSet<String>() {{
+	 add("vêtements");
+	 add("appareils électroniques");
+	 add("produits pour animaux");
+	 add("artisanal");
+	 add("services");
+	 add("cosmétiques");
+	 add("passe-temps");
+	 }};
+	
+	
+	
+	
+	
+	
 
 	public User() {
-	
+		  
 	}
 	
 	public User(int id,String productCategory, String firstName, String lastName, String email, String password, String username,
-			String adress, String city, String postalCode) {
+			String adress, String city, String postalCode,String siteweb,Blob avatar) {
 		super();
 		this.id = id;
 		this.productCategory = productCategory;
@@ -61,10 +88,11 @@ public class User {
 		this.adress = adress;
 		this.city = city;
 		this.postalCode = postalCode;
+		this.siteWeb = siteweb;
 	}
 	
 	public User(String productCategory,String firstName, String lastName, String email, String password, String username,
-			String adress, String city, String postalCode) {
+			String adress, String city, String postalCode,String siteweb,Blob avatar) {
 		super();
 		this.productCategory = productCategory;
 		this.firstName = firstName;
@@ -75,6 +103,8 @@ public class User {
 		this.adress = adress;
 		this.city = city;
 		this.postalCode = postalCode;
+		this.postalCode = postalCode;
+		this.siteWeb = siteweb;
 	}
 
 	public int getId() {
@@ -170,10 +200,22 @@ public class User {
 		this.postalCode = postalCode;
 	}
 
-	
+	public String getSiteWeb() {
+		return siteWeb;
+	}
 
+	public void setSiteWeb(String siteWeb) {
+		this.siteWeb = siteWeb;
+	}
 
+	public Blob getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(Blob avatar) {
+		this.avatar = avatar;
+	}
 	
 	
-
+	
 }

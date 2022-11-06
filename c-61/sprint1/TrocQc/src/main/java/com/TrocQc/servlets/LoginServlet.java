@@ -28,20 +28,16 @@ public class LoginServlet extends HttpServlet {
 	    }
 	
     protected void doPost(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
+        HttpServletResponse response) throws ServletException, IOException {
     	String username = request.getParameter("username");
     	String password = request.getParameter("password");
     	
-    	//requete DAo
+    	//requête DAo
     	UserDao userDao = new UserDao();
     	User user = userDao.Authenticate(username, password);
     	if(user != null) {
     		//https://docs.spring.io/spring-framework/docs/1.2.x/reference/beans.html
     	}
-    	
-    	//add user to context
-       
- 
     }
  
 }
