@@ -12,7 +12,7 @@
 			
 			<div class="col">
 				<div class="row justify-content-center" >
-					<img alt="" src="images/iconB250p.png" class="logo">
+					<img alt="" src="resources/images/iconB250p.png" class="logo">
 				</div>
 			</div>
 			
@@ -22,7 +22,7 @@
 						<div class ="row align-items-center"> <p>Salut, ___________________!</p>  </div>
 						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
 					</div>
-					<div class="col-sm-3"><img alt="" src="images/avatar.png"></div>
+					<div class="col-sm-3"><img alt="" src="resources/images/avatar.png"></div>
 				</div>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 		
 		
 	</div>
-	<script type="text/javascript" src="./scripts.js"></script>
+	<script type="text/javascript" src="/TrocQc/resources/scripts.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>

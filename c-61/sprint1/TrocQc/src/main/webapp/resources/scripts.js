@@ -81,8 +81,8 @@ window.onload = function(){
 
 function pinNote() {
 	var colors = {
-		1: "images/pinkpostit.png",
-		2: "images/bluepinpostit.png"
+		1: "resources/images/pinkpostit.png",
+		2: "resources/images/bluepinpostit.png"
 	};
 	//top:60-420px 
 	//left:0-420px
@@ -105,7 +105,7 @@ function generateXBtn() {
 	img = document.createElement('img');
 	img.className = 'xbtn';
 	img.id = 'xbtn';
-	img.src = 'images/xbtn.png';
+	img.src = 'resources/images/xbtn50p.png';
 	img.x = 0;
 	img.y = 0;
 	img.addEventListener('click', closeWindow)

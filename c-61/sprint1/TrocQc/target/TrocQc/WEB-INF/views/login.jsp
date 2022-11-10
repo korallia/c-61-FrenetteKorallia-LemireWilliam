@@ -7,7 +7,7 @@
 	
 	<div class="container-fluid text-center ">
 		<div class="row justify-content-center align-items-center">
-			<img alt="" src="images/iconB250p.png" class="logo">
+			<img alt="" src="resources/images/iconB250p.png" class="logo">
 		</div>
 		
 		
