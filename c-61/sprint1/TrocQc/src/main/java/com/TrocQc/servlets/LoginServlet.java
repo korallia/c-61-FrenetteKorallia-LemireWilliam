@@ -15,7 +15,7 @@ import com.TrocQc.DAO.UserDao;
 import com.TrocQc.Entity.User;
 
 
-//AUTOWIRE doesnt solve a big problem, theirs no tight coupling, creating the dao here instead of injecting it cahnges nothing + autowire works differently in sevlet so we have to do a work around to use it when it doesnt add much.
+//AUTOWIRE doesn't solve a big problem, there's no tight coupling, creating the dao here instead of injecting it changes nothing + autowire works differently in servlet so we have to do a work around to use it when it doesn't add much.
 
 
 

@@ -5,7 +5,7 @@
  var xdiv;
  
 window.onload = function(){
-	
+	//https://stackoverflow.com/questions/45278879/how-to-pass-variable-values-from-java-to-javascript
 	function openNotePad () {
 		
 		var div = document.createElement('div');
@@ -18,15 +18,15 @@ window.onload = function(){
 		
 		var xdiv = generateXBtn();
 		
-		//form = document.createElement('form');
+		form = document.createElement('form');
 		formDiv = document.createElement('div');
 		row = document.createElement('div');
 		noteContent = createFormElement("div", "col text-center", null, null, null, null);
 		noteSubject = createFormElement("div", "col text-center", null, null, null, null);
 		submitButton = createFormElement("div", "col text-center", null, null, null, null);
 		
-		//form.setAttribute("method", "post");
-        //form.setAttribute("action", "/helloServlet");
+		form.setAttribute("method", "post");
+        form.setAttribute("action", "lobbyServlet");
 		
 		formDiv.className = "container mt-auto align-middle align-items-center";
 		row.className = "row mt-auto align-bottom justify-content-center d-flex align-items-center border";
@@ -58,9 +58,9 @@ window.onload = function(){
 		row.appendChild(noteContent);
 		row.appendChild(submitButton);
 		
-		//form.append(row);
+		form.append(row);
 		
-		formDiv.appendChild(row)
+		formDiv.appendChild(form)
 		
 		
 		div.appendChild(xdiv);
