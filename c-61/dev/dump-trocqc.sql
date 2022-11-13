@@ -49,8 +49,9 @@ DROP TABLE IF EXISTS `notes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `notes` (
-  `id` int NOT NULL,
-  `note_text` varchar(250) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `note_body` varchar(250) NOT NULL,
+  `note_subject` varchar(100) NOT NULL,
   `posX` double NOT NULL,
   `posY` double NOT NULL,
   PRIMARY KEY (`id`)

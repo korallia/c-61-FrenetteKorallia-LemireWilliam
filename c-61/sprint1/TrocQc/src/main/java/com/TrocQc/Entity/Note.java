@@ -16,7 +16,10 @@ public class Note {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="note_text")
+	@Column(name="note_subject")
+	private String subject;
+	
+	@Column(name="note_body")
 	private String body;
 	
 	@Column(name="posX")
@@ -25,9 +28,19 @@ public class Note {
 	@Column(name="posY")
 	private int yVal;
 	
-	public Note(int id, String body, int xVal, int yVal) {
+	public Note(int id, String subject, String body, int xVal, int yVal) {
 		super();
 		this.id = id;
+		this.subject = subject;
+		this.body = body;
+		this.xVal = xVal;
+		this.yVal = yVal;
+	}
+	
+	public Note(String subject, String body, int xVal, int yVal) {
+		super();
+		this.id = 0;
+		this.subject = subject;
 		this.body = body;
 		this.xVal = xVal;
 		this.yVal = yVal;
@@ -42,6 +55,10 @@ public class Note {
 		
 	}
 	
+	public String getSubject() {
+		return this.subject;
+	}
+	
 	public String getBody() {
 		return this.body;
 	}
@@ -54,6 +71,10 @@ public class Note {
 	public int getYVal() {
 		return this.yVal;
 		
+	}
+	
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 	
 	public void setBody(String body) {

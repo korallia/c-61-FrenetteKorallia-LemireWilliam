@@ -28,6 +28,7 @@ public class FrontControlleur{
 	@GetMapping("/Lobby")
 	public String GetLobby(Model theModel) {
 		 //theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
+		//Get all notes from DAO
 		return "lobby"; //return the view
 	}
 	

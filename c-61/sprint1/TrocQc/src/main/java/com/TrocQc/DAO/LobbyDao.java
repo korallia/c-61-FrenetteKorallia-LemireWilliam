@@ -15,19 +15,15 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.stereotype.Repository;
+
 import com.TrocQc.Entity.*;
 
 import com.TrocQc.config.SpringJdbcConfig;
 
+@Repository
 public class LobbyDao extends SpringJdbcConfig{
-	@Autowired
-	DataSource dataSource;
-	
-	@Autowired
-	NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	
-	@Autowired
-	JdbcTemplate jdbcTemplate;
+
 	
 	//constructor
 	public LobbyDao() {
@@ -36,27 +32,27 @@ public class LobbyDao extends SpringJdbcConfig{
 	
 	private List<Note> getLobbyNotes() {
 		String sql = "Select * from Notes";
-		return (List<Note>) namedParameterJdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Note.class));
+		return (List<Note>) namedParameterJdbcTemplate().query(sql, BeanPropertyRowMapper.newInstance(Note.class));
 	}
 	
 	
-	private int addNote(Note note) {
-		return jdbcTemplate.update(
-				"INSERT INTO Notes VALUES (?, ?, ?)", note.getBody(), note.getXVal(), note.getYVal()
+	public int addNote(Note note) {
+		return jdbcTemplate().update(
+				"INSERT INTO Notes (note_subject, note_body, posX, posY)VALUES (?, ?, ?, ?)", note.getSubject(),note.getBody(), note.getXVal(), note.getYVal()
 				);
 	}
 	
 	private int modifyNote(Note note) {
 				//HOW TO BIND WITHOUT PREPARED STATEMENT
-		return jdbcTemplate.update(
-					"UPDATE Notes SET body=?, xVal=?, yVal=? WHERE id=?", note.getBody(), note.getXVal(), note.getYVal(), note.getId()
+		return jdbcTemplate().update(
+					"UPDATE Notes SET subject=?, body=?, xVal=?, yVal=? WHERE id=?",note.getSubject(), note.getBody(), note.getXVal(), note.getYVal(), note.getId()
 				);
 		
 	}
 		
 	
 	private int deleteNote(Note note) {
-		return jdbcTemplate.update(
+		return jdbcTemplate().update(
 					"DELETE FROM Notes WHERE id=?", note.getId()
 				);
 	}

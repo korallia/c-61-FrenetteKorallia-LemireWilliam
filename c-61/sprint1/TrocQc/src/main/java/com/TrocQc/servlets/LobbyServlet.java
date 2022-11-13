@@ -24,7 +24,16 @@ public class LobbyServlet extends HttpServlet {
 	  
 	  protected void doPost(HttpServletRequest request,
 		        HttpServletResponse response) throws ServletException, IOException {
-
+		  System.out.print("OSTI!");
+		  String subject = request.getParameter("subject");
+		  String body = request.getParameter("content");
+		  int xVal = Integer.parseInt(request.getParameter("xVal"));
+		  int yVal = Integer.parseInt(request.getParameter("yVal"));
+		  
+		  Note note = new Note(subject, body, xVal, yVal);
+		  LobbyDao ld = new LobbyDao();
+		  ld.addNote(note);
+		  
 	  }
 }
 

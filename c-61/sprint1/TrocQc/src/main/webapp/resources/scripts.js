@@ -23,6 +23,8 @@ window.onload = function(){
 		row = document.createElement('div');
 		noteContent = createFormElement("div", "col text-center", null, null, null, null);
 		noteSubject = createFormElement("div", "col text-center", null, null, null, null);
+		noteX = createFormElement("div", "col text-center", null, null, null, null);
+		noteY = createFormElement("div", "col text-center", null, null, null, null);
 		submitButton = createFormElement("div", "col text-center", null, null, null, null);
 		
 		form.setAttribute("method", "post");
@@ -44,6 +46,18 @@ window.onload = function(){
 		noteCont.cols = 35;
 		noteCont.rows = 1.5;
 		
+	//top:60-420px 
+	//left:0-420px		
+		var noteXval = createFormElement("input", null, null, "range", null, "xVal");
+		noteXval.cols = 10;
+		noteXval.min = 0;
+		noteXval.max = 420;
+		
+		var noteYval = createFormElement("input", null, null, "range", null, "yVal");
+		noteYval.cols = 10;
+		noteYval.min = 60;
+		noteYval.max = 420;
+		
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Pinner");
@@ -52,10 +66,14 @@ window.onload = function(){
         
 		noteSubject.appendChild(noteSub);
 		noteContent.appendChild(noteCont);
+		noteX.appendChild(noteXval);
+		noteY.appendChild(noteYval);
 		submitButton.appendChild(s);
 		
 		row.appendChild(noteSubject);
 		row.appendChild(noteContent);
+		row.appendChild(noteXval);
+		row.appendChild(noteYval);
 		row.appendChild(submitButton);
 		
 		form.append(row);
@@ -74,6 +92,10 @@ window.onload = function(){
 	
 	if(document.getElementById("noteBtn")) {
 		document.getElementById("noteBtn").addEventListener('click', openNotePad);
+	}
+	
+	if (document.getElementById("notePad")) {
+		//PIN ALL NOTES FROM DB
 	}
 	
 	

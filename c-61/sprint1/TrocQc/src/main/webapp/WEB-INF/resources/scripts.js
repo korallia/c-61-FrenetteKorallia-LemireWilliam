@@ -5,7 +5,7 @@
  var xdiv;
  
 window.onload = function(){
-	
+	//https://stackoverflow.com/questions/45278879/how-to-pass-variable-values-from-java-to-javascript
 	function openNotePad () {
 		
 		var div = document.createElement('div');
@@ -23,6 +23,8 @@ window.onload = function(){
 		row = document.createElement('div');
 		noteContent = createFormElement("div", "col text-center", null, null, null, null);
 		noteSubject = createFormElement("div", "col text-center", null, null, null, null);
+		noteX = createFormElement("div", "col text-center", null, null, null, null);
+		noteY = createFormElement("div", "col text-center", null, null, null, null);
 		submitButton = createFormElement("div", "col text-center", null, null, null, null);
 		
 		form.setAttribute("method", "post");
@@ -44,6 +46,18 @@ window.onload = function(){
 		noteCont.cols = 35;
 		noteCont.rows = 1.5;
 		
+	//top:60-420px 
+	//left:0-420px		
+		var noteXval = createFormElement("input", null, null, "range", null, "xVal");
+		noteXval.cols = 10;
+		noteXval.min = 0;
+		noteXval.max = 420;
+		
+		var noteYval = createFormElement("input", null, null, "range", null, "yVal");
+		noteYval.cols = 10;
+		noteYval.min = 60;
+		noteYval.max = 420;
+		
         var s = document.createElement("input");
         s.setAttribute("type", "submit");
         s.setAttribute("value", "Pinner");
@@ -52,10 +66,14 @@ window.onload = function(){
         
 		noteSubject.appendChild(noteSub);
 		noteContent.appendChild(noteCont);
+		noteX.appendChild(noteXval);
+		noteY.appendChild(noteYval);
 		submitButton.appendChild(s);
 		
 		row.appendChild(noteSubject);
 		row.appendChild(noteContent);
+		row.appendChild(noteXval);
+		row.appendChild(noteYval);
 		row.appendChild(submitButton);
 		
 		form.append(row);
@@ -76,13 +94,17 @@ window.onload = function(){
 		document.getElementById("noteBtn").addEventListener('click', openNotePad);
 	}
 	
+	if (document.getElementById("notePad")) {
+		//PIN ALL NOTES FROM DB
+	}
+	
 	
 }
 
 function pinNote() {
 	var colors = {
-		1: "/resources/images/pinkpostit.png",
-		2: "/resources/images/bluepinpostit.png"
+		1: "resources/images/pinkpostit.png",
+		2: "resources/images/bluepinpostit.png"
 	};
 	//top:60-420px 
 	//left:0-420px
@@ -105,7 +127,7 @@ function generateXBtn() {
 	img = document.createElement('img');
 	img.className = 'xbtn';
 	img.id = 'xbtn';
-	img.src = '/resources/images/xbtn.png';
+	img.src = 'resources/images/xbtn50p.png';
 	img.x = 0;
 	img.y = 0;
 	img.addEventListener('click', closeWindow)
