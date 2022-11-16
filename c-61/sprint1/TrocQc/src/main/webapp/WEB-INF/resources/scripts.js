@@ -108,9 +108,12 @@ window.onload = function(){
 		//PIN ALL NOTES FROM DB
 		var postIts = document.getElementsByClassName("postIt");
 		for(var i = 0; i < postIts.length; i++){
+			postIts[i].addEventListener('click', )
 			var pos = postIts[i].lastElementChild.innerHTML.split(" ");
+			var idNode = postIts[i].lastElementChild.previousElementSibling
+			var noteID = idNode.innerHTML
 			postIts[i].lastElementChild.style.display = "none";
-						
+			idNode.style.display = "none";
 			postIts[i].style.top = parseInt(pos[2]) + "px";
 			postIts[i].style.left = pos[1] + "px";
 			postIts[i].style.backgroundImage = "url('resources/images/bluepinpostit250p.png')";
@@ -119,6 +122,25 @@ window.onload = function(){
 		}
 	
 	
+}
+
+
+function deleteNote(id) {
+	
+	console.log(id);
+	var form = document.createElement('form');
+	form.setAttribute("method", "post");
+    form.setAttribute("action", "lobbyServlet");
+
+	var noteToDelete = document.createElement('input');
+	
+	noteToDelete.name = "id";
+	noteToDelete.value = id;
+	noteToDelete.type = "text";
+	
+	form.appendChild(noteToDelete);
+	document.body.appendChild(form);
+	form.submit();
 }
 
 
@@ -161,12 +183,6 @@ function closeWindow () {
 	var node = document.getElementById('notePad');
   	node.style.display="none";
   	
-  	/*while (node.firstChild) {
-    
-    node.removeChild(node.lastChild);
-  	}
-  	node.parentNode.removeChild(node);	
-  	*/
 }
 
 function createFormElement(returnType, className, id, type, placeHolder, name) {

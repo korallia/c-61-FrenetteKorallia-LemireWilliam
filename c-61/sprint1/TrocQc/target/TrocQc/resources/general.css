@@ -138,8 +138,10 @@ input:hover{
 }
 
 .notePad{
+	display: none;
 	border: black solid 3px;
 	position: absolute;
+	z-index: 2;
   	margin: auto;
   	top: 0;
   	right: 0;
@@ -152,6 +154,7 @@ input:hover{
 }
 
 .notePadBuffer {
+	
 	width: 650px;
 	position: absolute;
   	margin: auto;
@@ -328,6 +331,27 @@ img:active {
   	right: 0;
   	bottom: 0;
   	left: 0;
+  	transition: 200ms;
+}
+
+.postIt:hover {
+	transition: 300ms;
+	z-index: 5
+}
+
+.postIt:active {
+	transition: 200ms;
+	opacity: 0.8;
+	z-index: 5
 }
 
 
+#subject{
+	font-weight: bolder;
+	font-size: 16px;
+	font-family: "Ink Free";
+}
+
+#body {
+	font-family: "Ink Free";
+}

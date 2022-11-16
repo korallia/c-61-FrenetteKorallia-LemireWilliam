@@ -57,7 +57,7 @@ public class LobbyDao extends SpringJdbcConfig{
 	}
 		
 	
-	private int deleteNote(Note note) {
+	public int deleteNote(Note note) {
 		return jdbcTemplate().update(
 					"DELETE FROM Notes WHERE id=?", note.getId()
 				);

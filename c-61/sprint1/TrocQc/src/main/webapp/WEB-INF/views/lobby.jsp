@@ -66,12 +66,14 @@
 					</div>
 					
 					<c:forEach var="note" items="${noteList}">
-						<div class="postIt" id="postIt" > 
+						<div class="postIt" id="postIt" onclick="deleteNote(${note.id})" > 
 							<p id="subject" class="mt-5 ms-4">${note.note_subject}</p>
 							<p id="body" class="ms-4">${note.note_body}</p>
+							<div id="id"> ${note.id}</div>
 							<div id="coordinates"> ${note.posX} ${note.posY}</div>
 						</div>
 					</c:forEach>
+					
 				</div>
 			</form>
 		</div>

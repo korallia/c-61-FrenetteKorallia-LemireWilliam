@@ -27,23 +27,20 @@ public class LobbyServlet extends HttpServlet {
 	  protected void doPost(HttpServletRequest request,
 		        HttpServletResponse response) throws ServletException, IOException {
 		  LobbyDao ld = new LobbyDao();
-		  
-		  String subject = request.getParameter("subject");
-		  String body = request.getParameter("content");
-		  int xVal = Integer.parseInt(request.getParameter("xVal"));
-		  int yVal = Integer.parseInt(request.getParameter("yVal"));
 
-		  if(subject.equals("") && body.equals("")) {
-			  ArrayList<Note> noteList = new ArrayList<Note>();
-			  noteList = ld.getLobbyNotes();
-			  request.setAttribute("noteList", noteList);
+		  if(request.getParameter("id") != null) {
+			  String noteId = request.getParameter("id");
+			  Note note = new Note();
+			  note.setId(Integer.parseInt(noteId));
 			  
+			  ld.deleteNote(note);
 			  
-			  for(Note note: noteList) {
-				  System.out.print(note.getNote_subject());
-			  }
 		  }
 		  else {
+			  String subject = request.getParameter("subject");
+			  String body = request.getParameter("content");
+			  int xVal = Integer.parseInt(request.getParameter("xVal"));
+			  int yVal = Integer.parseInt(request.getParameter("yVal"));
 			  Note note = new Note(subject, body, xVal, yVal);
 			  
 			  ld.addNote(note);

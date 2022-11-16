@@ -106,7 +106,9 @@ window.onload = function(){
 		var postIts = document.getElementsByClassName("postIt");
 		for(var i = 0; i < postIts.length; i++){
 			var pos = postIts[i].lastElementChild.innerHTML.split(" ");
+			var idNode = postIts[i].lastElementChild.previousElementSibling
 			postIts[i].lastElementChild.style.display = "none";
+			idNode.style.display = "none";
 			postIts[i].style.top = parseInt(pos[2]) + "px";
 			postIts[i].style.left = pos[1] + "px";
 			postIts[i].style.backgroundImage = "url('resources/images/bluepinpostit250p.png')";
@@ -120,14 +122,23 @@ window.onload = function(){
 	
 }
 
-function logVals(){
-	var data1 = document.getElementById("range1");
-	var data2 = document.getElementById("range2");
+function deleteNote(id) {
 	
-	console.log(data1);
-	console.log(data2);
+	console.log(id);
+	var form = document.createElement('form');
+	form.setAttribute("method", "post");
+    form.setAttribute("action", "lobbyServlet");
+    
+	var noteToDelete = document.createElement('input');
+	
+	noteToDelete.name = "id";
+	noteToDelete.value = id;
+	noteToDelete.type = "text";
+	
+	form.appendChild(noteToDelete);
+	document.body.appendChild(form);
+	form.submit();
 }
-logVals()
 
 function pinNote() {
 	var colors = {
