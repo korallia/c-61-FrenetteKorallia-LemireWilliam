@@ -1,5 +1,6 @@
 package com.TrocQc.servlets;
 
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -37,6 +38,7 @@ public class LoginServlet extends HttpServlet {
     	User user = userDao.Authenticate(username, password);
     	if(user != null) {
     			//rediriger vers lobby
+    		request.getSession().setAttribute("username", user);
     		response.sendRedirect("/TrocQc/Lobby");
     		// ou response.setHeader("Location", request.getContextPath() + "/lobby");
     	}

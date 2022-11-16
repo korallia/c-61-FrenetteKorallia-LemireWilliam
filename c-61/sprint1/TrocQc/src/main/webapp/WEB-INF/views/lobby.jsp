@@ -1,6 +1,10 @@
 <%@include file="header.jsp"%>
+<%@ page import="com.TrocQc.Entity.User"%>
+
 <title>trOqc - Le Hub</title>
 </head>
+
+<c:set var="pgTitle" value="Welcome" scope="request" />
 
 <body>
 	<div class="container-fluid">
@@ -16,10 +20,12 @@
 				</div>
 			</div>
 			
+			<% User user = (User)request.getSession().getAttribute("username"); %>
+			
 			<div class="col text-end">
 				<div class="row align-items-center">
 					<div class="col-sm-9 text-end">
-						<div class ="row align-items-center"> <p>Salut, ___________________!</p>  </div>
+						<div class ="row align-items-center"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
 						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
 					</div>
 					<div class="col-sm-3"><img alt="" src="resources/images/avatar.png"></div>

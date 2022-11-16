@@ -34,7 +34,6 @@ public class LobbyServlet extends HttpServlet {
 			  note.setId(Integer.parseInt(noteId));
 			  
 			  ld.deleteNote(note);
-			  
 		  }
 		  else {
 			  String subject = request.getParameter("subject");
