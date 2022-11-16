@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = { "com.TrocQc.Controlleur" })
+@ComponentScan(basePackages = { "com.TrocQc.controlleur" })
 public class WebMvcConfig implements WebMvcConfigurer{
 
 	@Bean
