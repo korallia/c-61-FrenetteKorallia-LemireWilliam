@@ -330,6 +330,19 @@ img:active {
   	right: 0;
   	bottom: 0;
   	left: 0;
+	transition: 200ms;
+}
+
+.postIt:hover {
+	transition: 300ms;
+	opacity: 0.8;
+	
+}
+
+.postIt:active {
+	transition: 200ms;
+	opacity: 1;
+	z-index: 5
 }
 
 #subject{

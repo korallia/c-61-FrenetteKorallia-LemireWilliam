@@ -111,7 +111,7 @@ window.onload = function(){
 			var pos = postIts[i].lastElementChild.innerHTML.split(" ");
 			postIts[i].lastElementChild.style.display = "none";
 						
-			postIts[i].style.top = 60 + parseInt(pos[2]) + "px";
+			postIts[i].style.top = parseInt(pos[2]) + "px";
 			postIts[i].style.left = pos[1] + "px";
 			postIts[i].style.backgroundImage = "url('resources/images/bluepinpostit250p.png')";
 			postIts[i].style.backgroundRepeat = "no-repeat";

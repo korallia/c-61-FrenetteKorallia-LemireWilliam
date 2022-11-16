@@ -60,7 +60,7 @@
 					</div>
 
 					<div class="row mt-auto align-bottom justify-content-center d-flex align-items-center border">
-						<div class="col text-center"> <input type="range" name="yVal" value="100" min="100" max="420" id="range2"> </div>
+						<div class="col text-center"> <input type="range" name="yVal" value="80" min="80" max="420" id="range2"> </div>
 						<div class="col text-center"> <input type="range" name="xVal" value="0" min="0" max="420" cols="15" id="range1"> </div>
 						
 					</div>
