@@ -1,19 +1,24 @@
 package com.TrocQc.controlleur;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.TrocQc.DAO.LobbyDao;
+import com.TrocQc.Entity.Note;
 import com.TrocQc.Entity.User;
 
 
 
 @Controller
 public class FrontControlleur{
-	
+	@Autowired 
+	LobbyDao ld;
 	@GetMapping("/Login")
 	public String GetAuthentification(Model theModel) {
 		
@@ -29,6 +34,8 @@ public class FrontControlleur{
 	public String GetLobby(Model theModel) {
 		 //theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
 		//Get all notes from DAO
+		ArrayList<Note> noteList = ld.getLobbyNotes();
+		theModel.addAttribute("noteList", noteList);
 		return "lobby"; //return the view
 	}
 	

@@ -30,22 +30,28 @@ public class LobbyDao extends SpringJdbcConfig{
 		super();
 	}
 	
-	private List<Note> getLobbyNotes() {
-		String sql = "Select * from Notes";
-		return (List<Note>) namedParameterJdbcTemplate().query(sql, BeanPropertyRowMapper.newInstance(Note.class));
+	public ArrayList<Note> getLobbyNotes() {
+		String sql = "SELECT * FROM notes";
+		ArrayList<Note> notesList = new ArrayList<Note>();
+		notesList = (ArrayList<Note>)namedParameterJdbcTemplate().query(sql, BeanPropertyRowMapper.newInstance(Note.class));
+		for(Note note: notesList) {
+			System.out.print(note.getNote_subject());
+		}
+		return notesList;
+		//return (List<Note>) namedParameterJdbcTemplate().query(sql, BeanPropertyRowMapper.newInstance(Note.class));
 	}
 	
 	
 	public int addNote(Note note) {
 		return jdbcTemplate().update(
-				"INSERT INTO Notes (note_subject, note_body, posX, posY)VALUES (?, ?, ?, ?)", note.getSubject(),note.getBody(), note.getXVal(), note.getYVal()
+				"INSERT INTO notes (note_subject, note_body, posX, posY)VALUES (?, ?, ?, ?)", note.getNote_subject(),note.getNote_body(), note.getposX(), note.getposY()
 				);
 	}
 	
 	private int modifyNote(Note note) {
 				//HOW TO BIND WITHOUT PREPARED STATEMENT
 		return jdbcTemplate().update(
-					"UPDATE Notes SET subject=?, body=?, xVal=?, yVal=? WHERE id=?",note.getSubject(), note.getBody(), note.getXVal(), note.getYVal(), note.getId()
+					"UPDATE Notes SET note_subject=?, note_body=?, posX=?, posY=? WHERE id=?",note.getNote_subject(), note.getNote_body(), note.getposX(), note.getposY(), note.getId()
 				);
 		
 	}

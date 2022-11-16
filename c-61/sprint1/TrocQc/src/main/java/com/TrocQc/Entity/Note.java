@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Notes")
+@Table(name="notes")
 public class Note {
 	
 	@Id
@@ -16,34 +16,34 @@ public class Note {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="note_subject")
-	private String subject;
-	
 	@Column(name="note_body")
-	private String body;
+	private String note_body;
+
+	@Column(name="note_subject")
+	private String note_subject;
 	
 	@Column(name="posX")
-	private int xVal;
+	private int posX;
 	
 	@Column(name="posY")
-	private int yVal;
+	private int posY;
 	
-	public Note(int id, String subject, String body, int xVal, int yVal) {
+	public Note(int id, String note_subject, String note_body, int posX, int posY) {
 		super();
 		this.id = id;
-		this.subject = subject;
-		this.body = body;
-		this.xVal = xVal;
-		this.yVal = yVal;
+		this.note_subject = note_subject;
+		this.note_body = note_body;
+		this.posX = posX;
+		this.posY = posY;
 	}
 	
-	public Note(String subject, String body, int xVal, int yVal) {
+	public Note(String note_subject, String note_body, int posX, int posY) {
 		super();
 		this.id = 0;
-		this.subject = subject;
-		this.body = body;
-		this.xVal = xVal;
-		this.yVal = yVal;
+		this.note_subject = note_subject;
+		this.note_body = note_body;
+		this.posX = posX;
+		this.posY = posY;
 	}
 	
 	public Note() {
@@ -55,42 +55,44 @@ public class Note {
 		
 	}
 	
-	public String getSubject() {
-		return this.subject;
-	}
-	
-	public String getBody() {
-		return this.body;
-	}
-	
-	public int getXVal() {
-		return this.xVal;
+	public int getposX() {
+		return this.posX;
 		
 	}
 	
-	public int getYVal() {
-		return this.yVal;
+	public int getposY() {
+		return this.posY;
 		
-	}
-	
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-	
-	public void setBody(String body) {
-		this.body = body;
 	}
 	
 	public void setId(int id) {
 		this.id = id;
 	}
 	
-	public void setxVal(int xVal) {
-		this.xVal = xVal;
+	public void setposX(int posX) {
+		this.posX = posX;
 	}
 	
-	public void setyVal(int yVal) {
-		this.yVal = yVal;
+	public void setposY(int posY) {
+		this.posY = posY;
 	}
 
+	public String getNote_body() {
+		return note_body;
+	}
+
+	public void setNote_body(String note_body) {
+		this.note_body = note_body;
+	}
+
+	public String getNote_subject() {
+		return note_subject;
+	}
+
+	public void setNote_subject(String note_subject) {
+		this.note_subject = note_subject;
+	}
+
+	
+	
 }

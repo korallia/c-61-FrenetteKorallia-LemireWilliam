@@ -3,9 +3,12 @@ com\TrocQc\config\SpringJdbcConfig.class
 com\TrocQc\DAO\UserDao.class
 com\TrocQc\servlets\InscriptionUsagerServlet.class
 com\TrocQc\Entity\Note.class
+com\TrocQc\Entity\LobbyModule.class
 com\TrocQc\config\AppInitializer.class
 com\TrocQc\controlleur\FrontControlleur.class
 com\TrocQc\DAO\LobbyDao.class
+com\TrocQc\Entity\Module.class
 com\TrocQc\Entity\User.class
+com\TrocQc\servlets\LobbyServlet.class
 com\TrocQc\servlets\LoginServlet.class
 com\TrocQc\Entity\User$1.class

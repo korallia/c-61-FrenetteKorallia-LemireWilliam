@@ -44,9 +44,12 @@
 		
 		
 		<div class="row m-4 noteBtn  text-align text-center">
-			
 			<div class="row m-5 justify-content-center  " > <button class="btn btn-primary w-75" id="noteBtn">BLOC-NOTES</button> </div>
 			
+			<c:forEach var="note" items="${noteList}">
+				<div>${note.subject}</div>
+			 </c:forEach>
+			 
 		</div>
 		
 		

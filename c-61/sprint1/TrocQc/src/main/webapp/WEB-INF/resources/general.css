@@ -138,8 +138,10 @@ input:hover{
 }
 
 .notePad{
+	display: none;
 	border: black solid 3px;
 	position: absolute;
+	z-index: 2;
   	margin: auto;
   	top: 0;
   	right: 0;
@@ -330,4 +332,12 @@ img:active {
   	left: 0;
 }
 
+#subject{
+	font-weight: bolder;
+	font-size: 16px;
+	font-family: "Ink Free";
+}
 
+#body {
+	font-family: "Ink Free";
+}

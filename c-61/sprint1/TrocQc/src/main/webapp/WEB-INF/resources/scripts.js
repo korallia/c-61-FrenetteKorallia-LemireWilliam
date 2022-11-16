@@ -7,6 +7,12 @@
 window.onload = function(){
 	//https://stackoverflow.com/questions/45278879/how-to-pass-variable-values-from-java-to-javascript
 	function openNotePad () {
+		/*
+		var notes = '${noteList}'
+				
+		console.log(notes);
+
+		
 		
 		var div = document.createElement('div');
 		div.className = 'notePad';
@@ -87,19 +93,35 @@ window.onload = function(){
 		//;
 		
 		document.getElementsByTagName('body')[0].appendChild(divBuffer); 
+		*/
 		
+		var node = document.getElementById("notePad");
+		node.style.display = "block";
 	}
 	
-	if(document.getElementById("noteBtn")) {
+	if(!!document.getElementById("noteBtn")) {
 		document.getElementById("noteBtn").addEventListener('click', openNotePad);
 	}
 	
-	if (document.getElementById("notePad")) {
+	if (!!document.getElementById("postIt")) {
+
 		//PIN ALL NOTES FROM DB
-	}
+		var postIts = document.getElementsByClassName("postIt");
+		for(var i = 0; i < postIts.length; i++){
+			var pos = postIts[i].lastElementChild.innerHTML.split(" ");
+			postIts[i].lastElementChild.style.display = "none";
+						
+			postIts[i].style.top = 60 + parseInt(pos[2]) + "px";
+			postIts[i].style.left = pos[1] + "px";
+			postIts[i].style.backgroundImage = "url('resources/images/bluepinpostit250p.png')";
+			postIts[i].style.backgroundRepeat = "no-repeat";
+			console.log(pos);
+		}
 	
 	
 }
+
+
 
 function pinNote() {
 	var colors = {
@@ -136,11 +158,15 @@ function generateXBtn() {
 }
 
 function closeWindow () {	
-	var node = document.getElementById('mainContain');
-  	while (node.firstChild) {
+	var node = document.getElementById('notePad');
+  	node.style.display="none";
+  	
+  	/*while (node.firstChild) {
+    
     node.removeChild(node.lastChild);
   	}
   	node.parentNode.removeChild(node);	
+  	*/
 }
 
 function createFormElement(returnType, className, id, type, placeHolder, name) {
