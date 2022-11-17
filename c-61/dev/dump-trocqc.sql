@@ -67,6 +67,212 @@ LOCK TABLES `notes` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `product` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `SKU` varchar(100) NOT NULL,
+  `cost` double NOT NULL,
+  `description` varchar(300) DEFAULT NULL,
+  `MSRP` double NOT NULL,
+  `addedData` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `isTemplate` tinyint(1) NOT NULL DEFAULT '0',
+  `idUnitOfMesure` int NOT NULL,
+  `quanity` double NOT NULL,
+  `lowQuantityLevel` float DEFAULT NULL,
+  `userID` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_FK` (`idUnitOfMesure`),
+  KEY `product_FK_1` (`userID`),
+  CONSTRAINT `product_FK` FOREIGN KEY (`idUnitOfMesure`) REFERENCES `unitofmesure` (`id`),
+  CONSTRAINT `product_FK_1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product`
+--
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `productcustomfields`
+--
+
+DROP TABLE IF EXISTS `productcustomfields`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `productcustomfields` (
+  `productid` int DEFAULT NULL,
+  `fieldtypeid` int DEFAULT NULL,
+  `fieldvalue` varchar(100) DEFAULT NULL,
+  `userId` int DEFAULT NULL,
+  KEY `productcustomfields_FK` (`productid`),
+  KEY `productcustomfields_FK_1` (`fieldtypeid`),
+  KEY `productcustomfields_FK_2` (`userId`),
+  CONSTRAINT `productcustomfields_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`),
+  CONSTRAINT `productcustomfields_FK_1` FOREIGN KEY (`fieldtypeid`) REFERENCES `productcustomfieldtypes` (`id`),
+  CONSTRAINT `productcustomfields_FK_2` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `productcustomfields`
+--
+
+LOCK TABLES `productcustomfields` WRITE;
+/*!40000 ALTER TABLE `productcustomfields` DISABLE KEYS */;
+/*!40000 ALTER TABLE `productcustomfields` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `productcustomfieldtypes`
+--
+
+DROP TABLE IF EXISTS `productcustomfieldtypes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `productcustomfieldtypes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(100) NOT NULL,
+  `type` enum('int','varchar','color') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `productcustomfieldtypes`
+--
+
+LOCK TABLES `productcustomfieldtypes` WRITE;
+/*!40000 ALTER TABLE `productcustomfieldtypes` DISABLE KEYS */;
+INSERT INTO `productcustomfieldtypes` VALUES (1,'Couleur Principale','color'),(2,'Type de batterie','varchar');
+/*!40000 ALTER TABLE `productcustomfieldtypes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rawmaterial`
+--
+
+DROP TABLE IF EXISTS `rawmaterial`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rawmaterial` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(100) NOT NULL,
+  `cost` float NOT NULL,
+  `addedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `quanity` float NOT NULL,
+  `idUnitOfMesure` int NOT NULL,
+  `idUser` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `rawmaterial_FK` (`idUnitOfMesure`),
+  CONSTRAINT `rawmaterial_FK` FOREIGN KEY (`idUnitOfMesure`) REFERENCES `unitofmesure` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rawmaterial`
+--
+
+LOCK TABLES `rawmaterial` WRITE;
+/*!40000 ALTER TABLE `rawmaterial` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rawmaterial` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rawmaterialcustomfields`
+--
+
+DROP TABLE IF EXISTS `rawmaterialcustomfields`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rawmaterialcustomfields` (
+  `rawMaterialid` int NOT NULL,
+  `fieldtypeid` int NOT NULL,
+  `fieldValue` varchar(100) NOT NULL,
+  `UserId` int NOT NULL,
+  KEY `rawmaterialcustomfields_FK` (`rawMaterialid`),
+  KEY `rawmaterialcustomfields_FK_1` (`fieldtypeid`),
+  KEY `rawmaterialcustomfields_FK_2` (`UserId`),
+  CONSTRAINT `rawmaterialcustomfields_FK` FOREIGN KEY (`rawMaterialid`) REFERENCES `rawmaterial` (`id`),
+  CONSTRAINT `rawmaterialcustomfields_FK_1` FOREIGN KEY (`fieldtypeid`) REFERENCES `rawmaterialcustomfieldtypes` (`id`),
+  CONSTRAINT `rawmaterialcustomfields_FK_2` FOREIGN KEY (`UserId`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rawmaterialcustomfields`
+--
+
+LOCK TABLES `rawmaterialcustomfields` WRITE;
+/*!40000 ALTER TABLE `rawmaterialcustomfields` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rawmaterialcustomfields` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rawmaterialcustomfieldtypes`
+--
+
+DROP TABLE IF EXISTS `rawmaterialcustomfieldtypes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rawmaterialcustomfieldtypes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(100) NOT NULL,
+  `type` enum('nombre','texte','couleur') DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rawmaterialcustomfieldtypes`
+--
+
+LOCK TABLES `rawmaterialcustomfieldtypes` WRITE;
+/*!40000 ALTER TABLE `rawmaterialcustomfieldtypes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rawmaterialcustomfieldtypes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rawmaterialproducts`
+--
+
+DROP TABLE IF EXISTS `rawmaterialproducts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rawmaterialproducts` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `idProduct` int NOT NULL,
+  `idMaterial` int NOT NULL,
+  `QuantityMaterialForProduct` float NOT NULL,
+  `userId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `RawMaterialProducts_FK` (`idProduct`),
+  KEY `RawMaterialProducts_FK_1` (`idMaterial`),
+  CONSTRAINT `RawMaterialProducts_FK` FOREIGN KEY (`idProduct`) REFERENCES `product` (`id`),
+  CONSTRAINT `RawMaterialProducts_FK_1` FOREIGN KEY (`idMaterial`) REFERENCES `rawmaterial` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rawmaterialproducts`
+--
+
+LOCK TABLES `rawmaterialproducts` WRITE;
+/*!40000 ALTER TABLE `rawmaterialproducts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rawmaterialproducts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `revenugrowth`
 --
 
@@ -79,7 +285,10 @@ CREATE TABLE `revenugrowth` (
   `total_expenses` float NOT NULL,
   `total_revenu` float NOT NULL,
   `profit` float NOT NULL,
-  PRIMARY KEY (`id`)
+  `UserID` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `revenugrowth_FK` (`UserID`),
+  CONSTRAINT `revenugrowth_FK` FOREIGN KEY (`UserID`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,6 +299,34 @@ CREATE TABLE `revenugrowth` (
 LOCK TABLES `revenugrowth` WRITE;
 /*!40000 ALTER TABLE `revenugrowth` DISABLE KEYS */;
 /*!40000 ALTER TABLE `revenugrowth` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `unitofmesure`
+--
+
+DROP TABLE IF EXISTS `unitofmesure`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `unitofmesure` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(100) NOT NULL,
+  `abrievation` varchar(100) NOT NULL,
+  `parent` int NOT NULL,
+  `ratio` float NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unitofmesure_un` (`parent`),
+  CONSTRAINT `unitofmesure_FK` FOREIGN KEY (`parent`) REFERENCES `unitofmesure` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `unitofmesure`
+--
+
+LOCK TABLES `unitofmesure` WRITE;
+/*!40000 ALTER TABLE `unitofmesure` DISABLE KEYS */;
+/*!40000 ALTER TABLE `unitofmesure` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -139,4 +376,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-09 19:10:58
+-- Dump completed on 2022-11-16 19:52:30
