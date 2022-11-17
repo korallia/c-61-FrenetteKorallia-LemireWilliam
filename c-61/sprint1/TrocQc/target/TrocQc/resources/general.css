@@ -368,5 +368,11 @@ img:active {
   	right: 0;
   	bottom: 0;
   	left: 0;
-  	border-radius: 4px; 
+  	border-radius: 4px;
+}
+
+.bigPostIt{
+	height:500px;
+	width:500px;
+	background-repeat: no-repeat;
 }

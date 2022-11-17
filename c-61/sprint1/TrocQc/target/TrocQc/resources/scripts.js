@@ -4,6 +4,7 @@
  var img;
  var xdiv;
  var itis = false;
+ var postIts;
 window.onload = function(){
 	//https://stackoverflow.com/questions/45278879/how-to-pass-variable-values-from-java-to-javascript
 	function openNotePad () {
@@ -103,7 +104,7 @@ window.onload = function(){
 	
 	if (!!document.getElementsByName("postIt")) {
 		//PIN ALL NOTES FROM DB
-		var postIts = document.getElementsByClassName("postIt");
+		postIts = document.getElementsByClassName("postIt");
 		for(var i = 0; i < postIts.length; i++){
 			var pos = postIts[i].lastElementChild.innerHTML.split(" ");
 			var idNode = postIts[i].lastElementChild.previousElementSibling
@@ -140,6 +141,14 @@ function onClickManager(id){
 function modifyNote(id) {
 	var node = document.getElementById('modifyPad');
 	node.style.display = "block";
+	var noteDiv = document.getElementById('bigPostIt');
+	noteDiv.style.backgroundImage = "url('resources/images/bluepinpostit500p.png')";
+	postIts = document.getElementsByClassName("postIt");
+	intId = parseInt(id)
+	var postie = postIts[intId]
+	//var bod =  postIts[id].items(1).innerHTML
+	//console.log(subj);
+	console.log(intId);
 }
 
 function deleteNote(id) {

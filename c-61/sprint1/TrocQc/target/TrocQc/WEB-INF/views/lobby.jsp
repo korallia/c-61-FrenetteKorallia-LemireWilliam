@@ -100,7 +100,7 @@
 					</div>
 					
 					<div class="row align-middle mt-auto align-bottom justify-content-center d-flex align-items-center">
-						<div class="bigPostIt">
+						<div class="bigPostIt" id="bigPostIt">
 							<p id="newSubject" class="mt-5 ms-4">SUBJ</p>
 							<p id=" newBody" class="ms-4">BODY</p>
 						</div>

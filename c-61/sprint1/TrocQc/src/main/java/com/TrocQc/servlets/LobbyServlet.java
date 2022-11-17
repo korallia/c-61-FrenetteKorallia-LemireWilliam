@@ -44,7 +44,7 @@ public class LobbyServlet extends HttpServlet {
 			  
 			  ld.addNote(note);
 		  }
-		  
+		  response.sendRedirect("/TrocQc/Lobby");
 		  
 
 		  

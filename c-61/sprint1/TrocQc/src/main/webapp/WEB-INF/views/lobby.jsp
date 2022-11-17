@@ -66,8 +66,8 @@
 					</div>
 
 					<div class="row mt-auto align-bottom justify-content-center d-flex align-items-center border">
-						<div class="col text-center"> PosX <input type="range" name="yVal" value="80" min="80" max="420" id="range2"> </div>
-						<div class="col text-center"> PosY <input type="range" name="xVal" value="0" min="0" max="420" cols="15" id="range1"> </div>
+						<div class="col text-center"> PosX <input type="range" name="xVal" value="0" min="0" max="420" id="range2"> </div>
+						<div class="col text-center"> PosY <input type="range" name="yVal" value="80" min="80" max="420" cols="15" id="range1"> </div>
 						<input class="col btn m-1" style="width: 90px" type="submit" value="ÉPINGLER" id="submitNote" onclick="">
 						<input class="col btn m-1" style="width: 90px" type="button" value="MODIFIER" id="modSwitch" onclick="">
 					</div>
