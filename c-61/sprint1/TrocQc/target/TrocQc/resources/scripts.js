@@ -3,7 +3,7 @@
  */
  var img;
  var xdiv;
- 
+ var itis = false;
 window.onload = function(){
 	//https://stackoverflow.com/questions/45278879/how-to-pass-variable-values-from-java-to-javascript
 	function openNotePad () {
@@ -115,11 +115,31 @@ window.onload = function(){
 			postIts[i].style.backgroundRepeat = "no-repeat";
 			console.log(pos);
 			
-		}
+		}	
+	}
+		if(!!document.getElementById("modSwitch")) {
+		document.getElementById("modSwitch").addEventListener('click', function() {
+			itis = true;
+			console.log(itis);
+		});
+	}
+}
+
+function onClickManager(id){
+	if (itis) {
+		modifyNote(id);
 		
 	}
+	else { 
+		deleteNote(id);
+	}
 	
-	
+	itis = false;
+}
+
+function modifyNote(id) {
+	var node = document.getElementById('modifyPad');
+	node.style.display = "block";
 }
 
 function deleteNote(id) {
@@ -174,16 +194,19 @@ function generateXBtn() {
 	return xdiv;
 }
 
+
 function closeWindow () {	
 	var node = document.getElementById('notePad');
-  	node.style.display="none";
-  	
-  	/*while (node.firstChild) {
-    
-    node.removeChild(node.lastChild);
-  	}
-  	node.parentNode.removeChild(node);	
-  	*/
+	var modNode = document.getElementById('modifyPad');
+	
+	if (modNode.style.display == "block") {
+		modNode.style.display="none";
+	}
+	else if(node.style.display == "block"){
+		node.style.display="none";
+	}
+	
+	itis=false;
 }
 
 function createFormElement(returnType, className, id, type, placeHolder, name) {

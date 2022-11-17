@@ -353,3 +353,25 @@ img:active {
 #body {
 	font-family: "Ink Free";
 }
+
+.modifyPad{
+	display: none;
+	height: 700px;
+	width: 600px;
+	background-color: salmon;
+	z-index: 100;
+	margin: auto;
+	position: absolute;
+  	top: 0;
+  	right: 0;
+  	bottom: 0;
+  	left: 0;
+  	border-radius: 4px;
+  	
+}
+
+.bigPostIt{
+	height:500px;
+	width:500px;
+	background-repeat: no-repeat;
+}
