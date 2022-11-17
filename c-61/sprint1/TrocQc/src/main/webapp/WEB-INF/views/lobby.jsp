@@ -88,7 +88,7 @@
 		<form action="lobbyServlet" method="post">
 				<div class="container mt-auto align-middle align-items-center">
 					<div class="row border" id="noteFormRow">
-						<div class="xbtn" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
+						<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 						
 					</div>
 
@@ -101,8 +101,9 @@
 					
 					<div class="row align-middle mt-auto align-bottom justify-content-center d-flex align-items-center">
 						<div class="bigPostIt" id="bigPostIt">
-							<p id="newSubject" class="mt-5 ms-4">SUBJ</p>
-							<p id=" newBody" class="ms-4">BODY</p>
+							<p id="newSubject" class="mx-4" >SUBJ</p>
+							<p id="newBody" class="mx-4" >BODY</p>
+							
 						</div>
 					</div>
 					

@@ -3,17 +3,15 @@
  */
  var img;
  var xdiv;
- var postIts;
  var itis = false;
+ var postIts;
 window.onload = function(){
 	//https://stackoverflow.com/questions/45278879/how-to-pass-variable-values-from-java-to-javascript
 	function openNotePad () {
 		/*
-		var notes = '${noteList}'
+		var notes = '${noteList}';
 				
 		console.log(notes);
-
-		
 		
 		var div = document.createElement('div');
 		div.className = 'notePad';
@@ -104,15 +102,12 @@ window.onload = function(){
 		document.getElementById("noteBtn").addEventListener('click', openNotePad);
 	}
 	
-	if (!!document.getElementById("postIt")) {
-
+	if (!!document.getElementsByName("postIt")) {
 		//PIN ALL NOTES FROM DB
 		postIts = document.getElementsByClassName("postIt");
 		for(var i = 0; i < postIts.length; i++){
-			postIts[i].addEventListener('click', )
 			var pos = postIts[i].lastElementChild.innerHTML.split(" ");
 			var idNode = postIts[i].lastElementChild.previousElementSibling
-			var noteID = idNode.innerHTML
 			postIts[i].lastElementChild.style.display = "none";
 			idNode.style.display = "none";
 			postIts[i].style.top = parseInt(pos[2]) + "px";
@@ -120,13 +115,15 @@ window.onload = function(){
 			postIts[i].style.backgroundImage = "url('resources/images/bluepinpostit250p.png')";
 			postIts[i].style.backgroundRepeat = "no-repeat";
 			console.log(pos);
-		}
-	
-	if(!!document.getElementById("modSwitch")) {
+			
+		}	
+	}
+		if(!!document.getElementById("modSwitch")) {
 		document.getElementById("modSwitch").addEventListener('click', function() {
 			itis = true;
 			console.log(itis);
-	});
+		});
+	}
 }
 
 function onClickManager(id){
@@ -148,18 +145,32 @@ function modifyNote(id) {
 	noteDiv.style.backgroundImage = "url('resources/images/bluepinpostit500p.png')";
 	postIts = document.getElementsByClassName("postIt");
 	intId = parseInt(id)
-	var postie = postIts[intId]
+
+	for(var i = 0; i < postIts.length; i++){
+		var idNode = postIts[i].lastElementChild.previousElementSibling.innerHTML;
+		var suj = postIts[i].firstElementChild.innerHTML
+		var bod = postIts[i].lastElementChild.previousElementSibling.previousElementSibling.innerHTML;
+		
+		if (idNode == id){
+			var newsub = document.getElementById("newSubject");
+			newsub.innerHTML = suj;
+			var newbod = document.getElementById("newBody");
+			newbod.innerHTML = bod;
+		}
+	}
+	
 	//var bod =  postIts[id].items(1).innerHTML
 	//console.log(subj);
-	console.log(intId);
+	//console.log(intId);
 }
+
 function deleteNote(id) {
 	
 	console.log(id);
 	var form = document.createElement('form');
 	form.setAttribute("method", "post");
     form.setAttribute("action", "lobbyServlet");
-
+    
 	var noteToDelete = document.createElement('input');
 	
 	noteToDelete.name = "id";
@@ -170,8 +181,6 @@ function deleteNote(id) {
 	document.body.appendChild(form);
 	form.submit();
 }
-
-
 
 function pinNote() {
 	var colors = {
@@ -206,6 +215,7 @@ function generateXBtn() {
 	xdiv.appendChild(img);
 	return xdiv;
 }
+
 
 function closeWindow () {	
 	var node = document.getElementById('notePad');

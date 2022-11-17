@@ -145,10 +145,23 @@ function modifyNote(id) {
 	noteDiv.style.backgroundImage = "url('resources/images/bluepinpostit500p.png')";
 	postIts = document.getElementsByClassName("postIt");
 	intId = parseInt(id)
-	var postie = postIts[intId]
+
+	for(var i = 0; i < postIts.length; i++){
+		var idNode = postIts[i].lastElementChild.previousElementSibling.innerHTML;
+		var suj = postIts[i].firstElementChild.innerHTML
+		var bod = postIts[i].lastElementChild.previousElementSibling.previousElementSibling.innerHTML;
+		
+		if (idNode == id){
+			var newsub = document.getElementById("newSubject");
+			newsub.innerHTML = suj;
+			var newbod = document.getElementById("newBody");
+			newbod.innerHTML = bod;
+		}
+	}
+	
 	//var bod =  postIts[id].items(1).innerHTML
 	//console.log(subj);
-	console.log(intId);
+	//console.log(intId);
 }
 
 function deleteNote(id) {
