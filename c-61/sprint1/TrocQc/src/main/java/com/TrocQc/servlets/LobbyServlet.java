@@ -26,6 +26,9 @@ public class LobbyServlet extends HttpServlet {
 	  
 	  protected void doPost(HttpServletRequest request,
 		        HttpServletResponse response) throws ServletException, IOException {
+		  
+		  
+		  
 		  LobbyDao ld = new LobbyDao();
 
 		  if(request.getParameter("id") != null) {
@@ -34,6 +37,12 @@ public class LobbyServlet extends HttpServlet {
 			  note.setId(Integer.parseInt(noteId));
 			  
 			  ld.deleteNote(note);
+		  }
+		  else if (request.getParameter("newSubject") != null || request.getParameter("newContent") != null ) {
+			  String newSubject = request.getParameter("newSubject");
+			  String newBody = request.getParameter("newContent");
+			  
+			  //ld.modifyNote(note);
 		  }
 		  else {
 			  String subject = request.getParameter("subject");

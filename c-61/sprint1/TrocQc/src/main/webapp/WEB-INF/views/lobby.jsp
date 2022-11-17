@@ -20,7 +20,16 @@
 				</div>
 			</div>
 			
-			<% User user = (User)request.getSession().getAttribute("username"); %>
+			
+			<% 
+				User user = (User)request.getSession().getAttribute("user"); 
+			if (user == null){
+				response.sendRedirect("/TrocQc/Login");
+				return;
+			}
+			
+			
+			%>
 			
 			<div class="col text-end">
 				<div class="row align-items-center">
@@ -35,7 +44,7 @@
 
 			
 		<div class="row align-items-center">
-			<div class="col align-items-center   ">
+			<div class="col align-items-center">
 				<div class="row   "></div>
 				 <div class="row m-5 justify-content-center  " > <button class="btn btn-primary w-75">VENTES</button> </div>
 				 <div class="row m-5 justify-content-center"><button class="btn btn-primary w-75">INVENTAIRE</button></div>
@@ -50,7 +59,7 @@
 		
 		
 		<div class="row m-4 noteBtn  text-align text-center">
-			<div class="row m-5 justify-content-center  " > <button class="btn btn-primary w-75" id="noteBtn" >BLOC-NOTES</button> </div>
+			<div class="row m-5 justify-content-center" > <button class="btn btn-primary w-75" id="noteBtn" >BLOC-NOTES</button> </div>
 
 		</div>		
 	</div>

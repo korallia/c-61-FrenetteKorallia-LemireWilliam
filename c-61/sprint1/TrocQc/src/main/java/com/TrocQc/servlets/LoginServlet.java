@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +39,9 @@ public class LoginServlet extends HttpServlet {
     	User user = userDao.Authenticate(username, password);
     	if(user != null) {
     			//rediriger vers lobby
-    		request.getSession().setAttribute("username", user);
+    		HttpSession session = request.getSession();
+    		session.setMaxInactiveInterval(10);
+    		request.getSession().setAttribute("user", user);
     		response.sendRedirect("/TrocQc/Lobby");
     		// ou response.setHeader("Location", request.getContextPath() + "/lobby");
     	}

@@ -1,5 +1,5 @@
 <%@include file="header.jsp"%>
-<%@ page import="com.TrocQc.Entity.User"%>
+
 
 <title>trOqc - Le Hub</title>
 </head>
@@ -20,8 +20,6 @@
 				</div>
 			</div>
 			
-			<% User user = (User)request.getSession().getAttribute("username"); %>
-			
 			<div class="col text-end">
 				<div class="row align-items-center">
 					<div class="col-sm-9 text-end">
@@ -35,7 +33,7 @@
 
 			
 		<div class="row align-items-center">
-			<div class="col align-items-center   ">
+			<div class="col align-items-center">
 				<div class="row   "></div>
 				 <div class="row m-5 justify-content-center  " > <button class="btn btn-primary w-75">VENTES</button> </div>
 				 <div class="row m-5 justify-content-center"><button class="btn btn-primary w-75">INVENTAIRE</button></div>
@@ -50,7 +48,7 @@
 		
 		
 		<div class="row m-4 noteBtn  text-align text-center">
-			<div class="row m-5 justify-content-center  " > <button class="btn btn-primary w-75" id="noteBtn" >BLOC-NOTES</button> </div>
+			<div class="row m-5 justify-content-center" > <button class="btn btn-primary w-75" id="noteBtn" >BLOC-NOTES</button> </div>
 
 		</div>		
 	</div>
@@ -66,8 +64,8 @@
 					</div>
 
 					<div class="row mt-auto align-bottom justify-content-center d-flex align-items-center border">
-						<div class="col text-center"> PosX <input type="range" name="yVal" value="80" min="80" max="420" id="range2"> </div>
-						<div class="col text-center"> PosY <input type="range" name="xVal" value="0" min="0" max="420" cols="15" id="range1"> </div>
+						<div class="col text-center"> PosX <input type="range" name="xVal" value="0" min="0" max="420" id="range2"> </div>
+						<div class="col text-center"> PosY <input type="range" name="yVal" value="80" min="80" max="420" cols="15" id="range1"> </div>
 						<input class="col btn m-1" style="width: 90px" type="submit" value="ÉPINGLER" id="submitNote" onclick="">
 						<input class="col btn m-1" style="width: 90px" type="button" value="MODIFIER" id="modSwitch" onclick="">
 					</div>
@@ -88,7 +86,7 @@
 		<form action="lobbyServlet" method="post">
 				<div class="container mt-auto align-middle align-items-center">
 					<div class="row border" id="noteFormRow">
-						<div class="xbtn" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
+						<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 						
 					</div>
 
@@ -101,8 +99,9 @@
 					
 					<div class="row align-middle mt-auto align-bottom justify-content-center d-flex align-items-center">
 						<div class="bigPostIt" id="bigPostIt">
-							<p id="newSubject" class="mt-5 ms-4">SUBJ</p>
-							<p id=" newBody" class="ms-4">BODY</p>
+							<p id="newSubject" class="mx-4" >SUBJ</p>
+							<p id="newBody" class="mx-4" >BODY</p>
+							
 						</div>
 					</div>
 					
