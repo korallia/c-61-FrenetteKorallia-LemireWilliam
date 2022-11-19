@@ -112,8 +112,6 @@
 						<div class="bigPostIt" id="bigPostIt">
 							<p id="newSubject" class="mx-4" >SUBJ</p>
 							<p id="newBody" class="mx-4" >BODY</p>
-							<div id="SelectedId">id </div>
-							<div id="SelectedCoordinates">coords</div>
 						</div>
 					</div>
 					

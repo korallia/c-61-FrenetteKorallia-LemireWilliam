@@ -87,6 +87,12 @@ function modifyNote(id) {
 		var suj = postIts[i].firstElementChild.innerHTML;
 		var bod = postIts[i].lastElementChild.previousElementSibling.previousElementSibling.innerHTML;
 		
+		var subjFormInput = document.getElementById("newFormSubject");
+		var bodyFormInput = document.getElementById("newFormBody");
+		
+		subjFormInput.value = suj;
+		bodyFormInput.value = bod;
+		
 		if (idNode == id){
 			var newsub = document.getElementById("newSubject");
 			newsub.innerHTML = suj;
@@ -95,18 +101,11 @@ function modifyNote(id) {
 			var idForm = document.getElementById("selectId");
 			var XposForm = document.getElementById("selectXPos");
 			var YposForm = document.getElementById("selectYPos");
-			
 			idForm.value = idNode.split(" ").join("");
 			XposForm.value = selectedXPos;
 			YposForm.value = selectedYPos;
-
-			console.log(idForm.value);
 		}
 	}
-	
-	//var bod =  postIts[id].items(1).innerHTML
-	//console.log(subj);
-	//console.log(intId);
 }
 
 function deleteNote(id) {
