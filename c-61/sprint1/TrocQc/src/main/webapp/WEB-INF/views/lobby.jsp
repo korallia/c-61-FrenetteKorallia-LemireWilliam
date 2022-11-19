@@ -67,8 +67,8 @@
 				<div class="container mt-auto align-middle align-items-center">
 					<div class="row mt-auto align-bottom justify-content-center d-flex align-items-center border" id="noteFormRow">
 						<div class="xbtn" style="width: 30px" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
-						<div class="col m-1 text-center""> <input type="text" placeholder="Sujet" name="subject"> </div>
-						<div class="col m-1 text-center" > <input type="text" placeholder="Contenu" name="content" style="width: 100%"> </div>
+						<div class="col m-1 text-center""> <input type="text" placeholder="Sujet" name="subject" id="tempSubject"> </div>
+						<div class="col m-1 text-center" > <input type="text" placeholder="Contenu" name="content" id="tempBody" style="width: 100%"> </div>
 						
 					</div>
 
@@ -81,8 +81,8 @@
 					
 					<c:forEach var="note" items="${noteList}">
 						<div class="postIt" id="postIt" onclick="onClickManager(${note.id})" > 
-							<p id="subject" class="mt-5 ms-4">${note.note_subject}</p>
-							<p id="body" class="ms-4">${note.note_body}</p>
+							<p id="subject" class="mt-5 mx-4">${note.note_subject}</p>
+							<p id="body" class="mx-4">${note.note_body}</p>
 							<div id="id"> ${note.id}</div>
 							<div id="coordinates"> ${note.posX} ${note.posY}</div>
 						</div>

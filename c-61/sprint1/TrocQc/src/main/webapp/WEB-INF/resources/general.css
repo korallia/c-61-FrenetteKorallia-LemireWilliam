@@ -5,6 +5,16 @@
 	height: 110vh;
 }
 
+body {
+background: rgb(255,255,255);
+background: -moz-radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
+background: -webkit-radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
+background: radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#9fc5f8",GradientType=1);
+
+overflow: hidden;
+}
+
 .logo {
 	height: 120px;
 	width: 128px;

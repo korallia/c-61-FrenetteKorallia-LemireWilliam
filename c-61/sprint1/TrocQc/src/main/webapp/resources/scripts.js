@@ -21,6 +21,8 @@ window.onload = function(){
 		var node = document.getElementById("notePad");
 		document.getElementById("range2").addEventListener('change', pinNote);
 		document.getElementById("range1").addEventListener('change', pinNote);
+		document.getElementById("tempSubject").addEventListener('change', pinNote);
+		document.getElementById("tempBody").addEventListener('change', pinNote);
 	}
 	
 	if(!!document.getElementById("noteBtn")) {
@@ -82,11 +84,16 @@ function modifyNote(id) {
 	noteDiv.style.backgroundImage = "url('resources/images/bluepinpostit500p.png')";
 	postIts = document.getElementsByClassName("postIt");
 	intId = parseInt(id);
-
+	
+	console.log(document.getElementById("newFormSubject"));
+	var nfs = document.getElementById("newFormSubject");
+	nfs.value = "";
+	document.getElementById("newFormBody").value = "";
+	
+	
 	for(var i = 0; i < postIts.length; i++){
 		var idNode = postIts[i].lastElementChild.previousElementSibling.innerHTML;
 		var coords = postIts[i].lastElementChild.innerHTML.split(" ");
-		console.log(coords);
 		selectedXPos = coords[1];
 		selectedYPos = coords[2];
 		var suj = postIts[i].firstElementChild.innerHTML;
@@ -115,7 +122,7 @@ function modifyNote(id) {
 
 function deleteNote(id) {
 	
-	console.log(id);
+	//console.log(id);
 	var form = document.createElement('form');
 	form.setAttribute("method", "post");
     form.setAttribute("action", "lobbyServlet");
@@ -133,20 +140,29 @@ function deleteNote(id) {
 
 function pinNote() {
 	
-	console.log("GNIAH");
+	//console.log("GNIAH");
 	
 	if (!!document.getElementById("tempPostie")){
 		document.getElementById("tempPostie").remove()
 	}
 	
 	var parent = document.getElementById("notePad");
+	var modForm = document.createElement('form');
 	var postItDiv = document.createElement('div');
 	var newPostie= document.createElement('div');
+	var newPostieSubj= document.createElement('p');
+	var newPostieBody= document.createElement('p');
+	var tempPost = document.getElementById("tempSubject")
+
+	
+	newPostieSubj.innerHTML = tempPost.value;
+	newPostieBody.innerHTML = document.getElementById("tempBody").value;
 	
 	var r1 = document.getElementById("range1");
 	var r2 = document.getElementById("range2");
 	
-	
+	modForm.setAttribute("method", "post");
+	modForm.setAttribute("action", "lobbyServlet");
 	
 	newPostie.className = "postIt";
 	newPostie.id = "tempPostie";
@@ -155,9 +171,17 @@ function pinNote() {
 	newPostie.style.backgroundImage = "url('resources/images/bluepinpostit250p.png')";
 	newPostie.style.backgroundRepeat = "no-repeat";
 	
+	newPostieSubj.className = "mt-5 mx-4";
+	newPostieSubj.id = "subject";
+	newPostieBody.className = "mt-5 mx-4";
+	newPostieBody.id = "body";
+	
+	newPostie.appendChild(newPostieSubj);
+	newPostie.appendChild(newPostieBody);
 	
 	postItDiv.appendChild(newPostie);
-	parent.appendChild(postItDiv);
+	modForm.appendChild(postItDiv)
+	parent.appendChild(modForm);
 	/*
 	var parent = document.getElementById("notePad");
 	var postItDiv = document.createElement('div');
