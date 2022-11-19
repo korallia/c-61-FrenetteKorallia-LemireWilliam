@@ -17,6 +17,12 @@ window.onload = function(){
 		node.style.display = "block";
 	}
 	
+	if(!!document.getElementById("notePad")) {
+		var node = document.getElementById("notePad");
+		document.getElementById("range2").addEventListener('change', pinNote);
+		document.getElementById("range1").addEventListener('change', pinNote);
+	}
+	
 	if(!!document.getElementById("noteBtn")) {
 		document.getElementById("noteBtn").addEventListener('click', openNotePad);
 	}
@@ -33,7 +39,7 @@ window.onload = function(){
 			postIts[i].style.left = pos[1] + "px";
 			postIts[i].style.backgroundImage = "url('resources/images/bluepinpostit250p.png')";
 			postIts[i].style.backgroundRepeat = "no-repeat";
-			console.log(pos);
+
 			
 		}	
 	}
@@ -66,7 +72,6 @@ function onClickManager(id){
 	else { 
 		deleteNote(id);
 	}
-	
 	itis = false;
 }
 
@@ -127,15 +132,33 @@ function deleteNote(id) {
 }
 
 function pinNote() {
-	var colors = {
-		1: "resources/images/pinkpostit.png",
-		2: "resources/images/bluepinpostit.png"
-	};
-	//top:60-420px 
-	//left:0-420px
-	var rdmMaxTop = (Math.random() * 420)+60;
-	var rdmMaxLeft = (Math.random() * 420);
-	var rdmSrc = Math.floor((Math.random() * Object.keys(colors).length)+1);
+	
+	console.log("GNIAH");
+	
+	if (!!document.getElementById("tempPostie")){
+		document.getElementById("tempPostie").remove()
+	}
+	
+	var parent = document.getElementById("notePad");
+	var postItDiv = document.createElement('div');
+	var newPostie= document.createElement('div');
+	
+	var r1 = document.getElementById("range1");
+	var r2 = document.getElementById("range2");
+	
+	
+	
+	newPostie.className = "postIt";
+	newPostie.id = "tempPostie";
+	newPostie.style.top = r1.value + "px";
+	newPostie.style.left = r2.value + "px";
+	newPostie.style.backgroundImage = "url('resources/images/bluepinpostit250p.png')";
+	newPostie.style.backgroundRepeat = "no-repeat";
+	
+	
+	postItDiv.appendChild(newPostie);
+	parent.appendChild(postItDiv);
+	/*
 	var parent = document.getElementById("notePad");
 	var postItDiv = document.createElement('div');
 	postIt = document.createElement('img');
@@ -145,6 +168,7 @@ function pinNote() {
 	postIt.src = colors[rdmSrc];
 	postItDiv.appendChild(postIt);
 	parent.appendChild(postItDiv);
+	*/
 }
 
 function generateXBtn() {

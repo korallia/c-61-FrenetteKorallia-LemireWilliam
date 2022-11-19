@@ -66,7 +66,6 @@ function onClickManager(id){
 	else { 
 		deleteNote(id);
 	}
-	
 	itis = false;
 }
 
@@ -87,11 +86,11 @@ function modifyNote(id) {
 		var suj = postIts[i].firstElementChild.innerHTML;
 		var bod = postIts[i].lastElementChild.previousElementSibling.previousElementSibling.innerHTML;
 		
-		var XposForm = document.getElementById("selectXPos");
-		var YposForm = document.getElementById("selectYPos");
+		var subjFormInput = document.getElementById("newFormSubject");
+		var bodyFormInput = document.getElementById("newFormBody");
 		
-		XposForm.value = suj;
-		YposForm.value = bod;
+		subjFormInput.value = suj;
+		bodyFormInput.value = bod;
 		
 		if (idNode == id){
 			var newsub = document.getElementById("newSubject");
@@ -99,8 +98,8 @@ function modifyNote(id) {
 			var newbod = document.getElementById("newBody");
 			newbod.innerHTML = bod;
 			var idForm = document.getElementById("selectId");
-			XposForm = document.getElementById("selectXPos");
-			YposForm = document.getElementById("selectYPos");
+			var XposForm = document.getElementById("selectXPos");
+			var YposForm = document.getElementById("selectYPos");
 			idForm.value = idNode.split(" ").join("");
 			XposForm.value = selectedXPos;
 			YposForm.value = selectedYPos;
@@ -127,15 +126,7 @@ function deleteNote(id) {
 }
 
 function pinNote() {
-	var colors = {
-		1: "resources/images/pinkpostit.png",
-		2: "resources/images/bluepinpostit.png"
-	};
-	//top:60-420px 
-	//left:0-420px
-	var rdmMaxTop = (Math.random() * 420)+60;
-	var rdmMaxLeft = (Math.random() * 420);
-	var rdmSrc = Math.floor((Math.random() * Object.keys(colors).length)+1);
+	
 	var parent = document.getElementById("notePad");
 	var postItDiv = document.createElement('div');
 	postIt = document.createElement('img');
