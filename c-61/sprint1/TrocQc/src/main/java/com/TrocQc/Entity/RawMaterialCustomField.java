@@ -6,5 +6,5 @@ import javax.persistence.Table;
 @Entity
 @Table(name="rawmaterialcustomfields")
 public class RawMaterialCustomField {
-
+	//TO DO mapping avec la bd 
 }
