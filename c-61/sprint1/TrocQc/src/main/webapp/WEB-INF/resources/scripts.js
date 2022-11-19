@@ -5,95 +5,14 @@
  var xdiv;
  var itis = false;
  var postIts;
+ var selectedId;
+ var selectedCoord;
+ var selectedXPos;
+ var selectedYPos;
 window.onload = function(){
 	//https://stackoverflow.com/questions/45278879/how-to-pass-variable-values-from-java-to-javascript
 	function openNotePad () {
-		/*
-		var notes = '${noteList}';
-				
-		console.log(notes);
-		
-		var div = document.createElement('div');
-		div.className = 'notePad';
-		div.id = 'notePad';
-		
-		var divBuffer = document.createElement('div');
-		divBuffer.className = 'notePadBuffer';
-		divBuffer.id = 'mainContain';
-		
-		var xdiv = generateXBtn();
-		
-		form = document.createElement('form');
-		formDiv = document.createElement('div');
-		row = document.createElement('div');
-		noteContent = createFormElement("div", "col text-center", null, null, null, null);
-		noteSubject = createFormElement("div", "col text-center", null, null, null, null);
-		noteX = createFormElement("div", "col text-center", null, null, null, null);
-		noteY = createFormElement("div", "col text-center", null, null, null, null);
-		submitButton = createFormElement("div", "col text-center", null, null, null, null);
-		
-		form.setAttribute("method", "post");
-        form.setAttribute("action", "lobbyServlet");
-		
-		formDiv.className = "container mt-auto align-middle align-items-center";
-		row.className = "row mt-auto align-bottom justify-content-center d-flex align-items-center border";
-		row.id = "noteFormRow";
-		//noteSubject.className = "col text-center";
-		//noteContent.className = "col mt-1 text-center";
-		//submitButton.className = "col text-center";
-		
-		//createFormElement(returnType, className, id, type, placeHolder, name)
-		
-		var noteSub = createFormElement("input", null, null, "text", "Sujet", "subject");
-		noteSub.size = 20;
-		
-		var noteCont = createFormElement("input", null, null, "text", "Contenu", "content");
-		noteCont.cols = 35;
-		noteCont.rows = 1.5;
-		
-	//top:60-420px 
-	//left:0-420px		
-		var noteXval = createFormElement("input", null, null, "range", null, "xVal");
-		noteXval.cols = 10;
-		noteXval.min = 0;
-		noteXval.max = 420;
-		
-		var noteYval = createFormElement("input", null, null, "range", null, "yVal");
-		noteYval.cols = 10;
-		noteYval.min = 60;
-		noteYval.max = 420;
-		
-        var s = document.createElement("input");
-        s.setAttribute("type", "submit");
-        s.setAttribute("value", "Pinner");
-        s.id = "submitNote";
-        s.addEventListener('click', pinNote)
-        
-		noteSubject.appendChild(noteSub);
-		noteContent.appendChild(noteCont);
-		noteX.appendChild(noteXval);
-		noteY.appendChild(noteYval);
-		submitButton.appendChild(s);
-		
-		row.appendChild(noteSubject);
-		row.appendChild(noteContent);
-		row.appendChild(noteXval);
-		row.appendChild(noteYval);
-		row.appendChild(submitButton);
-		
-		form.append(row);
-		
-		formDiv.appendChild(form)
-		
-		
-		div.appendChild(xdiv);
-		divBuffer.appendChild(formDiv);
-		divBuffer.appendChild(div);
-		//;
-		
-		document.getElementsByTagName('body')[0].appendChild(divBuffer); 
-		*/
-		
+
 		var node = document.getElementById("notePad");
 		node.style.display = "block";
 	}
@@ -107,7 +26,7 @@ window.onload = function(){
 		postIts = document.getElementsByClassName("postIt");
 		for(var i = 0; i < postIts.length; i++){
 			var pos = postIts[i].lastElementChild.innerHTML.split(" ");
-			var idNode = postIts[i].lastElementChild.previousElementSibling
+			var idNode = postIts[i].lastElementChild.previousElementSibling;
 			postIts[i].lastElementChild.style.display = "none";
 			idNode.style.display = "none";
 			postIts[i].style.top = parseInt(pos[2]) + "px";
@@ -121,15 +40,28 @@ window.onload = function(){
 		if(!!document.getElementById("modSwitch")) {
 		document.getElementById("modSwitch").addEventListener('click', function() {
 			itis = true;
-			console.log(itis);
+			document.getElementById("newFormSubject").addEventListener('change', updateSubject);
+			document.getElementById("newFormBody").addEventListener('change', updateBody);
 		});
+		
 	}
+}
+
+function updateSubject() {
+	var newSubj = document.getElementById("newSubject");
+	var subjInput = document.getElementById("newFormSubject");
+	newSubj.innerHTML = subjInput.value;
+}
+
+function updateBody() {
+	var newBody = document.getElementById("newBody");
+	var bodyInput = document.getElementById("newFormBody");
+	newBody.innerHTML = bodyInput.value;
 }
 
 function onClickManager(id){
 	if (itis) {
 		modifyNote(id);
-		
 	}
 	else { 
 		deleteNote(id);
@@ -144,11 +76,15 @@ function modifyNote(id) {
 	var noteDiv = document.getElementById('bigPostIt');
 	noteDiv.style.backgroundImage = "url('resources/images/bluepinpostit500p.png')";
 	postIts = document.getElementsByClassName("postIt");
-	intId = parseInt(id)
+	intId = parseInt(id);
 
 	for(var i = 0; i < postIts.length; i++){
 		var idNode = postIts[i].lastElementChild.previousElementSibling.innerHTML;
-		var suj = postIts[i].firstElementChild.innerHTML
+		var coords = postIts[i].lastElementChild.innerHTML.split(" ");
+		console.log(coords);
+		selectedXPos = coords[1];
+		selectedYPos = coords[2];
+		var suj = postIts[i].firstElementChild.innerHTML;
 		var bod = postIts[i].lastElementChild.previousElementSibling.previousElementSibling.innerHTML;
 		
 		if (idNode == id){
@@ -156,6 +92,14 @@ function modifyNote(id) {
 			newsub.innerHTML = suj;
 			var newbod = document.getElementById("newBody");
 			newbod.innerHTML = bod;
+			var idForm = document.getElementById("selectId");
+			var XposForm = document.getElementById("selectXPos");
+			var YposForm = document.getElementById("selectYPos");
+			
+			idForm.value = idNode;
+			
+			
+			
 		}
 	}
 	
@@ -229,16 +173,6 @@ function closeWindow () {
 	}
 	
 	itis=false;
-}
-
-function createFormElement(returnType, className, id, type, placeHolder, name) {
-	elem = document.createElement(returnType + '');
-	elem.className = '' + className;
-	elem.id = '' + id;
-	elem.type = '' + type;
-	elem.placeholder = '' + placeHolder;
-	elem.name = name;
-	return elem;
 }
 
 

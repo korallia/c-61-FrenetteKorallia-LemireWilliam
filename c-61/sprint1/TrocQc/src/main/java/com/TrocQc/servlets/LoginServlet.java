@@ -40,10 +40,13 @@ public class LoginServlet extends HttpServlet {
     	if(user != null) {
     			//rediriger vers lobby
     		HttpSession session = request.getSession();
-    		session.setMaxInactiveInterval(10);
+    		session.setMaxInactiveInterval(600);
     		request.getSession().setAttribute("user", user);
     		response.sendRedirect("/TrocQc/Lobby");
     		// ou response.setHeader("Location", request.getContextPath() + "/lobby");
+    	}
+    	else {
+    		response.sendRedirect("/TrocQc/Login");
     	}
     }
  

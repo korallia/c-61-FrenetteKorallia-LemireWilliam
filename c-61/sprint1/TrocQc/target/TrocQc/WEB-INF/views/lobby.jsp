@@ -1,5 +1,5 @@
 <%@include file="header.jsp"%>
-
+<%@ page import="com.TrocQc.Entity.User"%>
 
 <title>trOqc - Le Hub</title>
 </head>
@@ -10,15 +10,24 @@
 	<div class="container-fluid">
 		
 		<div class="row mb-4">
-			<div class="col">
-			.
-			</div>
+			<div class="col"></div>
 			
 			<div class="col">
 				<div class="row justify-content-center" >
 					<img alt="" src="resources/images/iconB250p.png" class="logo">
 				</div>
 			</div>
+			
+			
+			<% 
+				User user = (User)request.getSession().getAttribute("user"); 
+			if (user == null){
+				response.sendRedirect("/TrocQc/Login");
+				return;
+			}
+			
+			
+			%>
 			
 			<div class="col text-end">
 				<div class="row align-items-center">

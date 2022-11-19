@@ -10,9 +10,7 @@
 	<div class="container-fluid">
 		
 		<div class="row mb-4">
-			<div class="col">
-			.
-			</div>
+			<div class="col"></div>
 			
 			<div class="col">
 				<div class="row justify-content-center" >
@@ -102,17 +100,20 @@
 					</div>
 
 					<div class="row mt-auto align-bottom justify-content-center d-flex align-items-center border">
-						<div class="col text-center""> <input type="text" placeholder="Sujet" name="newSubject" > </div>
-						<div class="col text-center" > <input type="text" placeholder="Contenu" name="newContent" > </div>
+						<div class="col text-center""> <input type="text" placeholder="Sujet" name="newSubject" id="newFormSubject"> </div>
+						<div class="col text-center" > <input type="text" placeholder="Contenu" name="newBody" id="newFormBody"> </div>
 						<input class="col btn m-1" style="width: 60px" type="submit" value="MODIFIER" id="submitNote" onclick="">
-						
+						<input type="hidden" id="selectId" name="selectId">
+						<input type="hidden" id="selectXPos" name="selectXPos">
+						<input type="hidden" id="selectYPos" name="selectYPos">
 					</div>
 					
 					<div class="row align-middle mt-auto align-bottom justify-content-center d-flex align-items-center">
 						<div class="bigPostIt" id="bigPostIt">
 							<p id="newSubject" class="mx-4" >SUBJ</p>
 							<p id="newBody" class="mx-4" >BODY</p>
-							
+							<div id="SelectedId">id </div>
+							<div id="SelectedCoordinates">coords</div>
 						</div>
 					</div>
 					

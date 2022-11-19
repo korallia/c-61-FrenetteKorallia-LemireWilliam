@@ -48,7 +48,7 @@ public class LobbyDao extends SpringJdbcConfig{
 				);
 	}
 	
-	private int modifyNote(Note note) {
+	public int modifyNote(Note note) {
 				//HOW TO BIND WITHOUT PREPARED STATEMENT
 		return jdbcTemplate().update(
 					"UPDATE Notes SET note_subject=?, note_body=?, posX=?, posY=? WHERE id=?",note.getNote_subject(), note.getNote_body(), note.getposX(), note.getposY(), note.getId()

@@ -38,11 +38,21 @@ public class LobbyServlet extends HttpServlet {
 			  
 			  ld.deleteNote(note);
 		  }
-		  else if (request.getParameter("newSubject") != null || request.getParameter("newContent") != null ) {
-			  String newSubject = request.getParameter("newSubject");
-			  String newBody = request.getParameter("newContent");
+		  else if (request.getParameter("newSubject") != null || request.getParameter("newBody") != null ) {
+			  System.out.println(request.getParameter("newSubject"));
+			  System.out.println(request.getParameter("newBody"));
+			  System.out.println(request.getParameter("selectXPos"));
+			  System.out.println(request.getParameter("selectYPos"));
+			  System.out.println(request.getParameter("selectId"));
 			  
-			  //ld.modifyNote(note);
+			  String newSubject = request.getParameter("newSubject");
+			  String newBody = request.getParameter("newBody");
+			  int xVal = Integer.parseInt(request.getParameter("selectXPos"));
+			  int yVal = Integer.parseInt(request.getParameter("selectYPos"));
+			  int idNote = Integer.parseInt(request.getParameter("selectId"));
+			  Note note = new Note(idNote, newSubject, newBody, xVal, yVal);
+			  
+			  ld.modifyNote(note);
 		  }
 		  else {
 			  String subject = request.getParameter("subject");
