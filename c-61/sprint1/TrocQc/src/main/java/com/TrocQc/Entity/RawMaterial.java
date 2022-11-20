@@ -1,6 +1,7 @@
 package com.TrocQc.Entity;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,6 +41,8 @@ public class RawMaterial {
 	
 	@Column(name="userID")
 	private int userID;
+	
+	private List<RawMaterialCustomField> UserCustomFields;
 	
 	
 	private RawMaterial(RawMaterialBuilder builder) {
@@ -96,6 +99,16 @@ public class RawMaterial {
 	}
 
 
+	public UnitOfMeasure getUnitofmeasure() {
+		return unitofmeasure;
+	}
+
+
+	public void setUnitofmeasure(UnitOfMeasure unitofmeasure) {
+		this.unitofmeasure = unitofmeasure;
+	}
+
+
 	public double getQuantity() {
 		return quantity;
 	}
@@ -110,6 +123,15 @@ public class RawMaterial {
 
 	public void setUserID(int userID) {
 		this.userID = userID;
+	}
+
+	public List<RawMaterialCustomField> getUserCustomFields() {
+		return UserCustomFields;
+	}
+
+
+	public void setUserCustomFields(List<RawMaterialCustomField> userCustomFields) {
+		UserCustomFields = userCustomFields;
 	}
 
 	public static class RawMaterialBuilder {

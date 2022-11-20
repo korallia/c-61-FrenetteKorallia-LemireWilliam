@@ -58,7 +58,7 @@ public class Product {
 	@Column(name="QRcode")
 	private String QRcode;
 	
-	private List<ProductCustomField> UserCustomFields;
+	private List<ProductCustomFields> UserCustomFields;
 	
 	
 	private Product(ProductBuilder builder) {
@@ -248,13 +248,13 @@ public class Product {
 
 
 
-	public List<ProductCustomField> getUserCustomFields() {
+	public List<ProductCustomFields> getUserCustomFields() {
 		return UserCustomFields;
 	}
 
 
 
-	public void setUserCustomFields(List<ProductCustomField> userCustomFields) {
+	public void setUserCustomFields(List<ProductCustomFields> userCustomFields) {
 		UserCustomFields = userCustomFields;
 	}
 
@@ -274,7 +274,7 @@ public class Product {
 		private int userID;
 		private String sku;
 		private String QRcode;
-		private List<ProductCustomField> UserCustomFields;
+		private List<ProductCustomFields> UserCustomFields;
 	
 	
 		public ProductBuilder(String name, double cost, double quantity, String sku) {
@@ -324,7 +324,7 @@ public class Product {
 			this.QRcode = QRcode;
 			return this;
 		}
-		public ProductBuilder UserCustomFields(List<ProductCustomField> UserCustomFields){
+		public ProductBuilder UserCustomFields(List<ProductCustomFields> UserCustomFields){
 			this.UserCustomFields = UserCustomFields;
 			return this;
 		}

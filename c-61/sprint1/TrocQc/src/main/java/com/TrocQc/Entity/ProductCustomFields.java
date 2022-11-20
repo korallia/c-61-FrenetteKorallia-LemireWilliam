@@ -5,11 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="rawmaterialcustomfields")
-public class RawMaterialCustomField {
+@Table(name="productcustomfields")
+public class ProductCustomFields {
 	
-	@Column(name="rawMaterialid")
-	private int rawMaterialid;
+	@Column(name="productid")
+	private int productid;
 	
 	
 	@Column(name="fieldtypeName")
@@ -18,10 +18,9 @@ public class RawMaterialCustomField {
 	@Column(name="fieldvalue")
 	private String fieldvalue;
 	
-	public RawMaterialCustomField(int rawMaterialid,String fieldtypeName,String fieldvalue ) {
-		this.rawMaterialid=rawMaterialid;
+	public ProductCustomFields(int productid,String fieldtypeName,String fieldvalue ) {
+		this.productid=productid;
 		this.fieldtypeName =fieldtypeName;
 		this.fieldvalue= fieldvalue; 
 	}
-	
 }

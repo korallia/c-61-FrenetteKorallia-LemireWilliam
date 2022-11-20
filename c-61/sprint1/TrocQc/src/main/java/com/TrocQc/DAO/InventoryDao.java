@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 
 import com.TrocQc.config.SpringJdbcConfig;
 import com.TrocQc.Entity.Product;
+import com.TrocQc.Entity.ProductCustomFields;
 import com.TrocQc.Entity.RawMaterial;
+import com.TrocQc.Entity.RawMaterialCustomField;
 import com.TrocQc.Entity.UnitOfMeasure;
 import com.TrocQc.Entity.User;
 
@@ -35,6 +37,7 @@ public class InventoryDao extends SpringJdbcConfig{
 				for( int i=0; i< products.size(); i++){
 					if ( products.get(i).getIdUnitOfMeasure() > 0) {
 						products.get(i).setUnitofmeasure(this.getUnitOfMeasure(products.get(i).getIdUnitOfMeasure()));
+						products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
 					}
 				}
 			}
@@ -55,6 +58,7 @@ public class InventoryDao extends SpringJdbcConfig{
 				for( int i=0; i< rawmaterials.size(); i++){
 					if ( rawmaterials.get(i).getIdUnitOfMeasure() > 0) {
 						rawmaterials.get(i).setUnitofmeasure(this.getUnitOfMeasure(rawmaterials.get(i).getIdUnitOfMeasure()));
+						rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
 					}
 				}
 			}
@@ -76,6 +80,7 @@ public class InventoryDao extends SpringJdbcConfig{
 				for( int i=0; i< products.size(); i++){
 					if ( products.get(i).getIdUnitOfMeasure() > 0) {
 						products.get(i).setUnitofmeasure(this.getUnitOfMeasure(products.get(i).getIdUnitOfMeasure()));
+						products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
 					}
 				}
 			}
@@ -97,10 +102,24 @@ public class InventoryDao extends SpringJdbcConfig{
 				for( int i=0; i< rawmaterials.size(); i++){
 					if ( rawmaterials.get(i).getIdUnitOfMeasure() > 0) {
 						rawmaterials.get(i).setUnitofmeasure(this.getUnitOfMeasure(rawmaterials.get(i).getIdUnitOfMeasure()));
+						rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
 					}
 				}
 			}
 			return rawmaterials;
+			
+		}catch(Exception e ) {
+			return null;
+		}
+	}
+
+	public List<ProductCustomFields> getProductCustomField(int productid) {
+		try {
+			
+			Map<String, String> params = new HashMap<>();
+			params.put("productid", Integer.toString(productid) );
+			List<ProductCustomFields> productcustomfields = namedParameterJdbcTemplate().query("select * from productcustomfields WHERE productid=:productid", params , BeanPropertyRowMapper.newInstance(ProductCustomFields.class));
+			return productcustomfields;
 			
 		}catch(Exception e ) {
 			return null;
@@ -121,6 +140,7 @@ public class InventoryDao extends SpringJdbcConfig{
 		if(product  != null) {
 			if ( product.getIdUnitOfMeasure() > 0) {
 				product.setUnitofmeasure(this.getUnitOfMeasure(product.getIdUnitOfMeasure()));
+				product.setUserCustomFields(this.getProductCustomField(product.getId()) );
 			}
 			return product ;
 		}
@@ -142,6 +162,7 @@ public class InventoryDao extends SpringJdbcConfig{
 		if(rawmaterial  != null) {
 			if ( rawmaterial.getIdUnitOfMeasure() > 0) {
 				rawmaterial.setUnitofmeasure(this.getUnitOfMeasure(rawmaterial.getIdUnitOfMeasure()));
+				rawmaterial.setUserCustomFields(this.getRawMaterialCustomField(id)  );
 			}
 			return rawmaterial ;
 		}
@@ -151,6 +172,20 @@ public class InventoryDao extends SpringJdbcConfig{
 			return null;
 		}
 	}
+	
+	public List<RawMaterialCustomField> getRawMaterialCustomField(int rawmaterialid) {
+		try {
+			
+			Map<String, String> params = new HashMap<>();
+			params.put("rawMaterialid", Integer.toString(rawmaterialid) );
+			List<RawMaterialCustomField> rawmaterialcustomfields = namedParameterJdbcTemplate().query("select * from rawmaterialcustomfields WHERE rawMaterialid=:rawMaterialid", params , BeanPropertyRowMapper.newInstance(RawMaterialCustomField.class));
+			return rawmaterialcustomfields;
+			
+		}catch(Exception e ) {
+			return null;
+		}
+	}
+
 	
 	
 	public UnitOfMeasure getUnitOfMeasure(int id) {
