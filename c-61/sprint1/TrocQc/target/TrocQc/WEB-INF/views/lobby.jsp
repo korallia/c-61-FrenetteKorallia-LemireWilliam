@@ -67,22 +67,22 @@
 				<div class="container mt-auto align-middle align-items-center">
 					<div class="row mt-auto align-bottom justify-content-center d-flex align-items-center border" id="noteFormRow">
 						<div class="xbtn" style="width: 30px" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
-						<div class="col text-center""> <input type="text" placeholder="Sujet" name="subject"> </div>
-						<div class="col mt-1 text-center" > <input type="text" placeholder="Contenu" name="content" style="width: 100%"> </div>
+						<div class="col m-1 text-center""> <input type="text" placeholder="Sujet" name="subject" id="tempSubject"> </div>
+						<div class="col m-1 text-center" > <input type="text" placeholder="Contenu" name="content" id="tempBody" style="width: 100%"> </div>
 						
 					</div>
 
 					<div class="row mt-auto align-bottom justify-content-center d-flex align-items-center border">
-						<div class="col text-center"> PosX <input type="range" name="xVal" value="0" min="0" max="420" id="range2"> </div>
-						<div class="col text-center"> PosY <input type="range" name="yVal" value="80" min="80" max="420" cols="15" id="range1"> </div>
+						<div class="col text-center"> PosX <input type="range" name="xVal" value="0" min="0" max="420" id="range2" oninput="pinNote()" onchange="pinNote()"> </div>
+						<div class="col text-center"> PosY <input type="range" name="yVal" value="80" min="80" max="420" cols="15" id="range1" oninput="pinNote()" onchange="pinNote()"> </div>
 						<input class="col btn m-1" style="width: 90px" type="submit" value="ÉPINGLER" id="submitNote" onclick="">
 						<input class="col btn m-1" style="width: 90px" type="button" value="MODIFIER" id="modSwitch" onclick="">
 					</div>
 					
 					<c:forEach var="note" items="${noteList}">
 						<div class="postIt" id="postIt" onclick="onClickManager(${note.id})" > 
-							<p id="subject" class="mt-5 ms-4">${note.note_subject}</p>
-							<p id="body" class="ms-4">${note.note_body}</p>
+							<p id="subject" class="mt-5 mx-4">${note.note_subject}</p>
+							<p id="body" class="mx-4">${note.note_body}</p>
 							<div id="id"> ${note.id}</div>
 							<div id="coordinates"> ${note.posX} ${note.posY}</div>
 						</div>
@@ -100,17 +100,18 @@
 					</div>
 
 					<div class="row mt-auto align-bottom justify-content-center d-flex align-items-center border">
-						<div class="col text-center""> <input type="text" placeholder="Sujet" name="newSubject" > </div>
-						<div class="col text-center" > <input type="text" placeholder="Contenu" name="newContent" > </div>
+						<div class="col text-center""> <input type="text" placeholder="Sujet" name="newSubject" id="newFormSubject"> </div>
+						<div class="col text-center" > <input type="text" placeholder="Contenu" name="newBody" id="newFormBody"> </div>
 						<input class="col btn m-1" style="width: 60px" type="submit" value="MODIFIER" id="submitNote" onclick="">
-						
+						<input type="hidden" id="selectId" name="selectId">
+						<input type="hidden" id="selectXPos" name="selectXPos">
+						<input type="hidden" id="selectYPos" name="selectYPos">
 					</div>
 					
 					<div class="row align-middle mt-auto align-bottom justify-content-center d-flex align-items-center">
 						<div class="bigPostIt" id="bigPostIt">
 							<p id="newSubject" class="mx-4" >SUBJ</p>
 							<p id="newBody" class="mx-4" >BODY</p>
-							
 						</div>
 					</div>
 					

@@ -5,6 +5,16 @@
 	height: 110vh;
 }
 
+body {
+background: rgb(255,255,255);
+background: -moz-radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
+background: -webkit-radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
+background: radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#9fc5f8",GradientType=1);
+
+overflow: hidden;
+}
+
 .logo {
 	height: 120px;
 	width: 128px;
@@ -154,7 +164,6 @@ input:hover{
 }
 
 .notePadBuffer {
-	
 	width: 650px;
 	position: absolute;
   	margin: auto;
@@ -331,7 +340,7 @@ img:active {
   	right: 0;
   	bottom: 0;
   	left: 0;
-  	transition: 200ms;
+	transition: 200ms;
 }
 
 .postIt:hover {
@@ -344,7 +353,6 @@ img:active {
 	opacity: 0.8;
 	z-index: 5
 }
-
 
 #subject{
 	font-weight: bolder;
@@ -376,11 +384,12 @@ img:active {
 	z-index: 100;
 	margin: auto;
 	position: absolute;
- 	top: 0;
+  	top: 0;
   	right: 0;
   	bottom: 0;
   	left: 0;
   	border-radius: 4px;
+  	
 }
 
 .bigPostIt{

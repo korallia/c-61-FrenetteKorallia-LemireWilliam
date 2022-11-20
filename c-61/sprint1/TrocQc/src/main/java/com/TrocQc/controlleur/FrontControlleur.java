@@ -39,6 +39,11 @@ public class FrontControlleur{
 		return "lobby"; //return the view
 	}
 	
+	@GetMapping("/Inventaire")
+	public String GetInventaire(Model theModel) {
+		return "inventaire"; //return the view
+	}
+	
 	
 	
 	@GetMapping("/test")
