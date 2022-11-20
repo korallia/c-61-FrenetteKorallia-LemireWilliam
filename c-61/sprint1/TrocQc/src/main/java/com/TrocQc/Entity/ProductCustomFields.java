@@ -23,4 +23,29 @@ public class ProductCustomFields {
 		this.fieldtypeName =fieldtypeName;
 		this.fieldvalue= fieldvalue; 
 	}
+
+	public int getProductid() {
+		return productid;
+	}
+
+	public void setProductid(int productid) {
+		this.productid = productid;
+	}
+
+	public String getFieldtypeName() {
+		return fieldtypeName;
+	}
+
+	public void setFieldtypeName(String fieldtypeName) {
+		this.fieldtypeName = fieldtypeName;
+	}
+
+	public String getFieldvalue() {
+		return fieldvalue;
+	}
+
+	public void setFieldvalue(String fieldvalue) {
+		this.fieldvalue = fieldvalue;
+	}
+	
 }

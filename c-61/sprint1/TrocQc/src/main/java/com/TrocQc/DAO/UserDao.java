@@ -61,6 +61,9 @@ public class UserDao extends SpringJdbcConfig {
 			    );
 			    
 	}
+	
+	
+	
 	//TODO: add siteweb and image avatar
 	
 }

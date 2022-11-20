@@ -45,6 +45,10 @@ public class RawMaterial {
 	private List<RawMaterialCustomField> UserCustomFields;
 	
 	
+	public RawMaterial() {
+	
+	}
+	
 	private RawMaterial(RawMaterialBuilder builder) {
 		this.name = builder.name;
 		this.cost = builder.cost;
@@ -105,6 +109,9 @@ public class RawMaterial {
 
 
 	public void setUnitofmeasure(UnitOfMeasure unitofmeasure) {
+		if ( unitofmeasure.getId() > 0 ) {
+			this.setIdUnitOfMeasure(unitofmeasure.getId());
+		}
 		this.unitofmeasure = unitofmeasure;
 	}
 

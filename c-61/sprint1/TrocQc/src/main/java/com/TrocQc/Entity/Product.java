@@ -60,6 +60,11 @@ public class Product {
 	
 	private List<ProductCustomFields> UserCustomFields;
 	
+	private List<RawMaterialProducts> rawmaterials;
+	
+	public Product() {
+	
+	}
 	
 	private Product(ProductBuilder builder) {
 		this.name = builder.name;
@@ -183,6 +188,9 @@ public class Product {
 
 
 	public void setUnitofmeasure(UnitOfMeasure unitofmeasure) {
+		if ( unitofmeasure.getId() > 0 ) {
+			this.setIdUnitOfMeasure(unitofmeasure.getId());
+		}
 		this.unitofmeasure = unitofmeasure;
 	}
 
@@ -256,6 +264,16 @@ public class Product {
 
 	public void setUserCustomFields(List<ProductCustomFields> userCustomFields) {
 		UserCustomFields = userCustomFields;
+	}
+
+
+
+	public List<RawMaterialProducts> getRawmaterials() {
+		return rawmaterials;
+	}
+
+	public void setRawmaterials(List<RawMaterialProducts> rawmaterials) {
+		this.rawmaterials = rawmaterials;
 	}
 
 
