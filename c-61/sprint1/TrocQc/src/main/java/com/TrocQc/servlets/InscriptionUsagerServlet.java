@@ -46,7 +46,7 @@ public class InscriptionUsagerServlet extends HttpServlet {
 		 javax.servlet.http.Part filePart = request.getPart("file");
 		    String fileName = filePart.getSubmittedFileName();
 		    for (javax.servlet.http.Part part : request.getParts()) {
-		      part.write("C:\\upload\\" + fileName);
+		      part.write("resources/images" + fileName);
 		    }
 		    //source for upload code: https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-File-Upload-Servlet-Ajax-Example
 		

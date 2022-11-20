@@ -11,7 +11,7 @@
 				
 				<div class="col content">
 					<div class="row justify-content-center">
-						<img alt="" src="images/iconB250p.png" class="logo">
+						<img alt="" src="resources/images/iconB250p.png" class="logo">
 					</div>
 					
 					<div class="row accountContainer justify-content-center ">
@@ -58,7 +58,7 @@
 					 		<div class="col text-center">SITE WEB: <br> <input type="text" name="url" size="20"></div > 
 					 		
 					 		<div class="col avatar text-center">
-					 			<a class="align-items-center">TÉLÉVERSER AVATAR</a> <img alt="" src="images/uploadBlk.png" >
+					 			<a class="align-items-center">TÉLÉVERSER AVATAR</a> <img alt="" src="resources/images/uploadBlk.png" >
 					 			<input type="file" name="file" accept="image/png, image/jpeg" />
 					 		</div> 
 					 	</div>
