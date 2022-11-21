@@ -255,7 +255,7 @@
 			<div class="container mt-auto align-middle">
 				<form action="/InventoryServlet" method="post">
 				
-					<div class="row mt-auto align-bottom justify-content-center d-flex align-items-center border">
+					<div class="row">
 						<h1 class="text-center"> AJOUTER UN PRODUIT </h1>
 					</div>
 					
@@ -329,6 +329,39 @@
 		
 		<div class="materialForm" id="materialForm"> 
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
+			
+			<form action="/InventoryServlet" method="post">
+				<div class="row ">
+					<h1 class="text-center"> AJOUTER DU MATÉRIEL </h1>
+				</div>
+				
+				<div class="row m-1">
+					<input type="text" placeholder="Entrer le nom du matériel..." name="materialName">
+				</div>					
+				
+				<div class="row m-1">
+					<div class="col "> <input class="" type="number" placeholder="Entrer la quantité" name="materialQuantity" > </div>
+					<div class="col "> 
+						<div class="selector w-100">
+							<select class="text-align w-100"">
+								<option value="0"> - Choisir l'unité... - </option>
+								<option value="1"> - Milli-litres - </option>
+								<option value="1"> - Milli-mètres - </option>
+							</select>
+						</div>
+					</div> 
+				</div>
+				
+				<div class="row m-1">
+					<div class="col "> <input type="number" placeholder="Entrer le NBQ" name="materialLQN" > </div>
+					<div class="col "> <input type="number" placeholder="Entrer le coût" name="materialCost" > </div>
+				</div>
+				
+				<div class="row m-1 align-items-end">
+					<input type="submit" class="btn mt-2 align-items-end" value="AJOUTER MATÉRIEL">
+				</div>
+			</form >
+			
 		</div>
 		
 	</div>

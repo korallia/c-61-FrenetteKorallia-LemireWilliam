@@ -259,10 +259,10 @@ textarea {
   	right: 0;
   	bottom: 0;
   	left: 0;
-  	width: 650px;
-  	height: 700px;
+  	width: 450px;
+  	height: 350px;
   	background-color: #ccc;
-  	border-radius: 3px;
+  	border-radius: 5px;
 }
 
 .selector {
