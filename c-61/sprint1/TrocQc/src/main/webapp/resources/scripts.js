@@ -208,19 +208,44 @@ function generateXBtn() {
 	return xdiv;
 }
 
+function redirectTo(page){
+	
+	location.href = "/TrocQc/" + page;
+
+}
 
 function closeWindow () {	
 	var node = document.getElementById('notePad');
 	var modNode = document.getElementById('modifyPad');
+	var prodNode = document.getElementById('productForm');
+	//var materialNode = document.getElementById('materialForm');
+	var matNode = document.getElementById('materialForm');
 	
-	if (modNode.style.display == "block") {
-		modNode.style.display="none";
+	
+	if (!!node) {
+		if (node.style.display == "block") {
+			node.style.display="none";
+		}
 	}
-	else if(node.style.display == "block"){
-		node.style.display="none";
+	if (!!modNode) {
+		if (modNode.style.display == "block") {
+			modNode.style.display="none";
+		}
 	}
+	if (!!prodNode) {
+		if (prodNode.style.display == "block") {
+			prodNode.style.display="none";
+		}
+	}
+	if (!!matNode){
+		if(matNode.style.display == "block"){
+			matNode.style.display = "none"
+		}
+	}			
+	
 	
 	itis=false;
 }
+
 
 

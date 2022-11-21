@@ -14,7 +14,7 @@
 			
 			<div class="col">
 				<div class="row justify-content-center" >
-					<img alt="" src="resources/images/iconB250p.png" class="logo">
+					<img alt="" src="resources/images/iconB250p.png" class="logo" onclick="redirectTo('Lobby')">
 				</div>
 			</div>
 			
@@ -45,7 +45,7 @@
 			<div class="col align-items-center">
 				<div class="row   "></div>
 				 <div class="row m-5 justify-content-center  " > <button class="btn btn-primary w-75">VENTES</button> </div>
-				 <div class="row m-5 justify-content-center"><button class="btn btn-primary w-75">INVENTAIRE</button></div>
+				 <div class="row m-5 justify-content-center"><button class="btn btn-primary w-75" onclick="redirectTo('Inventaire')">INVENTAIRE</button></div>
 				 <div class="row m-5 justify-content-center"><button class="btn btn-primary w-75">FINANCES</button></div>
 				 <div class="row m-5 justify-content-center"><button class="btn btn-primary w-75">CONFIGURATIONS</button></div>
 			</div>

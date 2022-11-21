@@ -26,6 +26,25 @@
 
 window.onload = function(){
 	
+	if(!!document.getElementById("addProductBtn")) {
+		document.getElementById("addProductBtn").addEventListener('click', openProductForm);
+	}	
+	
+	if(!!document.getElementById("addMaterialBtn")) {
+		document.getElementById("addMaterialBtn").addEventListener('click', openMaterialForm);
+	}	
+	
+	function openProductForm(){
+		var node = document.getElementById("productForm");
+		node.style.display = "block";
+	}
+
+	function openMaterialForm(){
+		var node = document.getElementById("materialForm");
+		node.style.display = "block";
+	}	
+	
+	
 	function createAddProductForm() {
 		var div = document.createElement('div');
 		div.className = 'productForm';
@@ -412,10 +431,11 @@ window.onload = function(){
 
 			
 	}
+	/*
 	if(document.getElementById("addProductBtn")) {
 		document.getElementById("addProductBtn").addEventListener('click', createAddProductForm);
 	}	
-	
+	*/
 }
 
 //Export as CSV 
