@@ -57,7 +57,7 @@ public class FrontControlleur{
 	rm.setIdUnitOfMeasure(4);
 	rm.setUserID(1);
 	rm.setQuantity(228);
-	
+	//TODO add custom field
 	inventorydao.AddRawMaterial(rm);
 	
 	Product p = new Product();

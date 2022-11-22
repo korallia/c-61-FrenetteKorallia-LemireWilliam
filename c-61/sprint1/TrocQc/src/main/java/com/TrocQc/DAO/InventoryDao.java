@@ -38,6 +38,12 @@ public class InventoryDao extends SpringJdbcConfig{
 		super();
 	}
 	
+	public List<UnitOfMeasure> getUnitsOfMesure(){
+		
+		
+		return jdbcTemplate().query( "Select * From unitofmeasure",BeanPropertyRowMapper.newInstance(UnitOfMeasure.class));
+		
+	}
 	
 	public List<Product> getProducts() {
 		try {
@@ -308,7 +314,8 @@ public class InventoryDao extends SpringJdbcConfig{
 		
 		if ( rawmaterial.getId() == 0 ) {
 			
-			//
+			// id = 0 insert cause not in db
+			
 			SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(mysqlDataSource()).withTableName("RawMaterial").usingGeneratedKeyColumns("id");
 			
 			Map<String, Object> parameters = new HashMap<>();
@@ -438,7 +445,9 @@ public class InventoryDao extends SpringJdbcConfig{
 			
 			return product.getId();	
 		
-		}	
+		}
+	
+		
 	
 	
 	

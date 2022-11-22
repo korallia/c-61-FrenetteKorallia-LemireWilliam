@@ -141,6 +141,7 @@ public class RawMaterial {
 		UserCustomFields = userCustomFields;
 	}
 
+/*
 	public static class RawMaterialBuilder {
 
 		private String name;
@@ -189,6 +190,22 @@ public class RawMaterial {
 		
 		
 	}
+*/
+	public RawMaterial(int id, String name, double cost, Timestamp addedDate, UnitOfMeasure unitofmeasure,
+			double quantity, int userID, List<RawMaterialCustomField> userCustomFields) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cost = cost;
+		this.addedDate = addedDate;
+		this.unitofmeasure = unitofmeasure;
+		this.quantity = quantity;
+		this.userID = userID;
+		this.UserCustomFields = userCustomFields;
+		this.idUnitOfMeasure = unitofmeasure.getId();
+	}
+	
+	
 
 		
 }
