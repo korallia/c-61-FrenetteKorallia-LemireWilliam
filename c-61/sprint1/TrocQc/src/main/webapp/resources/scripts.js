@@ -9,6 +9,7 @@
  var selectedCoord;
  var selectedXPos;
  var selectedYPos;
+ var shouldRefresh = false;
 window.onload = function(){
 	//https://stackoverflow.com/questions/45278879/how-to-pass-variable-values-from-java-to-javascript
 	function openNotePad () {
@@ -23,6 +24,7 @@ window.onload = function(){
 		document.getElementById("range1").addEventListener('change', pinNote);
 		document.getElementById("tempSubject").addEventListener('change', pinNote);
 		document.getElementById("tempBody").addEventListener('change', pinNote);
+		document.getElementById("submitNote").addEventListener('click', setRefreshCheck)
 	}
 	
 	if(!!document.getElementById("noteBtn")) {
@@ -53,6 +55,18 @@ window.onload = function(){
 		});
 		
 	}
+
+	if (sessionStorage.getItem("refresh")){
+		sessionStorage.clear();
+		openNotePad();
+	}
+}
+
+function setRefreshCheck(){
+	console.log("setRefreshCheck")
+	
+	shouldRefresh = true;
+	sessionStorage.setItem("refresh", shouldRefresh);
 }
 
 function updateSubject() {
@@ -68,6 +82,9 @@ function updateBody() {
 }
 
 function onClickManager(id){
+	shouldRefresh = true;
+	sessionStorage.setItem("refresh", shouldRefresh);
+	
 	if (itis) {
 		modifyNote(id);
 	}

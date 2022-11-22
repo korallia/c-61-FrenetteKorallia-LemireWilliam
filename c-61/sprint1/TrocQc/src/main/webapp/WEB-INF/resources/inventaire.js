@@ -111,8 +111,8 @@ window.onload = function(){
 		selectUnit.appendChild(option1);
 		selectUnit.appendChild(option2);
 		selectUnit.appendChild(option3);
-		selectDiv = document.createElement('div');
 		
+		selectDiv = document.createElement('div');
 		selectDiv.className = "selector";
 		selectDiv.appendChild(selectUnit)
 		

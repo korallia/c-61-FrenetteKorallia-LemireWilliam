@@ -37,6 +37,8 @@ public class LobbyServlet extends HttpServlet {
 			  note.setId(Integer.parseInt(noteId));
 			  
 			  ld.deleteNote(note);
+			  request.setAttribute("refresh", true);
+			  response.sendRedirect("/TrocQc/Lobby");
 		  }
 		  else if (request.getParameter("newSubject") != null || request.getParameter("newBody") != null ) {
 			  System.out.println(request.getParameter("newSubject"));
@@ -53,6 +55,7 @@ public class LobbyServlet extends HttpServlet {
 			  Note note = new Note(idNote, newSubject, newBody, xVal, yVal);
 			  
 			  ld.modifyNote(note);
+			  response.sendRedirect("/TrocQc/Lobby");
 		  }
 		  else {
 			  String subject = request.getParameter("subject");
@@ -62,8 +65,11 @@ public class LobbyServlet extends HttpServlet {
 			  Note note = new Note(subject, body, xVal, yVal);
 			  
 			  ld.addNote(note);
+			  request.setAttribute("refresh", true);
+			  response.sendRedirect("/TrocQc/Lobby");
+			  
 		  }
-		  response.sendRedirect("/TrocQc/Lobby");
+		  
 		  
 
 		  
