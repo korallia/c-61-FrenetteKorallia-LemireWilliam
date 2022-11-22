@@ -24,4 +24,9 @@ public class RawMaterialCustomField {
 		this.fieldvalue= fieldvalue; 
 	}
 	
+	public RawMaterialCustomField(String fieldtypeName,String fieldvalue) {
+		this.fieldtypeName = fieldtypeName;
+		this.fieldvalue= fieldvalue; 
+	}
+	
 }

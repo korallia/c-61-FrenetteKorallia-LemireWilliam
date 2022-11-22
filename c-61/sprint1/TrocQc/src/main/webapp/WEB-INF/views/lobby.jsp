@@ -89,9 +89,8 @@
 		</div>
 		
 		
-		<div class="row m-4 noteBtn text-align text-center ">
-			<div class="row m-5 justify-content-center " > <button class="btn btn-primary " id="noteBtn" >BLOC-NOTES</button> </div>
-
+		<div class="row m-4 ">
+			<div class="d-flex justify-content-center "><button class="btn btn-primary" id="noteBtn" >BLOC-NOTES</button></div>
 		</div>		
 	</div>
 	

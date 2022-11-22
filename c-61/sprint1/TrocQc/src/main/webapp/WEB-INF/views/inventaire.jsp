@@ -279,7 +279,7 @@
 								</select>
 							</div>
 						</div> 
-						<div class="col m-1"> <input type="numer" placeholder="Entrer le NBQ" name="productLQN" > </div>
+						<div class="col m-1"> <input type="number" placeholder="Entrer le NBQ" name="productLQN" > </div>
 					</div>
 					
 					<div class="row m-1">
@@ -358,8 +358,17 @@
 					<div class="col "> <input type="number" placeholder="Entrer le coût" name="materialCost" > </div>
 				</div>
 				
-				<div class="row m-1 align-items-end">
-					<input type="submit" class="btn mt-2 align-items-end" value="AJOUTER MATÉRIEL">
+				<div class="row m-1 border mt-3">
+					<h4 class="text-center">AJOUTER UN NOUVEAU CHAMP</h4>
+					<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
+					<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
+
+				</div>
+				
+				<div class="row " id="noteBtn">
+					<div class="d-flex justify-content-center"><input type="submit" class="btn " value="AJOUTER MATÉRIEL"></div>
+					
+					
 				</div>
 			</form >
 			
