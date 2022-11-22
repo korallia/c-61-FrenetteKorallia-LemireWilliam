@@ -43,11 +43,9 @@ window.onload = function(){
 			postIts[i].style.left = pos[1] + "px";
 			postIts[i].style.backgroundImage = "url('resources/images/bluepinpostit250p.png')";
 			postIts[i].style.backgroundRepeat = "no-repeat";
-
-			
 		}	
 	}
-		if(!!document.getElementById("modSwitch")) {
+	if(!!document.getElementById("modSwitch")) {
 		document.getElementById("modSwitch").addEventListener('click', function() {
 			itis = true;
 			document.getElementById("newFormSubject").addEventListener('change', updateSubject);
@@ -55,16 +53,84 @@ window.onload = function(){
 		});
 		
 	}
+	
+	if (!!document.getElementById("btnVentes")){
+		var moduleBtn = document.getElementById("btnVentes");
+		moduleBtn.addEventListener('mouseenter', enterVentes);
+		moduleBtn.addEventListener('mouseleave', leaveVentes);
+	}
+	
+	if (!!document.getElementById("btnInventaire")){
+		var moduleBtn = document.getElementById("btnInventaire");
+		moduleBtn.addEventListener('mouseenter', enterInventaire);
+		moduleBtn.addEventListener('mouseleave', leaveInventaire);
+	}
+	
+	if (!!document.getElementById("btnFinances")){
+		var moduleBtn = document.getElementById("btnFinances");
+		moduleBtn.addEventListener('mouseenter', enterFinances);
+		moduleBtn.addEventListener('mouseleave', leaveFinances);
+	}
+	
+	if (!!document.getElementById("btnConfigs")){
+		var moduleBtn = document.getElementById("btnConfigs");
+		moduleBtn.addEventListener('mouseenter', enterConfigs);
+		moduleBtn.addEventListener('mouseleave', leaveConfigs);
+	}
 
 	if (sessionStorage.getItem("refresh")){
 		sessionStorage.clear();
 		openNotePad();
 	}
+	
+	
+}
+
+function enterVentes(){
+	
+	document.getElementById("moduleVentes").style.display = 'block';
+	document.getElementById("moduleWelcome").style.display = 'none';
+}
+
+function leaveVentes(){
+	document.getElementById("moduleVentes").style.display = 'none';
+	document.getElementById("moduleWelcome").style.display = 'block';
+}
+
+function enterInventaire(){
+	
+	document.getElementById("moduleInventaire").style.display = 'block';
+	document.getElementById("moduleWelcome").style.display = 'none';
+}
+
+function leaveInventaire(){
+	document.getElementById("moduleInventaire").style.display = 'none';
+	document.getElementById("moduleWelcome").style.display = 'block';
+}
+
+function enterFinances(){
+	
+	document.getElementById("moduleFinances").style.display = 'block';
+	document.getElementById("moduleWelcome").style.display = 'none';
+}
+
+function leaveFinances(){
+	document.getElementById("moduleFinances").style.display = 'none';
+	document.getElementById("moduleWelcome").style.display = 'block';
+}
+
+function enterConfigs(){
+	
+	document.getElementById("moduleConfigs").style.display = 'block';
+	document.getElementById("moduleWelcome").style.display = 'none';
+}
+
+function leaveConfigs(){
+	document.getElementById("moduleConfigs").style.display = 'none';
+	document.getElementById("moduleWelcome").style.display = 'block';
 }
 
 function setRefreshCheck(){
-	console.log("setRefreshCheck")
-	
 	shouldRefresh = true;
 	sessionStorage.setItem("refresh", shouldRefresh);
 }
@@ -102,11 +168,9 @@ function modifyNote(id) {
 	postIts = document.getElementsByClassName("postIt");
 	intId = parseInt(id);
 	
-	console.log(document.getElementById("newFormSubject"));
 	var nfs = document.getElementById("newFormSubject");
 	nfs.value = "";
 	document.getElementById("newFormBody").value = "";
-	
 	
 	for(var i = 0; i < postIts.length; i++){
 		var idNode = postIts[i].lastElementChild.previousElementSibling.innerHTML;
@@ -157,8 +221,6 @@ function deleteNote(id) {
 
 function pinNote() {
 	
-	//console.log("GNIAH");
-	
 	if (!!document.getElementById("tempPostie")){
 		document.getElementById("tempPostie").remove()
 	}
@@ -199,17 +261,7 @@ function pinNote() {
 	postItDiv.appendChild(newPostie);
 	modForm.appendChild(postItDiv)
 	parent.appendChild(modForm);
-	/*
-	var parent = document.getElementById("notePad");
-	var postItDiv = document.createElement('div');
-	postIt = document.createElement('img');
-	postIt.className = "postIt";
-	postIt.style.top = rdmMaxTop+"px";
-	postIt.style.left = rdmMaxLeft+"px";
-	postIt.src = colors[rdmSrc];
-	postItDiv.appendChild(postIt);
-	parent.appendChild(postItDiv);
-	*/
+
 }
 
 function generateXBtn() {

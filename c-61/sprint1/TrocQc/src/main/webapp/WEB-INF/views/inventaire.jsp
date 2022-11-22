@@ -3,7 +3,7 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row mb-3">
 			<div class="col">
 			.
@@ -29,15 +29,16 @@
 						<div class ="row align-items-center"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
 						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
 					</div>
-					<div class="col-sm-3"><img alt="" src="resources/images/avatarB.png"></div>
+					<div class="col-sm-3"><img class="avatar" alt="" src="resources/images/<%=user.getAvatar()%>"></div>
 				</div>
 			</div>
+			
 		</div>
 		
 		
-		<div class="row">
+		<div class="row " >
 			<!-- Tab links -->
-			<div class="tab">
+			<div class="tab d-flex justify-content-center">
 			  <button class="tablinks" onclick="openTab(event, 'Produits')">PRODUITS</button>
 			  <button class="tablinks" onclick="openTab(event, 'Materiaux')">MATÉRIAUX</button>
 			  <button class="tablinks" onclick="openTab(event, 'Templates')">TEMPLATES</button>

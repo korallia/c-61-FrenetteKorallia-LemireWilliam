@@ -6,13 +6,12 @@
 }
 
 body {
-background: rgb(255,255,255);
-background: -moz-radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
-background: -webkit-radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
-background: radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#9fc5f8",GradientType=1);
-
-overflow: hidden;
+	background: rgb(255,255,255);
+	background: -moz-radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
+	background: -webkit-radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
+	background: radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#9fc5f8",GradientType=1);
+	overflow: hidden;
 }
 
 .logo {
@@ -79,6 +78,10 @@ overflow: hidden;
 
 .avatar {
 	margin-top: 15px;
+	border-radius: 50%;
+	height: 75px;
+	width:75px;
+	border: 2px solid black;
 }
 
 .title {
@@ -102,8 +105,6 @@ button:active {
 	color: black;
 	font-weight: bolder;
 }
-
-button:s
 
 input {
 	border-radius: 6px;
@@ -411,7 +412,40 @@ img:active {
 }
 
 .bigPostIt{
-	height:500px;
-	width:500px;
+	height: 500px;
+	width: 500px;
 	background-repeat: no-repeat;
+}
+
+.modulePicture {
+	width: 250px;
+	height:auto;
+}
+
+.infoModule {
+	transition: 200ms;
+	width: 500px;
+	height: 300px;
+}
+
+#noteBtn {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+#moduleConfigs{
+	display: none;
+}
+
+#moduleFinances{
+	display: none;
+}
+
+#moduleInventaire{
+	display: none;
+}
+
+#moduleVentes{
+	display: none;
 }
