@@ -1,5 +1,16 @@
 com\TrocQc\config\WebMvcConfig.class
 com\TrocQc\config\SpringJdbcConfig.class
+com\TrocQc\Entity\RawMaterial$1.class
+com\TrocQc\Entity\Note.class
+com\TrocQc\config\AppInitializer.class
+com\TrocQc\DAO\LobbyDao.class
+com\TrocQc\Entity\User.class
+com\TrocQc\servlets\LoginServlet.class
+com\TrocQc\Entity\User$1.class
+com\TrocQc\DAO\UserDao.class
+com\TrocQc\servlets\InscriptionUsagerServlet.class
+com\TrocQc\controlleur\FrontControlleur.class
+com\TrocQc\Entity\Product$1.class
 com\TrocQc\DAO\UserDao.class
 com\TrocQc\servlets\InscriptionUsagerServlet.class
 com\TrocQc\Entity\Note.class

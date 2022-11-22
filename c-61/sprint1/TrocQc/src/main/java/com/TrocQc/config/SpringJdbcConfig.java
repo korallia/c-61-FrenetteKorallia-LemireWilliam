@@ -28,19 +28,18 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 public class SpringJdbcConfig {
 	
-	public DataSource
-
-mysqlDataSource() {
-		DriverManagerDataSource
-dataSource = new
-DriverManagerDataSource();
-		
-dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-
-dataSource.setUrl("jdbc:mysql://localhost:3306/trocqc");
-dataSource.setUsername("trocqc");
-dataSource.setPassword("BBBbbb222");
-	return dataSource;
+	public static DriverManagerDataSource dataSource;
+	
+	
+	public DataSource mysqlDataSource() {
+		if ( this.dataSource == null) {
+			this.dataSource = new DriverManagerDataSource();
+			this.dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+			this.dataSource.setUrl("jdbc:mysql://localhost:3306/trocqc");
+			this.dataSource.setUsername("trocqc");
+			this.dataSource.setPassword("BBBbbb222");
+		}
+		return this.dataSource;
 	}
 	
 	public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
