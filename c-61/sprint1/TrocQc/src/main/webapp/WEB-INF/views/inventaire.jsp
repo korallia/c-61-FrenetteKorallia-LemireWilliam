@@ -11,7 +11,7 @@
 			
 			<div class="col">
 				<div class="row justify-content-center" >
-					<img alt="" src="images/iconB250p.png" class="logo">
+					<img alt="" src="resources/images/iconB250p.png" class="logo">
 				</div>
 			</div>
 			
@@ -21,7 +21,7 @@
 						<div class ="row align-items-center"> <p>Salut, ___________________!</p>  </div>
 						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
 					</div>
-					<div class="col-sm-3"><img alt="" src="images/avatarB.png"></div>
+					<div class="col-sm-3"><img alt="" src="resources/images/avatarB.png"></div>
 				</div>
 			</div>
 		</div>
