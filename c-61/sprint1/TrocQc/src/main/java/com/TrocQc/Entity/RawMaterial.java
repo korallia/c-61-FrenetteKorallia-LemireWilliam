@@ -173,6 +173,9 @@ public class RawMaterial {
 		this.UserCustomFields = userCustomFields;
 		
 	}
+	
+	
+	
 
 /*
 	public static class RawMaterialBuilder {

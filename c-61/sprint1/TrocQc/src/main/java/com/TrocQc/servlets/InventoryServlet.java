@@ -47,7 +47,7 @@ public class InventoryServlet extends HttpServlet {
 			  
 			  System.out.print("UNIT OF MEASURE: " + materialUOM);
 			  
-			  UnitOfMeasure uom = invDao.getUnitOfMeasure(4);
+			  UnitOfMeasure uom = invDao.getUnitOfMeasure(materialUOM);
 			  //UnitOfMeasure uom = new UnitOfMeasure();
 			  User user = (User)request.getSession().getAttribute("user");
 			  

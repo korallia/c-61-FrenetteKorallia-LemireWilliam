@@ -119,16 +119,16 @@ public class InventoryDao extends SpringJdbcConfig{
 	public List<RawMaterial> getRawMaterialsOfUserId(int userid) {
 		try {
 			
-			Map<String, String> params = new HashMap<>();
-			params.put("userid", Integer.toString(userid) );
-			List<RawMaterial> rawmaterials = namedParameterJdbcTemplate().query("select * from rawmaterial WHERE userid=:userid", params , BeanPropertyRowMapper.newInstance(RawMaterial.class));
+			Map<String, Object> params = new HashMap<>();
+			params.put("idUser", userid );
+			List<RawMaterial> rawmaterials = namedParameterJdbcTemplate().query("select * from rawmaterial WHERE idUser=:idUser", params , BeanPropertyRowMapper.newInstance(RawMaterial.class));
 
 			if ( rawmaterials != null && !rawmaterials.isEmpty()) {
 				for( int i=0; i< rawmaterials.size(); i++){
 					if ( rawmaterials.get(i).getIdUnitOfMeasure() > 0) {
 						rawmaterials.get(i).setUnitofmeasure(this.getUnitOfMeasure(rawmaterials.get(i).getIdUnitOfMeasure()));
 					}
-					rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
+					//rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
 				}
 			}
 			return rawmaterials;

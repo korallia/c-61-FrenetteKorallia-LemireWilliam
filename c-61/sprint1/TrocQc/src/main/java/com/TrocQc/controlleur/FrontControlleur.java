@@ -3,6 +3,8 @@ package com.TrocQc.controlleur;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +31,12 @@ public class FrontControlleur{
 	InventoryDao inventorydao;
 	
 	@GetMapping("/Login")
-	public String GetAuthentification(Model theModel) {
+	public String GetAuthentification(Model theModel, HttpSession  session) {
+		
+
+			    if (session!=null){
+			        session.invalidate();
+			    }
 		
 		return "login"; //return the view
 	}
@@ -50,13 +57,12 @@ public class FrontControlleur{
 	}
 	
 	@GetMapping("/Inventaire")
-	public String GetInventaire(Model theModel) {
+	public String GetInventaire(Model theModel,HttpSession session) {
   	//List<Product> products = inventorydao.getProducts();
 		inventorydao = new InventoryDao();
-		//TODO: get by user id (do not have acess to session here)
-		List<RawMaterial> rmList = inventorydao.getRawMaterials();
+		User user = (User) session.getAttribute("user");
+		List<RawMaterial> rmList = inventorydao.getRawMaterialsOfUserId(user.getId());
 		List<UnitOfMeasure> uomList = inventorydao.getUnitsOfMesure();
-		System.out.print(rmList);
 		theModel.addAttribute("rmList", rmList);
 		theModel.addAttribute("uomList", uomList);
 		return "inventaire"; //return the view
