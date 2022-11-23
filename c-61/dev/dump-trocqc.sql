@@ -144,11 +144,11 @@ CREATE TABLE `rawmaterial` (
   `addedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `quantity` float DEFAULT NULL,
   `idUnitOfMeasure` int DEFAULT NULL,
-  `idUser` int DEFAULT NULL,
+  `userID` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `rawmaterial_FK` (`idUnitOfMeasure`),
   CONSTRAINT `rawmaterial_FK` FOREIGN KEY (`idUnitOfMeasure`) REFERENCES `unitofmeasure` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +157,7 @@ CREATE TABLE `rawmaterial` (
 
 LOCK TABLES `rawmaterial` WRITE;
 /*!40000 ALTER TABLE `rawmaterial` DISABLE KEYS */;
-INSERT INTO `rawmaterial` VALUES (1,'Wigdet Wood',0.5,'2022-11-20 15:38:48',900,5,1),(2,'Knob',1,'2022-11-20 15:38:48',1990,4,1),(3,'Name1',22,'2022-11-20 19:25:19',23,5,1),(4,'FROM FRONT CONTROLLER',28.5,NULL,228,4,1);
+INSERT INTO `rawmaterial` VALUES (1,'Wigdet Wood',0.5,'2022-11-20 15:38:48',900,5,1),(2,'Knob',1,'2022-11-20 15:38:48',1990,4,1),(3,'Name1',22,'2022-11-20 19:25:19',23,5,1),(4,'FROM FRONT CONTROLLER',28.5,NULL,228,4,1),(7,NULL,234,NULL,12,NULL,NULL),(8,NULL,12,NULL,11,NULL,NULL),(9,NULL,12,NULL,11,NULL,NULL),(10,'test post',2899,NULL,28,4,1),(11,'sadsdsd',2334,NULL,234,4,1);
 /*!40000 ALTER TABLE `rawmaterial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +170,7 @@ DROP TABLE IF EXISTS `rawmaterialcustomfields`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rawmaterialcustomfields` (
   `rawMaterialid` int NOT NULL,
-  `fieldtypeName` varchar(20) NOT NULL,
+  `fieldtypename` varchar(20) NOT NULL,
   `fieldValue` varchar(100) NOT NULL,
   `UserId` int DEFAULT NULL,
   KEY `rawmaterialcustomfields_FK` (`rawMaterialid`),
@@ -187,6 +187,7 @@ CREATE TABLE `rawmaterialcustomfields` (
 
 LOCK TABLES `rawmaterialcustomfields` WRITE;
 /*!40000 ALTER TABLE `rawmaterialcustomfields` DISABLE KEYS */;
+INSERT INTO `rawmaterialcustomfields` VALUES (8,'test1','kjlkjlkj',1),(10,'test2','lkjlkj',1),(11,'test4','4444',1);
 /*!40000 ALTER TABLE `rawmaterialcustomfields` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-22 22:06:34
+-- Dump completed on 2022-11-23  0:09:58
