@@ -14,7 +14,7 @@
 			
 			<div class="col">
 				<div class="row justify-content-center" >
-					<img alt="" src="resources/images/iconB250p.png" class="logo">
+					<img alt="" src="resources/images/iconB250p.png" class="logo" onclick="redirectTo('Lobby')">
 				</div>
 			</div>
 			
@@ -35,7 +35,7 @@
 						<div class ="row align-items-center"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
 						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
 					</div>
-					<div class="col-sm-3"><img alt="" src="resources/images/avatar.png"></div>
+					<div class="col-sm-3"><img class="avatar" alt="" src="resources/images/<%=user.getAvatar()%>"></div>
 				</div>
 			</div>
 		</div>
@@ -44,21 +44,53 @@
 		<div class="row align-items-center">
 			<div class="col align-items-center">
 				<div class="row   "></div>
-				 <div class="row m-5 justify-content-center  " > <button class="btn btn-primary w-75">VENTES</button> </div>
-				 <div class="row m-5 justify-content-center"><button class="btn btn-primary w-75">INVENTAIRE</button></div>
-				 <div class="row m-5 justify-content-center"><button class="btn btn-primary w-75">FINANCES</button></div>
-				 <div class="row m-5 justify-content-center"><button class="btn btn-primary w-75">CONFIGURATIONS</button></div>
+				 <div class="row m-5 justify-content-center  " > <button id="btnVentes" class="btn btn-primary w-75">VENTES</button> </div>
+				 <div class="row m-5 justify-content-center"><button id="btnInventaire" class="btn btn-primary w-75" onclick="redirectTo('Inventaire')">INVENTAIRE</button></div>
+				 <div class="row m-5 justify-content-center"><button id="btnFinances" class="btn btn-primary w-75">FINANCES</button></div>
+				 <div class="row m-5 justify-content-center"><button id="btnConfigs" class="btn btn-primary w-75">CONFIGURATIONS</button></div>
 			</div>
 			
-			<div class="col justify-content-center">
-				<div class="box justify-content-center"></div>
+			<div class="col">
+				<div class="infoModule text-center" id="moduleWelcome">
+					<img alt="" class="" src="resources/images/troqcLogoBlue400p.png">
+					<br><br>
+					<h3>Bienvenue, <%=user.getFirstName()%>. </h3>
+					<p>Que fait-on ajourd'hui?</p>
+				</div>			
+			
+				<div class="infoModule text-center" id="moduleVentes">
+					<img alt="" class="modulePicture" src="resources/images/Sales.png">
+					<br><br>
+					<h3>VENTES</h3>
+					<p>Échangez vos produits et/ou services à d'autres utilisateurs de TroQc. </p>
+				</div>			
+			
+				<div class="infoModule text-center" id="moduleInventaire">
+					<img alt="" class="modulePicture" src="resources/images/InventoryIcon.png">
+					<br><br>
+					<h3>INVENTAIRE</h3>
+					<p>Ajoutez et gérez vos produits dans votre inventaire.</p>
+				</div>
+				
+				<div class="infoModule text-center" id="moduleFinances">
+					<img alt="" class="modulePicture" src="resources/images/Finances.png">
+					<br><br>
+					<h3>FINANCES</h3>
+					<p>Consultez les finances de votre projet.</p>
+				</div>
+			
+				<div class="infoModule text-center" id="moduleConfigs">
+					<img alt="" class="modulePicture" src="resources/images/Configs.png">
+					<br><br>
+					<h3>CONFIGURATIONS</h3>
+					<p>Modifier les configurations de votre compte.</p>
+				</div>
 			</div>
 		</div>
 		
 		
-		<div class="row m-4 noteBtn  text-align text-center">
-			<div class="row m-5 justify-content-center" > <button class="btn btn-primary w-75" id="noteBtn" >BLOC-NOTES</button> </div>
-
+		<div class="row m-4 ">
+			<div class="d-flex justify-content-center "><button class="btn btn-primary" id="noteBtn" >BLOC-NOTES</button></div>
 		</div>		
 	</div>
 	

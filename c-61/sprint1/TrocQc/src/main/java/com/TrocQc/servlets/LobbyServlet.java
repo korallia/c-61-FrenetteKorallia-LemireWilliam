@@ -26,9 +26,7 @@ public class LobbyServlet extends HttpServlet {
 	  
 	  protected void doPost(HttpServletRequest request,
 		        HttpServletResponse response) throws ServletException, IOException {
-		  
-		  
-		  
+
 		  LobbyDao ld = new LobbyDao();
 
 		  if(request.getParameter("id") != null) {
@@ -41,12 +39,7 @@ public class LobbyServlet extends HttpServlet {
 			  response.sendRedirect("/TrocQc/Lobby");
 		  }
 		  else if (request.getParameter("newSubject") != null || request.getParameter("newBody") != null ) {
-			  System.out.println(request.getParameter("newSubject"));
-			  System.out.println(request.getParameter("newBody"));
-			  System.out.println(request.getParameter("selectXPos"));
-			  System.out.println(request.getParameter("selectYPos"));
-			  System.out.println(request.getParameter("selectId"));
-			  
+
 			  String newSubject = request.getParameter("newSubject");
 			  String newBody = request.getParameter("newBody");
 			  int xVal = Integer.parseInt(request.getParameter("selectXPos"));

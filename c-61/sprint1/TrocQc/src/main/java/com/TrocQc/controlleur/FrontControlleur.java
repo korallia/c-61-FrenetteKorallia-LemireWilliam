@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.TrocQc.DAO.InventoryDao;
 import com.TrocQc.DAO.LobbyDao;
 import com.TrocQc.Entity.Note;
 //import com.TrocQc.DAO.InventoryDao;
@@ -25,7 +26,7 @@ public class FrontControlleur{
 	@Autowired 
 	LobbyDao ld;
 
-	@Autowired 
+	
 	InventoryDao inventorydao;
 	
 	@GetMapping("/Login")

@@ -331,7 +331,7 @@
 		<div class="materialForm" id="materialForm"> 
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			
-			<form action="/InventoryServlet" method="post">
+			<form action="inventoryServlet" method="post">
 				<div class="row ">
 					<h1 class="text-center"> AJOUTER DU MATÉRIEL </h1>
 				</div>
@@ -344,10 +344,10 @@
 					<div class="col "> <input class="" type="number" placeholder="Entrer la quantité" name="materialQuantity" > </div>
 					<div class="col "> 
 						<div class="selector w-100">
-							<select class="text-align w-100"">
+							<select class="text-align w-100" name="materialUOM">
 								<option value="0"> - Choisir l'unité... - </option>
 								<option value="1"> - Milli-litres - </option>
-								<option value="1"> - Milli-mètres - </option>
+								<option value="2"> - Milli-mètres - </option>
 							</select>
 						</div>
 					</div> 

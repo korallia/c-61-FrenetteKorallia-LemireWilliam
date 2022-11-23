@@ -320,17 +320,20 @@ public class InventoryDao extends SpringJdbcConfig{
 			
 			Map<String, Object> parameters = new HashMap<>();
 			
-			parameters.put("name", rawmaterial.getName());
+			parameters.put("nom", rawmaterial.getName());
 			parameters.put("cost", rawmaterial.getCost());
 			parameters.put("quantity", rawmaterial.getQuantity());
-			parameters.put("idunitofmeasure", rawmaterial.getIdUnitOfMeasure());
-			parameters.put("userId", rawmaterial.getUserID());
+			parameters.put("idUnitOfMesure", rawmaterial.getIdUnitOfMeasure());
+			parameters.put("idUser", rawmaterial.getUserID());
 			Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
 			rawmaterial.setId(id.intValue());
 		}
 		if ( rawmaterial.getUserCustomFields() != null && rawmaterial.getUserCustomFields().size() > 0 ) {
+			
 			for(int i=0; i< rawmaterial.getUserCustomFields().size();i++ ) {
-				this.AddRawMaterialCustomField(rawmaterial.getUserCustomFields().get(i));
+				
+				rawmaterial.getUserCustomFields().get(i).setRawMaterialid( rawmaterial.getId());
+				AddRawMaterialCustomField(rawmaterial.getUserCustomFields().get(i));
 			}
 		}
 		
@@ -343,13 +346,14 @@ public class InventoryDao extends SpringJdbcConfig{
 			if ( this.getNamedRawMaterialCustomField( rawmaterialcustomfield.getRawMaterialid(), rawmaterialcustomfield.getFieldtypeName()) == null) {
 			
 			//
-			SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(mysqlDataSource()).withTableName("RawMaterialcustomfields");
+			SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(mysqlDataSource()).withTableName("rawmaterialcustomfields");
 			
-			Map<String, String> parameters = new HashMap<>();
+			Map<String, Object> parameters = new HashMap<>();
 						
-			parameters.put("rawmateralid", Integer.toString(rawmaterialcustomfield.getRawMaterialid()));
-			parameters.put("fieldtypename", rawmaterialcustomfield.getFieldtypeName());
+			parameters.put("rawMateralid", rawmaterialcustomfield.getRawMaterialid());
+			parameters.put("fieldtypeName", rawmaterialcustomfield.getFieldtypeName());
 			parameters.put("fieldValue", rawmaterialcustomfield.getFieldvalue());
+			parameters.put("UserId", rawmaterialcustomfield.getUserId());
 			simpleJdbcInsert.execute(parameters);
 			
 		}

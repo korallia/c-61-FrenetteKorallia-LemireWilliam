@@ -49,9 +49,8 @@ DROP TABLE IF EXISTS `notes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `notes` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `note_body` varchar(250) NOT NULL,
-  `note_subject` varchar(100) NOT NULL,
+  `id` int NOT NULL,
+  `note_text` varchar(250) NOT NULL,
   `posX` double NOT NULL,
   `posY` double NOT NULL,
   PRIMARY KEY (`id`)
@@ -81,18 +80,19 @@ CREATE TABLE `product` (
   `cost` double NOT NULL,
   `description` varchar(300) DEFAULT NULL,
   `MSRP` double NOT NULL,
-  `addedData` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `addedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `isTemplate` tinyint(1) NOT NULL DEFAULT '0',
-  `idUnitOfMesure` int NOT NULL,
-  `quanity` double NOT NULL,
+  `idUnitOfMeasure` int NOT NULL,
+  `quantity` double NOT NULL,
   `lowQuantityLevel` float DEFAULT NULL,
   `userID` int NOT NULL,
+  `QRcode` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `product_FK` (`idUnitOfMesure`),
+  KEY `product_FK` (`idUnitOfMeasure`),
   KEY `product_FK_1` (`userID`),
-  CONSTRAINT `product_FK` FOREIGN KEY (`idUnitOfMesure`) REFERENCES `unitofmesure` (`id`),
+  CONSTRAINT `product_FK` FOREIGN KEY (`idUnitOfMeasure`) REFERENCES `unitofmeasure` (`id`),
   CONSTRAINT `product_FK_1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,6 +101,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,'Widget A','WA1',9.99,'A medium Widget',99.99,'2022-11-20 15:36:30',0,4,12,20,1,NULL),(2,'Widget B','WB2',19.99,'A large Widget',249.49,'2022-11-20 15:37:30',0,4,23,3,1,NULL);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,15 +114,10 @@ DROP TABLE IF EXISTS `productcustomfields`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `productcustomfields` (
   `productid` int DEFAULT NULL,
-  `fieldtypeid` int DEFAULT NULL,
-  `fieldvalue` varchar(100) DEFAULT NULL,
-  `userId` int DEFAULT NULL,
+  `fieldtypeName` varchar(20) DEFAULT NULL,
+  `fieldvalue` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   KEY `productcustomfields_FK` (`productid`),
-  KEY `productcustomfields_FK_1` (`fieldtypeid`),
-  KEY `productcustomfields_FK_2` (`userId`),
-  CONSTRAINT `productcustomfields_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`),
-  CONSTRAINT `productcustomfields_FK_1` FOREIGN KEY (`fieldtypeid`) REFERENCES `productcustomfieldtypes` (`id`),
-  CONSTRAINT `productcustomfields_FK_2` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
+  CONSTRAINT `productcustomfields_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -135,31 +131,6 @@ LOCK TABLES `productcustomfields` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `productcustomfieldtypes`
---
-
-DROP TABLE IF EXISTS `productcustomfieldtypes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `productcustomfieldtypes` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) NOT NULL,
-  `type` enum('int','varchar','color') DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `productcustomfieldtypes`
---
-
-LOCK TABLES `productcustomfieldtypes` WRITE;
-/*!40000 ALTER TABLE `productcustomfieldtypes` DISABLE KEYS */;
-INSERT INTO `productcustomfieldtypes` VALUES (1,'Couleur Principale','color'),(2,'Type de batterie','varchar');
-/*!40000 ALTER TABLE `productcustomfieldtypes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `rawmaterial`
 --
 
@@ -168,16 +139,16 @@ DROP TABLE IF EXISTS `rawmaterial`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rawmaterial` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) NOT NULL,
-  `cost` float NOT NULL,
-  `addedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `quanity` float NOT NULL,
-  `idUnitOfMesure` int NOT NULL,
-  `idUser` int NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `cost` float DEFAULT NULL,
+  `addedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `quantity` float DEFAULT NULL,
+  `idUnitOfMeasure` int DEFAULT NULL,
+  `idUser` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `rawmaterial_FK` (`idUnitOfMesure`),
-  CONSTRAINT `rawmaterial_FK` FOREIGN KEY (`idUnitOfMesure`) REFERENCES `unitofmesure` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `rawmaterial_FK` (`idUnitOfMeasure`),
+  CONSTRAINT `rawmaterial_FK` FOREIGN KEY (`idUnitOfMeasure`) REFERENCES `unitofmeasure` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,6 +157,7 @@ CREATE TABLE `rawmaterial` (
 
 LOCK TABLES `rawmaterial` WRITE;
 /*!40000 ALTER TABLE `rawmaterial` DISABLE KEYS */;
+INSERT INTO `rawmaterial` VALUES (1,'Wigdet Wood',0.5,'2022-11-20 15:38:48',900,5,1),(2,'Knob',1,'2022-11-20 15:38:48',1990,4,1),(3,'Name1',22,'2022-11-20 19:25:19',23,5,1),(4,'FROM FRONT CONTROLLER',28.5,NULL,228,4,1);
 /*!40000 ALTER TABLE `rawmaterial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,14 +170,13 @@ DROP TABLE IF EXISTS `rawmaterialcustomfields`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rawmaterialcustomfields` (
   `rawMaterialid` int NOT NULL,
-  `fieldtypeid` int NOT NULL,
+  `fieldtypeName` varchar(20) NOT NULL,
   `fieldValue` varchar(100) NOT NULL,
-  `UserId` int NOT NULL,
+  `UserId` int DEFAULT NULL,
   KEY `rawmaterialcustomfields_FK` (`rawMaterialid`),
-  KEY `rawmaterialcustomfields_FK_1` (`fieldtypeid`),
+  KEY `rawmaterialcustomfields_FK_1` (`fieldtypename`),
   KEY `rawmaterialcustomfields_FK_2` (`UserId`),
   CONSTRAINT `rawmaterialcustomfields_FK` FOREIGN KEY (`rawMaterialid`) REFERENCES `rawmaterial` (`id`),
-  CONSTRAINT `rawmaterialcustomfields_FK_1` FOREIGN KEY (`fieldtypeid`) REFERENCES `rawmaterialcustomfieldtypes` (`id`),
   CONSTRAINT `rawmaterialcustomfields_FK_2` FOREIGN KEY (`UserId`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -220,30 +191,6 @@ LOCK TABLES `rawmaterialcustomfields` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `rawmaterialcustomfieldtypes`
---
-
-DROP TABLE IF EXISTS `rawmaterialcustomfieldtypes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `rawmaterialcustomfieldtypes` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) NOT NULL,
-  `type` enum('nombre','texte','couleur') DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `rawmaterialcustomfieldtypes`
---
-
-LOCK TABLES `rawmaterialcustomfieldtypes` WRITE;
-/*!40000 ALTER TABLE `rawmaterialcustomfieldtypes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `rawmaterialcustomfieldtypes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `rawmaterialproducts`
 --
 
@@ -252,16 +199,15 @@ DROP TABLE IF EXISTS `rawmaterialproducts`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rawmaterialproducts` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `idProduct` int NOT NULL,
-  `idMaterial` int NOT NULL,
-  `QuantityMaterialForProduct` float NOT NULL,
-  `userId` int DEFAULT NULL,
+  `productid` int NOT NULL,
+  `rawmaterialid` int NOT NULL,
+  `quantity` float NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `RawMaterialProducts_FK` (`idProduct`),
-  KEY `RawMaterialProducts_FK_1` (`idMaterial`),
-  CONSTRAINT `RawMaterialProducts_FK` FOREIGN KEY (`idProduct`) REFERENCES `product` (`id`),
-  CONSTRAINT `RawMaterialProducts_FK_1` FOREIGN KEY (`idMaterial`) REFERENCES `rawmaterial` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `RawMaterialProducts_FK` (`productid`),
+  KEY `RawMaterialProducts_FK_1` (`rawmaterialid`),
+  CONSTRAINT `RawMaterialProducts_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`),
+  CONSTRAINT `RawMaterialProducts_FK_1` FOREIGN KEY (`rawmaterialid`) REFERENCES `rawmaterial` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,6 +216,7 @@ CREATE TABLE `rawmaterialproducts` (
 
 LOCK TABLES `rawmaterialproducts` WRITE;
 /*!40000 ALTER TABLE `rawmaterialproducts` DISABLE KEYS */;
+INSERT INTO `rawmaterialproducts` VALUES (1,1,1,10),(2,1,2,1),(3,2,1,20),(4,2,2,4);
 /*!40000 ALTER TABLE `rawmaterialproducts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,31 +250,30 @@ LOCK TABLES `revenugrowth` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `unitofmesure`
+-- Table structure for table `unitofmeasure`
 --
 
-DROP TABLE IF EXISTS `unitofmesure`;
+DROP TABLE IF EXISTS `unitofmeasure`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `unitofmesure` (
+CREATE TABLE `unitofmeasure` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) NOT NULL,
-  `abrievation` varchar(100) NOT NULL,
-  `parent` int NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `abbrievation` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `parent` int NOT NULL DEFAULT '0',
   `ratio` float NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unitofmesure_un` (`parent`),
-  CONSTRAINT `unitofmesure_FK` FOREIGN KEY (`parent`) REFERENCES `unitofmesure` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `unitofmesure`
+-- Dumping data for table `unitofmeasure`
 --
 
-LOCK TABLES `unitofmesure` WRITE;
-/*!40000 ALTER TABLE `unitofmesure` DISABLE KEYS */;
-/*!40000 ALTER TABLE `unitofmesure` ENABLE KEYS */;
+LOCK TABLES `unitofmeasure` WRITE;
+/*!40000 ALTER TABLE `unitofmeasure` DISABLE KEYS */;
+INSERT INTO `unitofmeasure` VALUES (4,'Unité','Unité',0,1),(5,'Metre','m',0,1),(6,'Centimetre','cm',5,100),(7,'Kilogramme','kg',0,1),(8,'gramme','g',7,1000),(9,'pouce','Po',5,0.0254),(10,'pied','Pi',5,0.3048),(11,'litre','l',0,1),(12,'millilitre','ml',11,1000),(13,'decalitre','Dl',11,0.1),(14,'gallon Américain','gal',11,0.264172),(15,'pinte Américain','pint',11,2.11338),(16,'tasse Américaine','cup',11,4.16667),(17,'once liquide Américaine','oz',11,33.814),(18,'cuillière à soupe Américaine','tbsp',11,67.628),(19,'cuillère à thé Américaine','tsp',11,202.884),(20,'livre','lbs',7,2.20462),(21,'once solide','oz',7,35.274),(22,'centilitre','cl',11,100),(23,'millimetre','mm',5,1000);
+/*!40000 ALTER TABLE `unitofmeasure` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -377,4 +323,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-16 19:52:30
+-- Dump completed on 2022-11-22 22:06:34
