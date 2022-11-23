@@ -45,6 +45,10 @@ public class RawMaterial {
 	private List<RawMaterialCustomField> UserCustomFields;
 	
 	
+	public RawMaterial() {
+	
+	}
+	
 	private RawMaterial(RawMaterialBuilder builder) {
 		this.name = builder.name;
 		this.cost = builder.cost;
@@ -105,6 +109,9 @@ public class RawMaterial {
 
 
 	public void setUnitofmeasure(UnitOfMeasure unitofmeasure) {
+		if ( unitofmeasure.getId() > 0 ) {
+			this.setIdUnitOfMeasure(unitofmeasure.getId());
+		}
 		this.unitofmeasure = unitofmeasure;
 	}
 
@@ -134,6 +141,7 @@ public class RawMaterial {
 		UserCustomFields = userCustomFields;
 	}
 
+/*
 	public static class RawMaterialBuilder {
 
 		private String name;
@@ -182,6 +190,22 @@ public class RawMaterial {
 		
 		
 	}
+*/
+	public RawMaterial(int id, String name, double cost, Timestamp addedDate, UnitOfMeasure unitofmeasure,
+			double quantity, int userID, List<RawMaterialCustomField> userCustomFields) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cost = cost;
+		this.addedDate = addedDate;
+		this.unitofmeasure = unitofmeasure;
+		this.quantity = quantity;
+		this.userID = userID;
+		this.UserCustomFields = userCustomFields;
+		this.idUnitOfMeasure = unitofmeasure.getId();
+	}
+	
+	
 
 		
 }
