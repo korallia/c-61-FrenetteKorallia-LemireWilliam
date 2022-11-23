@@ -18,13 +18,25 @@ public class RawMaterialCustomField {
 	@Column(name="fieldvalue")
 	private String fieldvalue;
 	
+	@Column(name="UserId")
+	private int UserId;
+	
 	public RawMaterialCustomField() {
 	
 	}
-	public RawMaterialCustomField(int rawMaterialid,String fieldtypeName,String fieldvalue ) {
-		this.rawMaterialid=rawMaterialid;
-		this.fieldtypeName =fieldtypeName;
+
+	public RawMaterialCustomField(String fieldtypeName,String fieldvalue, int UserId) {
+		this.fieldtypeName = fieldtypeName;
 		this.fieldvalue= fieldvalue; 
+		this.UserId = UserId;
+	}
+	
+	public int getUserId() {
+		return UserId;
+	}
+
+	public void setUserId(int userId) {
+		UserId = userId;
 	}
 
 	public int getRawMaterialid() {

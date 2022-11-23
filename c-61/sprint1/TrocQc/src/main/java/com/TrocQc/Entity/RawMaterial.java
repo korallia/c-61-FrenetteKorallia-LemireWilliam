@@ -1,4 +1,5 @@
 package com.TrocQc.Entity;
+import com.TrocQc.Entity.UnitOfMeasure;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -19,7 +20,7 @@ public class RawMaterial {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="name")
+	@Column(name="nom")
 	private String name;
 	
 	@Column(name="cost")
@@ -29,17 +30,17 @@ public class RawMaterial {
 	@Column(name="addedDate")
 	private Timestamp addedDate;
 	
-	@Column(name="idUnitOfmeasure")
+	@Column(name="idUnitOfMesure")
 	private int idUnitOfMeasure;
 	
-	private UnitOfMeasure unitofmeasure;
 
+	private UnitOfMeasure unitofmeasure;
 	
 	@Column(name="quantity")
 	private double quantity;
 	
 	
-	@Column(name="userID")
+	@Column(name="idUser")
 	private int userID;
 	
 	private List<RawMaterialCustomField> UserCustomFields;
@@ -49,6 +50,34 @@ public class RawMaterial {
 	
 	}
 	
+	public RawMaterial(int id, String name, double cost, Timestamp addedDate, UnitOfMeasure unitofmeasure,
+			double quantity, int userID, List<RawMaterialCustomField> userCustomFields) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.cost = cost;
+		this.addedDate = addedDate;
+		this.unitofmeasure = unitofmeasure;
+		this.quantity = quantity;
+		this.userID = userID;
+		this.UserCustomFields = userCustomFields;
+		this.idUnitOfMeasure = unitofmeasure.getId();
+	}
+	
+	public RawMaterial(String name, double cost, UnitOfMeasure unitofmeasure,
+			double quantity, int userID, List<RawMaterialCustomField> userCustomFields) {
+		super();
+		this.id = 0;
+		this.name = name;
+		this.cost = cost;
+		this.unitofmeasure = unitofmeasure;
+		this.quantity = quantity;
+		this.userID = userID;
+		this.UserCustomFields = userCustomFields;
+		this.idUnitOfMeasure = unitofmeasure.getId();
+	}
+	
+	/*
 	private RawMaterial(RawMaterialBuilder builder) {
 		this.name = builder.name;
 		this.cost = builder.cost;
@@ -57,7 +86,7 @@ public class RawMaterial {
 		this.quantity = builder.quantity;
 		this.userID = builder.userID;
 	}
-	
+	*/
 	
 	public int getId() {
 		return id;
@@ -138,7 +167,11 @@ public class RawMaterial {
 
 
 	public void setUserCustomFields(List<RawMaterialCustomField> userCustomFields) {
-		UserCustomFields = userCustomFields;
+		for (int i = 0; i<= userCustomFields.size(); i++) {
+			userCustomFields.get(i).setRawMaterialid(this.getId());
+		}
+		this.UserCustomFields = userCustomFields;
+		
 	}
 
 /*
@@ -191,19 +224,7 @@ public class RawMaterial {
 		
 	}
 */
-	public RawMaterial(int id, String name, double cost, Timestamp addedDate, UnitOfMeasure unitofmeasure,
-			double quantity, int userID, List<RawMaterialCustomField> userCustomFields) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.cost = cost;
-		this.addedDate = addedDate;
-		this.unitofmeasure = unitofmeasure;
-		this.quantity = quantity;
-		this.userID = userID;
-		this.UserCustomFields = userCustomFields;
-		this.idUnitOfMeasure = unitofmeasure.getId();
-	}
+
 	
 	
 

@@ -26,6 +26,17 @@
 
 window.onload = function(){
 	
+	if(!!document.getElementById("addProductBtn")) {
+		document.getElementById("addProductBtn").addEventListener('click', openProductForm);
+	}	
+	
+	function openProductForm(){
+		var node = document.getElementById("productForm");
+		node.style.display = "block";
+	}
+	
+	
+	
 	function createAddProductForm() {
 		var div = document.createElement('div');
 		div.className = 'productForm';
@@ -100,8 +111,8 @@ window.onload = function(){
 		selectUnit.appendChild(option1);
 		selectUnit.appendChild(option2);
 		selectUnit.appendChild(option3);
-		selectDiv = document.createElement('div');
 		
+		selectDiv = document.createElement('div');
 		selectDiv.className = "selector";
 		selectDiv.appendChild(selectUnit)
 		
@@ -412,10 +423,11 @@ window.onload = function(){
 
 			
 	}
+	/*
 	if(document.getElementById("addProductBtn")) {
 		document.getElementById("addProductBtn").addEventListener('click', createAddProductForm);
 	}	
-	
+	*/
 }
 
 //Export as CSV 

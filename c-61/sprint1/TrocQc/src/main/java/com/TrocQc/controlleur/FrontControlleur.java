@@ -9,9 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.TrocQc.DAO.InventoryDao;
 import com.TrocQc.DAO.LobbyDao;
 import com.TrocQc.Entity.Note;
-import com.TrocQc.DAO.InventoryDao;
+//import com.TrocQc.DAO.InventoryDao;
 import com.TrocQc.Entity.Product;
 import com.TrocQc.Entity.RawMaterial;
 import com.TrocQc.Entity.RawMaterialProducts;
@@ -24,9 +25,9 @@ public class FrontControlleur{
 
 	@Autowired 
 	LobbyDao ld;
-	@Autowired 
-	InventoryDao inventorydao;
 
+	
+	InventoryDao inventorydao;
 	
 	@GetMapping("/Login")
 	public String GetAuthentification(Model theModel) {
@@ -50,8 +51,8 @@ public class FrontControlleur{
 	
 	@GetMapping("/Inventaire")
 	public String GetInventaire(Model theModel) {
-  	List<Product> products = inventorydao.getProducts();
-		model.addAttribute("test", 13);
+  	//List<Product> products = inventorydao.getProducts();
+		//theModel.addAttribute("test", 13);
 		return "inventaire"; //return the view
 	}
 	

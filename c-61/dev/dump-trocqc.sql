@@ -144,7 +144,7 @@ CREATE TABLE `rawmaterial` (
   `addedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `quantity` float DEFAULT NULL,
   `idUnitOfMeasure` int DEFAULT NULL,
-  `userID` int DEFAULT NULL,
+  `idUser` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `rawmaterial_FK` (`idUnitOfMeasure`),
   CONSTRAINT `rawmaterial_FK` FOREIGN KEY (`idUnitOfMeasure`) REFERENCES `unitofmeasure` (`id`)
@@ -170,7 +170,7 @@ DROP TABLE IF EXISTS `rawmaterialcustomfields`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rawmaterialcustomfields` (
   `rawMaterialid` int NOT NULL,
-  `fieldtypename` varchar(20) NOT NULL,
+  `fieldtypeName` varchar(20) NOT NULL,
   `fieldValue` varchar(100) NOT NULL,
   `UserId` int DEFAULT NULL,
   KEY `rawmaterialcustomfields_FK` (`rawMaterialid`),
