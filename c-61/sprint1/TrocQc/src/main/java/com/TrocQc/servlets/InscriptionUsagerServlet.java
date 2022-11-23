@@ -1,6 +1,8 @@
 package com.TrocQc.servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -42,21 +44,24 @@ public class InscriptionUsagerServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  
+		
 		 javax.servlet.http.Part filePart = request.getPart("file");
-		    String fileName = filePart.getSubmittedFileName();
-		    for (javax.servlet.http.Part part : request.getParts()) {
-		      part.write("resources/images" + fileName);
-		    }
+		 InputStream file = filePart.getInputStream();
+		
 		    //source for upload code: https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-File-Upload-Servlet-Ajax-Example
 		
 		User user = new User( request.getParameter("categorie"),request.getParameter("firstname"),request.getParameter("lastname"),request.getParameter("email"),
 				request.getParameter("password"),request.getParameter("accountname"),request.getParameter("address"),
-				request.getParameter("city"),request.getParameter("postalcode"),request.getParameter("url"),fileName);
+				request.getParameter("city"),request.getParameter("postalcode"),request.getParameter("url"));
 		UserDao userDao = new UserDao();
-    	userDao.AddUser(user);
+    	userDao.AddUser(user,file);
+    	
+    	
     	response.sendRedirect("/TrocQc/Lobby");
 		
+	
+		    
 	}
+		    
 
 }

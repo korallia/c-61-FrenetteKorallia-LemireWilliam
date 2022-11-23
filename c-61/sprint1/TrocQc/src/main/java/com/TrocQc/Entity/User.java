@@ -1,5 +1,7 @@
 package com.TrocQc.Entity;
 
+import java.awt.Image;
+import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.swing.ImageIcon;
 
 import com.mysql.cj.jdbc.Blob;
 
@@ -53,7 +56,9 @@ public class User {
 	private String siteWeb;
 	
 	@Column(name="Avatar")
-	private String URL_avatar;
+	private byte[] file;
+	
+	
 	
 	 public static Set<String> ProductCategorySet = new HashSet<String>() {{
 	 add("vêtements");
@@ -76,7 +81,7 @@ public class User {
 	}
 	
 	public User(int id,String productCategory, String firstName, String lastName, String email, String password, String username,
-			String adress, String city, String postalCode,String siteweb,String avatar) {
+			String adress, String city, String postalCode,String siteweb,byte[] avatar) {
 		super();
 		this.id = id;
 		this.productCategory = productCategory;
@@ -89,11 +94,11 @@ public class User {
 		this.city = city;
 		this.postalCode = postalCode;
 		this.siteWeb = siteweb;
-		this.URL_avatar = avatar;
+		this.file = avatar;
 	}
 	
 	public User(String productCategory,String firstName, String lastName, String email, String password, String username,
-			String adress, String city, String postalCode,String siteweb,String avatar) {
+			String adress, String city, String postalCode,String siteweb) {
 		super();
 		this.productCategory = productCategory;
 		this.firstName = firstName;
@@ -105,7 +110,6 @@ public class User {
 		this.city = city;
 		this.postalCode = postalCode;
 		this.siteWeb = siteweb;
-		this.URL_avatar = avatar;
 	}
 
 	public int getId() {
@@ -209,13 +213,17 @@ public class User {
 		this.siteWeb = siteWeb;
 	}
 
-	public String getAvatar() {
-		return URL_avatar;
+	public byte[] getAvatar() {
+		return file;
 	}
 
-	public void setAvatar(String avatar) {
-		this.URL_avatar = avatar;
+	public void setAvatar(byte[] avatar) {
+		this.file = avatar;
 	}
+
+	
+
+	
 	
 	
 	

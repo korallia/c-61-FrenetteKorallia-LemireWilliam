@@ -1,5 +1,6 @@
 package com.TrocQc.DAO;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import java.util.List;
@@ -79,7 +80,7 @@ public class InventoryDao extends SpringJdbcConfig{
 				for( int i=0; i< rawmaterials.size(); i++){
 					if ( rawmaterials.get(i).getIdUnitOfMeasure() > 0) {
 						rawmaterials.get(i).setUnitofmeasure(this.getUnitOfMeasure(rawmaterials.get(i).getIdUnitOfMeasure()));
-						rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
+						//rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
 					}
 					
 				}
@@ -244,6 +245,8 @@ public class InventoryDao extends SpringJdbcConfig{
 			Map<String, String> params = new HashMap<>();
 			params.put("rawMaterialid", Integer.toString(rawmaterialid) );
 			List<RawMaterialCustomField> rawmaterialcustomfields = namedParameterJdbcTemplate().query("select * from rawmaterialcustomfields WHERE rawMaterialid=:rawMaterialid", params , BeanPropertyRowMapper.newInstance(RawMaterialCustomField.class));
+			if (rawmaterialcustomfields == null)
+				rawmaterialcustomfields = new ArrayList<>();
 			return rawmaterialcustomfields;
 			
 		}catch(Exception e ) {
@@ -324,7 +327,7 @@ public class InventoryDao extends SpringJdbcConfig{
 			parameters.put("cost", rawmaterial.getCost());
 			parameters.put("quantity", rawmaterial.getQuantity());
 			parameters.put("idUnitOfMeasure", rawmaterial.getIdUnitOfMeasure());
-			parameters.put("userID", rawmaterial.getUserID());
+			parameters.put("idUser", rawmaterial.getUserID());
 			Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
 			rawmaterial.setId(id.intValue());
 		}

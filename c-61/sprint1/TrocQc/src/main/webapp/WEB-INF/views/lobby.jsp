@@ -1,6 +1,5 @@
 <%@include file="header.jsp"%>
 <%@ page import="com.TrocQc.Entity.User"%>
-
 <title>trOqc - Le Hub</title>
 </head>
 
@@ -35,7 +34,7 @@
 						<div class ="row align-items-center"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
 						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
 					</div>
-					<div class="col-sm-3"><img class="avatar" alt="" src="resources/images/<%=user.getAvatar()%>"></div>
+					<div class="col-sm-3"> <img class="avatar" src="/TrocQc/getUserAvatar" id="id"/> </div>
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,16 @@
 <%@include file="header.jsp"%>
+<%@ page import="com.TrocQc.Entity.RawMaterial"%>
 <title>trOqc - Inventaire</title>
+
+<% 
+	User user = (User)request.getSession().getAttribute("user"); 
+	if (user == null){
+	response.sendRedirect("/TrocQc/Login");
+	return;
+	}
+%>
+
+
 </head>
 
 <body>
@@ -15,13 +26,7 @@
 				</div>
 			</div>
 			
-			<% 
-				User user = (User)request.getSession().getAttribute("user"); 
-				if (user == null){
-				response.sendRedirect("/TrocQc/Login");
-				return;
-				}
-			%>
+
 			
 			<div class="col text-end ">
 				<div class="row align-items-center ">
@@ -29,7 +34,7 @@
 						<div class ="row align-items-center"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
 						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
 					</div>
-					<div class="col-sm-3"><img class="avatar" alt="" src="resources/images/<%=user.getAvatar()%>"></div>
+					<div class="col-sm-3"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
 				</div>
 			</div>
 			
@@ -222,7 +227,28 @@
 			<div id="Materiaux" class="tabcontent text-center">
 			  <h3>MATÉRIAUX</h3>
 			  <p>La liste de tous les matériaux en inventaire.</p>
-			  
+	  		  <div class="tableDiv">
+			  	<table class="table">
+			  	<tr class="justify-content-center">
+			  		<th> ID </th>
+			  		<th>NOM</th>
+			  		<th>COÛT</th>
+			  		<th>QUANTITÉ</th>
+			  		<th>UNITÉ</th>
+			  		<th>DATE</th>
+			  	</tr>
+			  	
+				<c:forEach var="rawMaterial" items="${rmList}">
+					<tr>
+						<td> ${rawMaterial.id}</td>
+						<td> ${rawMaterial.name}</td>
+						<td> ${rawMaterial.cost}</td>
+						<td> ${rawMaterial.quantity} </td>
+						<td> - </td>
+						<td> - </td>
+					</tr>
+				</c:forEach>			  	
+
 	   			<div class="row mt-3 text-center">
 					<div class="col"> <button id="addMaterialBtn">AJOUTER</button> </div>
 					<div class="col"> <button>MODIFIER</button> </div>
@@ -346,12 +372,15 @@
 						<div class="selector w-100">
 							<select class="text-align w-100" name="materialUOM">
 								<option value="0"> - Choisir l'unité... - </option>
-								<option value="1"> - Milli-litres - </option>
-								<option value="2"> - Milli-mètres - </option>
+								<c:forEach var="unitOfMeasure" items="${uomList}">
+									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+								</c:forEach>
 							</select>
 						</div>
 					</div> 
 				</div>
+				
+
 				
 				<div class="row m-1">
 					<div class="col "> <input type="number" placeholder="Entrer le NBQ" name="materialLQN" > </div>

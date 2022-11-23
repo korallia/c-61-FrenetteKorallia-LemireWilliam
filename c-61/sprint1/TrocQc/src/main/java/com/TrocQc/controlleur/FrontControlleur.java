@@ -16,6 +16,7 @@ import com.TrocQc.Entity.Note;
 import com.TrocQc.Entity.Product;
 import com.TrocQc.Entity.RawMaterial;
 import com.TrocQc.Entity.RawMaterialProducts;
+import com.TrocQc.Entity.UnitOfMeasure;
 import com.TrocQc.Entity.User;
 
 
@@ -24,7 +25,6 @@ import com.TrocQc.Entity.User;
 public class FrontControlleur{	
 
 	LobbyDao ld;
-
 	
 	InventoryDao inventorydao;
 	
@@ -52,7 +52,13 @@ public class FrontControlleur{
 	@GetMapping("/Inventaire")
 	public String GetInventaire(Model theModel) {
   	//List<Product> products = inventorydao.getProducts();
-		//theModel.addAttribute("test", 13);
+		inventorydao = new InventoryDao();
+		//TODO: get by user id (do not have acess to session here)
+		List<RawMaterial> rmList = inventorydao.getRawMaterials();
+		List<UnitOfMeasure> uomList = inventorydao.getUnitsOfMesure();
+		System.out.print(rmList);
+		theModel.addAttribute("rmList", rmList);
+		theModel.addAttribute("uomList", uomList);
 		return "inventaire"; //return the view
 	}
 	
@@ -65,46 +71,7 @@ public class FrontControlleur{
 	}
 	
 
-	@GetMapping("/Inventory")
-	public String GetProducts(Model model) {
 
-	InventoryDao inventorydao = new InventoryDao();
-	RawMaterial rm = new RawMaterial();
-	rm.setId(4);
-	rm.setName("FROM FRONT CONTROLLER");
-	rm.setCost(28.5);
-	rm.setIdUnitOfMeasure(4);
-	rm.setUserID(1);
-	rm.setQuantity(228);
-	inventorydao.AddRawMaterial(rm);
-	
-	Product p = new Product();
-	p.setName("test from front controller");
-	
-	RawMaterialProducts rmp = new RawMaterialProducts();
-	rmp.setRawmaterial(rm);
-	rmp.setQuantity(2.4);
-	
-	List<RawMaterialProducts> list = new ArrayList() ;
-	list.add(rmp);
-	
-	p.setRawmaterials(list);
-	
-	inventorydao.AddProduct(p);
-	
-	
-	
-	
-	//int addedquantity = inventorydao.AddInventoryToProduct(inventorydao.getProduct(1), 10);
-	//model.addAttribute("addedquantity", addedquantity );
-	
-		
-	List<Product> products = inventorydao.getProductsOfUserId(1);
-	List<RawMaterial> rawMaterial = inventorydao.getRawMaterialsOfUserId(1);
-	
-		model.addAttribute("test", 13);
-		return "NewFile"; //return the view
-	}
 	
 
 }

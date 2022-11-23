@@ -3,7 +3,7 @@
 
 </head>
 
-<body>
+<body>	<script type="text/javascript" src="/TrocQc/resources/scripts.js"></script>
 	<form action="inscriptionUsagerServlet" method="POST" enctype="multipart/form-data">
 		<div class="container-fluid">
 			<div class = "row h-100 ">
@@ -11,7 +11,7 @@
 				
 				<div class="col content">
 					<div class="row justify-content-center">
-						<img alt="" src="resources/images/iconB250p.png" class="logo">
+						<img alt="" src="resources/images/iconB250p.png" class="logo" onclick="redirectTo('Login')">
 					</div>
 					
 					<div class="row accountContainer justify-content-center ">
@@ -76,3 +76,6 @@
 			</div>			
 		</div>
 	</form>
+		<script type="text/javascript" src="/TrocQc/resources/scripts.js"></script>
+</body>
+</html>

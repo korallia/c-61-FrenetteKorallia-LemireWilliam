@@ -1,5 +1,6 @@
 package com.TrocQc.DAO;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class UserDao extends SpringJdbcConfig {
 	
 	
 	public User Authenticate(String username, String password) {
-		String sql = "Select * From user where username =:username and password= :password";
+		String sql = "Select * From user where username =:username and password=:password";
 		
 		Map<String, String> params = new HashMap<>();
 		params.put("username", username);
@@ -42,11 +43,11 @@ public class UserDao extends SpringJdbcConfig {
 	
 		
 	
-	public int AddUser(User user) {
+	public int AddUser(User user, InputStream file) {
 	
 		return jdbcTemplate().update(
 			
-			    "INSERT INTO user (productCategory, firstName,lastName,password,username,adress,city,postalcode, email,siteWeb,Avatar ) VALUES (?, ?, ?, ?,?,?,?, ?,?,?,?)",
+				"INSERT INTO user (productCategory, firstName,lastName,password,username,adress,city,postalcode, email,siteWeb,Avatar ) VALUES (?, ?, ?, ?,?,?,?, ?,?,?,?)",
 			    user.getProductCategory(), 
 			    user.getFirstName(), 
 			    user.getLastName(), 
@@ -57,7 +58,7 @@ public class UserDao extends SpringJdbcConfig {
 			    user.getPostalCode(),
 			    user.getEmail(),
 			    user.getSiteWeb(),
-			    user.getAvatar()
+			    file
 			    );
 			    
 	}

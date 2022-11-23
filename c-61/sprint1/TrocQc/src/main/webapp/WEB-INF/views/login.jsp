@@ -23,7 +23,7 @@
 						
 						<input type="submit" value="AUTHENTIFIER" /> 
 						<br> <br>
-						<a class="link">CRÉER UN COMPTE</a>
+						<a class="link" onclick="redirectTo('Inscription')">CRÉER UN COMPTE</a>
 					</form>
 				</div>
 		</div>
@@ -33,7 +33,7 @@
 			
 				
 		</div>
-		
+		<script type="text/javascript" src="/TrocQc/resources/scripts.js"></script>		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 	</body>
 </html>
