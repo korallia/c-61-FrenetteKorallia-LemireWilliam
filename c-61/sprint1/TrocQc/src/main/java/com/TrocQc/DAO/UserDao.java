@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import com.TrocQc.Entity.User;
 import com.TrocQc.config.SpringJdbcConfig;
 
-@Repository
+
 public class UserDao extends SpringJdbcConfig {
 	
 	
@@ -31,11 +31,7 @@ public class UserDao extends SpringJdbcConfig {
 		try {
 		User user = (User) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(User.class));
 				
-		if(user != null) {
-			
-			return user;
-			
-		}
+		if(user != null) {return user;}
 		
 		else {return null;}
 		}catch(Exception e ) {

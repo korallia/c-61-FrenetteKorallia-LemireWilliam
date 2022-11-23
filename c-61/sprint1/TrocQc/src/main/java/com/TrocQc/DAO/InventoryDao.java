@@ -295,7 +295,7 @@ public class InventoryDao extends SpringJdbcConfig{
 			Map<String, Object> parameters = new HashMap<>();
 			
 			parameters.put("productid", rawmaterialproducts.getProductid());
-			parameters.put("rawmateralid", rawmaterialproducts.getRawmaterialid());
+			parameters.put("rawmaterialid", rawmaterialproducts.getRawmaterialid());
 			parameters.put("quantity", rawmaterialproducts.getQuantity());
 			Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
 			rawmaterialproducts.setId(id.intValue());
@@ -320,11 +320,11 @@ public class InventoryDao extends SpringJdbcConfig{
 			
 			Map<String, Object> parameters = new HashMap<>();
 			
-			parameters.put("nom", rawmaterial.getName());
+			parameters.put("name", rawmaterial.getName());
 			parameters.put("cost", rawmaterial.getCost());
 			parameters.put("quantity", rawmaterial.getQuantity());
-			parameters.put("idUnitOfMesure", rawmaterial.getIdUnitOfMeasure());
-			parameters.put("idUser", rawmaterial.getUserID());
+			parameters.put("idUnitOfMeasure", rawmaterial.getIdUnitOfMeasure());
+			parameters.put("userID", rawmaterial.getUserID());
 			Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
 			rawmaterial.setId(id.intValue());
 		}
@@ -350,7 +350,7 @@ public class InventoryDao extends SpringJdbcConfig{
 			
 			Map<String, Object> parameters = new HashMap<>();
 						
-			parameters.put("rawMateralid", rawmaterialcustomfield.getRawMaterialid());
+			parameters.put("rawMaterialid", rawmaterialcustomfield.getRawMaterialid());
 			parameters.put("fieldtypeName", rawmaterialcustomfield.getFieldtypeName());
 			parameters.put("fieldValue", rawmaterialcustomfield.getFieldvalue());
 			parameters.put("UserId", rawmaterialcustomfield.getUserId());

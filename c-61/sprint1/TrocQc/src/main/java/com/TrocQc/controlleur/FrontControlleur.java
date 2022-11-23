@@ -23,7 +23,6 @@ import com.TrocQc.Entity.User;
 @Controller
 public class FrontControlleur{	
 
-	@Autowired 
 	LobbyDao ld;
 
 	
@@ -44,7 +43,8 @@ public class FrontControlleur{
 	public String GetLobby(Model theModel) {
 		 //theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
 		//Get all notes from DAO
-		ArrayList<Note> noteList = ld.getLobbyNotes();
+		ld = new LobbyDao();
+		List<Note> noteList = ld.getLobbyNotes();
 		theModel.addAttribute("noteList", noteList);
 		return "lobby"; //return the view
 	}
