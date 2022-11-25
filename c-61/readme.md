@@ -4,7 +4,7 @@
   <img src="troqcLogoBlue400p.png" alt="Logo" width="400" height="134">
 
 
-  <h3 align="center">TroQc - Plateforme d'échange entre particuliers</h3>
+  <h3 align="center">TrOqc - Plateforme d'échange entre particuliers</h3>
 </div>
 
 <details>
