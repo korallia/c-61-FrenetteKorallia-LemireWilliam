@@ -1,3 +1,17 @@
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#sommaire">Sommaire</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#utilisation">Utilisation</a></li>
+    <li><a href="#références">Références</a></li>
+    <li><a href="#remerciements">Remerciements</a></li>
+    <li><a href="#licence">Licence</a></li>
+  </ol>
+</details>
+
+
 # Titre
 ## Sommaire
     Brève présentation du projet.
