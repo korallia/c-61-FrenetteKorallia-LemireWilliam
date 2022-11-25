@@ -14,6 +14,7 @@
     <li><a href="#installation">Installation</a></li>
     <li><a href="#utilisation">Utilisation</a></li>
     <li><a href="#références">Références</a></li>
+    <li><a href="#contact">Références</a></li>
     <li><a href="#remerciements">Remerciements</a></li>
     <li><a href="#licence">Licence</a></li>
   </ol>
