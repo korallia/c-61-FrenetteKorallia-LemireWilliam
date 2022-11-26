@@ -4,7 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 import javax.swing.tree.RowMapper;
@@ -30,13 +32,12 @@ public class LobbyDao extends SpringJdbcConfig{
 		super();
 	}
 	
-	public ArrayList<Note> getLobbyNotes() {
-		String sql = "SELECT * FROM notes";
+	public ArrayList<Note> getLobbyNotesByUserId(int userID) {
+		String sql = "SELECT * FROM notes where userID=:userID";
+		Map<String, Object> params = new HashMap<>();
+		params.put("userID", userID);
 		ArrayList<Note> notesList = new ArrayList<Note>();
-		notesList = (ArrayList<Note>)namedParameterJdbcTemplate().query(sql, BeanPropertyRowMapper.newInstance(Note.class));
-		for(Note note: notesList) {
-			System.out.print(note.getNote_subject());
-		}
+		notesList = (ArrayList<Note>)namedParameterJdbcTemplate().query(sql,params, BeanPropertyRowMapper.newInstance(Note.class));
 		return notesList;
 		//return (List<Note>) namedParameterJdbcTemplate().query(sql, BeanPropertyRowMapper.newInstance(Note.class));
 	}
@@ -44,7 +45,7 @@ public class LobbyDao extends SpringJdbcConfig{
 	
 	public int addNote(Note note) {
 		return jdbcTemplate().update(
-				"INSERT INTO notes (note_subject, note_body, posX, posY)VALUES (?, ?, ?, ?)", note.getNote_subject(),note.getNote_body(), note.getposX(), note.getposY()
+				"INSERT INTO notes (note_subject, note_body, posX, posY, userID)VALUES (?, ?, ?, ?,?)", note.getNote_subject(),note.getNote_body(), note.getposX(), note.getposY(),note.getUserID()
 				);
 	}
 	

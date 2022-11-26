@@ -1,8 +1,10 @@
 package com.TrocQc.controlleur;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +49,18 @@ public class FrontControlleur{
 		return "creercompte"; //return the view
 	}
 	@GetMapping("/Lobby")
-	public String GetLobby(Model theModel) {
+	public String GetLobby(Model theModel,HttpSession session) {
 		 //theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
 		//Get all notes from DAO
 		ld = new LobbyDao();
-		List<Note> noteList = ld.getLobbyNotes();
+		User user = (User) session.getAttribute("user");
+		if(user == null) {
+			//https://stackoverflow.com/questions/21763321/change-url-in-spring-mvc
+			return  "redirect:/Login";
+			
+			
+		}
+		List<Note> noteList = ld.getLobbyNotesByUserId(user.getId());
 		theModel.addAttribute("noteList", noteList);
 		return "lobby"; //return the view
 	}
@@ -61,6 +70,9 @@ public class FrontControlleur{
   	//List<Product> products = inventorydao.getProducts();
 		inventorydao = new InventoryDao();
 		User user = (User) session.getAttribute("user");
+		if(user == null) {
+			return  "redirect:/Login";
+		}
 		List<RawMaterial> rmList = inventorydao.getRawMaterialsOfUserId(user.getId());
 		List<UnitOfMeasure> uomList = inventorydao.getUnitsOfMesure();
 		theModel.addAttribute("rmList", rmList);
