@@ -1,6 +1,7 @@
 package com.TrocQc.Entity;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -34,8 +35,7 @@ public class Product {
 	@Column(name="addedDate")
 	private Timestamp addedDate;
 	
-	@Column(name="isTemplate")
-	private boolean isTemplate;
+	
 	
 	@Column(name="idUnitOfmeasure")
 	private int idUnitOfMeasure;
@@ -43,11 +43,10 @@ public class Product {
 	private UnitOfMeasure unitofmeasure;
 	
 	
-	@Column(name="quantity")
-	private double quantity;
-	
 	@Column(name="lowQuantityLevel")
-	private double lowQuantityLevel;
+	private int lowQuantityLevel;
+	
+	
 	
 	@Column(name="userID")
 	private int userID;
@@ -60,11 +59,19 @@ public class Product {
 	
 	private List<ProductCustomFields> UserCustomFields;
 	
-	private List<RawMaterialProducts> rawmaterials;
+	private List<RawMaterialsPerProduct> rawmaterials;
+	
+	private List<Lot> lots;
 	
 	public Product() {
+		this.lots = new ArrayList<Lot>();
+		this.rawmaterials = new ArrayList<RawMaterialsPerProduct>();
+		this.UserCustomFields = new ArrayList<ProductCustomFields>();
 	
 	}
+	
+	
+	
 	
 	private Product(ProductBuilder builder) {
 		this.name = builder.name;
@@ -72,14 +79,34 @@ public class Product {
 		this.description = builder.description;
 		this.msrp = builder.msrp;
 		this.addedDate = builder.addedDate;
-		this.isTemplate = builder.isTemplate;
 		this.idUnitOfMeasure = builder.idUnitOfMeasure;
-		this.quantity = builder.quantity;
 		this.lowQuantityLevel = builder.lowQuantityLevel;
 		this.userID = builder.userID;
 		this.sku = builder.sku;
 		this.QRcode = builder.QRcode;
 		this.UserCustomFields = builder.UserCustomFields;
+		
+	}
+	
+	public Boolean reduceInventory(int Quantity  ) {
+		
+		if ( Quantity <= this.getAvailableQuantity()) {
+			for( int i = 0; i < lots.size(); i++) {
+				if ( lots.get(i).getAvailablequantity() < Quantity ) {
+					Quantity -=  lots.get(i).getAvailablequantity();
+					lots.get(i).setAvailablequantity(0);
+					
+				}
+				else {
+					int remaining = lots.get(i).getAvailablequantity()- Quantity;
+					lots.get(i).setAvailablequantity(remaining );
+					Quantity = 0;
+					break;
+					
+				}
+			}
+		}
+		return Quantity == 0;
 		
 	}
 
@@ -157,18 +184,6 @@ public class Product {
 
 
 
-	public boolean isTemplate() {
-		return isTemplate;
-	}
-
-
-
-	public void setTemplate(boolean isTemplate) {
-		this.isTemplate = isTemplate;
-	}
-
-
-
 	public int getIdUnitOfMeasure() {
 		return idUnitOfMeasure;
 	}
@@ -194,32 +209,28 @@ public class Product {
 		this.unitofmeasure = unitofmeasure;
 	}
 
-
-
-	public double getQuantity() {
-		return quantity;
-	}
-
-
-
-	public void setQuantity(double quantity) {
-		this.quantity = quantity;
-	}
-
-
-
-	public double getLowQuantityLevel() {
+	public int getLowQuantityLevel() {
 		return lowQuantityLevel;
 	}
 
 
 
-	public void setLowQuantityLevel(double lowQuantityLevel) {
+	public void setLowQuantityLevel(int lowQuantityLevel) {
 		this.lowQuantityLevel = lowQuantityLevel;
 	}
 
 
 
+	public int getAvailableQuantity() {
+		int availableQuantity = 0;
+	
+		for( int i = 0; i < lots.size(); i++) {
+			 availableQuantity += lots.get(i).getAvailablequantity();
+		}
+		return availableQuantity;
+	}
+
+	
 	public int getUserID() {
 		return userID;
 	}
@@ -268,12 +279,22 @@ public class Product {
 
 
 
-	public List<RawMaterialProducts> getRawmaterials() {
+	public List<RawMaterialsPerProduct> getRawmaterials() {
 		return rawmaterials;
 	}
 
-	public void setRawmaterials(List<RawMaterialProducts> rawmaterials) {
+	public void setRawmaterials(List<RawMaterialsPerProduct> rawmaterials) {
 		this.rawmaterials = rawmaterials;
+	}
+
+
+
+	public List<Lot> getLots() {
+		return lots;
+	}
+
+	public void setLots(List<Lot> lots) {
+		this.lots = lots;
 	}
 
 
@@ -285,20 +306,17 @@ public class Product {
 		private String description;
 		private double msrp;
 		private Timestamp addedDate;
-		private boolean isTemplate;
 		private int idUnitOfMeasure;
-		private double quantity;
-		private double lowQuantityLevel;
+		private int lowQuantityLevel;
 		private int userID;
 		private String sku;
 		private String QRcode;
 		private List<ProductCustomFields> UserCustomFields;
 	
 	
-		public ProductBuilder(String name, double cost, double quantity, String sku) {
+		public ProductBuilder(String name, double cost, String sku) {
 			this.name = name;
 			this.cost = cost;
-			this.quantity = quantity;
 			this.sku = sku;
 			
 		}
@@ -322,15 +340,11 @@ public class Product {
 			this.addedDate = addedDate;
 			return this;
 		}
-		public ProductBuilder isTemplate(boolean isTemplate){
-			this.isTemplate = isTemplate;
-			return this;
-		}
 		public ProductBuilder idUnitOfMeasure(int idUnitOfMeasure){
 			this.idUnitOfMeasure = idUnitOfMeasure;
 			return this;
 		}
-				public ProductBuilder lowQuantityLevel(double lowQuantityLevel){
+				public ProductBuilder lowQuantityLevel(int lowQuantityLevel){
 			this.lowQuantityLevel = lowQuantityLevel;
 			return this;
 		}

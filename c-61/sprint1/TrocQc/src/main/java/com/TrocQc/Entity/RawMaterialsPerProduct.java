@@ -8,15 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="rawmaterialproducts")
-public class RawMaterialProducts {
+@Table(name="rawmaterialperproduct")
+public class RawMaterialsPerProduct {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
-	
-	
+		
 	@Column(name="productid")
 	private int productid;
 	
@@ -30,15 +25,7 @@ public class RawMaterialProducts {
 	private RawMaterial rawmaterial;
 	
 
-	public RawMaterialProducts() {
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public RawMaterialsPerProduct() {
 	}
 
 	public int getProductid() {

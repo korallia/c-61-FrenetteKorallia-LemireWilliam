@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -19,11 +20,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.TrocQc.config.SpringJdbcConfig;
+import com.TrocQc.Entity.Lot;
 import com.TrocQc.Entity.Product;
 import com.TrocQc.Entity.ProductCustomFields;
 import com.TrocQc.Entity.RawMaterial;
 import com.TrocQc.Entity.RawMaterialCustomField;
-import com.TrocQc.Entity.RawMaterialProducts;
+import com.TrocQc.Entity.RawMaterialsPerProduct;
 import com.TrocQc.Entity.UnitOfMeasure;
 import com.TrocQc.Entity.User;
 
@@ -58,8 +60,9 @@ public class InventoryDao extends SpringJdbcConfig{
 						products.get(i).setUnitofmeasure(this.getUnitOfMeasure(products.get(i).getIdUnitOfMeasure()));
 						
 					}
-					products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
-					products.get(i).setRawmaterials(this.getProductRawMaterial(products.get(i).getId()));
+					//products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
+					products.get(i).setRawmaterials(this.getrawmaterialperproduct(products.get(i).getId()));
+					products.get(i).setLots(this.getLotsFromProduct(products.get(i).getId()));
 				}
 			}
 			return products;
@@ -105,8 +108,9 @@ public class InventoryDao extends SpringJdbcConfig{
 						products.get(i).setUnitofmeasure(this.getUnitOfMeasure(products.get(i).getIdUnitOfMeasure()));
 						
 					}
-					products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
-					products.get(i).setRawmaterials(this.getProductRawMaterial(products.get(i).getId()));
+					//products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
+					products.get(i).setRawmaterials(this.getrawmaterialperproduct(products.get(i).getId()));
+					products.get(i).setLots(this.getLotsFromProduct(products.get(i).getId()));
 				}
 			}
 			return products;
@@ -157,7 +161,7 @@ public class InventoryDao extends SpringJdbcConfig{
 			Map<String, String> params = new HashMap<>();
 			params.put("productid", Integer.toString(productid) );
 			params.put("name", name );
-			ProductCustomFields productcustomfield = namedParameterJdbcTemplate().queryForObject("select * from ProductCustomFields WHERE productid=:productid AND name=:name LIMIT 1", params , BeanPropertyRowMapper.newInstance(ProductCustomFields.class));
+			ProductCustomFields productcustomfield = namedParameterJdbcTemplate().queryForObject("select * from ProductCustomFields WHERE productid=:productid AND fieldtypeName=:name LIMIT 1", params , BeanPropertyRowMapper.newInstance(ProductCustomFields.class));
 			return productcustomfield;
 			
 		}catch(Exception e ) {
@@ -182,7 +186,8 @@ public class InventoryDao extends SpringJdbcConfig{
 				
 			}
 			product.setUserCustomFields(this.getProductCustomField(product.getId()) );
-			product.setRawmaterials(this.getProductRawMaterial(product.getId()));
+			product.setRawmaterials(this.getrawmaterialperproduct(product.getId()));
+			product.setLots(this.getLotsFromProduct(product.getId()));
 			return product ;
 		}
 		
@@ -192,14 +197,28 @@ public class InventoryDao extends SpringJdbcConfig{
 		}
 	}
 	
-	public List<RawMaterialProducts> getProductRawMaterial(int productid) {
-		String sql = "Select * From rawmaterialproducts where productid=:productid";
+	public int GetAvailableQuantityPerProduct(int productid) {
+		String sql = "Select sum(availablequantity) as qty From lot where productid=:productid";
+		Map<String, Object> params = new HashMap<>();
+		params.put("productid", productid );
+		try {
+			
+			int qty = (int) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(int.class));
+			return qty;
 		
-		Map<String, String> params = new HashMap<>();
-		params.put("productid", Integer.toString(productid) );
+		}catch(Exception e ) {
+			return 0;
+		}
+	}
+	
+	public List<RawMaterialsPerProduct> getrawmaterialperproduct(int productid) {
+		String sql = "Select * From rawmaterialperproduct where productid=:productid";
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("productid", productid );
 				
 		try {
-			List<RawMaterialProducts> rawmaterialproducts = namedParameterJdbcTemplate().query(sql, params,BeanPropertyRowMapper.newInstance(RawMaterialProducts.class));
+			List<RawMaterialsPerProduct> rawmaterialproducts = namedParameterJdbcTemplate().query(sql, params,BeanPropertyRowMapper.newInstance(RawMaterialsPerProduct.class));
 				
 			if ( rawmaterialproducts != null && !rawmaterialproducts.isEmpty()) {
 				for( int i=0; i< rawmaterialproducts.size(); i++){
@@ -214,6 +233,27 @@ public class InventoryDao extends SpringJdbcConfig{
 			return null;
 		}
 	}
+	public RawMaterialsPerProduct getrawmaterialperproductAndRawMaterial(int productid, int rawmaterialid) {
+		String sql = "Select * From rawmaterialperproduct where productid=:productid AND rawmaterialid=:rawmaterialid";
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("productid", productid );
+		params.put("rawmaterialid", rawmaterialid );
+				
+		try {
+			RawMaterialsPerProduct rawmaterialproduct = namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(RawMaterialsPerProduct.class));
+				
+			if ( rawmaterialproduct != null ) {
+				rawmaterialproduct.setRawmaterial(this.getRawMaterial(rawmaterialproduct.getRawmaterialid()));
+				
+			}
+			return rawmaterialproduct;
+		
+		}catch(Exception e ) {
+			return null;
+		}
+	}
+	
 	
 	public RawMaterial getRawMaterial(int id) {
 		String sql = "Select * From rawmaterial where id=:id";
@@ -259,7 +299,7 @@ public class InventoryDao extends SpringJdbcConfig{
 			
 			Map<String, String> params = new HashMap<>();
 			params.put("rawMaterialid", Integer.toString(rawmaterialid) );
-			params.put("name", name );
+			params.put("fieldtypeName", name );
 			RawMaterialCustomField rawmaterialcustomfield = namedParameterJdbcTemplate().queryForObject("select * from rawmaterialcustomfields WHERE rawMaterialid=:rawMaterialid AND name=:name LIMIT 1", params , BeanPropertyRowMapper.newInstance(RawMaterialCustomField.class));
 			return rawmaterialcustomfield;
 			
@@ -288,30 +328,61 @@ public class InventoryDao extends SpringJdbcConfig{
 		
 	}
 	
-	public int AddRawMaterialProduct(RawMaterialProducts rawmaterialproducts) {
+	public void Addrawmaterialperproduct(RawMaterialsPerProduct rawmaterialproducts) {
 		
-		if ( rawmaterialproducts.getId() == 0 ) {
+		
+		if ( getrawmaterialperproductAndRawMaterial(rawmaterialproducts.getProductid(), rawmaterialproducts.getRawmaterialid()) == null ) {
 			
-			//
-			SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(mysqlDataSource()).withTableName("RawMaterialProducts").usingGeneratedKeyColumns("id");
+			SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(mysqlDataSource()).withTableName("rawmaterialperproduct");
 			
 			Map<String, Object> parameters = new HashMap<>();
 			
 			parameters.put("productid", rawmaterialproducts.getProductid());
 			parameters.put("rawmaterialid", rawmaterialproducts.getRawmaterialid());
 			parameters.put("quantity", rawmaterialproducts.getQuantity());
-			Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
-			rawmaterialproducts.setId(id.intValue());
+			simpleJdbcInsert.execute(parameters);
+		
 		}	
 		if ( rawmaterialproducts.getRawmaterial() != null) {
 			this.AddRawMaterial(rawmaterialproducts.getRawmaterial() );
 		}
 		
 		
-		return rawmaterialproducts.getId();	
+		return;	
 	
 	}			    
+	public void deleteRawMaterial(RawMaterial rawmaterial) {
+		if ( rawmaterial.getId() > 0 ) {
+			jdbcTemplate().update("DELETE FROM rawmaterial WHERE id=?",rawmaterial.getId());
+		}
+	}
 	
+	public int SaveRawMaterial(RawMaterial rawmaterial) {
+		
+		if ( rawmaterial.getId() == 0 ) {
+			return this.AddRawMaterial(rawmaterial);
+		}
+		else {
+			
+			String sql = "UPDATE rawmaterial SET name=?, cost=?, quantity=?, idUnitOfMeasure=? WHERE id=?";
+			jdbcTemplate().update(sql, rawmaterial.getName(), rawmaterial.getCost(), rawmaterial.getQuantity(), rawmaterial.getIdUnitOfMeasure(), rawmaterial.getId());
+
+			
+			// we are about to save the rawmaterialcustomfields table, but if they are none, it means we want them deleted, but even if there are, we 
+			// want to update the whole list. Therefore, we will delete the existing ones first, and then save.
+			jdbcTemplate().update("DELETE FROM rawmaterialcustomfields WHERE rawmaterialid=?",rawmaterial.getId());
+			if ( rawmaterial.getUserCustomFields() != null && rawmaterial.getUserCustomFields().size() > 0 ) {
+				
+				for(int i=0; i< rawmaterial.getUserCustomFields().size();i++ ) {
+					
+					rawmaterial.getUserCustomFields().get(i).setRawMaterialid( rawmaterial.getId());
+					AddRawMaterialCustomField(rawmaterial.getUserCustomFields().get(i));
+				}
+			}
+			
+			return rawmaterial.getId();	
+		}
+	}	
 		
 	public int AddRawMaterial(RawMaterial rawmaterial) {
 		
@@ -356,7 +427,6 @@ public class InventoryDao extends SpringJdbcConfig{
 			parameters.put("rawMaterialid", rawmaterialcustomfield.getRawMaterialid());
 			parameters.put("fieldtypeName", rawmaterialcustomfield.getFieldtypeName());
 			parameters.put("fieldValue", rawmaterialcustomfield.getFieldvalue());
-			parameters.put("UserId", rawmaterialcustomfield.getUserId());
 			simpleJdbcInsert.execute(parameters);
 			
 		}
@@ -369,44 +439,63 @@ public class InventoryDao extends SpringJdbcConfig{
 			if ( this.getNamedProductCustomField( productcustomfield.getProductid(), productcustomfield.getFieldtypeName()) == null) {
 			
 			//
-			SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(mysqlDataSource()).withTableName("productcustomfields");
-			
-			Map<String, String> parameters = new HashMap<>();
-						
-			parameters.put("productid", Integer.toString( productcustomfield.getProductid()));
-			parameters.put("fieldtypename", productcustomfield.getFieldtypeName());
-			parameters.put("fieldValue", productcustomfield.getFieldvalue());
-			simpleJdbcInsert.execute(parameters);
-			
-		}
+				SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(mysqlDataSource()).withTableName("productcustomfields");
+				
+				Map<String, String> parameters = new HashMap<>();
+							
+				parameters.put("productid", Integer.toString( productcustomfield.getProductid()));
+				parameters.put("fieldtypename", productcustomfield.getFieldtypeName());
+				parameters.put("fieldValue", productcustomfield.getFieldvalue());
+				simpleJdbcInsert.execute(parameters);
+				
+			}
 			
 	
 	}	
 	
-	
-		public int AddInventoryToProduct(Product product, int Quantity) {
+		public List<Lot> getLotsFromProduct(int productid){
 			try {
 				
-			// limit quantity to the available rawmaterial quantity
-			if ( !product.getRawmaterials().isEmpty()) {
-				for(int i =0; i< product.getRawmaterials().size(); i++) {
-					RawMaterialProducts rmp = product.getRawmaterials().get(i);
-					if ( (rmp.getQuantity() * Quantity) > rmp.getRawmaterial().getQuantity() ) {
-						Quantity = (int)Math.floor(rmp.getRawmaterial().getQuantity()/rmp.getQuantity());
-					}
-				}
+				Map<String, String> params = new HashMap<>();
+				params.put("productid", Integer.toString(productid) );
+				List<Lot> lots = namedParameterJdbcTemplate().query("select * from Lot WHERE productid=:productid", params , BeanPropertyRowMapper.newInstance(Lot.class));
+				return lots;
+				
+			}catch(Exception e ) {
+				return null;
 			}
-			if ( jdbcTemplate().update( "UPDATE product SET quantity=quantity+? WHERE id=?", Quantity, product.getId()) > 0) {
+		}
+	
+		public int addLot(Product product, int Quantity) {
+			try {
+				
+				// limit quantity to the available rawmaterial quantity
 				if ( !product.getRawmaterials().isEmpty()) {
 					for(int i =0; i< product.getRawmaterials().size(); i++) {
-						RawMaterialProducts rmp = product.getRawmaterials().get(i);
-						
-						jdbcTemplate().update( "UPDATE rawmaterial SET quantity=quantity-? WHERE id=?", (rmp.getQuantity() * Quantity), rmp.getRawmaterialid());
+						RawMaterialsPerProduct rmp = product.getRawmaterials().get(i);
+						if ( (rmp.getQuantity() * Quantity) > rmp.getRawmaterial().getQuantity() ) {
+							Quantity = (int)Math.floor(rmp.getRawmaterial().getQuantity()/rmp.getQuantity());
+						}
 					}
 				}
 				
-			}
-			return Quantity;
+				SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(mysqlDataSource()).withTableName("lot");
+				
+				Map<String, Object> parameters = new HashMap<>();
+							
+				parameters.put("productid", product.getId());
+				parameters.put("availablequantity", Quantity);
+				parameters.put("originalquantity", Quantity);
+				if ( simpleJdbcInsert.execute(parameters) == 1 ) {
+					if ( !product.getRawmaterials().isEmpty()) {
+						for(int i =0; i< product.getRawmaterials().size(); i++) {
+							RawMaterialsPerProduct rmp = product.getRawmaterials().get(i);
+							jdbcTemplate().update( "UPDATE rawmaterial SET quantity=quantity-? WHERE id=?", (rmp.getQuantity() * Quantity), rmp.getRawmaterialid());
+						}
+						
+					}
+				}
+				return Quantity;
 			}catch(Exception e ) {
 				return 0;
 			}
@@ -414,7 +503,45 @@ public class InventoryDao extends SpringJdbcConfig{
 			
 		}
 		
+		
+		public void deleteProduct(Product product) {
+			if ( product.getId() > 0 ) {
+				jdbcTemplate().update("DELETE FROM product WHERE id=?",product.getId());
+			}
+		}
+
 	
+		public int SaveProduct(Product product) {
+			if ( product.getId() == 0 ) {
+				return this.AddProduct(product);
+			}
+			String sql = "UPDATE product SET name=?, SKU=?, cost=?, description=?, MSRP=?, idUnitOfMeasure=?, lowQuantityLevel=?, QRCode=? WHERE id=?";
+			jdbcTemplate().update(sql, product.getName(), product.getSku(), product.getCost(), product.getDescription(), product.getMsrp(), product.getIdUnitOfMeasure(), product.getLowQuantityLevel(), product.getQRcode(), product.getId());
+
+			
+			// we are about to save the RawMaterialPerProduct table, but if they are none in the product, it means we want them deleted, but even if there are, we 
+			// want to update the whole list. Therefore, we will delete the existing ones first, and then save.
+			jdbcTemplate().update("DELETE FROM rawmaterialperproduct WHERE productid=?",product.getId());
+			if ( product.getRawmaterials() != null && product.getRawmaterials().size() > 0 ) {
+				for(int i=0; i< product.getRawmaterials().size();i++ ) {
+					product.getRawmaterials().get(i).setProductid(product.getId());
+					this.Addrawmaterialperproduct(product.getRawmaterials().get(i));
+				}
+			}
+			
+			// we are about to save the custom fields, if they are none, it means we want them deleted, but even if there are, we 
+			// want to update the whole list. Therefore, we will delete the existing ones first, and then save.
+			jdbcTemplate().update("DELETE FROM productcustomfields WHERE productid=?",product.getId());
+			if ( product.getUserCustomFields() != null && product.getUserCustomFields().size() > 0 ) {
+				for(int i=0; i< product.getUserCustomFields().size();i++ ) {
+					product.getUserCustomFields().get(i).setProductid(product.getId());
+					this.AddProductCustomField(product.getUserCustomFields().get(i));
+				}
+			}
+			
+			return product.getId();
+		}
+		
 		public int AddProduct(Product product) {
 		
 			if ( product.getId() == 0 ) {
@@ -429,8 +556,6 @@ public class InventoryDao extends SpringJdbcConfig{
 				parameters.put("cost", product.getCost());
 				parameters.put("description", product.getDescription());
 				parameters.put("MSRP", product.getMsrp());
-				parameters.put("isTemplate", 0);
-				parameters.put("quantity", product.getQuantity());
 				parameters.put("idunitofmeasure", product.getIdUnitOfMeasure());
 				parameters.put("lowQuantityLevel", product.getLowQuantityLevel());
 				parameters.put("QRcode", product.getQRcode());
@@ -440,11 +565,13 @@ public class InventoryDao extends SpringJdbcConfig{
 			}
 			if ( product.getRawmaterials() != null && product.getRawmaterials().size() > 0 ) {
 				for(int i=0; i< product.getRawmaterials().size();i++ ) {
-					this.AddRawMaterialProduct(product.getRawmaterials().get(i));
+					product.getRawmaterials().get(i).setProductid(product.getId());
+					this.Addrawmaterialperproduct(product.getRawmaterials().get(i));
 				}
 			}
 			if ( product.getUserCustomFields() != null && product.getUserCustomFields().size() > 0 ) {
 				for(int i=0; i< product.getUserCustomFields().size();i++ ) {
+					product.getUserCustomFields().get(i).setProductid(product.getId());
 					this.AddProductCustomField(product.getUserCustomFields().get(i));
 				}
 			}
