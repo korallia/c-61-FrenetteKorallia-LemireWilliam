@@ -21,11 +21,11 @@
 </details>
 
 
-# Titre
+# TroQc - Plateforme d'échange entre particuliers
 
 ## Sommaire
 
-    Brève présentation du projet.
+    La vision pour TroQc est de créer une plateforme d'échange entre particuliers afin de participer à la relance économique post-Covid. Étant donnée la courte fenêtre de temps pour développer cette application, nous nous sommes concentrés sur les aspects que nous jugions fondamentaux: le stockage de produits en base de données, la possibilité d'entrer des ventes manuelles, et de calculer le <i> bottom-line </i>. 
     
 ## Installation
     Instructions nécessaires à la mise en place de l’infrastructure de développement (langage, librairie, IDE …).
@@ -33,10 +33,19 @@
     développement.
     
 ## Utilisation
-    Cette section indique comment démarrer votre projet et quels sont les usages fondamentaux (ici, sans être
-    nécessaires, des captures d’écran sont généralement appréciées). Cette section est généralement
-    pertinente pour expliquer la philosophie d’usage de la librairie. On s’adresse généralement aux
-    programmeurs utilisateurs de votre projet.
+### Authentification
+<img src="login.png" alt="Logo" width="400" height="134">
+Afin d'utiliser la plateforme, l'utilisateur doit s'authentifier. Suite à une authentificaition réussie, il pourra accéder aux modules.
+### Création de compte
+<img src="creercompte.png" alt="Logo" width="400" >
+Afin d'utiliser la plateforme, l'utilisateur doit se créer un compte avec lequel il pourra s'authentifier. 
+### Module de Lobby
+<img src="lobbyModule.png" alt="Logo" width="400" >
+### Module d'inventaire
+
+### Module de finances
+### Module de ventes
+### Module de configurations
     
 ## Références
     La liste des références utilisées pour la réalisation de votre projet (avec liens hypertextes lorsqu’ils
@@ -48,6 +57,3 @@
     
 ## Remerciements
     (section optionnelle – par exemple, un enseignant autre que celui du cours qui vous a aidé)
-    
-## Licence 
-    (section optionnelle)
