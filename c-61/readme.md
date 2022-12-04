@@ -25,7 +25,7 @@
 
 ## Sommaire
 
-    La vision pour TroQc est de créer une plateforme d'échange entre particuliers afin de participer à la relance économique post-Covid. Étant donnée la courte fenêtre de temps pour développer cette application, nous nous sommes concentrés sur les aspects que nous jugions fondamentaux: le stockage de produits en base de données, la possibilité d'entrer des ventes manuelles, et de calculer le <i> bottom-line </i>. 
+La vision pour TroQc est de créer une plateforme d'échange entre particuliers afin de participer à la relance économique post-Covid. Étant donnée la courte fenêtre de temps pour développer cette application, nous nous sommes concentrés sur les aspects que nous jugions fondamentaux: le stockage de produits en base de données, la possibilité d'entrer des ventes manuelles, et de calculer le <i> bottom-line </i>. 
     
 ## Installation
     Instructions nécessaires à la mise en place de l’infrastructure de développement (langage, librairie, IDE …).
@@ -34,14 +34,21 @@
     
 ## Utilisation
 ### Authentification
-<img src="login.png" alt="Logo" width="400" height="134">
+<img src="login.png" width="400" >
 Afin d'utiliser la plateforme, l'utilisateur doit s'authentifier. Suite à une authentificaition réussie, il pourra accéder aux modules.
 ### Création de compte
-<img src="creercompte.png" alt="Logo" width="400" >
+<img src="creercompte.png" width="400" >
 Afin d'utiliser la plateforme, l'utilisateur doit se créer un compte avec lequel il pourra s'authentifier. 
 ### Module de Lobby
-<img src="lobbyModule.png" alt="Logo" width="400" >
+Après une authentification réussie, l'utilisateur est redirigé vers le module de lobby. De là, il pourra accéder aux autres modules (Ventes, Inventaire, Finances, et Configurations). De plus, il peut se laisser des notes avec le Bloc-Notes au bas de la page. Elles sont modifiables et peuvent être détruites en cliquant dessus.
+<img src="lobbyModule.png" width="400" >
 ### Module d'inventaire
+Dans ce module, l'utilisateur peut gérer son inventaire. L'idée est d'insérer dans les matériels tous les items utilisés dans la création d'un produit. Par exemple, quelqu'un qui vend des magrets de canards, ajouterait du magret en dans les matériaux, ainsi que chaque ingrédient requis. 
+
+Ensuite, l'utilisateur crée un Gabarit, soit un produit finit qui comprend les ingrédients nécessaires à sa création, ainsi que les informations de ce produit, comme son nom, SKU, description, prix, etc. Par exemple, l'utilisateur pourra créer un gabarit de son magret de canard au syrop d'érable. Il entrera ce nom et remplira les autres champs, et choisira les matériaux pour le créer et la quantité de chaque.
+
+Finalement, l'utilisateur peut se créer des lots avec ces gabarits, et les produits de ces lots sont ceux qui sont destinés à la vente. Chaque insertion de produit crée un nouveau lot, qui représente la création d'un produit.
+Par exemple, quand l'utilisateur produit des magrets au syrop d'érable, il en crée 5 de 200g à chaque fois, nécessitant 1kg de magret ainsi qu'une quantité X des autres ingrédients. En ajoutant ces 5 items dans la section produit, il y a une vérification qu'il y a assez de matériaux dans l'inventaire pour créer le lot. Si oui, la quantité des matériaux est mise à jour en base de donnée, et les 5 magrets au syrop d'érable peuvent être vendus dans le module de ventes.  
 
 ### Module de finances
 ### Module de ventes
