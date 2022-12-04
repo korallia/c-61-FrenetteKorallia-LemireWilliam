@@ -54,10 +54,14 @@ Finalement, l'utilisateur peut se créer des lots avec ces gabarits, et les prod
 Par exemple, quand l'utilisateur produit des magrets au syrop d'érable, il en crée 5 de 200g à chaque fois, nécessitant 1kg de magret ainsi qu'une quantité X des autres ingrédients. En ajoutant ces 5 items dans la section produit, il y a une vérification qu'il y a assez de matériaux dans l'inventaire pour créer le lot. Si oui, la quantité des matériaux est mise à jour en base de donnée, et les 5 magrets au syrop d'érable peuvent être vendus dans le module de ventes.  
 
 ### Module de finances
+Ce module sert à comptabiliser les coûts (insertions de matériaux en base de donnée, coûts mensuels, ou autres coûts) et les ventes (que ventes manuelles pour l'instant), afin d'afficher à l'écran le <i> bottom-line </i> pour la période de temps spécifiée par l'utilisateur. L'utilisateur peut aussi faire une projection des ventes pour une période de temps spécifiée.
+
 
 ### Module de ventes
+Dans cette version de la plateforme, les ventes doivent être entrées manuellement, en entrant le nom de la personne qui achète, le produit désiré, et la quantité. Si la quantité spécifiée est en inventaire, une vente est créée. 
 
 ### Module de configurations
+L'utilisateur peut configurer la génération du code SKU de ses produits. En créant un gabarit, si le champs SKU est laissé vide, le SKU par défaut spécifié dans les configurations est appliqué. L'utilisateur aura le choix de toutes les colonnes par défaut dans la table produits, ainsi que celles crées par lui dans la table de CustomUserProperties. Il pourra choisir combien de lettres de chaque colonne est à utiliser (si applicable) dans le SKU, ainsi que le caractère pour séparer ces groupes de lettres. 
     
 ## Références
     La liste des références utilisées pour la réalisation de votre projet (avec liens hypertextes lorsqu’ils
