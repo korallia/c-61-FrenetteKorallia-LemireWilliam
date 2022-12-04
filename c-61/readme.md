@@ -43,6 +43,7 @@ Afin d'utiliser la plateforme, l'utilisateur doit se créer un compte avec leque
 Après une authentification réussie, l'utilisateur est redirigé vers le module de lobby. De là, il pourra accéder aux autres modules (Ventes, Inventaire, Finances, et Configurations). De plus, il peut se laisser des notes avec le Bloc-Notes au bas de la page. Elles sont modifiables et peuvent être détruites en cliquant dessus.
 <img src="lobbyModule.png" width="400" >
 ### Module d'inventaire
+
 Dans ce module, l'utilisateur peut gérer son inventaire. L'idée est d'insérer dans les matériels tous les items utilisés dans la création d'un produit. Par exemple, quelqu'un qui vend des magrets de canards, ajouterait du magret en dans les matériaux, ainsi que chaque ingrédient requis. 
 
 Ensuite, l'utilisateur crée un Gabarit, soit un produit finit qui comprend les ingrédients nécessaires à sa création, ainsi que les informations de ce produit, comme son nom, SKU, description, prix, etc. Par exemple, l'utilisateur pourra créer un gabarit de son magret de canard au syrop d'érable. Il entrera ce nom et remplira les autres champs, et choisira les matériaux pour le créer et la quantité de chaque.
