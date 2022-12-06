@@ -68,6 +68,10 @@ public class FrontControlleur{
 		return "inventaire"; //return the view
 	}
 	
+	@GetMapping("/Ventes")
+	public String GetVentes(Model theModel) {
+		return "ventes"; //return the view
+	}
 	
 	
 	@GetMapping("/test")

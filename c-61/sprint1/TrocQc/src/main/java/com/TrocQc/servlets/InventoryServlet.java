@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.TrocQc.DAO.InventoryDao; 
 import com.TrocQc.Entity.RawMaterialCustomField;
+import com.TrocQc.Entity.Product;
+import com.TrocQc.Entity.Product.ProductBuilder;
 import com.TrocQc.Entity.RawMaterial;
 import com.TrocQc.Entity.UnitOfMeasure;
 import com.TrocQc.Entity.User;
@@ -38,7 +40,7 @@ public class InventoryServlet extends HttpServlet {
 			  String materialName = request.getParameter("materialName");
 			  double materialQuantity = Double.parseDouble(request.getParameter("materialQuantity"));
 			  int materialUOM = Integer.parseInt(request.getParameter("materialUOM"));
-			  int materialLQN = Integer.parseInt(request.getParameter("materialLQN"));
+			  double materialLQN = Double.parseDouble(request.getParameter("materialLQN"));
 			  double materialCost = Double.parseDouble(request.getParameter("materialCost"));
 			  
 			  //Customfields
@@ -53,8 +55,6 @@ public class InventoryServlet extends HttpServlet {
 			  
 			  RawMaterialCustomField rmcf = new RawMaterialCustomField(materialCustomFieldName1, materialCustomFieldValue1, user.getId());
 			  
-			  
-			  
 			  List<RawMaterialCustomField> rmcfList = new ArrayList<RawMaterialCustomField>();
 			  rmcfList.add(rmcf);
 			  
@@ -63,7 +63,32 @@ public class InventoryServlet extends HttpServlet {
 			  invDao.AddRawMaterial(rawMaterial);
 			  
 			  response.sendRedirect("/TrocQc/Inventaire");
+		  }
+		  else if (request.getParameter("templateName") != null) {
+			  String templateName = request.getParameter("templateName");
+			  String templateSKU = request.getParameter("templateSKU");
+			  String templateDesc = request.getParameter("templateDesc");
+			  int templateUOM = Integer.parseInt(request.getParameter("templateUOM"));
+			  double templateLQL = Double.parseDouble(request.getParameter("templateLQL")) ; 
 			  
+			  double templateCost = Double.parseDouble( request.getParameter("templateCost") ); 
+			  double templatePrice = Double.parseDouble( request.getParameter("templatePrice") ); 
+			  double templateMSRP = Double.parseDouble( request.getParameter("templateMSRP") ); 
+			  
+			  //String barcode = request.getParameter("barcode"); 
+			  
+			  //Custom fields
+			  String newFieldName1 = request.getParameter("newFieldName1"); 
+			  String newFieldValue1 = request.getParameter("newFieldValue1"); 
+			  String newFieldUnit1 = request.getParameter("newFieldUnit1");
+			  
+			  //Raw materials
+			  String rawMaterialName1 = request.getParameter("rawMaterialName1"); 
+			  String rawMaterialQuantity1 = request.getParameter("rawMaterialQuantity1"); 
+			  String rawMaterialUOM1 = request.getParameter("rawMaterialUOM1");
+			  
+			  //BUILDER
+			  // = new Product.ProductBuilder(rawMaterialName1, templateCost, templateMSRP, templateSKU)
 		  }
 		  
 	  }

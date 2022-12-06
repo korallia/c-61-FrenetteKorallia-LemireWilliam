@@ -56,7 +56,7 @@ public class Product {
 	private String sku;
 	
 	@Column(name="QRcode")
-	private String QRcode;
+	private String QRcode; //https://www.javatpoint.com/generating-qr-code-in-java
 	
 	private List<ProductCustomFields> UserCustomFields;
 	
@@ -295,10 +295,9 @@ public class Product {
 		private List<ProductCustomFields> UserCustomFields;
 	
 	
-		public ProductBuilder(String name, double cost, double quantity, String sku) {
+		public ProductBuilder(String name, double cost, String sku) {
 			this.name = name;
 			this.cost = cost;
-			this.quantity = quantity;
 			this.sku = sku;
 			
 		}
