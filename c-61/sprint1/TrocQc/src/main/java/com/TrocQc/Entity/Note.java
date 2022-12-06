@@ -28,22 +28,29 @@ public class Note {
 	@Column(name="posY")
 	private int posY;
 	
-	public Note(int id, String note_subject, String note_body, int posX, int posY) {
+	@Column(name="userID")
+	private int userID;
+	
+	
+	
+	public Note(int id, String note_subject, String note_body, int posX, int posY, int userID) {
 		super();
 		this.id = id;
 		this.note_subject = note_subject;
 		this.note_body = note_body;
 		this.posX = posX;
 		this.posY = posY;
+		this.userID = userID;
 	}
 	
-	public Note(String note_subject, String note_body, int posX, int posY) {
+	public Note(String note_subject, String note_body, int posX, int posY,int userID) {
 		super();
 		this.id = 0;
 		this.note_subject = note_subject;
 		this.note_body = note_body;
 		this.posX = posX;
 		this.posY = posY;
+		this.userID = userID;
 	}
 	
 	public Note() {
@@ -91,6 +98,14 @@ public class Note {
 
 	public void setNote_subject(String note_subject) {
 		this.note_subject = note_subject;
+	}
+
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 
 	

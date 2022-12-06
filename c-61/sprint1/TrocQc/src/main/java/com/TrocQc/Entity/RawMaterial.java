@@ -2,6 +2,7 @@ package com.TrocQc.Entity;
 import com.TrocQc.Entity.UnitOfMeasure;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -47,7 +48,7 @@ public class RawMaterial {
 	
 	
 	public RawMaterial() {
-	
+		this.UserCustomFields = new ArrayList<RawMaterialCustomField>();
 	}
 	
 	public RawMaterial(int id, String name, double cost, Timestamp addedDate, UnitOfMeasure unitofmeasure,
@@ -167,7 +168,7 @@ public class RawMaterial {
 
 
 	public void setUserCustomFields(List<RawMaterialCustomField> userCustomFields) {
-		for (int i = 0; i<= userCustomFields.size(); i++) {
+		for (int i = 0; i< userCustomFields.size(); i++) {
 			userCustomFields.get(i).setRawMaterialid(this.getId());
 		}
 		this.UserCustomFields = userCustomFields;

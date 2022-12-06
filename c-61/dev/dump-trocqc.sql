@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: localhost    Database: trocqc
 -- ------------------------------------------------------
--- Server version	8.0.31
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,6 +42,35 @@ LOCK TABLES `expenses` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `lot`
+--
+
+DROP TABLE IF EXISTS `lot`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `lot` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `productId` int DEFAULT NULL,
+  `availablequantity` int DEFAULT NULL,
+  `originalquantity` int DEFAULT NULL,
+  `addeddate` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `lot_FK` (`productId`),
+  CONSTRAINT `lot_FK` FOREIGN KEY (`productId`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `lot`
+--
+
+LOCK TABLES `lot` WRITE;
+/*!40000 ALTER TABLE `lot` DISABLE KEYS */;
+INSERT INTO `lot` VALUES (1,7,0,100,NULL),(2,7,92,100,'2022-11-27 10:58:38'),(3,7,20,100,'2022-11-27 10:58:38');
+/*!40000 ALTER TABLE `lot` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `notes`
 --
 
@@ -54,8 +83,11 @@ CREATE TABLE `notes` (
   `note_subject` varchar(250) NOT NULL,
   `posX` double NOT NULL,
   `posY` double NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `userID` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `notes_FK` (`userID`),
+  CONSTRAINT `notes_FK` FOREIGN KEY (`userID`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +96,7 @@ CREATE TABLE `notes` (
 
 LOCK TABLES `notes` WRITE;
 /*!40000 ALTER TABLE `notes` DISABLE KEYS */;
+INSERT INTO `notes` VALUES (8,'terert','fsdfdfsdfsdsfd',131,147,1);
 /*!40000 ALTER TABLE `notes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,9 +115,7 @@ CREATE TABLE `product` (
   `description` varchar(300) DEFAULT NULL,
   `MSRP` double NOT NULL,
   `addedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `isTemplate` tinyint(1) NOT NULL DEFAULT '0',
   `idUnitOfMeasure` int NOT NULL,
-  `quantity` double NOT NULL,
   `lowQuantityLevel` float DEFAULT NULL,
   `userID` int NOT NULL,
   `QRcode` varchar(100) DEFAULT NULL,
@@ -93,7 +124,7 @@ CREATE TABLE `product` (
   KEY `product_FK_1` (`userID`),
   CONSTRAINT `product_FK` FOREIGN KEY (`idUnitOfMeasure`) REFERENCES `unitofmeasure` (`id`),
   CONSTRAINT `product_FK_1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +133,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Widget A','WA1',9.99,'A medium Widget',99.99,'2022-11-20 15:36:30',0,4,12,20,1,NULL),(2,'Widget B','WB2',19.99,'A large Widget',249.49,'2022-11-20 15:37:30',0,4,23,3,1,NULL);
+INSERT INTO `product` VALUES (1,'Widget A','WA1',9.99,'A medium Widget',99.99,'2022-11-20 15:36:30',4,20,1,NULL),(2,'Widget B','WB2',19.99,'A large Widget',249.49,'2022-11-20 15:37:30',4,3,1,NULL),(3,'Test from Front','123',28,'This is a test',128,NULL,4,18,1,'12345'),(4,'Test from Front','123',28,'This is a test',128,NULL,4,18,1,'12345'),(6,'Test from Front','123',28,'This is a test',128,NULL,4,18,1,'12345'),(7,'New name','123',14,'New description',256,NULL,5,1,1,'New QR code');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +149,7 @@ CREATE TABLE `productcustomfields` (
   `fieldtypeName` varchar(20) DEFAULT NULL,
   `fieldvalue` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   KEY `productcustomfields_FK` (`productid`),
-  CONSTRAINT `productcustomfields_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`)
+  CONSTRAINT `productcustomfields_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -128,32 +159,8 @@ CREATE TABLE `productcustomfields` (
 
 LOCK TABLES `productcustomfields` WRITE;
 /*!40000 ALTER TABLE `productcustomfields` DISABLE KEYS */;
+INSERT INTO `productcustomfields` VALUES (4,'Custom','value'),(4,'Custom2','value2');
 /*!40000 ALTER TABLE `productcustomfields` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `productcustomfieldtypes`
---
-
-DROP TABLE IF EXISTS `productcustomfieldtypes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `productcustomfieldtypes` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) NOT NULL,
-  `type` enum('int','varchar','color') DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `productcustomfieldtypes`
---
-
-LOCK TABLES `productcustomfieldtypes` WRITE;
-/*!40000 ALTER TABLE `productcustomfieldtypes` DISABLE KEYS */;
-INSERT INTO `productcustomfieldtypes` VALUES (1,'Couleur Principale','color'),(2,'Type de batterie','varchar');
-/*!40000 ALTER TABLE `productcustomfieldtypes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -167,7 +174,7 @@ CREATE TABLE `rawmaterial` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `cost` float DEFAULT NULL,
-  `addedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `addedDate` datetime DEFAULT CURRENT_TIMESTAMP,
   `quantity` float DEFAULT NULL,
   `idUnitOfMeasure` int DEFAULT NULL,
   `idUser` int DEFAULT NULL,
@@ -183,7 +190,7 @@ CREATE TABLE `rawmaterial` (
 
 LOCK TABLES `rawmaterial` WRITE;
 /*!40000 ALTER TABLE `rawmaterial` DISABLE KEYS */;
-INSERT INTO `rawmaterial` VALUES (1,'Chaise',8,NULL,3,4,1),(2,'Double chaise',6,NULL,5,4,1),(3,'triple chaise',9,NULL,6,4,1),(4,'4 chaise',23,NULL,2,6,1),(5,'Chaise',3,NULL,2,12,4);
+INSERT INTO `rawmaterial` VALUES (1,'Belle chaise',8,'2022-11-26 12:49:08',1,4,1),(2,'Double chaise',6,'2022-11-26 12:49:08',5,4,1),(3,'triple chaise',9,'2022-11-26 12:49:08',6,4,1),(4,'4 chaise',23,'2022-11-20 14:25:19',2,6,1);
 /*!40000 ALTER TABLE `rawmaterial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,12 +205,10 @@ CREATE TABLE `rawmaterialcustomfields` (
   `rawMaterialid` int NOT NULL,
   `fieldtypeName` varchar(20) NOT NULL,
   `fieldValue` varchar(100) NOT NULL,
-  `UserId` int DEFAULT NULL,
+  UNIQUE KEY `rawmaterialcustomfields_rawMaterialid_IDX` (`rawMaterialid`,`fieldtypeName`) USING BTREE,
   KEY `rawmaterialcustomfields_FK` (`rawMaterialid`),
   KEY `rawmaterialcustomfields_FK_1` (`fieldtypeName`),
-  KEY `rawmaterialcustomfields_FK_2` (`UserId`),
-  CONSTRAINT `rawmaterialcustomfields_FK` FOREIGN KEY (`rawMaterialid`) REFERENCES `rawmaterial` (`id`),
-  CONSTRAINT `rawmaterialcustomfields_FK_2` FOREIGN KEY (`UserId`) REFERENCES `user` (`id`)
+  CONSTRAINT `rawmaterialcustomfields_FK` FOREIGN KEY (`rawMaterialid`) REFERENCES `rawmaterial` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -213,38 +218,37 @@ CREATE TABLE `rawmaterialcustomfields` (
 
 LOCK TABLES `rawmaterialcustomfields` WRITE;
 /*!40000 ALTER TABLE `rawmaterialcustomfields` DISABLE KEYS */;
-INSERT INTO `rawmaterialcustomfields` VALUES (1,'Hello','Moto',1),(1,'Hello','Moto',1),(2,'Hello','Moto',1),(3,'Hello','Moto',1),(4,'Hello','Moto',1),(5,'Hello','Moto',4);
+INSERT INTO `rawmaterialcustomfields` VALUES (1,'Hello','apple'),(2,'Hello','Moto'),(3,'Hello','Moto'),(4,'Hello','Moto');
 /*!40000 ALTER TABLE `rawmaterialcustomfields` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `rawmaterialproducts`
+-- Table structure for table `rawmaterialperproduct`
 --
 
-DROP TABLE IF EXISTS `rawmaterialproducts`;
+DROP TABLE IF EXISTS `rawmaterialperproduct`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `rawmaterialproducts` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `rawmaterialperproduct` (
   `productid` int NOT NULL,
   `rawmaterialid` int NOT NULL,
   `quantity` float NOT NULL,
-  PRIMARY KEY (`id`),
+  UNIQUE KEY `MAIN` (`productid`,`rawmaterialid`) USING BTREE,
   KEY `RawMaterialProducts_FK` (`productid`),
   KEY `RawMaterialProducts_FK_1` (`rawmaterialid`),
-  CONSTRAINT `RawMaterialProducts_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`),
-  CONSTRAINT `RawMaterialProducts_FK_1` FOREIGN KEY (`rawmaterialid`) REFERENCES `rawmaterial` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `RawMaterialProducts_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `RawMaterialProducts_FK_1` FOREIGN KEY (`rawmaterialid`) REFERENCES `rawmaterial` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `rawmaterialproducts`
+-- Dumping data for table `rawmaterialperproduct`
 --
 
-LOCK TABLES `rawmaterialproducts` WRITE;
-/*!40000 ALTER TABLE `rawmaterialproducts` DISABLE KEYS */;
-INSERT INTO `rawmaterialproducts` VALUES (1,1,1,10),(2,1,2,1),(3,2,1,20),(4,2,2,4);
-/*!40000 ALTER TABLE `rawmaterialproducts` ENABLE KEYS */;
+LOCK TABLES `rawmaterialperproduct` WRITE;
+/*!40000 ALTER TABLE `rawmaterialperproduct` DISABLE KEYS */;
+INSERT INTO `rawmaterialperproduct` VALUES (1,1,10),(1,2,1),(2,1,20),(2,2,4),(7,1,23);
+/*!40000 ALTER TABLE `rawmaterialperproduct` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -338,6 +342,35 @@ INSERT INTO `user` VALUES (1,'','William','Lemire','wlemire.wl@gmail.com','123',
 UNLOCK TABLES;
 
 --
+-- Table structure for table `vente`
+--
+
+DROP TABLE IF EXISTS `vente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `vente` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `productId` int DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  `ventedate` datetime DEFAULT CURRENT_TIMESTAMP,
+  `userid` int DEFAULT NULL,
+  UNIQUE KEY `vente_id_IDX` (`id`) USING BTREE,
+  KEY `vente_FK` (`userid`),
+  CONSTRAINT `vente_FK` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vente`
+--
+
+LOCK TABLES `vente` WRITE;
+/*!40000 ALTER TABLE `vente` DISABLE KEYS */;
+INSERT INTO `vente` VALUES (1,7,10,'2022-11-27 11:17:08',1);
+/*!40000 ALTER TABLE `vente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping routines for database 'trocqc'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -350,4 +383,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-23 15:21:15
+-- Dump completed on 2022-11-27 15:24:08

@@ -18,6 +18,11 @@ public class ProductCustomFields {
 	@Column(name="fieldvalue")
 	private String fieldvalue;
 	
+	
+	public ProductCustomFields() {
+	
+	}
+		
 	public ProductCustomFields(int productid,String fieldtypeName,String fieldvalue ) {
 		this.productid=productid;
 		this.fieldtypeName =fieldtypeName;
