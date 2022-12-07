@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -23,16 +24,20 @@ public class UserDao extends SpringJdbcConfig {
 	
 	
 	public User Authenticate(String username, String password) {
-		String sql = "Select * From user where username =:username and password=:password";
+		String sql = "Select * From user where username =:username";
 		
 		Map<String, String> params = new HashMap<>();
 		params.put("username", username);
-		params.put("password", password);
+		
 				
 		try {
 		User user = (User) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(User.class));
-				
-		if(user != null) {return user;}
+		
+		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
+		
+		if(user != null && encoder.matches(password, user.getPassword()) || password == user.getPassword() ) {
+			return user;
+		}
 		
 		else {return null;}
 		}catch(Exception e ) {
@@ -45,13 +50,16 @@ public class UserDao extends SpringJdbcConfig {
 	
 	public int AddUser(User user, InputStream file) {
 	
+		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
+		
+		
 		return jdbcTemplate().update(
 			
 				"INSERT INTO user (productCategory, firstName,lastName,password,username,adress,city,postalcode, email,siteWeb,Avatar ) VALUES (?, ?, ?, ?,?,?,?, ?,?,?,?)",
 			    user.getProductCategory(), 
 			    user.getFirstName(), 
 			    user.getLastName(), 
-			    user.getPassword(),
+			    encoder.encode(user.getPassword()),
 			    user.getUsername(),
 			    user.getAdress(),
 			    user.getCity(),

@@ -107,7 +107,6 @@ public class FrontControlleur{
 		pcflist.add(pcf2);
 		
 		p.setUserCustomFields(pcflist);
-		
 		RawMaterialsPerProduct rmp1 = new RawMaterialsPerProduct();
 		rmp1.setQuantity(2);
 		rmp1.setRawmaterialid(1);
@@ -140,15 +139,19 @@ public class FrontControlleur{
 
 		Product p = inventorydao.getProduct(7);
 		
-		VenteDao ventedao = new VenteDao();
-		ventedao.addVente(p, 10, 1);
+		//VenteDao ventedao = new VenteDao();
+		//ventedao.addVente(p, 10, 1);
 
 		
-		/*
-		r.setName("Belle chaise");
-		r.getUserCustomFields().get(0).setFieldvalue("apple");
-		inventorydao.SaveRawMaterial(r);
-		*/
+				 
+		RawMaterial r = new RawMaterial();
+		r.setName("Belle chaise2");
+		r.setIdUnitOfMeasure(4);
+		//r.getUserCustomFields().get(0).setFieldvalue("apple");
+		inventorydao.AddRawMaterial(r);
+		
+		
+		
 		model.addAttribute("test", 13);
 		return "NewFile"; //return the view
 	}
