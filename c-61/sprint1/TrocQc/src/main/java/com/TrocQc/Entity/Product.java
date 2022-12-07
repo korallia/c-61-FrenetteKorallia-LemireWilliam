@@ -95,8 +95,9 @@ public class Product {
 				if ( lots.get(i).getAvailablequantity() < Quantity ) {
 					Quantity -=  lots.get(i).getAvailablequantity();
 					lots.get(i).setAvailablequantity(0);
+					}
 					
-				}
+				
 				else {
 					int remaining = lots.get(i).getAvailablequantity()- Quantity;
 					lots.get(i).setAvailablequantity(remaining );
@@ -299,7 +300,7 @@ public class Product {
 
 
 
-	public class ProductBuilder {
+	public static class ProductBuilder {
 
 		private String name;
 		private double cost;
@@ -314,9 +315,10 @@ public class Product {
 		private List<ProductCustomFields> UserCustomFields;
 	
 	
-		public ProductBuilder(String name, double cost, String sku) {
+		public ProductBuilder(String name, double cost, double msrp, String sku) {
 			this.name = name;
 			this.cost = cost;
+			this.msrp = msrp;
 			this.sku = sku;
 			
 		}

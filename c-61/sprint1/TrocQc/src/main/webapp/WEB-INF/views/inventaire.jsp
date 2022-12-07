@@ -366,7 +366,7 @@
 		<div class="addTemplateForm" id="addTemplateForm">
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			<div class="container mt-auto align-middle">
-				<form action="/InventoryServlet" method="post">
+				<form action="inventoryServlet" method="post">
 					<div class="row ">
 						<h1 class="text-center"> AJOUTER UN TEMPLATE </h1>
 					</div>
@@ -440,7 +440,7 @@
 					
 						<div class="row m-1">
 							<div class="col text-center">
-								<select class="text-align" name="rawMaterialName1">
+								<select class="text-align" name="rawMaterialId">
 									<option value="0"> - Choisir l'unité... - </option>
 									<c:forEach var="rawMaterial" items="${rmList}">
 										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>

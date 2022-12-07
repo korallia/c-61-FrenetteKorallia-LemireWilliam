@@ -40,6 +40,14 @@ public class Vente {
 		this.quantity = quantity;
 		this.ventedate = time;
 	}
+	
+	public Vente(int productid, int quantity, Time time, int userId) {
+		super();
+		this.productid = productid;
+		this.quantity = quantity;
+		this.ventedate = time;
+		this.userID = userId;
+	}
 
 
 	public Vente() {

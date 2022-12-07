@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.TrocQc.DAO.InventoryDao; 
 import com.TrocQc.Entity.RawMaterialCustomField;
+import com.TrocQc.Entity.ProductCustomFields;
 import com.TrocQc.Entity.Product;
 import com.TrocQc.Entity.Product.ProductBuilder;
 import com.TrocQc.Entity.RawMaterial;
@@ -53,7 +54,7 @@ public class InventoryServlet extends HttpServlet {
 			  //UnitOfMeasure uom = new UnitOfMeasure();
 			  User user = (User)request.getSession().getAttribute("user");
 			  
-			  RawMaterialCustomField rmcf = new RawMaterialCustomField(materialCustomFieldName1, materialCustomFieldValue1, user.getId());
+			  RawMaterialCustomField rmcf = new RawMaterialCustomField(materialCustomFieldName1, materialCustomFieldValue1);
 			  
 			  List<RawMaterialCustomField> rmcfList = new ArrayList<RawMaterialCustomField>();
 			  rmcfList.add(rmcf);
@@ -69,7 +70,7 @@ public class InventoryServlet extends HttpServlet {
 			  String templateSKU = request.getParameter("templateSKU");
 			  String templateDesc = request.getParameter("templateDesc");
 			  int templateUOM = Integer.parseInt(request.getParameter("templateUOM"));
-			  double templateLQL = Double.parseDouble(request.getParameter("templateLQL")) ; 
+			  int templateLQL = Integer.parseInt(request.getParameter("templateLQL")) ; 
 			  
 			  double templateCost = Double.parseDouble( request.getParameter("templateCost") ); 
 			  double templatePrice = Double.parseDouble( request.getParameter("templatePrice") ); 
@@ -80,15 +81,30 @@ public class InventoryServlet extends HttpServlet {
 			  //Custom fields
 			  String newFieldName1 = request.getParameter("newFieldName1"); 
 			  String newFieldValue1 = request.getParameter("newFieldValue1"); 
-			  String newFieldUnit1 = request.getParameter("newFieldUnit1");
+			  //String newFieldUnit1 = request.getParameter("newFieldUnit1");
 			  
 			  //Raw materials
-			  String rawMaterialName1 = request.getParameter("rawMaterialName1"); 
-			  String rawMaterialQuantity1 = request.getParameter("rawMaterialQuantity1"); 
-			  String rawMaterialUOM1 = request.getParameter("rawMaterialUOM1");
+			  int rawMaterialName1 = Integer.parseInt(request.getParameter("rawMaterialId")) ; 
+			  double rawMaterialQuantity1 = Double.parseDouble( request.getParameter("rawMaterialQuantity1") ); 
+			  int rawMaterialUOM1 = Integer.parseInt( request.getParameter("rawMaterialUOM1") );
 			  
 			  //BUILDER
-			  // = new Product.ProductBuilder(rawMaterialName1, templateCost, templateMSRP, templateSKU)
+			  ProductCustomFields pcf = new ProductCustomFields(newFieldName1, newFieldValue1);
+			  List<ProductCustomFields> pcfList = new ArrayList<ProductCustomFields>();
+			  RawMaterial rm = invDao.getRawMaterial(rawMaterialUOM1);
+			  User user = (User)request.getSession().getAttribute("user");
+			  
+			  
+			  Product.ProductBuilder pb = new Product.ProductBuilder(templateName, templateCost, templateMSRP ,templateSKU);
+			  pb.description(templateDesc);
+			  pb.idUnitOfMeasure(templateUOM);
+			  pb.lowQuantityLevel(templateLQL);
+			  pb.UserCustomFields(pcfList);
+			  pb.userID(user.getId());
+			  Product newProduct = pb.build();
+			  invDao.AddProduct(newProduct);
+			  response.sendRedirect("/TrocQc/Inventaire");
+			  
 		  }
 		  
 	  }
