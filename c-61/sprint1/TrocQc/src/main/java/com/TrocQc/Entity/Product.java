@@ -88,7 +88,7 @@ public class Product {
 		
 	}
 	
-	public Boolean reduceInventory(int Quantity  ) {
+	public Boolean reduceInventory(double Quantity  ) {
 		
 		if ( Quantity <= this.getAvailableQuantity()) {
 			for( int i = 0; i < lots.size(); i++) {
@@ -99,7 +99,7 @@ public class Product {
 					
 				
 				else {
-					int remaining = lots.get(i).getAvailablequantity()- Quantity;
+					double remaining = (double) lots.get(i).getAvailablequantity()- Quantity;
 					lots.get(i).setAvailablequantity(remaining );
 					Quantity = 0;
 					break;

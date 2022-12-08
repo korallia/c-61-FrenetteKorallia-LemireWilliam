@@ -1,3 +1,4 @@
+/*
 package com.TrocQc.Entity;
 
 import java.io.*;
@@ -129,3 +130,5 @@ public class ExcelInventoryReport  {
 
 
 }  
+
+*/

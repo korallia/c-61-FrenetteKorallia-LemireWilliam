@@ -41,7 +41,7 @@
 				<div class="row   "></div>
 				 <div class="row m-5 justify-content-center  " > <button id="btnVentes" class="btn btn-primary w-75" onclick="redirectTo('Ventes')">VENTES</button> </div>
 				 <div class="row m-5 justify-content-center"><button id="btnInventaire" class="btn btn-primary w-75" onclick="redirectTo('Inventaire')">INVENTAIRE</button></div>
-				 <div class="row m-5 justify-content-center"><button id="btnFinances" class="btn btn-primary w-75">FINANCES</button></div>
+				 <div class="row m-5 justify-content-center"><button id="btnFinances" class="btn btn-primary w-75" onclick="redirectTo('Finances')">FINANCES</button></div>
 				 <div class="row m-5 justify-content-center"><button id="btnConfigs" class="btn btn-primary w-75">CONFIGURATIONS</button></div>
 			</div>
 			

@@ -11,7 +11,7 @@ body {
 	background: -webkit-radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
 	background: radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#9fc5f8",GradientType=1);
-	overflow: hidden;
+	overflow: auto; 
 }
 
 .logo {
@@ -76,6 +76,10 @@ body {
     border: #9fc5f8 3px solid;
     box-shadow: 0 0 1px;
     transition: 350ms;
+}
+
+#financeContainer {
+	overflow: visible;
 }
 
 .select {
@@ -489,4 +493,9 @@ img:active {
 
 #moduleVentes{
 	display: none;
+}
+
+#myChart{
+	width: auto;
+	height: 100%;
 }

@@ -132,7 +132,7 @@ public class InventoryDao extends SpringJdbcConfig{
 					if ( rawmaterials.get(i).getIdUnitOfMeasure() > 0) {
 						rawmaterials.get(i).setUnitofmeasure(this.getUnitOfMeasure(rawmaterials.get(i).getIdUnitOfMeasure()));
 					}
-					//rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
+					rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
 				}
 			}
 			return rawmaterials;
@@ -466,7 +466,7 @@ public class InventoryDao extends SpringJdbcConfig{
 			}
 		}
 	
-		public int addLot(Product product, int Quantity) {
+		public double addLot(Product product, double Quantity) {
 			try {
 				
 				// limit quantity to the available rawmaterial quantity

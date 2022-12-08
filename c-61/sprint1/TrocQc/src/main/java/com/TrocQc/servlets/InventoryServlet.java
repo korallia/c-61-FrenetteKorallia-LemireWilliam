@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 import com.TrocQc.DAO.InventoryDao; 
 import com.TrocQc.Entity.RawMaterialCustomField;
 import com.TrocQc.Entity.ProductCustomFields;
+import com.TrocQc.Entity.Lot;
 import com.TrocQc.Entity.Product;
 import com.TrocQc.Entity.Product.ProductBuilder;
 import com.TrocQc.Entity.RawMaterial;
@@ -25,6 +26,8 @@ import java.util.List;
 
 @WebServlet("/inventoryServlet")
 public class InventoryServlet extends HttpServlet {
+	
+	User user;
 	
 	public InventoryServlet( ) {
 		super();
@@ -52,7 +55,11 @@ public class InventoryServlet extends HttpServlet {
 			  
 			  UnitOfMeasure uom = invDao.getUnitOfMeasure(materialUOM);
 			  //UnitOfMeasure uom = new UnitOfMeasure();
-			  User user = (User)request.getSession().getAttribute("user");
+				try {
+					user = (User)request.getSession().getAttribute("user");
+				} catch (Exception e) {
+					response.sendRedirect("/TrocQc/Login");
+				}
 			  
 			  RawMaterialCustomField rmcf = new RawMaterialCustomField(materialCustomFieldName1, materialCustomFieldValue1);
 			  
@@ -83,16 +90,40 @@ public class InventoryServlet extends HttpServlet {
 			  String newFieldValue1 = request.getParameter("newFieldValue1"); 
 			  //String newFieldUnit1 = request.getParameter("newFieldUnit1");
 			  
+			  /*
+			  String newFieldName2 = request.getParameter("newFieldName2"); 
+			  String newFieldValue2 = request.getParameter("newFieldValue2"); 
+			  //String newFieldUnit2 = request.getParameter("newFieldUnit2");
+			  
+			  String newFieldName3 = request.getParameter("newFieldName3"); 
+			  String newFieldValue3 = request.getParameter("newFieldValue3"); 
+			  //String newFieldUnit3 = request.getParameter("newFieldUnit3");
+			  */
+			  
 			  //Raw materials
-			  int rawMaterialName1 = Integer.parseInt(request.getParameter("rawMaterialId")) ; 
+			  int rawMaterialName1 = Integer.parseInt(request.getParameter("rawMaterialId1")) ; 
 			  double rawMaterialQuantity1 = Double.parseDouble( request.getParameter("rawMaterialQuantity1") ); 
 			  int rawMaterialUOM1 = Integer.parseInt( request.getParameter("rawMaterialUOM1") );
+			  
+			  /*
+			  int rawMaterialName2 = Integer.parseInt(request.getParameter("rawMaterialId2")) ; 
+			  double rawMaterialQuantity2 = Double.parseDouble( request.getParameter("rawMaterialQuantity2") ); 
+			  int rawMaterialUOM2 = Integer.parseInt( request.getParameter("rawMaterialUOM2") );
+			  
+			  int rawMaterialName3 = Integer.parseInt(request.getParameter("rawMaterialId3")) ; 
+			  double rawMaterialQuantity3 = Double.parseDouble( request.getParameter("rawMaterialQuantity3") ); 
+			  int rawMaterialUOM3 = Integer.parseInt( request.getParameter("rawMaterialUOM3") );
+			  */
 			  
 			  //BUILDER
 			  ProductCustomFields pcf = new ProductCustomFields(newFieldName1, newFieldValue1);
 			  List<ProductCustomFields> pcfList = new ArrayList<ProductCustomFields>();
-			  RawMaterial rm = invDao.getRawMaterial(rawMaterialUOM1);
-			  User user = (User)request.getSession().getAttribute("user");
+			  RawMaterial rm = invDao.getRawMaterial(rawMaterialName1);
+				try {
+					user = (User)request.getSession().getAttribute("user");
+				} catch (Exception e) {
+					response.sendRedirect("/TrocQc/Login");
+				}
 			  
 			  
 			  Product.ProductBuilder pb = new Product.ProductBuilder(templateName, templateCost, templateMSRP ,templateSKU);
@@ -104,8 +135,25 @@ public class InventoryServlet extends HttpServlet {
 			  Product newProduct = pb.build();
 			  invDao.AddProduct(newProduct);
 			  response.sendRedirect("/TrocQc/Inventaire");
-			  
 		  }
+		  else if (request.getParameter("productId") != null) {
+			int prodId = Integer.parseInt(request.getParameter("productId"));
+			double prodQuantity = Double.parseDouble(request.getParameter("productQuantity"));
+			try {
+				user = (User)request.getSession().getAttribute("user");
+			} catch (Exception e) {
+				response.sendRedirect("/TrocQc/Login");
+			}
+			
+			Product prod = invDao.getProduct(prodId);
+			
+
+			Lot lot = new Lot(prodId, prodQuantity, prodQuantity, new java.sql.Date(System.currentTimeMillis()) );
+			
+			invDao.addLot(prod, prodQuantity);
+			response.sendRedirect("/TrocQc/Inventaire");
+			
+		}
 		  
 	  }
 	

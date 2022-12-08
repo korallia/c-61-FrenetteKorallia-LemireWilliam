@@ -58,160 +58,42 @@
 			  <div class="tableDiv">
 			  	<table class="table">
 			  	<tr class="justify-content-center">
+
 			  		<th> ID </th>
 			  		<th>NOM</th>
-			  		<th>QUANTITÉ</th>
+			  		<th>DESCRIPTION</th>
 			  		<th>SKU</th>
-			  		<th>DESC</th>
+			  		<th>QUANTITÉ</th>
 			  		<th>COÛT</th>
-			  		<th> M.S.R.P. </th>
+			  		<th>PRIX</th>
+			  		<th>UNITÉ</th>
 			  		<th>MATÉRIAUX</th>
 			  		<th>N.B.Q.</th>
 			  		<th>DATE</th>
+					<th> CUSTOM COL 1 </th>
+					<th> CUSTOM COL 2 </th>
+					<th> CUSTOM COL 3 </th>	
 			  	</tr>
 			  	
-			  	<tr>
-			  		<td>1</td>
-			  		<td>TASSE LOGO</td>
-			  		<td>100</td>
-			  		<td>SKU</td>
-			  		<td>Une tasse bien simple, mais avec logo au choix.</td>
-			  		<td>15.99$</td>
-			  		<td>14.99$</td>
-			  		<td>-</td>
-			  		<td>10</td>
-			  		<td>10/10/22</td>
-			  	</tr>
 			  	
-			  	<tr>
-			  		<td>1</td>
-			  		<td>TASSE LOGO</td>
-			  		<td>100</td>
-			  		<td>SKU</td>
-			  		<td>Une tasse bien simple, mais avec logo au choix.</td>
-			  		<td>15.99$</td>
-			  		<td>14.99$</td>
-			  		<td>-</td>
-			  		<td>10</td>
-			  		<td>10/10/22</td>
-			  	</tr>
+				<c:forEach var="product" items="${prodList}">
+					<tr>
+						<td> ${product.id}</td>
+						<td> ${product.name}</td>
+						<td> ${product.description}</td>
+						<td> ${product.sku}</td>
+						<td>QUANTITY</td>
+						<td> ${product.cost} $</td>
+						<td> ${product.msrp} $</td>
+						<td> ${product.unitofmeasure.name} </td>
+						
+						<td>MATERIALS</td>
+						<td> ${product.lowQuantityLevel} </td>
+						<td> ${product.addedDate} </td>
+
+					</tr>
+				</c:forEach>				  	
 			  	
-			  	<tr>
-			  		<td>1</td>
-			  		<td>TASSE LOGO</td>
-			  		<td>100</td>
-			  		<td>SKU</td>
-			  		<td>Une tasse bien simple, mais avec logo au choix.</td>
-			  		<td>15.99$</td>
-			  		<td>14.99$</td>
-			  		<td>-</td>
-			  		<td>10</td>
-			  		<td>10/10/22</td>
-			  	</tr>
-			  	
-			  	<tr>
-			  		<td>1</td>
-			  		<td>TASSE LOGO</td>
-			  		<td>100</td>
-			  		<td>SKU</td>
-			  		<td>Une tasse bien simple, mais avec logo au choix.</td>
-			  		<td>15.99$</td>
-			  		<td>14.99$</td>
-			  		<td>-</td>
-			  		<td>10</td>
-			  		<td>10/10/22</td>
-			  	</tr>
-			  	
-			  	<tr>
-			  		<td>1</td>
-			  		<td>TASSE LOGO</td>
-			  		<td>100</td>
-			  		<td>SKU</td>
-			  		<td>Une tasse bien simple, mais avec logo au choix.</td>
-			  		<td>15.99$</td>
-			  		<td>14.99$</td>
-			  		<td>-</td>
-			  		<td>10</td>
-			  		<td>10/10/22</td>
-			  	</tr>
-			  	
-			  				  	<tr>
-			  		<td>1</td>
-			  		<td>TASSE LOGO</td>
-			  		<td>100</td>
-			  		<td>SKU</td>
-			  		<td>Une tasse bien simple, mais avec logo au choix.</td>
-			  		<td>15.99$</td>
-			  		<td>14.99$</td>
-			  		<td>-</td>
-			  		<td>10</td>
-			  		<td>10/10/22</td>
-			  	</tr>
-			  	
-			  				  	<tr>
-			  		<td>1</td>
-			  		<td>TASSE LOGO</td>
-			  		<td>100</td>
-			  		<td>SKU</td>
-			  		<td>Une tasse bien simple, mais avec logo au choix.</td>
-			  		<td>15.99$</td>
-			  		<td>14.99$</td>
-			  		<td>-</td>
-			  		<td>10</td>
-			  		<td>10/10/22</td>
-			  	</tr>
-			  	
-			  				  	<tr>
-			  		<td>1</td>
-			  		<td>TASSE LOGO</td>
-			  		<td>100</td>
-			  		<td>SKU</td>
-			  		<td>Une tasse bien simple, mais avec logo au choix.</td>
-			  		<td>15.99$</td>
-			  		<td>14.99$</td>
-			  		<td>-</td>
-			  		<td>10</td>
-			  		<td>10/10/22</td>
-			  	</tr>
-			  	
-			  				  	<tr>
-			  		<td>1</td>
-			  		<td>TASSE LOGO</td>
-			  		<td>100</td>
-			  		<td>SKU</td>
-			  		<td>Une tasse bien simple, mais avec logo au choix.</td>
-			  		<td>15.99$</td>
-			  		<td>14.99$</td>
-			  		<td>-</td>
-			  		<td>10</td>
-			  		<td>10/10/22</td>
-			  	</tr>
-			  	
-			  				  	<tr>
-			  		<td>1</td>
-			  		<td>TASSE LOGO</td>
-			  		<td>10</td>
-			  		<td>SKU</td>
-			  		<td>Une tasse bien simple, mais avec logo au choix.</td>
-			  		<td>15.99$</td>
-			  		<td>14.99$</td>
-			  		<td>-</td>
-			  		<td>10</td>
-			  		<td>10/10/22</td>
-			  	</tr>
-			  	
-			  				  				  	<tr>
-			  		<td>1</td>
-			  		<td>TASSE LOGO</td>
-			  		<td>100</td>
-			  		<td>SKU</td>
-			  		<td>Une tasse bien simple, mais avec logo au choix.</td>
-			  		<td>15.99$</td>
-			  		<td>14.99$</td>
-			  		<td>-</td>
-			  		<td>10</td>
-			  		<td>10/10/22</td>
-			  	</tr>
 			  	
 			  </table>
 			  </div>
@@ -236,34 +118,77 @@
 				  		<th>QUANTITÉ</th>
 				  		<th>UNITÉ</th>
 				  		<th>DATE</th>
+				  		<th>CUSTOM1</th>
+				  		<th>CUSTOM2</th>
+				  		<th>CUSTOM3</th>
+				  		<th>CUSTOM4</th>
+				  		<th>CUSTOM5</th>
 				  	</tr>
 			  	
-				<c:forEach var="rawMaterial" items="${rmList}">
-					<tr>
-						<td> ${rawMaterial.id}</td>
-						<td> ${rawMaterial.name}</td>
-						<td> ${rawMaterial.cost} $</td>
-						<td> ${rawMaterial.quantity} </td>
-						<td> ${rawMaterial.unitofmeasure.name} </td>
-						<td> ${rawMaterial.addedDate} </td>
-					</tr>
-				</c:forEach>			  	
+					<c:forEach var="rawMaterial" items="${rmList}">
+						<tr>
+							<td> ${rawMaterial.id}</td>
+							<td> ${rawMaterial.name}</td>
+							<td> ${rawMaterial.cost} $</td>
+							<td> ${rawMaterial.quantity} </td>
+							<td> ${rawMaterial.unitofmeasure.name} </td>
+							<td> ${rawMaterial.addedDate} </td>
+							
+
+
+							
+						
+							<td>  </td>
+						</tr>
+					</c:forEach>			  	
 				 </table>
 		   			<div class="row mt-3 text-center">
 						<div class="col"> <button id="addMaterialBtn">AJOUTER</button> </div>
 						<div class="col"> <button>MODIFIER</button> </div>
 						<div class="col"><button>SUPPRIMER</button> </div>
 					</div>
-			</div>
+				</div>
 			</div>
 			<div id="Templates" class="tabcontent text-center">
 			  <h3>TEMPLATES</h3>
 			  <p>Différents templates pour la création de produits.</p>
-	   		  <div class="row mt-3 text-center">
-				<div class="col"> <button id="addTemplateBtn">AJOUTER</button> </div>
-				<div class="col"> <button>MODIFIER</button> </div>
-				<div class="col"><button>SUPPRIMER</button> </div>
-			  </div>			  
+	   		  <div class="tableDiv">
+			  	<table class="table">
+				  	<tr class="justify-content-center">
+				  		<th> ID </th>
+				  		<th>NOM</th>
+				  		<th>DESCRIPTION</th>
+				  		<th>SKU</th>
+				  		<th>COÛT</th>
+				  		<th>PRIX</th>
+				  		<th>UNITÉ</th>
+				  		<th>DATE</th>
+						<th> CUSTOM COL 1 </th>
+						<th> CUSTOM COL 2 </th>
+						<th> CUSTOM COL 3 </th>
+				  	</tr>
+			  	
+					<c:forEach var="product" items="${prodList}">
+						<tr>
+							<td> ${product.id}</td>
+							<td> ${product.name}</td>
+							<td> ${product.description}</td>
+							<td> ${product.sku}</td>
+							<td> ${product.cost} $</td>
+							<td> ${product.msrp} $</td>
+							<td> ${product.unitofmeasure.name} </td>
+							<td> ${product.addedDate} </td>
+
+						</tr>
+					</c:forEach>			  	
+				 </table>
+		   			<div class="row mt-3 text-center">
+						<div class="col"> <button id="addTemplateBtn">AJOUTER</button> </div>
+						<div class="col"> <button>MODIFIER</button> </div>
+						<div class="col"><button>SUPPRIMER</button> </div>
+					</div>
+				</div>
+	   		  			  
 			</div>
 			
 			<div id="Rapport" class="tabcontent text-center ">
@@ -285,7 +210,7 @@
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			
 			<div class="container mt-auto align-middle">
-				<form action="/InventoryServlet" method="post">
+				<form action="inventoryServlet" method="post">
 				
 					<div class="row">
 						<h1 class="text-center"> AJOUTER UN PRODUIT </h1>
@@ -294,9 +219,9 @@
 					<div class="row m-1">
 						<select class="text-align" name="productId">
 							<option value="0"> - Choisir un produit... - </option>
-							<option value="1"> Magret de canard à l'érable - 150g </option>
-							<option value="2"> Magret de canard à l'érable - 500g</option>
-							<option value="3"> Magret de canard aux 3 poivres - 150g</option>
+							<c:forEach var="product" items="${prodList}">
+								<option value="${product.id}"> ${product.name} </option>
+							</c:forEach>
 						</select>
 					</div>
 					
@@ -348,13 +273,46 @@
 					<div class="col "> <input type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" > </div>
 				</div>
 				
-				<div class="row m-1 border mt-3">
-					<h4 class="text-center">AJOUTER UN NOUVEAU CHAMP</h4>
-					<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
-					<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
-
+				<h4 class="text-center">AJOUTER UN NOUVEAU CHAMP</h4>
+				<div class="border">
+					<div class="row">
+						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
+						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
+						<div class="col my-2">
+							<select class="text-align w-100" name="materialNewFieldUOM1">
+								<option value="0"> - Choisir l'unité... - </option>
+								<c:forEach var="unitOfMeasure" items="${uomList}">
+									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+								</c:forEach>
+							</select>
+						</div>							
+					</div>
+					<div class="row">
+						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
+						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>
+						<div class="col my-2">
+							<select class="text-align w-100" name="materialNewFieldUOM2">
+								<option value="0"> - Choisir l'unité... - </option>
+								<c:forEach var="unitOfMeasure" items="${uomList}">
+									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+								</c:forEach>
+							</select>
+						</div>						
+					</div>
+					<div class="row ">
+						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
+						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
+						<div class="col my-2">
+							<select class="text-align w-100" name="materialNewFieldUOM3">
+								<option value="0"> - Choisir l'unité... - </option>
+								<c:forEach var="unitOfMeasure" items="${uomList}">
+									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+								</c:forEach>
+							</select>
+						</div>							
+					</div>		
 				</div>
-				
+		
 				<div class="row " id="noteBtn">
 					<div class="d-flex justify-content-center"><input type="submit" class="btn " value="AJOUTER MATÉRIEL"></div>
 				</div>
@@ -410,7 +368,7 @@
 					</div>
 					
 					<div class="row my-1 border">
-						<div class="row"> 
+						<div class="row m-1"> 
 							<div class="col m-1 text-center">Nouveau Champ</div>
 							<div class="col m-1 text-center">Valeur</div>
 							<div class="col m-1 text-center">Unité</div>
@@ -429,9 +387,33 @@
 								</select>
 							</div>
 						</div>
+						<div class="row m-1">
+							<div class="col  text-center"> <input type="text" placeholder="Entrer le nouveau champ..." name="newFieldName2" > </div>
+							<div class="col  text-center"> <input type="text" placeholder="Entrer la valeur..." name="newFieldValue2" > </div>
+							<div class="col  text-center">
+								<select class="text-align" name="newFieldUnit2">
+									<option value="0"> - Choisir l'unité... - </option>
+									<c:forEach var="unitOfMeasure" items="${uomList}">
+										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="row m-1">
+							<div class="col  text-center"> <input type="text" placeholder="Entrer le nouveau champ..." name="newFieldName3" > </div>
+							<div class="col  text-center"> <input type="text" placeholder="Entrer la valeur..." name="newFieldValue3" > </div>
+							<div class="col  text-center">
+								<select class="text-align" name="newFieldUnit3">
+									<option value="0"> - Choisir l'unité... - </option>
+									<c:forEach var="unitOfMeasure" items="${uomList}">
+										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
 					</div>
 					
-					<div class="row m-1 border">
+					<div class="row border">
 						<div class="row m-1">
 							<div class="col m-1 text-center">Matériaux</div>
 							<div class="col m-1 text-center">Quantité</div>
@@ -440,8 +422,8 @@
 					
 						<div class="row m-1">
 							<div class="col text-center">
-								<select class="text-align" name="rawMaterialId">
-									<option value="0"> - Choisir l'unité... - </option>
+								<select class="text-align" name="rawMaterialId1">
+									<option value="0"> - Choisir du matériel... - </option>
 									<c:forEach var="rawMaterial" items="${rmList}">
 										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
 									</c:forEach>
@@ -459,6 +441,48 @@
 								</select>
 							</div>
 						</div>
+						<div class="row m-1">
+							<div class="col text-center">
+								<select class="text-align" name="rawMaterialId2">
+									<option value="0"> - Choisir du matériel... - </option>
+									<c:forEach var="rawMaterial" items="${rmList}">
+										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
+									</c:forEach>
+								</select>
+							</div>
+							
+							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity2" > </div>
+							
+							<div class="col text-center">
+								<select class="text-align" name="rawMaterialUOM2">
+									<option value="0"> - Choisir l'unité... - </option>
+									<c:forEach var="unitOfMeasure" items="${uomList}">
+										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="row m-1">
+							<div class="col text-center">
+								<select class="text-align" name="rawMaterialId3">
+									<option value="0"> - Choisir du matériel... - </option>
+									<c:forEach var="rawMaterial" items="${rmList}">
+										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
+									</c:forEach>
+								</select>
+							</div>
+							
+							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity3" > </div>
+							
+							<div class="col text-center">
+								<select class="text-align" name="rawMaterialUOM3">
+									<option value="0"> - Choisir l'unité... - </option>
+									<c:forEach var="unitOfMeasure" items="${uomList}">
+										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>												
 					</div>
 					
 					<div class=" d-flex justify-content-center"> <input class="btn" type="submit" value="AJOUTER TEMPLATE"> </div>

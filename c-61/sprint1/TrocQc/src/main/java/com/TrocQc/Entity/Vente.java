@@ -2,6 +2,7 @@ package com.TrocQc.Entity;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,29 +24,29 @@ public class Vente {
 	private int productid;
 	
 	@Column(name="quantity")
-	private int quantity;
+	private double quantity;
 	
 	
 	@Column(name="ventedate")
-	private Time ventedate;
+	private Date ventedate;
 
 
 	@Column(name="userID")
 	private int userID;
 	
 	
-	public Vente(int productid, int quantity, Time time) {
+	public Vente(int productid, double quantity, Date date) {
 		super();
 		this.productid = productid;
 		this.quantity = quantity;
-		this.ventedate = time;
+		this.ventedate = date;
 	}
 	
-	public Vente(int productid, int quantity, Time time, int userId) {
+	public Vente(int productid, double quantity, Date date, int userId) {
 		super();
 		this.productid = productid;
 		this.quantity = quantity;
-		this.ventedate = time;
+		this.ventedate = date;
 		this.userID = userId;
 	}
 
@@ -75,22 +76,22 @@ public class Vente {
 	}
 
 
-	public int getQuantity() {
+	public double getQuantity() {
 		return quantity;
 	}
 
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(double quantity) {
 		this.quantity = quantity;
 	}
 
 
-	public Time getVentedate() {
+	public Date getVentedate() {
 		return ventedate;
 	}
 
 
-	public void setVentedate(Time ventedate) {
+	public void setVentedate(Date ventedate) {
 		this.ventedate = ventedate;
 	}
 
