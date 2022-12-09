@@ -77,21 +77,31 @@
 			  	
 			  	
 				<c:forEach var="product" items="${prodList}">
-					<tr>
-						<td> ${product.id}</td>
-						<td> ${product.name}</td>
-						<td> ${product.description}</td>
-						<td> ${product.sku}</td>
-						<td>QUANTITY</td>
-						<td> ${product.cost} $</td>
-						<td> ${product.msrp} $</td>
-						<td> ${product.unitofmeasure.name} </td>
+					<c:forEach var="lot" items="${product.lots}">
 						
-						<td>MATERIALS</td>
-						<td> ${product.lowQuantityLevel} </td>
-						<td> ${product.addedDate} </td>
+						<tr>
+							<td> ${product.id}</td>
+							<td> ${product.name}</td>
+							<td> ${product.description}</td>
+							<td> ${product.sku}</td>
+							<td>${lot.availablequantity}</td>
+							<td> ${product.cost} $</td>
+							<td> ${product.msrp} $</td>
+							<td> ${product.unitofmeasure.name} </td>
+							
+							<c:forEach var="rawMat" items="${product.rawmaterials}">
+								<td>${rawMat.rawmaterial.name}</td>
+							</c:forEach>
+							
+							
+							<td> ${product.lowQuantityLevel} </td>
+							<td> GNIAH </td>
+	
+						</tr>
+					
+					
+					</c:forEach>
 
-					</tr>
 				</c:forEach>				  	
 			  	
 			  	
@@ -135,6 +145,10 @@
 							<td> ${rawMaterial.addedDate} </td>
 							
 
+							
+							<td> CUSTOM FIELDS </td>
+							
+						
 
 							
 						

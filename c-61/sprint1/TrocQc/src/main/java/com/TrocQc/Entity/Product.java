@@ -313,6 +313,7 @@ public class Product {
 		private String sku;
 		private String QRcode;
 		private List<ProductCustomFields> UserCustomFields;
+		private List<RawMaterial> RawMaterials;
 	
 	
 		public ProductBuilder(String name, double cost, double msrp, String sku) {
@@ -360,6 +361,11 @@ public class Product {
 		}
 		public ProductBuilder UserCustomFields(List<ProductCustomFields> UserCustomFields){
 			this.UserCustomFields = UserCustomFields;
+			return this;
+		}
+		
+		public ProductBuilder RawMaterials(List<RawMaterial> RawMaterials) {
+			this.RawMaterials = RawMaterials;
 			return this;
 		}
 		

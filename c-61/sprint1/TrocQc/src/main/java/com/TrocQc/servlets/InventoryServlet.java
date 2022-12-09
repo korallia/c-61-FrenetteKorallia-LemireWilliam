@@ -119,6 +119,8 @@ public class InventoryServlet extends HttpServlet {
 			  ProductCustomFields pcf = new ProductCustomFields(newFieldName1, newFieldValue1);
 			  List<ProductCustomFields> pcfList = new ArrayList<ProductCustomFields>();
 			  RawMaterial rm = invDao.getRawMaterial(rawMaterialName1);
+			  List<RawMaterial> rmList = new ArrayList<RawMaterial>();
+			  rmList.add(rm);
 				try {
 					user = (User)request.getSession().getAttribute("user");
 				} catch (Exception e) {
@@ -131,6 +133,7 @@ public class InventoryServlet extends HttpServlet {
 			  pb.idUnitOfMeasure(templateUOM);
 			  pb.lowQuantityLevel(templateLQL);
 			  pb.UserCustomFields(pcfList);
+			  pb.RawMaterials(rmList);
 			  pb.userID(user.getId());
 			  Product newProduct = pb.build();
 			  invDao.AddProduct(newProduct);
@@ -151,6 +154,7 @@ public class InventoryServlet extends HttpServlet {
 			Lot lot = new Lot(prodId, prodQuantity, prodQuantity, new java.sql.Date(System.currentTimeMillis()) );
 			
 			invDao.addLot(prod, prodQuantity);
+
 			response.sendRedirect("/TrocQc/Inventaire");
 			
 		}
