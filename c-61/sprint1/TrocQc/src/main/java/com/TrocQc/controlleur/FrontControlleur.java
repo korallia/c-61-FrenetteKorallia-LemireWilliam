@@ -2,6 +2,7 @@ package com.TrocQc.controlleur;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.TrocQc.DAO.CongifDao;
+import com.TrocQc.DAO.FinanceDao;
 import com.TrocQc.DAO.InventoryDao;
 import com.TrocQc.DAO.LobbyDao;
 import com.TrocQc.DAO.VenteDao;
@@ -24,6 +27,9 @@ import com.TrocQc.Entity.RawMaterial;
 import com.TrocQc.Entity.RawMaterialsPerProduct;
 import com.TrocQc.Entity.UnitOfMeasure;
 import com.TrocQc.Entity.User;
+import com.TrocQc.Utils.LinkedList;
+import com.TrocQc.Utils.Point;
+import com.TrocQc.Utils.Regression;
 
 
 
@@ -153,7 +159,6 @@ public class FrontControlleur{
 		pcflist.add(pcf2);
 		
 		p.setUserCustomFields(pcflist);
-		
 		RawMaterialsPerProduct rmp1 = new RawMaterialsPerProduct();
 		rmp1.setQuantity(2);
 		rmp1.setRawmaterialid(1);
@@ -162,11 +167,51 @@ public class FrontControlleur{
 		p.setRawmaterials(rmplist);
 	*/
 		
+		/*
+		FinanceDao financedao = new FinanceDao();
+		
+		LinkedList<Point> dailysales = financedao.GetDailySales();
 		
 		
-		InventoryDao inventorydao = new InventoryDao();
+		Regression r = new Regression(dailysales);
 		
-		Product p7 = inventorydao.getProduct(7);
+		LinkedList<Point> linear = r.getLinearPredictions();
+		LinkedList<Point> log = r.getLogPredictions();
+		LinkedList<Point> exponential = r.getExponentialPredictions();
+		
+		double r2l = r.getR2(linear);
+		double r2log = r.getR2(log);
+		double r2e = r.getR2(exponential);
+		
+		if ( r2l > r2log) {
+			model.addAttribute("method", "linear" );
+		}
+		else if ( r2log > r2e) {
+			model.addAttribute("method", "log" );
+		}
+		else {
+			model.addAttribute("method", "exponential" );
+		}
+		
+		
+		
+		
+		Iterator<Point> it = dailysales.iterator();
+		
+		
+		
+		
+		while ( it.hasNext()) {
+			Point p = it.next();
+			model.addAttribute("p"+ p.getX(), p.getY());
+			
+			
+		}
+		
+		
+		/*InventoryDao inventorydao = new InventoryDao();
+		
+		Product p7 = inventorydao.getProduct(7);*/
 		//inventorydao.addLot(p7, 10);
 		
 		/*
@@ -184,18 +229,28 @@ public class FrontControlleur{
 		//RawMaterial r = inventorydao.getRawMaterial(5);
 //		in//ventorydao.deleteRawMaterial(r);
 
-		Product p = inventorydao.getProduct(7);
+	//	Product p = inventorydao.getProduct(7);
 		
-		VenteDao ventedao = new VenteDao();
-		ventedao.addVente(p, 10, 1);
+		//VenteDao ventedao = new VenteDao();
+		//ventedao.addVente(p, 10, 1);
 
 		
-		/*
-		r.setName("Belle chaise");
-		r.getUserCustomFields().get(0).setFieldvalue("apple");
-		inventorydao.SaveRawMaterial(r);
-		*/
+		/*		 
+		RawMaterial r = new RawMaterial();
+		r.setName("Belle chaise2");
+		r.setIdUnitOfMeasure(4);
+		//r.getUserCustomFields().get(0).setFieldvalue("apple");
+		inventorydao.AddRawMaterial(r);
+		
+		
+		
 		model.addAttribute("test", 13);
+		*/
+		
+		CongifDao configdao = new CongifDao();
+		configdao.addSkuPattern(1, "test1");
+		//configdao.deleteSku(2);
+		configdao.modifySkuPattern(3, "test2");
 		return "NewFile"; //return the view
 	}
 	
