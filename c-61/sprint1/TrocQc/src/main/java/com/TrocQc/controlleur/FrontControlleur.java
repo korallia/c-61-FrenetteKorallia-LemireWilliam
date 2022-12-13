@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.TrocQc.DAO.CongifDao;
 import com.TrocQc.DAO.FinanceDao;
 import com.TrocQc.DAO.InventoryDao;
 import com.TrocQc.DAO.LobbyDao;
@@ -120,7 +121,7 @@ public class FrontControlleur{
 		p.setRawmaterials(rmplist);
 	*/
 		
-		
+		/*
 		FinanceDao financedao = new FinanceDao();
 		
 		LinkedList<Point> dailysales = financedao.GetDailySales();
@@ -199,6 +200,11 @@ public class FrontControlleur{
 		
 		model.addAttribute("test", 13);
 		*/
+		
+		CongifDao configdao = new CongifDao();
+		configdao.addSkuPattern(1, "test1");
+		//configdao.deleteSku(2);
+		configdao.modifySkuPattern(3, "test2");
 		return "NewFile"; //return the view
 	}
 	
