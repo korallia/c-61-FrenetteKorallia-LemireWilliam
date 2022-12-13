@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
     	UserDao userDao = new UserDao();
     	User user = userDao.Authenticate(username, password);
     	if(user != null) {
-    			//rediriger vers lobby
+   			//rediriger vers lobby
     		HttpSession session = request.getSession();
     		session.setMaxInactiveInterval(600);
     		request.getSession().setAttribute("user", user);
@@ -46,8 +46,10 @@ public class LoginServlet extends HttpServlet {
     		// ou response.setHeader("Location", request.getContextPath() + "/lobby");
     	}
     	else {
-    		response.sendRedirect("/TrocQc/Login");
-    	}
+			 request.getSession().setAttribute("error", "Authentification échouée");
+			 response.sendRedirect("/TrocQc/Login");
+		 }
+   	
     }
  
 }

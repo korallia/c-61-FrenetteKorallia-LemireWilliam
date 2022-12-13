@@ -50,14 +50,23 @@ public class InscriptionUsagerServlet extends HttpServlet {
 		
 		    //source for upload code: https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-File-Upload-Servlet-Ajax-Example
 		
-		User user = new User( request.getParameter("categorie"),request.getParameter("firstname"),request.getParameter("lastname"),request.getParameter("email"),
-				request.getParameter("password"),request.getParameter("accountname"),request.getParameter("address"),
-				request.getParameter("city"),request.getParameter("postalcode"),request.getParameter("url"));
-		UserDao userDao = new UserDao();
-    	userDao.AddUser(user,file);
+		 if ( request.getParameter("firstname").length() > 0 && request.getParameter("lastname").length() > 0 && request.getParameter("email").length() > 0 && 
+			request.getParameter("password").length() > 0 && request.getParameter("accountname").length() > 0 ) {		 
+		 
+			User user = new User( request.getParameter("categorie"),request.getParameter("firstname"),request.getParameter("lastname"),request.getParameter("email"),
+					request.getParameter("password"),request.getParameter("accountname"),request.getParameter("address"),
+					request.getParameter("city"),request.getParameter("postalcode"),request.getParameter("url"));
+			UserDao userDao = new UserDao();
+	    	userDao.AddUser(user,file);
+	    	response.sendRedirect("/TrocQc/Lobby");
+		 }
+		 else {
+			 request.getSession().setAttribute("error", "Champ(s) obligatoire(s) non rempli(s)");
+			 response.sendRedirect("/TrocQc/Inscription");
+		 }
     	
     	
-    	response.sendRedirect("/TrocQc/Lobby");
+    	
 		
 	
 		    
