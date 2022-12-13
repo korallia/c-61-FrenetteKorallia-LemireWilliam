@@ -28,22 +28,29 @@ window.onload = function(){
 	
 	if(!!document.getElementById("addProductBtn")) {
 		document.getElementById("addProductBtn").addEventListener('click', openProductForm);
-	}	
+	}
 	
+	if(!!document.getElementById("addTemplateBtn")) {
+		document.getElementById("addTemplateBtn").addEventListener('click', openTemplateForm);
+	}
 	if(!!document.getElementById("addMaterialBtn")) {
 		document.getElementById("addMaterialBtn").addEventListener('click', openMaterialForm);
-	}	
+	}
 	
 	function openProductForm(){
 		var node = document.getElementById("productForm");
 		node.style.display = "block";
 	}
-
+	
 	function openMaterialForm(){
 		var node = document.getElementById("materialForm");
 		node.style.display = "block";
-	}	
+	}
 	
+	function openTemplateForm(){
+		var node = document.getElementById("addTemplateForm");
+		node.style.display = "block";
+	}	
 	
 	function createAddProductForm() {
 		var div = document.createElement('div');
@@ -119,8 +126,8 @@ window.onload = function(){
 		selectUnit.appendChild(option1);
 		selectUnit.appendChild(option2);
 		selectUnit.appendChild(option3);
-		selectDiv = document.createElement('div');
 		
+		selectDiv = document.createElement('div');
 		selectDiv.className = "selector";
 		selectDiv.appendChild(selectUnit)
 		

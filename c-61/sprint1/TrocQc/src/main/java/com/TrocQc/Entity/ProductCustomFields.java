@@ -28,6 +28,11 @@ public class ProductCustomFields {
 		this.fieldtypeName =fieldtypeName;
 		this.fieldvalue= fieldvalue; 
 	}
+	
+	public ProductCustomFields(String fieldtypeName,String fieldvalue ) {
+		this.fieldtypeName =fieldtypeName;
+		this.fieldvalue= fieldvalue; 
+	}
 
 	public int getProductid() {
 		return productid;
