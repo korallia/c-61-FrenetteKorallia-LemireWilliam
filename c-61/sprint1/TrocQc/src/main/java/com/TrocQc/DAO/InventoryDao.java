@@ -60,7 +60,7 @@ public class InventoryDao extends SpringJdbcConfig{
 						products.get(i).setUnitofmeasure(this.getUnitOfMeasure(products.get(i).getIdUnitOfMeasure()));
 						
 					}
-					//products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
+					products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
 					products.get(i).setRawmaterials(this.getrawmaterialperproduct(products.get(i).getId()));
 					products.get(i).setLots(this.getLotsFromProduct(products.get(i).getId()));
 				}
@@ -83,7 +83,7 @@ public class InventoryDao extends SpringJdbcConfig{
 				for( int i=0; i< rawmaterials.size(); i++){
 					if ( rawmaterials.get(i).getIdUnitOfMeasure() > 0) {
 						rawmaterials.get(i).setUnitofmeasure(this.getUnitOfMeasure(rawmaterials.get(i).getIdUnitOfMeasure()));
-						//rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
+						rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
 					}
 					
 				}
@@ -108,7 +108,7 @@ public class InventoryDao extends SpringJdbcConfig{
 						products.get(i).setUnitofmeasure(this.getUnitOfMeasure(products.get(i).getIdUnitOfMeasure()));
 						
 					}
-					//products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
+					products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
 					products.get(i).setRawmaterials(this.getrawmaterialperproduct(products.get(i).getId()));
 					products.get(i).setLots(this.getLotsFromProduct(products.get(i).getId()));
 				}

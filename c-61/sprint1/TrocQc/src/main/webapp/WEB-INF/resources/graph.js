@@ -4,7 +4,7 @@
  
 
 var ctx = document.getElementById("myChart");
-var data = [15339, 21345, 18483, 24003, 23489, 24092, 12034,23489, 24092, 12034,23489, 24092, 12034,23489, 24092, 12034,23489, 24092, 12034, ];
+var data = [15339, 21345, 18483, 24003, 23489, 24092, 12034,23489, 24092, 12034,23489, 18000 ];
 var labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var myChart = new Chart(ctx, {
     type: 'line',

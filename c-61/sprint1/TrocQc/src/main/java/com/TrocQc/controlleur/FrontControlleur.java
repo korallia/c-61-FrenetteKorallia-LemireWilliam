@@ -107,6 +107,30 @@ public class FrontControlleur{
 		return "finances";
 	}
 	
+	@GetMapping("/Configurations")
+	public String GetConfigurations(Model theModel, HttpSession session) {
+		
+		User user = (User) session.getAttribute("user");
+		if(user == null) {
+			return  "redirect:/Login";
+		}
+		 InventoryDao     inventorydao = new InventoryDao();
+		List<Product> prodList = inventorydao.getProductsOfUserId(user.getId());
+		List<ProductCustomFields> productCustomFieldsList = new ArrayList<>();
+		for (int i =0; i<prodList.size();i++) {
+			Product product = prodList.get(i);
+			if (product.getUserCustomFields().size()!=0) {
+				for (int j =0; j<prodList.size();j++) {
+				//productCustomFieldsList.add(product.getUserCustomFields())
+			}
+				
+		}
+		theModel.addAttribute("prodList", prodList);
+		
+		
+		return "configurations";
+	}
+	
 	
 	@GetMapping("/test")
 	public String Gettest(Model model) {

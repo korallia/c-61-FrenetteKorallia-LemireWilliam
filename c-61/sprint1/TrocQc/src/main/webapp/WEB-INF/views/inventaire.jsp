@@ -89,13 +89,17 @@
 							<td> ${product.msrp} $</td>
 							<td> ${product.unitofmeasure.name} </td>
 							
-							<c:forEach var="rawMat" items="${product.rawmaterials}">
-								<td>${rawMat.rawmaterial.name}</td>
-							</c:forEach>
-							
+							<td>
+								<c:forEach var="rawMat" items="${product.rawmaterials}">
+									${rawMat.rawmaterial.name}
+								</c:forEach>
+							</td>
 							
 							<td> ${product.lowQuantityLevel} </td>
-							<td> GNIAH </td>
+							<td> DATE </td>
+							<td> COL1 </td>
+							<td> COL2 </td>
+							<td> COL3 </td>
 	
 						</tr>
 					

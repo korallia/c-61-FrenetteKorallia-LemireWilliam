@@ -11,7 +11,7 @@ body {
 	background: -webkit-radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
 	background: radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#9fc5f8",GradientType=1);
-	overflow: hidden;
+	overflow: auto; 
 }
 
 .logo {
@@ -27,6 +27,17 @@ body {
 	transition: 350ms;
 	width: 300px;
 	margin-top: 60px;
+}
+
+.configContainer {
+	height: 500px;
+	align-items: center;
+	border: solid black 2px;
+	border-radius: 7px;
+	transition: 350ms;
+	width: 500px;
+	margin-top:20px;
+	
 }
 
 .loginContainer {
@@ -76,6 +87,10 @@ body {
     border: #9fc5f8 3px solid;
     box-shadow: 0 0 1px;
     transition: 350ms;
+}
+
+#financeContainer {
+	overflow: visible;
 }
 
 .select {
@@ -269,8 +284,8 @@ textarea {
   	right: 0;
   	bottom: 0;
   	left: 0;
-  	width: 600px;
-  	height: 475px;
+  	width: 450px;
+  	height: 400px;
   	background-color: #ccc;
   	border-radius: 5px;
 }
@@ -293,7 +308,7 @@ textarea {
 .addTemplateForm{
 	display: none;
 	width: 650px;
-	height: 725px;
+	height: 700px;
 	border: black solid 3px;
 	border-radius: 6px; 
 	position: absolute;
@@ -467,6 +482,14 @@ img:active {
 	height: 300px;
 }
 
+.SKUdiv {
+	width: 475px;
+	height: 300px;
+	border: black 2px solid;
+	border-radius: 6px;
+	overflow: auto; 
+}
+
 #noteBtn {
 	position: absolute;
 	bottom: 0;
@@ -489,4 +512,9 @@ img:active {
 
 #moduleVentes{
 	display: none;
+}
+
+#myChart{
+	width: auto;
+	height: 100%;
 }

@@ -29,6 +29,17 @@ body {
 	margin-top: 60px;
 }
 
+.configContainer {
+	height: 500px;
+	align-items: center;
+	border: solid black 2px;
+	border-radius: 7px;
+	transition: 350ms;
+	width: 500px;
+	margin-top:20px;
+	
+}
+
 .loginContainer {
 	height: 250px;
 	align-items: center;
@@ -469,6 +480,14 @@ img:active {
 	transition: 200ms;
 	width: 500px;
 	height: 300px;
+}
+
+.SKUdiv {
+	width: 475px;
+	height: 300px;
+	border: black 2px solid;
+	border-radius: 6px;
+	overflow: auto; 
 }
 
 #noteBtn {
