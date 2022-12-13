@@ -22,7 +22,7 @@ import java.util.List;
 
 @WebServlet("/inventoryServlet")
 public class InventoryServlet extends HttpServlet {
-	
+	/*
 	public InventoryServlet( ) {
 		super();
 	}
@@ -67,6 +67,6 @@ public class InventoryServlet extends HttpServlet {
 		  }
 		  
 	  }
-	
+	*/
 	
 }
