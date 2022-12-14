@@ -84,6 +84,7 @@ public class FrontControlleur{
 		
 		
 		List<RawMaterial> rmList = inventorydao.getRawMaterialsOfUserId(user.getId());
+		List<Product> productlist = inventorydao.getProductsOfUserId(user.getId());
 		List<UnitOfMeasure> uomList = inventorydao.getUnitsOfMesure();
 		theModel.addAttribute("rmList", rmList);
 		theModel.addAttribute("uomList", uomList);
@@ -204,7 +205,7 @@ public class FrontControlleur{
 		CongifDao configdao = new CongifDao();
 		configdao.addSkuPattern(1, "test1");
 		//configdao.deleteSku(2);
-		configdao.modifySkuPattern(3, "test2");
+		//configdao.modifySkuPattern(3, "test2");
 		return "NewFile"; //return the view
 	}
 	

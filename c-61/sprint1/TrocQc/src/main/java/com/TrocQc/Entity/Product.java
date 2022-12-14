@@ -268,13 +268,13 @@ public class Product {
 
 
 	public List<ProductCustomFields> getUserCustomFields() {
-		return UserCustomFields;
+		return this.UserCustomFields;
 	}
 
 
 
 	public void setUserCustomFields(List<ProductCustomFields> userCustomFields) {
-		UserCustomFields = userCustomFields;
+		this.UserCustomFields = userCustomFields;
 	}
 
 

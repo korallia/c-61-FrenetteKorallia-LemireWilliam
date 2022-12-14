@@ -50,6 +50,28 @@ public class InscriptionUsagerServlet extends HttpServlet {
 		
 		    //source for upload code: https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-File-Upload-Servlet-Ajax-Example
 		
+		  String postalcode = request.getParameter("postalcode");
+		  String couriel = request.getParameter("email");
+		  String adresse = request.getParameter("address");
+		  
+		  if (postalcode.length() >0) {
+			  if( !postalcode.matches("^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$")) {
+				  
+				  request.getSession().setAttribute("error", "Champ Code postal mal remplie");
+				  response.sendRedirect("/TrocQc/Inscription");}
+		  }
+			  
+		  if(adresse.length()>0){
+			  	if( !adresse.matches("^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$")) {
+				  
+				  request.getSession().setAttribute("error", "Champ Code postal mal remplie");
+				  response.sendRedirect("/TrocQc/Inscription");}
+		  }
+		  
+			
+		 
+		 
+		 
 		 if ( request.getParameter("firstname").length() > 0 && request.getParameter("lastname").length() > 0 && request.getParameter("email").length() > 0 && 
 			request.getParameter("password").length() > 0 && request.getParameter("accountname").length() > 0 ) {		 
 		 

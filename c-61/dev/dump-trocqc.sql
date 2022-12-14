@@ -111,9 +111,9 @@ CREATE TABLE `product` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `SKU` varchar(100) NOT NULL,
-  `cost` double NOT NULL,
+  `cost` decimal(10,2) NOT NULL,
   `description` varchar(300) DEFAULT NULL,
-  `MSRP` double NOT NULL,
+  `MSRP` decimal(10,2) NOT NULL,
   `addedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `idUnitOfMeasure` int NOT NULL,
   `lowQuantityLevel` float DEFAULT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Widget A','WA1',9.99,'A medium Widget',99.99,'2022-11-20 15:36:30',4,20,1,NULL),(2,'Widget B','WB2',19.99,'A large Widget',249.49,'2022-11-20 15:37:30',4,3,1,NULL),(3,'Test from Front','123',28,'This is a test',128,NULL,4,18,1,'12345'),(4,'Test from Front','123',28,'This is a test',128,NULL,4,18,1,'12345'),(6,'Test from Front','123',28,'This is a test',128,NULL,4,18,1,'12345'),(7,'New name','123',14,'New description',256,NULL,5,1,1,'New QR code');
+INSERT INTO `product` VALUES (1,'Widget A','WA1',9.99,'A medium Widget',99.99,'2022-11-20 15:36:30',4,20,1,NULL),(2,'Widget B','WB2',19.99,'A large Widget',249.49,'2022-11-20 15:37:30',4,3,1,NULL),(3,'Test from Front','123',28.00,'This is a test',128.00,NULL,4,18,1,'12345'),(4,'Test from Front','123',28.00,'This is a test',128.00,NULL,4,18,1,'12345'),(6,'Test from Front','123',28.00,'This is a test',128.00,NULL,4,18,1,'12345'),(7,'New name','123',14.00,'New description',256.00,NULL,5,1,1,'New QR code');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +173,7 @@ DROP TABLE IF EXISTS `rawmaterial`;
 CREATE TABLE `rawmaterial` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `cost` float DEFAULT NULL,
+  `cost` decimal(10,2) DEFAULT NULL,
   `addedDate` datetime DEFAULT CURRENT_TIMESTAMP,
   `quantity` float DEFAULT NULL,
   `idUnitOfMeasure` int DEFAULT NULL,
@@ -190,7 +190,7 @@ CREATE TABLE `rawmaterial` (
 
 LOCK TABLES `rawmaterial` WRITE;
 /*!40000 ALTER TABLE `rawmaterial` DISABLE KEYS */;
-INSERT INTO `rawmaterial` VALUES (1,'Belle chaise',8,'2022-11-26 12:49:08',1,4,1),(2,'Double chaise',6,'2022-11-26 12:49:08',5,4,1),(3,'triple chaise',9,'2022-11-26 12:49:08',6,4,1),(4,'4 chaise',23,'2022-11-20 14:25:19',2,6,1),(7,'Belle chaise2',0,'2022-12-06 18:47:20',0,4,0);
+INSERT INTO `rawmaterial` VALUES (1,'Belle chaise',8.00,'2022-11-26 12:49:08',1,4,1),(2,'Double chaise',6.00,'2022-11-26 12:49:08',5,4,1),(3,'triple chaise',9.00,'2022-11-26 12:49:08',6,4,1),(4,'4 chaise',23.00,'2022-11-20 14:25:19',2,6,1),(7,'Belle chaise2',0.00,'2022-12-06 18:47:20',0,4,0);
 /*!40000 ALTER TABLE `rawmaterial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,6 +344,33 @@ INSERT INTO `user` VALUES (1,'','William','Lemire','wlemire.wl@gmail.com','123',
 UNLOCK TABLES;
 
 --
+-- Table structure for table `usersku`
+--
+
+DROP TABLE IF EXISTS `usersku`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usersku` (
+  `skupatternid` int NOT NULL AUTO_INCREMENT,
+  `userID` int NOT NULL,
+  `skupattern` varchar(100) NOT NULL,
+  PRIMARY KEY (`skupatternid`),
+  KEY `usersku_FK` (`userID`),
+  CONSTRAINT `usersku_FK` FOREIGN KEY (`userID`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usersku`
+--
+
+LOCK TABLES `usersku` WRITE;
+/*!40000 ALTER TABLE `usersku` DISABLE KEYS */;
+INSERT INTO `usersku` VALUES (3,1,'test2');
+/*!40000 ALTER TABLE `usersku` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `vente`
 --
 
@@ -356,10 +383,11 @@ CREATE TABLE `vente` (
   `quantity` int DEFAULT NULL,
   `ventedate` datetime DEFAULT CURRENT_TIMESTAMP,
   `userid` int DEFAULT NULL,
+  `montant` decimal(10,2) DEFAULT NULL,
   UNIQUE KEY `vente_id_IDX` (`id`) USING BTREE,
   KEY `vente_FK` (`userid`),
   CONSTRAINT `vente_FK` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -368,7 +396,7 @@ CREATE TABLE `vente` (
 
 LOCK TABLES `vente` WRITE;
 /*!40000 ALTER TABLE `vente` DISABLE KEYS */;
-INSERT INTO `vente` VALUES (1,7,10,'2022-11-27 11:17:08',1);
+INSERT INTO `vente` VALUES (1,7,10,'2022-11-27 11:17:08',1,2.00),(2,7,11,'2022-11-28 10:12:02',1,4.00),(4,7,13,'2022-11-29 10:29:11',1,6.00),(5,7,12,'2022-12-02 23:45:00',1,14.00),(6,7,3,'2022-12-04 12:34:00',1,16.00);
 /*!40000 ALTER TABLE `vente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -385,4 +413,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-06 20:38:21
+-- Dump completed on 2022-12-13 10:25:29
