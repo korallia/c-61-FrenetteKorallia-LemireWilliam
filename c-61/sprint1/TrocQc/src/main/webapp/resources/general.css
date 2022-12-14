@@ -37,6 +37,7 @@ body {
 	transition: 350ms;
 	width: 500px;
 	margin-top:20px;
+	position: relative;
 	
 }
 
@@ -483,11 +484,30 @@ img:active {
 }
 
 .SKUdiv {
-	width: 475px;
-	height: 300px;
+	width: 100%;
+	height: 32px;
 	border: black 2px solid;
 	border-radius: 6px;
+	overflow: hidden; 
+	transition: 350ms;
+	background-color: #9fc5f8;
+	color: white;
+	z-index: 0;
+}
+
+.SKUdiv:hover {
+	transition: 350ms;
+	height: 300px;
 	overflow: auto; 
+	z-index: 1;
+}
+
+.btmBtn{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+
 }
 
 #noteBtn {
@@ -495,7 +515,6 @@ img:active {
 	bottom: 0;
 	left: auto;
 	width: 100%;
-	
 }
 
 #moduleConfigs{
