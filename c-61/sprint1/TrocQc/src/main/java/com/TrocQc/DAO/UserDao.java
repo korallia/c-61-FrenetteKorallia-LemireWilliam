@@ -33,9 +33,11 @@ public class UserDao extends SpringJdbcConfig {
 		try {
 		User user = (User) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(User.class));
 		
+
 		//BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
 		
 		if(user != null /*&& encoder.matches(password, user.getPassword()) || password == user.getPassword() */ ) {
+
 			return user;
 		}
 		

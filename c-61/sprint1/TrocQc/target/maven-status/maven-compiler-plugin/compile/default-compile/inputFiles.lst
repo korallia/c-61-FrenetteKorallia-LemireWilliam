@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\15148\Desktop\Vrai Projet Synthese\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\servlets\InscriptionUsagerServlet.java
 C:\Users\15148\Desktop\Vrai Projet Synthese\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\UnitOfMeasure.java
 C:\Users\15148\Desktop\Vrai Projet Synthese\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\Lot.java
@@ -29,6 +30,9 @@ C:\Users\15148\Desktop\Vrai Projet Synthese\c-61-FrenetteKorallia-LemireWilliam\
 C:\Users\15148\Desktop\Vrai Projet Synthese\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\servlets\InventoryServlet.java
 C:\Users\15148\Desktop\Vrai Projet Synthese\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\servlets\VentesServlet.java
 =======
+=======
+
+>>>>>>> 9fc03963920df64af99eb99c7f6d4c6fe47ec941
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\DAO\UserDao.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\ProductCustomFields.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\filter\AuthenticationFilter.java
@@ -61,4 +65,7 @@ C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\LobbyModule.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\User.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Utils\Regression.java
+<<<<<<< HEAD
 >>>>>>> 53297fe0ba8b9ae90c424188e233717e867d8999
+=======
+>>>>>>> 9fc03963920df64af99eb99c7f6d4c6fe47ec941

@@ -29,9 +29,7 @@ public class InventoryServlet extends HttpServlet {
 
 	
 	User user;
-	
 
-	
 	public InventoryServlet( ) {
 		super();
 	}
@@ -164,6 +162,5 @@ public class InventoryServlet extends HttpServlet {
 		}
 		  
 	  }
-	
 	
 }
