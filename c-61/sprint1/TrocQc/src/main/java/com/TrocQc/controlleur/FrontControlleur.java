@@ -85,11 +85,57 @@ public class FrontControlleur{
 		
 		List<RawMaterial> rmList = inventorydao.getRawMaterialsOfUserId(user.getId());
 		List<UnitOfMeasure> uomList = inventorydao.getUnitsOfMesure();
+		List<Product> prodList = inventorydao.getProductsOfUserId(user.getId());
 		theModel.addAttribute("rmList", rmList);
 		theModel.addAttribute("uomList", uomList);
+		theModel.addAttribute("prodList", prodList);
 		return "inventaire"; //return the view
 	}
 	
+	@GetMapping("/Ventes")
+	public String GetVentes(Model theModel, HttpSession session) {
+		
+		inventorydao = new InventoryDao();
+		User user = (User) session.getAttribute("user");
+		if(user == null) {
+			return  "redirect:/Login";
+		}
+		
+		
+		List<Product> prodList = inventorydao.getProductsOfUserId(user.getId());
+		theModel.addAttribute("prodList", prodList);
+		return "ventes"; //return the view
+	}
+	
+	@GetMapping("/Finances")
+	public String GetFinances(Model theModel, HttpSession session) {
+		
+		return "finances";
+	}
+	
+	@GetMapping("/Configurations")
+	public String GetConfigurations(Model theModel, HttpSession session) {
+		
+		User user = (User) session.getAttribute("user");
+		if(user == null) {
+			return  "redirect:/Login";
+		}
+		 InventoryDao     inventorydao = new InventoryDao();
+		List<Product> prodList = inventorydao.getProductsOfUserId(user.getId());
+		List<ProductCustomFields> productCustomFieldsList = new ArrayList<>();
+		for (int i =0; i<prodList.size();i++) {
+			Product product = prodList.get(i);
+			if (product.getUserCustomFields().size()!=0) {
+				for (int j =0; j<prodList.size();j++) {
+				//productCustomFieldsList.add(product.getUserCustomFields())
+			}
+				
+		}
+		theModel.addAttribute("prodList", prodList);
+		}		
+		
+		return "configurations";
+	}
 	
 	
 	@GetMapping("/test")

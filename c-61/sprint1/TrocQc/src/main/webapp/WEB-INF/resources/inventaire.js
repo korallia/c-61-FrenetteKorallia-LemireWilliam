@@ -28,14 +28,21 @@ window.onload = function(){
 	
 	if(!!document.getElementById("addProductBtn")) {
 		document.getElementById("addProductBtn").addEventListener('click', openProductForm);
-	}	
+	}
+	
+		if(!!document.getElementById("addTemplateBtn")) {
+		document.getElementById("addTemplateBtn").addEventListener('click', openTemplateForm);
+	}		
 	
 	function openProductForm(){
 		var node = document.getElementById("productForm");
 		node.style.display = "block";
 	}
 	
-	
+	function openTemplateForm(){
+		var node = document.getElementById("addTemplateForm");
+		node.style.display = "block";
+	}	
 	
 	function createAddProductForm() {
 		var div = document.createElement('div');

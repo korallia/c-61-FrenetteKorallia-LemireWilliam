@@ -24,7 +24,12 @@ import com.TrocQc.Entity.User;
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
 	
-	  public LoginServlet() {
+	  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public LoginServlet() {
 	        super();
 	        // TODO Auto-generated constructor stub
 	    }

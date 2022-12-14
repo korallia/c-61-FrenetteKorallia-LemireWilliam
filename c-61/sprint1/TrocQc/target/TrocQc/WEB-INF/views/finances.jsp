@@ -1,9 +1,18 @@
 <%@include file="header.jsp"%>
 <title>trOqc - Finances</title>
+
+<% 
+	User user = (User)request.getSession().getAttribute("user"); 
+	if (user == null){
+	response.sendRedirect("/TrocQc/Login");
+	return;
+	}
+%>
+
 </head>
 
 <body>
-	<div class="container-fluid justify-content-center text-center text-align">
+	<div class="container-fluid justify-content-center text-center text-align " id="financeContainer">
 		<div class="row mb-3">
 
 			<div class="col">
@@ -12,18 +21,19 @@
 			
 			<div class="col">
 				<div class="row justify-content-center" >
-					<img alt="" src="resources/images/iconB250p.png" class="logo">
+					<img alt="" src="resources/images/iconB250p.png" class="logo" onclick="redirectTo('Lobby')">
 				</div>
 			</div>
 			
-			<div class="col text-end">
-				<div class="row align-items-center">
+			<div class="col text-end ">
+				<div class="row align-items-center ">
 					<div class="col-sm-9 text-end">
-						<div class ="row align-items-center"> <p>Salut, ___________________!</p>  </div>
+						<div class ="row align-items-center"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
 						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
 					</div>
-					<div class="col-sm-3"><img alt="" src="images/avatarB.png"></div>
+					<div class="col-sm-3"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
 				</div>
+			</div>
 			</div>
 		</div>
 		
@@ -67,16 +77,16 @@
 				</table>
 				<form action="">
 					<div class="row ">
-						<div class="col w-100"><input type="text" name="otherExpense" placeholder="Entrer une dépense..." size="15"></div>
-						<div class="col ">
-							<input type="number" name="expenseCost" placeholder="Coût" size="5">
+						<div class="col text-center"><input type="text" name="otherExpense" placeholder="Entrer une dépense..." size="15"></div>
+						<div class="col text-center">
+							<input type="number" name="expenseCost" placeholder="Coût" step="any" size="5">
 							<input type="submit" value="+">
 						</div>
 					</div>				
 				</form>
-				<div class="row">
-					<div class="col mt-3 "><button class="btn">METTRE À JOUR</button></div>
-					<div class="col mt-3">
+				<div class="row justify-content-center">
+					<div class="col mt-3 text-center "><button class="btn">METTRE À JOUR</button></div>
+					<div class="col mt-3 text-center">
 						<button class="btn" id="openGraphBtn" onclick="showGraph(['Bing bong', 'Zooptop'], [4, 15])">TENDANCE</button>
 					</div>
 				</div>
@@ -85,7 +95,7 @@
 			</div>
 			
 			
-			<canvas class="my-4" id="myChart" width="900" height="380" ></canvas>
+			<canvas class="my-4" id="myChart" width="700" height="200" ></canvas>
 		
 		</div>
 	
@@ -95,7 +105,8 @@
     
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script>
-   	<script type="text/javascript" defer src="./graph.js"></script>
-   	<script type="text/javascript" defer src="./finances.js"></script>
+    <script type="text/javascript" src="/TrocQc/resources/scripts.js"></script>
+   	<script type="text/javascript" defer src="/TrocQc/resources/graph.js"></script>
+   	<script type="text/javascript" defer src="/TrocQc/resources/finances.js"></script>
 </body>
 </html>

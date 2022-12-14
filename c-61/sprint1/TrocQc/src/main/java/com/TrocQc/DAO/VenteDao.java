@@ -1,5 +1,6 @@
 package com.TrocQc.DAO;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -47,10 +48,10 @@ public class VenteDao extends SpringJdbcConfig{
 		return vente;
 	}
 	
-	public Vente addVente(Product product, int Quantity, int userid ) {
+	public Vente addVente(Product product, double Quantity, int userid ) {
 		
-		Time time = new Time(Calendar.getInstance().getTimeInMillis());
-		Vente vente = new Vente(product.getId(), Quantity, time  );
+		Date date = new java.sql.Date(System.currentTimeMillis());
+		Vente vente = new Vente(product.getId(), (double)Quantity, date  );
 		vente.setUserID(userid);
 		
 		
