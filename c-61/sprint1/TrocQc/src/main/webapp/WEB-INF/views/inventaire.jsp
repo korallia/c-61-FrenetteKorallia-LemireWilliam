@@ -97,15 +97,18 @@
 							
 							<td> ${product.lowQuantityLevel} </td>
 							<td> DATE </td>
-							<td> COL1 </td>
-							<td> COL2 </td>
-							<td> COL3 </td>
+							
+							<c:forEach var="custCol" items="${product.userCustomFields}" >
+								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
+							</c:forEach>		
+						
 	
 						</tr>
 					
 					
 					</c:forEach>
-
+					
+			
 				</c:forEach>				  	
 			  	
 			  	
@@ -147,8 +150,9 @@
 							<td> ${rawMaterial.quantity} </td>
 							<td> ${rawMaterial.unitofmeasure.name} </td>
 							<td> ${rawMaterial.addedDate} </td>
-							
-
+							<c:forEach var="custCol" items="${rawMaterial.userCustomFields}" >
+								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
+							</c:forEach>		
 							
 							<td> CUSTOM FIELDS </td>
 							
@@ -196,7 +200,9 @@
 							<td> ${product.msrp} $</td>
 							<td> ${product.unitofmeasure.name} </td>
 							<td> ${product.addedDate} </td>
-
+							<c:forEach var="custCol" items="${product.userCustomFields}" >
+								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
+							</c:forEach>									
 						</tr>
 					</c:forEach>			  	
 				 </table>

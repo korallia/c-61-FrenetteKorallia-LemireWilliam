@@ -97,9 +97,11 @@
 							
 							<td> ${product.lowQuantityLevel} </td>
 							<td> DATE </td>
-							<td> COL1 </td>
-							<td> COL2 </td>
-							<td> COL3 </td>
+							
+							<c:forEach var="custCol" items="${product.UserCustomFields}" >
+								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
+							</c:forEach>
+						
 	
 						</tr>
 					

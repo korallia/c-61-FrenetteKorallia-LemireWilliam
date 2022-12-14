@@ -57,7 +57,7 @@ public class Product {
 	@Column(name="QRcode")
 	private String QRcode; //https://www.javatpoint.com/generating-qr-code-in-java
 	
-	private List<ProductCustomFields> UserCustomFields;
+	private List<ProductCustomFields> userCustomFields;
 	
 	private List<RawMaterialsPerProduct> rawmaterials;
 	
@@ -66,7 +66,7 @@ public class Product {
 	public Product() {
 		this.lots = new ArrayList<Lot>();
 		this.rawmaterials = new ArrayList<RawMaterialsPerProduct>();
-		this.UserCustomFields = new ArrayList<ProductCustomFields>();
+		this.userCustomFields = new ArrayList<ProductCustomFields>();
 	
 	}
 	
@@ -84,7 +84,7 @@ public class Product {
 		this.userID = builder.userID;
 		this.sku = builder.sku;
 		this.QRcode = builder.QRcode;
-		this.UserCustomFields = builder.UserCustomFields;
+		this.userCustomFields = builder.UserCustomFields;
 		
 	}
 	
@@ -257,31 +257,31 @@ public class Product {
 
 
 	public String getQRcode() {
-		return QRcode;
+		return this.QRcode;
 	}
 
 
 
 	public void setQRcode(String qRcode) {
-		QRcode = qRcode;
+		this.QRcode = qRcode;
 	}
 
 
 
 	public List<ProductCustomFields> getUserCustomFields() {
-		return UserCustomFields;
+		return this.userCustomFields;
 	}
 
 
 
 	public void setUserCustomFields(List<ProductCustomFields> userCustomFields) {
-		UserCustomFields = userCustomFields;
+		this.userCustomFields = userCustomFields;
 	}
 
 
 
 	public List<RawMaterialsPerProduct> getRawmaterials() {
-		return rawmaterials;
+		return this.rawmaterials;
 	}
 
 	public void setRawmaterials(List<RawMaterialsPerProduct> rawmaterials) {
@@ -291,7 +291,7 @@ public class Product {
 
 
 	public List<Lot> getLots() {
-		return lots;
+		return this.lots;
 	}
 
 	public void setLots(List<Lot> lots) {

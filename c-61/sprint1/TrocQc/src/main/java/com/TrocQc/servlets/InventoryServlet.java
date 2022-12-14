@@ -26,8 +26,11 @@ import java.util.List;
 
 @WebServlet("/inventoryServlet")
 public class InventoryServlet extends HttpServlet {
+
 	
 	User user;
+	
+
 	
 	public InventoryServlet( ) {
 		super();
@@ -118,6 +121,7 @@ public class InventoryServlet extends HttpServlet {
 			  //BUILDER
 			  ProductCustomFields pcf = new ProductCustomFields(newFieldName1, newFieldValue1);
 			  List<ProductCustomFields> pcfList = new ArrayList<ProductCustomFields>();
+			  pcfList.add(pcf);
 			  RawMaterial rm = invDao.getRawMaterial(rawMaterialName1);
 			  List<RawMaterial> rmList = new ArrayList<RawMaterial>();
 			  rmList.add(rm);

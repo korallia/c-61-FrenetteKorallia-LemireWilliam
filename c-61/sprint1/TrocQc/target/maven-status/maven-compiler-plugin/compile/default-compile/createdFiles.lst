@@ -11,7 +11,6 @@ com\TrocQc\Entity\User.class
 com\TrocQc\servlets\LoginServlet.class
 com\TrocQc\DAO\InventoryDao.class
 com\TrocQc\Entity\User$1.class
-com\TrocQc\servlets\InventoryServlet.class
 com\TrocQc\Entity\UnitOfMeasure.class
 com\TrocQc\DAO\UserDao.class
 com\TrocQc\servlets\InscriptionUsagerServlet.class
