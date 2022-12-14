@@ -23,10 +23,10 @@ public class Lot {
 	private int productid;
 	
 	@Column(name="availablequantity")
-	private int availablequantity;
+	private double availablequantity;
 	
 	@Column(name="originalquantity")
-	private int originalquantity;
+	private double originalquantity;
 	
 	@Column(name="addeddate")
 	private Date addeddate;
@@ -40,7 +40,7 @@ public class Lot {
 		super();
 	}
 
-	public Lot(int productid, int availablequantity, int originalquantity, Date addeddate) {
+	public Lot(int productid, double availablequantity, double originalquantity, Date addeddate) {
 		super();
 		this.productid = productid;
 		this.availablequantity = availablequantity;
@@ -72,25 +72,25 @@ public class Lot {
 
 
 
-	public int getAvailablequantity() {
+	public double getAvailablequantity() {
 		return availablequantity;
 	}
 
 
 
-	public void setAvailablequantity(int availablequantity) {
+	public void setAvailablequantity(double availablequantity) {
 		this.availablequantity = availablequantity;
 	}
 
 
 
-	public int getOriginalquantity() {
+	public double getOriginalquantity() {
 		return originalquantity;
 	}
 
 
 
-	public void setOriginalquantity(int originalquantity) {
+	public void setOriginalquantity(double originalquantity) {
 		this.originalquantity = originalquantity;
 	}
 

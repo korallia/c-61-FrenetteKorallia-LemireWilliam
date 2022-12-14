@@ -55,9 +55,9 @@ public class Product {
 	private String sku;
 	
 	@Column(name="QRcode")
-	private String QRcode;
+	private String QRcode; //https://www.javatpoint.com/generating-qr-code-in-java
 	
-	private List<ProductCustomFields> UserCustomFields;
+	private List<ProductCustomFields> userCustomFields;
 	
 	private List<RawMaterialsPerProduct> rawmaterials;
 	
@@ -66,7 +66,7 @@ public class Product {
 	public Product() {
 		this.lots = new ArrayList<Lot>();
 		this.rawmaterials = new ArrayList<RawMaterialsPerProduct>();
-		this.UserCustomFields = new ArrayList<ProductCustomFields>();
+		this.userCustomFields = new ArrayList<ProductCustomFields>();
 	
 	}
 	
@@ -84,21 +84,22 @@ public class Product {
 		this.userID = builder.userID;
 		this.sku = builder.sku;
 		this.QRcode = builder.QRcode;
-		this.UserCustomFields = builder.UserCustomFields;
+		this.userCustomFields = builder.UserCustomFields;
 		
 	}
 	
-	public Boolean reduceInventory(int Quantity  ) {
+	public Boolean reduceInventory(double Quantity  ) {
 		
 		if ( Quantity <= this.getAvailableQuantity()) {
 			for( int i = 0; i < lots.size(); i++) {
 				if ( lots.get(i).getAvailablequantity() < Quantity ) {
 					Quantity -=  lots.get(i).getAvailablequantity();
 					lots.get(i).setAvailablequantity(0);
+					}
 					
-				}
+				
 				else {
-					int remaining = lots.get(i).getAvailablequantity()- Quantity;
+					double remaining = (double) lots.get(i).getAvailablequantity()- Quantity;
 					lots.get(i).setAvailablequantity(remaining );
 					Quantity = 0;
 					break;
@@ -256,31 +257,39 @@ public class Product {
 
 
 	public String getQRcode() {
-		return QRcode;
+		return this.QRcode;
 	}
 
 
 
 	public void setQRcode(String qRcode) {
-		QRcode = qRcode;
+		this.QRcode = qRcode;
 	}
 
 
 
 	public List<ProductCustomFields> getUserCustomFields() {
+<<<<<<< HEAD
 		return this.UserCustomFields;
+=======
+		return this.userCustomFields;
+>>>>>>> 53898ada7073797e20c98dd1f7167d71d3f58f5b
 	}
 
 
 
 	public void setUserCustomFields(List<ProductCustomFields> userCustomFields) {
+<<<<<<< HEAD
 		this.UserCustomFields = userCustomFields;
+=======
+		this.userCustomFields = userCustomFields;
+>>>>>>> 53898ada7073797e20c98dd1f7167d71d3f58f5b
 	}
 
 
 
 	public List<RawMaterialsPerProduct> getRawmaterials() {
-		return rawmaterials;
+		return this.rawmaterials;
 	}
 
 	public void setRawmaterials(List<RawMaterialsPerProduct> rawmaterials) {
@@ -290,7 +299,7 @@ public class Product {
 
 
 	public List<Lot> getLots() {
-		return lots;
+		return this.lots;
 	}
 
 	public void setLots(List<Lot> lots) {
@@ -299,7 +308,7 @@ public class Product {
 
 
 
-	public class ProductBuilder {
+	public static class ProductBuilder {
 
 		private String name;
 		private double cost;
@@ -312,11 +321,13 @@ public class Product {
 		private String sku;
 		private String QRcode;
 		private List<ProductCustomFields> UserCustomFields;
+		private List<RawMaterial> RawMaterials;
 	
 	
-		public ProductBuilder(String name, double cost, String sku) {
+		public ProductBuilder(String name, double cost, double msrp, String sku) {
 			this.name = name;
 			this.cost = cost;
+			this.msrp = msrp;
 			this.sku = sku;
 			
 		}
@@ -358,6 +369,11 @@ public class Product {
 		}
 		public ProductBuilder UserCustomFields(List<ProductCustomFields> UserCustomFields){
 			this.UserCustomFields = UserCustomFields;
+			return this;
+		}
+		
+		public ProductBuilder RawMaterials(List<RawMaterial> RawMaterials) {
+			this.RawMaterials = RawMaterials;
 			return this;
 		}
 		

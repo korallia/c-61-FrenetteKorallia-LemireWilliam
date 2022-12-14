@@ -61,6 +61,10 @@ public class InventoryDao extends SpringJdbcConfig {
 						products.get(i).setUnitofmeasure(this.getUnitOfMeasure(products.get(i).getIdUnitOfMeasure()));
 
 					}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 53898ada7073797e20c98dd1f7167d71d3f58f5b
 					products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
 					products.get(i).setRawmaterials(this.getrawmaterialperproduct(products.get(i).getId()));
 					products.get(i).setLots(this.getLotsFromProduct(products.get(i).getId()));
@@ -80,12 +84,21 @@ public class InventoryDao extends SpringJdbcConfig {
 			List<RawMaterial> rawmaterials = namedParameterJdbcTemplate().query("select * from rawmaterial", params,
 					BeanPropertyRowMapper.newInstance(RawMaterial.class));
 
+<<<<<<< HEAD
 			if (rawmaterials != null && !rawmaterials.isEmpty()) {
 				for (int i = 0; i < rawmaterials.size(); i++) {
 					if (rawmaterials.get(i).getIdUnitOfMeasure() > 0) {
 						rawmaterials.get(i)
 								.setUnitofmeasure(this.getUnitOfMeasure(rawmaterials.get(i).getIdUnitOfMeasure()));
 								rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
+=======
+
+			if ( rawmaterials != null && !rawmaterials.isEmpty()) {
+				for( int i=0; i< rawmaterials.size(); i++){
+					if ( rawmaterials.get(i).getIdUnitOfMeasure() > 0) {
+						rawmaterials.get(i).setUnitofmeasure(this.getUnitOfMeasure(rawmaterials.get(i).getIdUnitOfMeasure()));
+						rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
+>>>>>>> 53898ada7073797e20c98dd1f7167d71d3f58f5b
 					}
 
 				}
@@ -111,6 +124,10 @@ public class InventoryDao extends SpringJdbcConfig {
 						products.get(i).setUnitofmeasure(this.getUnitOfMeasure(products.get(i).getIdUnitOfMeasure()));
 
 					}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 53898ada7073797e20c98dd1f7167d71d3f58f5b
 					products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
 					products.get(i).setRawmaterials(this.getrawmaterialperproduct(products.get(i).getId()));
 					products.get(i).setLots(this.getLotsFromProduct(products.get(i).getId()));
@@ -138,7 +155,12 @@ public class InventoryDao extends SpringJdbcConfig {
 						rawmaterials.get(i)
 								.setUnitofmeasure(this.getUnitOfMeasure(rawmaterials.get(i).getIdUnitOfMeasure()));
 					}
+<<<<<<< HEAD
 					rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()));
+=======
+
+					rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
+>>>>>>> 53898ada7073797e20c98dd1f7167d71d3f58f5b
 				}
 			}
 			return rawmaterials;
@@ -483,6 +505,7 @@ public class InventoryDao extends SpringJdbcConfig {
 
 		}
 
+
 	}
 
 	public List<Lot> getLotsFromProduct(int productid) {
@@ -499,7 +522,7 @@ public class InventoryDao extends SpringJdbcConfig {
 		}
 	}
 
-	public int addLot(Product product, int Quantity) {
+	public double addLot(Product product, double Quantity) {
 		try {
 
 			// limit quantity to the available rawmaterial quantity
@@ -508,6 +531,7 @@ public class InventoryDao extends SpringJdbcConfig {
 					RawMaterialsPerProduct rmp = product.getRawmaterials().get(i);
 					if ((rmp.getQuantity() * Quantity) > rmp.getRawmaterial().getQuantity()) {
 						Quantity = (int) Math.floor(rmp.getRawmaterial().getQuantity() / rmp.getQuantity());
+
 					}
 				}
 			}

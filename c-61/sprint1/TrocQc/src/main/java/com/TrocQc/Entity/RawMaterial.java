@@ -44,11 +44,11 @@ public class RawMaterial {
 	@Column(name="idUser")
 	private int userID;
 	
-	private List<RawMaterialCustomField> UserCustomFields;
+	private List<RawMaterialCustomField> userCustomFields;
 	
 	
 	public RawMaterial() {
-		this.UserCustomFields = new ArrayList<RawMaterialCustomField>();
+		this.userCustomFields = new ArrayList<RawMaterialCustomField>();
 	}
 	
 	public RawMaterial(int id, String name, double cost, Timestamp addedDate, UnitOfMeasure unitofmeasure,
@@ -61,7 +61,7 @@ public class RawMaterial {
 		this.unitofmeasure = unitofmeasure;
 		this.quantity = quantity;
 		this.userID = userID;
-		this.UserCustomFields = userCustomFields;
+		this.userCustomFields = userCustomFields;
 		this.idUnitOfMeasure = unitofmeasure.getId();
 	}
 	
@@ -74,7 +74,7 @@ public class RawMaterial {
 		this.unitofmeasure = unitofmeasure;
 		this.quantity = quantity;
 		this.userID = userID;
-		this.UserCustomFields = userCustomFields;
+		this.userCustomFields = userCustomFields;
 		this.idUnitOfMeasure = unitofmeasure.getId();
 	}
 	
@@ -163,7 +163,7 @@ public class RawMaterial {
 	}
 
 	public List<RawMaterialCustomField> getUserCustomFields() {
-		return UserCustomFields;
+		return this.userCustomFields;
 	}
 
 
@@ -171,7 +171,7 @@ public class RawMaterial {
 		for (int i = 0; i< userCustomFields.size(); i++) {
 			userCustomFields.get(i).setRawMaterialid(this.getId());
 		}
-		this.UserCustomFields = userCustomFields;
+		this.userCustomFields = userCustomFields;
 		
 	}
 	

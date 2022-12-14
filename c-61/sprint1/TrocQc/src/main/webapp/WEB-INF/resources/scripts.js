@@ -18,6 +18,12 @@ window.onload = function(){
 		node.style.display = "block";
 	}
 	
+		function openManualSaleForm () {
+
+		var node = document.getElementById("salesForm");
+		node.style.display = "block";
+	}
+	
 	if(!!document.getElementById("notePad")) {
 		var node = document.getElementById("notePad");
 		document.getElementById("range2").addEventListener('change', pinNote);
@@ -30,6 +36,11 @@ window.onload = function(){
 	if(!!document.getElementById("noteBtn")) {
 		document.getElementById("noteBtn").addEventListener('click', openNotePad);
 	}
+	
+	if(!!document.getElementById("manualSaleBtn")) {
+		document.getElementById("manualSaleBtn").addEventListener('click', openManualSaleForm);
+	}
+
 	
 	if (!!document.getElementsByName("postIt")) {
 		//PIN ALL NOTES FROM DB
@@ -85,6 +96,22 @@ window.onload = function(){
 	
 	
 }
+
+/*
+function showModuleInfo(moduleName){
+	console.log(document.getElementById(moduleName));
+	var node = document.getElementById(moduleName)
+	node.style.display = 'block';
+	document.getElementById("moduleWelcome").style.display = 'none';
+}
+
+function hideModuleInfo(moduleName){
+	var node = document.getElementById(moduleName)
+	node.style.display = 'none';
+	document.getElementById("moduleWelcome").style.display = 'block';
+}
+*/
+
 
 function enterVentes(){
 	
@@ -289,7 +316,8 @@ function closeWindow () {
 	var prodNode = document.getElementById('productForm');
 	//var materialNode = document.getElementById('materialForm');
 	var matNode = document.getElementById('materialForm');
-	
+	var salesNode = document.getElementById('salesForm');
+	var templateNode = document.getElementById('addTemplateForm');
 	
 	if (!!node) {
 		if (node.style.display == "block") {
@@ -311,7 +339,16 @@ function closeWindow () {
 			matNode.style.display = "none"
 		}
 	}			
-	
+	if (!!salesNode){
+		if(salesNode.style.display == "block"){
+			salesNode.style.display = "none"
+		}
+	}	
+	if (!!templateNode){
+		if(templateNode.style.display == "block"){
+			templateNode.style.display = "none"
+		}
+	}	
 	
 	itis=false;
 }
