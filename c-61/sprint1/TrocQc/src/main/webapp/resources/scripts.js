@@ -40,6 +40,7 @@ window.onload = function(){
 	if(!!document.getElementById("manualSaleBtn")) {
 		document.getElementById("manualSaleBtn").addEventListener('click', openManualSaleForm);
 	}
+
 	
 	if (!!document.getElementsByName("postIt")) {
 		//PIN ALL NOTES FROM DB
@@ -313,7 +314,7 @@ function closeWindow () {
 	var node = document.getElementById('notePad');
 	var modNode = document.getElementById('modifyPad');
 	var prodNode = document.getElementById('productForm');
-	//var materialNode = document.getElementById('materialForm');
+	var modMaterialNode = document.getElementById('modifyMaterialForm');
 	var matNode = document.getElementById('materialForm');
 	var salesNode = document.getElementById('salesForm');
 	var templateNode = document.getElementById('addTemplateForm');
@@ -347,7 +348,12 @@ function closeWindow () {
 		if(templateNode.style.display == "block"){
 			templateNode.style.display = "none"
 		}
-	}	
+	}
+	if (!!modMaterialNode){
+		if(modMaterialNode.style.display == "block"){
+			modMaterialNode.style.display = "none"
+		}
+	}		
 	
 	itis=false;
 }

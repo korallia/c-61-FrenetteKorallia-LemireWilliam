@@ -28,10 +28,10 @@
 			<div class="col text-end ">
 				<div class="row align-items-center ">
 					<div class="col-sm-9 text-end">
-						<div class ="row align-items-center"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
+						<div class ="row align-items-center mt-3"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
 						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
 					</div>
-					<div class="col-sm-3"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
+					<div class="col-sm-3 mt-4 pe-5"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
 				</div>
 			</div>
 			</div>

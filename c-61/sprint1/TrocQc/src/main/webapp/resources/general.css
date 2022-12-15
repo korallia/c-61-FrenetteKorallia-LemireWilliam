@@ -20,13 +20,14 @@ body {
 }
 
 .ventesContainer {
-	height: 250px;
+	height: 350px;
 	align-items: center;
 	border: solid black 2px;
 	border-radius: 7px;
 	transition: 350ms;
-	width: 300px;
-	margin-top: 60px;
+	width: 350px;
+	margin-top: 20px;
+	position: relative;
 }
 
 .configContainer {
@@ -36,7 +37,7 @@ body {
 	border-radius: 7px;
 	transition: 350ms;
 	width: 500px;
-	margin-top:20px;
+	margin-top: 20px;
 	position: relative;
 	
 }
@@ -102,7 +103,7 @@ body {
 }
 
 .avatar {
-	margin-top: 15px;
+	
 	border-radius: 50%;
 	height: 75px;
 	width:75px;
@@ -285,8 +286,8 @@ textarea {
   	right: 0;
   	bottom: 0;
   	left: 0;
-  	width: 450px;
-  	height: 400px;
+  	width: 600px;
+  	height: 450px;
   	background-color: #ccc;
   	border-radius: 5px;
 }
@@ -346,6 +347,10 @@ tr:active {
 
 tr {
 	transition: 0.3s;
+}
+
+.activeRow {
+	background-color: #9fc5f8;
 }
 
 .centerTable {
@@ -483,31 +488,11 @@ img:active {
 	height: 300px;
 }
 
-.SKUdiv {
-	width: 100%;
-	height: 32px;
-	border: black 2px solid;
-	border-radius: 6px;
-	overflow: hidden; 
-	transition: 350ms;
-	background-color: #9fc5f8;
-	color: white;
-	z-index: 0;
-}
-
-.SKUdiv:hover {
-	transition: 350ms;
-	height: 300px;
-	overflow: auto; 
-	z-index: 1;
-}
-
 .btmBtn{
 	position: absolute;
 	bottom: 0;
 	width: 100%;
 	left: 0;
-
 }
 
 #noteBtn {
@@ -515,6 +500,25 @@ img:active {
 	bottom: 0;
 	left: auto;
 	width: 100%;
+	
+}
+
+.menuElement {
+	width: 100%;
+	height: 32px;
+	border: black 2px solid;
+	border-radius: 6px;
+	overflow: auto; 
+	background-color: #9fc5f8;
+	color: white;
+	z-index: 0;
+}
+
+.menuElement:hover {
+	transition: 350ms;
+	height: 200px;
+	overflow: auto; 
+	z-index: 1;
 }
 
 #moduleConfigs{

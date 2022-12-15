@@ -31,10 +31,10 @@
 			<div class="col text-end ">
 				<div class="row align-items-center ">
 					<div class="col-sm-9 text-end">
-						<div class ="row align-items-center"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
+						<div class ="row align-items-center mt-3"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
 						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
 					</div>
-					<div class="col-sm-3"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
+					<div class="col-sm-3 mt-4 pe-5"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
 				</div>
 			</div>
 			
@@ -126,8 +126,8 @@
 			<div id="Materiaux" class="tabcontent text-center">
 			  <h3>MATÉRIAUX</h3>
 			  <p>La liste de tous les matériaux en inventaire.</p>
-	  		  <div class="tableDiv">
-			  	<table class="table">
+	  		  <div class="tableDiv" >
+			  	<table class="table" id="matTable">
 				  	<tr class="justify-content-center">
 				  		<th> ID </th>
 				  		<th>NOM</th>
@@ -143,7 +143,7 @@
 				  	</tr>
 			  	
 					<c:forEach var="rawMaterial" items="${rmList}">
-						<tr>
+						<tr class="matRow" id="matRow">
 							<td> ${rawMaterial.id}</td>
 							<td> ${rawMaterial.name}</td>
 							<td> ${rawMaterial.cost} $</td>
@@ -166,7 +166,7 @@
 				 </table>
 		   			<div class="row mt-3 text-center">
 						<div class="col"> <button id="addMaterialBtn">AJOUTER</button> </div>
-						<div class="col"> <button>MODIFIER</button> </div>
+						<div class="col"> <button id="modMaterialBtn">MODIFIER</button> </div>
 						<div class="col"><button>SUPPRIMER</button> </div>
 					</div>
 				</div>
@@ -270,6 +270,9 @@
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			
 			<form action="inventoryServlet" method="post">
+			
+
+			
 				<div class="row ">
 					<h1 class="text-center"> AJOUTER DU MATÉRIEL </h1>
 				</div>
@@ -279,7 +282,7 @@
 				</div>					
 				
 				<div class="row m-1">
-					<div class="col "> <input class="" type="number" step="any" min="0.00"  placeholder="Entrer la quantité" name="materialQuantity" > </div>
+					<div class="col "> <input class="w-100" type="number" step="any" min="0.00"  placeholder="Entrer la quantité" name="materialQuantity" > </div>
 					<div class="col "> 
 						<div class="selector w-100">
 							<select class="text-align w-100" name="materialUOM">
@@ -293,8 +296,8 @@
 				</div>
 				
 				<div class="row m-1">
-					<div class="col "> <input type="number" step="any" min="0.00" placeholder="Entrer le NBQ" name="materialLQN" > </div>
-					<div class="col "> <input type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" > </div>
+					<div class="col "> <input class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le NBQ" name="materialLQN" > </div>
+					<div class="col "> <input class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" > </div>
 				</div>
 				
 				<h4 class="text-center">AJOUTER UN NOUVEAU CHAMP</h4>
@@ -341,6 +344,87 @@
 					<div class="d-flex justify-content-center"><input type="submit" class="btn " value="AJOUTER MATÉRIEL"></div>
 				</div>
 			</form >
+		</div>
+		
+		<!-- MODIFY MATERIAL FORM -->
+		<div class="materialForm" id="modifyMaterialForm">
+			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
+			
+			<form action="inventoryServlet" method="post">
+			
+				<input type="hidden" name="hiddenProdId" id="hiddenProdId">
+			
+				<div class="row ">
+					<h1 class="text-center"> MODIFIER DU MATÉRIEL </h1>
+				</div>
+				
+				<div class="row m-1">
+					<input type="text" placeholder="Entrer le nom du matériel..." name="materialName">
+				</div>					
+				
+				<div class="row m-1">
+					<div class="col "> <input class="w-100" type="number" step="any" min="0.00"  placeholder="Entrer la quantité" name="materialQuantity" > </div>
+					<div class="col "> 
+						<div class="selector w-100">
+							<select class="text-align w-100" name="materialUOM">
+								<option value="0"> - Choisir l'unité... - </option>
+								<c:forEach var="unitOfMeasure" items="${uomList}">
+									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+								</c:forEach>
+							</select>
+						</div>
+					</div> 
+				</div>
+				
+				<div class="row m-1">
+					<div class="col "> <input class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le NBQ" name="materialLQN" > </div>
+					<div class="col "> <input class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" > </div>
+				</div>
+				
+				<h4 class="text-center">AJOUTER UN NOUVEAU CHAMP</h4>
+				<div class="border">
+					<div class="row">
+						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
+						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
+						<div class="col my-2">
+							<select class="text-align w-100" name="materialNewFieldUOM1">
+								<option value="0"> - Choisir l'unité... - </option>
+								<c:forEach var="unitOfMeasure" items="${uomList}">
+									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+								</c:forEach>
+							</select>
+						</div>							
+					</div>
+					<div class="row">
+						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
+						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>
+						<div class="col my-2">
+							<select class="text-align w-100" name="materialNewFieldUOM2">
+								<option value="0"> - Choisir l'unité... - </option>
+								<c:forEach var="unitOfMeasure" items="${uomList}">
+									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+								</c:forEach>
+							</select>
+						</div>						
+					</div>
+					<div class="row ">
+						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
+						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
+						<div class="col my-2">
+							<select class="text-align w-100" name="materialNewFieldUOM3">
+								<option value="0"> - Choisir l'unité... - </option>
+								<c:forEach var="unitOfMeasure" items="${uomList}">
+									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+								</c:forEach>
+							</select>
+						</div>							
+					</div>		
+				</div>
+		
+				<div class="row " id="noteBtn">
+					<div class="d-flex justify-content-center"><input type="submit" class="btn " value="AJOUTER MATÉRIEL"></div>
+				</div>
+			</form >			
 		</div>
 		
 		

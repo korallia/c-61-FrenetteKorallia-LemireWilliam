@@ -4,6 +4,7 @@
  
  var img;
  var xdiv;
+ var selectedRowValues;
  
  //https://www.w3schools.com/howto/howto_js_tabs.asp
  function openTab(evt, tabName) {
@@ -23,6 +24,31 @@
   evt.currentTarget.className += " active";
 }
 
+function tableContent(table, tableRow){
+	var i, rows;
+	rows = document.getElementsByClassName("matRow");
+	for (i = 0; i < rows.length; i++) {
+		rows[i].classList.remove("activeRow");
+	}
+	
+	tableRow.className += " activeRow"; 
+	
+	var id = tableRow.childNodes[1].innerHTML;
+ 	var name = tableRow.childNodes[3].innerHTML;
+ 	var cost  = tableRow.childNodes[5].innerHTML;
+ 	var quantity = tableRow.childNodes[7].innerHTML;
+ 	var unit = tableRow.childNodes[9].innerHTML;
+ 	var date = tableRow.childNodes[11].innerHTML;
+ 	var customCol1 = tableRow.childNodes[13].innerHTML;
+ 	var customCol2 = tableRow.childNodes[15].innerHTML;
+ 	var customCol3 = tableRow.childNodes[17].innerHTML;
+ 	
+ 	var modMatForm = document.getElementById("modifyMaterialForm");
+ 	
+ 	console.log(id, name, cost, quantity, unit, date, customCol1, customCol2, customCol3);
+ 	
+}
+
 
 window.onload = function(){
 	
@@ -36,6 +62,18 @@ window.onload = function(){
 	if(!!document.getElementById("addMaterialBtn")) {
 		document.getElementById("addMaterialBtn").addEventListener('click', openMaterialForm);
 	}
+	if(!!document.getElementById("modMaterialBtn")) {
+		document.getElementById("modMaterialBtn").addEventListener('click', openModMaterialForm);
+	}
+	
+	var table = document.getElementById("matTable");
+	if (table) {
+	  for (var i = 0; i < table.rows.length; i++) {
+	    table.rows[i].onclick = function() {
+	      tableContent(table, this);
+	    };
+	  }
+	}
 	
 	function openProductForm(){
 		var node = document.getElementById("productForm");
@@ -47,10 +85,17 @@ window.onload = function(){
 		node.style.display = "block";
 	}
 	
+	function openModMaterialForm(){
+		var node = document.getElementById("modifyMaterialForm");
+		node.style.display = "block";
+	}	
+	
 	function openTemplateForm(){
 		var node = document.getElementById("addTemplateForm");
 		node.style.display = "block";
 	}	
+	
+	
 	
 	function createAddProductForm() {
 		var div = document.createElement('div');

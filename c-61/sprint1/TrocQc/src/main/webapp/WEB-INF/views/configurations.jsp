@@ -30,39 +30,40 @@
 			<div class="col text-end ">
 				<div class="row align-items-center ">
 					<div class="col-sm-9 text-end">
-						<div class ="row align-items-center"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
+						<div class ="row align-items-center mt-3"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
 						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
 					</div>
-					<div class="col-sm-3"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
+					<div class="col-sm-3 mt-4 pe-5"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
 				</div>
 			</div>
+			
 		</div>
 		
 		<div class="row justify-content-center align-items-center text-center text-center"  >
 			<h1>CONFIGURATIONS</h1>
-			<form action="configServlet" method="post">
+			
 				<div class="configContainer justify-content-center align-items-center text-center">
-	
-					<h5>Modifier SKU</h5>
-					<div class="SKUdiv justify-content-center mt-2 id="SKUdiv">
-						<h5>Nombre de lettres par colonne</h5>
-						<input type="number" placeholder="Nom" name="Name"> 
-						<br>
-						<input type="number" placeholder="Description" name="Description">
-						<br>
-						<c:forEach var="prod" items="${prodList}"> 		
-								<c:forEach var="custCol" items="${prod.userCustomFields}">
-									<input type="number" placeholder="${custCol.fieldtypeName}" name="${custCol.fieldtypeName}"> <br>
-								</c:forEach>
-						</c:forEach>
-					</div>
-					
-					<div class="  ">
-						<input class="btn w-100 btmBtn text-center" type="submit" value="SAUVEGARDER">
-					</div>
+					<form action="configsServlet" method="post">
+						<h5>Modifier SKU</h5>
+						<div class="menuElement justify-content-center mt-2 id="SKUdiv">
+							<h5>Nombre de lettres par colonne</h5>
+							<input type="number" placeholder="Nom" name="Name"> 
+							<br>
+							<input type="number" placeholder="Description" name="Description">
+							<br>
+							<c:forEach var="prod" items="${prodList}"> 		
+									<c:forEach var="custCol" items="${prod.userCustomFields}">
+										<input type="number" placeholder="${custCol.fieldtypeName}" name="${custCol.fieldtypeName}"> <br>
+									</c:forEach>
+							</c:forEach>
+						</div>
+						
+						<div class="  ">
+							<input class="btn w-100 btmBtn text-center" type="submit" value="SAUVEGARDER">
+						</div>
+					</form>
 					
 				</div>			
-			</form>
 
 		</div>
 			
