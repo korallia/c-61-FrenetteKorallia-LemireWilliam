@@ -40,19 +40,40 @@
 			</div>
 		</div>
 		
+		
+		
+		
 		<div class="row justify-content-center align-items-center" >
 			<div class="ventesContainer justify-content-center align-items-center">
-			
-				<div class="">
-					<form action="">
+						
+				<div class="menuElement mt-2">
+				
+					<form action="ventesServlet" method="post">
+						<div class="row">
+							<h5 class="text-center mt-1"> VENTE MANUELLE </h5>
+						</div>			
 					
-						<button class="btn mb-3 mt-5" onclick="" id="manualSaleBtn">ENTRER VENTE MANUELLE</button>
+						<div class="row m-1">
+							<input type="text" placeholder="Entrer le nom du client..." name="customerName" >
+						</div>	
+						
+						<div class="row m-1">
+							<select class="text-align" name="productId">
+								<option value="0"> - Choisir un produit... - </option>
+								<c:forEach var="product" items="${prodList}">
+									<option value="${product.id}"> ${product.name} </option>
+								</c:forEach>
+							</select>
+						</div>	
+						
+						<div class="col m-1"> <input class="w-100" type="number" step="any" placeholder="Entrer la quantité" name="soldProductQuantity" > </div>
+						
+						
+						
+						<div> <input type="submit" value="AJOUTER VENTE"> </div>
 					</form>
 				</div>
-			
-			
 
-				<button class="btn mt-5">À VENIR</button>
 			</div>
 		</div>
 		

@@ -111,13 +111,14 @@
 			  	
 			  	
 			  </table>
+			  
+	  			<div class="row mt-3 text-center">
+					<div class="col"> <button id="addProductBtn">AJOUTER</button> </div>
+					<div class="col"> <button>MODIFIER</button> </div>
+					<div class="col"><button>SUPPRIMER</button> </div>
+				</div>			  
 			  </div>
 			  
-  			<div class="row mt-3 text-center">
-				<div class="col"> <button id="addProductBtn">AJOUTER</button> </div>
-				<div class="col"> <button>MODIFIER</button> </div>
-				<div class="col"><button>SUPPRIMER</button> </div>
-			</div>
 			  
 			</div>
 			
@@ -161,6 +162,12 @@
 					</div>
 				</div>
 			</div>
+			
+			
+			
+			
+			
+			
 			<div id="Templates" class="tabcontent text-center">
 			  <h3>TEMPLATES</h3>
 			  <p>Différents templates pour la création de produits.</p>

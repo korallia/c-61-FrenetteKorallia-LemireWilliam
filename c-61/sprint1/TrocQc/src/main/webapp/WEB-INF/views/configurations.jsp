@@ -44,7 +44,7 @@
 			
 				<div class="configContainer justify-content-center align-items-center text-center">
 					<form action="configsServlet" method="post">
-						<h5>Modifier SKU</h5>
+					
 						<div class="menuElement justify-content-center mt-2 id="SKUdiv">
 							<h5>Nombre de lettres par colonne</h5>
 							<input type="number" placeholder="Nom" name="Name"> 
@@ -57,6 +57,12 @@
 									</c:forEach>
 							</c:forEach>
 						</div>
+						
+						<div class="menuElement justify-content-center mt-2" id="changeProfilePic">
+							<h5>Modifier la photo de profil</h5>
+							<input type="file" placeholder="Téléverser" name="profilPic"> 
+
+						</div>						
 						
 						<div class="  ">
 							<input class="btn w-100 btmBtn text-center" type="submit" value="SAUVEGARDER">
