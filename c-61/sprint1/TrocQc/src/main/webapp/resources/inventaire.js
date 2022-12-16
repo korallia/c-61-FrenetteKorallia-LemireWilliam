@@ -87,8 +87,13 @@ function tableContent(table, tableRow){
  	try {
 		var customCol1 = tableRow.childNodes[13].innerHTML.trim();
 		var customColArray1 =  customCol1.split(":");
-		modCustColName1.value = customColArray1[0].trim();
- 		modCustColValue1.value = customColArray1[1].trim();
+			if (modCustColName1 != "" || modCustColValue1 != ""){
+				modCustColName1.value = customColArray1[0].trim();
+		 		modCustColValue1.value = customColArray1[1].trim();
+			}		
+		
+		
+
 		
 	} catch (error) {
   		console.error(error);
@@ -100,8 +105,12 @@ function tableContent(table, tableRow){
 		if(tableRow.childNodes[15] != null){
 			var customCol2 = tableRow.childNodes[15].innerHTML.trim();
 			var customColArray2 =  customCol2.split(":");	
-			modCustColName2.value = customColArray2[0].trim();
-	 		modCustColValue2.value = customColArray2[1].trim();
+			
+			if (modCustColName2 != "" || modCustColValue2 != ""){
+				modCustColName2.value = customColArray2[0].trim();
+		 		modCustColValue2.value = customColArray2[1].trim();
+			}			
+
 		}
 
 	} catch (error) {
@@ -113,8 +122,11 @@ function tableContent(table, tableRow){
 		if (tableRow.childNodes[17] != null){
 			var customCol3 = tableRow.childNodes[17].innerHTML.trim();
 			var customColArray3 =  customCol3.split(":");
-			modCustColName3.value = customColArray3[0].trim();
-	 		modCustColValue3.value = customColArray3[1].trim();
+			if (modCustColName3 != "" || modCustColValue3 != ""){
+				modCustColName3.value = customColArray3[0].trim();
+	 			modCustColValue3.value = customColArray3[1].trim();
+			}
+
 		}
 		
 

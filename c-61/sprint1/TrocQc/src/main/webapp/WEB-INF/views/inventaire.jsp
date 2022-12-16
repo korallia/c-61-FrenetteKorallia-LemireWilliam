@@ -101,8 +101,6 @@
 							<c:forEach var="custCol" items="${product.userCustomFields}" >
 								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
 							</c:forEach>		
-						
-	
 						</tr>
 					
 					
@@ -152,12 +150,6 @@
 								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
 							</c:forEach>		
 							
-							
-							
-						
-
-							
-						
 							<td>  </td>
 						</tr>
 					</c:forEach>			  	
@@ -218,15 +210,18 @@
 			  <p>Exportez un rapport des tous les produits et matériaux en inventaire.</p>
 			  <button class="btn text-center">GÉNÉRER RAPPORT</button>
 			</div>
-			
-			
-
 		</div>
 		
 
 		
 		
 		<div class="row"></div>
+		
+		
+		
+		
+		
+		
 		<!-- ADD PRODUCT FORM -->
 		<div class="productForm justify-content-center" id="productForm">
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
@@ -263,13 +258,15 @@
 		
 		</div>
 		
+		
+		
+		
+		
 		<!-- ADD MATERIAL FORM -->
 		<div class="materialForm" id="materialForm"> 
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			
 			<form action="inventoryServlet" method="post">
-			
-
 			
 				<div class="row ">
 					<h1 class="text-center"> AJOUTER DU MATÉRIEL </h1>
@@ -406,7 +403,7 @@
 				</div>
 		
 				<div class="row " id="noteBtn">
-					<div class="d-flex justify-content-center"><input type="submit" class="btn " value="AJOUTER MATÉRIEL"></div>
+					<div class="d-flex justify-content-center"><input type="submit" class="btn " value="MODIFIER MATÉRIEL"></div>
 				</div>
 			</form >			
 		</div>
@@ -590,6 +587,9 @@
 				</form >
 			</div>
 		</div>
+		
+		
+		
 		
 	</div>
 	
