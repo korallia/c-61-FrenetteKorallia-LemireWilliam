@@ -138,8 +138,6 @@
 				  		<th>CUSTOM1</th>
 				  		<th>CUSTOM2</th>
 				  		<th>CUSTOM3</th>
-				  		<th>CUSTOM4</th>
-				  		<th>CUSTOM5</th>
 				  	</tr>
 			  	
 					<c:forEach var="rawMaterial" items="${rmList}">
@@ -154,7 +152,7 @@
 								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
 							</c:forEach>		
 							
-							<td> CUSTOM FIELDS </td>
+							
 							
 						
 
@@ -346,27 +344,35 @@
 			</form >
 		</div>
 		
+		
+		
+		
+		
+		
+		
+		
+		
 		<!-- MODIFY MATERIAL FORM -->
+		
 		<div class="materialForm" id="modifyMaterialForm">
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			
 			<form action="inventoryServlet" method="post">
 			
 				<input type="hidden" name="hiddenProdId" id="hiddenProdId">
-			
 				<div class="row ">
 					<h1 class="text-center"> MODIFIER DU MATÉRIEL </h1>
 				</div>
 				
 				<div class="row m-1">
-					<input type="text" placeholder="Entrer le nom du matériel..." name="materialName">
+					<input id="modMaterialName" type="text" placeholder="Entrer le nom du matériel..." name="materialName">
 				</div>					
 				
 				<div class="row m-1">
-					<div class="col "> <input class="w-100" type="number" step="any" min="0.00"  placeholder="Entrer la quantité" name="materialQuantity" > </div>
+					<div class="col "> <input id="modMaterialQuantity" class="w-100" type="number" step="any" min="0.00"  placeholder="Entrer la quantité" name="materialQuantity" > </div>
 					<div class="col "> 
 						<div class="selector w-100">
-							<select class="text-align w-100" name="materialUOM">
+							<select class="text-align w-100" name="materialUOM" id="modMaterialUOM">
 								<option value="0"> - Choisir l'unité... - </option>
 								<c:forEach var="unitOfMeasure" items="${uomList}">
 									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
@@ -377,47 +383,25 @@
 				</div>
 				
 				<div class="row m-1">
-					<div class="col "> <input class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le NBQ" name="materialLQN" > </div>
-					<div class="col "> <input class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" > </div>
+					<div class="col "> <input id="modMaterialLQN" class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le NBQ" name="materialLQN" > </div>
+					<div class="col "> <input id="modMaterialCost" class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" > </div>
 				</div>
 				
 				<h4 class="text-center">AJOUTER UN NOUVEAU CHAMP</h4>
 				<div class="border">
 					<div class="row">
-						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
-						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
-						<div class="col my-2">
-							<select class="text-align w-100" name="materialNewFieldUOM1">
-								<option value="0"> - Choisir l'unité... - </option>
-								<c:forEach var="unitOfMeasure" items="${uomList}">
-									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-								</c:forEach>
-							</select>
-						</div>							
+						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldName1"  type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
+						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldValue1" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
+						
 					</div>
 					<div class="row">
-						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
-						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>
-						<div class="col my-2">
-							<select class="text-align w-100" name="materialNewFieldUOM2">
-								<option value="0"> - Choisir l'unité... - </option>
-								<c:forEach var="unitOfMeasure" items="${uomList}">
-									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-								</c:forEach>
-							</select>
-						</div>						
+						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldName2" type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
+						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldValue2" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>					
 					</div>
 					<div class="row ">
-						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
-						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
-						<div class="col my-2">
-							<select class="text-align w-100" name="materialNewFieldUOM3">
-								<option value="0"> - Choisir l'unité... - </option>
-								<c:forEach var="unitOfMeasure" items="${uomList}">
-									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-								</c:forEach>
-							</select>
-						</div>							
+						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldName3" type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
+						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldValue3" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
+						
 					</div>		
 				</div>
 		
@@ -428,7 +412,15 @@
 		</div>
 		
 		
+		
+		
+		
+		
+		
+		
+		
 		<!-- ADD TEMPLATE FORM -->
+		
 		<div class="addTemplateForm" id="addTemplateForm">
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			<div class="container mt-auto align-middle">
@@ -602,7 +594,7 @@
 	</div>
 	
 	<script type="text/javascript" src="/TrocQc/resources/scripts.js"></script>
-	<script type="text/javascript" src="/TrocQc/resources/inventaire.js"></script>
+	<script type="text/javascript" src="/TrocQc/resources/inventaire.js" charset="UTF-8"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -5,7 +5,30 @@
  var img;
  var xdiv;
  var selectedRowValues;
+ var uomDict = {
+	"Unité": 4,
+	"Metre": 5,
+	"Centimetre": 6,
+	"Kilogramme": 7,
+	"gramme": 8,
+	"pouce": 9,
+	"pied": 10,
+	"litre": 11,
+	"millilitre": 12,
+	"decalitre": 13,
+	"gallon Américain": 14,
+	"pinte Américain": 15,
+	"tasse Américaine": 16,
+	"once liquide Américaine": 17,
+	"cuillière à soupe Américaine": 18,
+	"cuillère à thé Américaine": 19,
+	"livre": 20,
+	"once solide": 21,
+	"centilitre": 22,
+	"millimetre": 23
+}
  
+
  //https://www.w3schools.com/howto/howto_js_tabs.asp
  function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
@@ -33,19 +56,90 @@ function tableContent(table, tableRow){
 	
 	tableRow.className += " activeRow"; 
 	
-	var id = tableRow.childNodes[1].innerHTML;
- 	var name = tableRow.childNodes[3].innerHTML;
- 	var cost  = tableRow.childNodes[5].innerHTML;
- 	var quantity = tableRow.childNodes[7].innerHTML;
- 	var unit = tableRow.childNodes[9].innerHTML;
- 	var date = tableRow.childNodes[11].innerHTML;
- 	var customCol1 = tableRow.childNodes[13].innerHTML;
- 	var customCol2 = tableRow.childNodes[15].innerHTML;
- 	var customCol3 = tableRow.childNodes[17].innerHTML;
+	var id = tableRow.childNodes[1].innerHTML.trim();
+ 	var name = tableRow.childNodes[3].innerHTML.trim();
+ 	var cost  = tableRow.childNodes[5].innerHTML.trim();
+ 	var quantity = tableRow.childNodes[7].innerHTML.trim();
+ 	var unit = tableRow.childNodes[9].innerHTML.trim();
+ 	var date = tableRow.childNodes[11].innerHTML.trim();
  	
- 	var modMatForm = document.getElementById("modifyMaterialForm");
+	
+ 	var modId = document.getElementById("hiddenProdId"); //Hidden field
+ 	var modName = document.getElementById("modMaterialName");
+ 	var modCost = document.getElementById("modMaterialCost");
+ 	var modQt = document.getElementById("modMaterialQuantity");
+ 	var modUnit = document.getElementById("modMaterialUOM");
+
+ 	var modCustColName1 = document.getElementById("modMaterialNewFieldName1");
+ 	var modCustColValue1 = document.getElementById("modMaterialNewFieldValue1");
  	
- 	console.log(id, name, cost, quantity, unit, date, customCol1, customCol2, customCol3);
+ 	var modCustColName2 = document.getElementById("modMaterialNewFieldName2");
+ 	var modCustColValue2 = document.getElementById("modMaterialNewFieldValue2");
+ 	
+ 	var modCustColName3 = document.getElementById("modMaterialNewFieldName3");
+ 	var modCustColValue3 = document.getElementById("modMaterialNewFieldValue3");
+
+
+
+ 	
+ 	
+
+ 	try {
+		var customCol1 = tableRow.childNodes[13].innerHTML.trim();
+		var customColArray1 =  customCol1.split(":");
+		modCustColName1.value = customColArray1[0].trim();
+ 		modCustColValue1.value = customColArray1[1].trim();
+		
+	} catch (error) {
+  		console.error(error);
+
+	}
+	
+ 	try {
+		
+		if(tableRow.childNodes[15] != null){
+			var customCol2 = tableRow.childNodes[15].innerHTML.trim();
+			var customColArray2 =  customCol2.split(":");	
+			modCustColName2.value = customColArray2[0].trim();
+	 		modCustColValue2.value = customColArray2[1].trim();
+		}
+
+	} catch (error) {
+ 		console.error(error);
+
+	}
+	
+ 	try {
+		if (tableRow.childNodes[17] != null){
+			var customCol3 = tableRow.childNodes[17].innerHTML.trim();
+			var customColArray3 =  customCol3.split(":");
+			modCustColName3.value = customColArray3[0].trim();
+	 		modCustColValue3.value = customColArray3[1].trim();
+		}
+		
+
+	} catch (error) {
+  		console.error(error);
+
+	}
+	
+	
+	
+ 	
+ 	modId.value = id;
+ 	modName.value = name;
+ 	modCost.value = parseFloat(cost);
+ 	modQt.value = parseFloat(quantity); 
+ 	modUnit.value = uomDict[unit];
+ 	
+
+ 	
+
+ 	
+
+ 	
+ 	console.log(tableRow);
+ 	console.log(id, name, cost, quantity, unit, date, customCol1 );
  	
 }
 
