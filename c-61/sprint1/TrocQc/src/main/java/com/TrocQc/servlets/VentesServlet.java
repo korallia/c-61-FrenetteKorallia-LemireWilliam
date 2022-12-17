@@ -3,6 +3,7 @@ package com.TrocQc.servlets;
 import com.TrocQc.Entity.Vente;
 import com.TrocQc.DAO.VenteDao;
 import com.TrocQc.DAO.InventoryDao;
+import com.TrocQc.Entity.Product;
 import com.TrocQc.Entity.User;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -45,9 +46,11 @@ public class VentesServlet extends HttpServlet {
 		}
 		
 		int prodId = Integer.parseInt(request.getParameter("productId"));
+		InventoryDao inventorydao = new InventoryDao();
+		Product p = inventorydao.getProduct(prodId);
 		String custName = request.getParameter("customerName");
 		double quantity = Double.parseDouble(request.getParameter("soldProductQuantity"));
-		Vente vente = new Vente(prodId, quantity, new java.sql.Date(System.currentTimeMillis()), user.getId());
+		Vente vente = new Vente(p, quantity, new java.sql.Date(System.currentTimeMillis()), user.getId());
 		
 		
 		vd.addVente(vente);
