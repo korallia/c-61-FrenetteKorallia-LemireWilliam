@@ -91,7 +91,7 @@
 							
 							<td>
 								<c:forEach var="rawMat" items="${product.rawmaterials}">
-									${rawMat.rawmaterial.name}
+									${rawMat.rawmaterial.name} <br>
 								</c:forEach>
 							</td>
 							
@@ -148,7 +148,7 @@
 							<td> ${rawMaterial.unitofmeasure.name} </td>
 							<td> ${rawMaterial.addedDate} </td>
 							<c:forEach var="custCol" items="${rawMaterial.userCustomFields}" >
-								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
+								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td> 
 							</c:forEach>		
 							
 							<td>  </td>
@@ -172,7 +172,7 @@
 			  <h3>TEMPLATES</h3>
 			  <p>Différents templates pour la création de produits.</p>
 	   		  <div class="tableDiv">
-			  	<table class="table">
+			  	<table class="table" id="tempTable">
 				  	<tr class="justify-content-center">
 				  		<th> ID </th>
 				  		<th>NOM</th>
@@ -180,23 +180,33 @@
 				  		<th>SKU</th>
 				  		<th>COÛT</th>
 				  		<th>PRIX</th>
+				  		<th>NBQ</th>
 				  		<th>UNITÉ</th>
 				  		<th>DATE</th>
+				  		<th>MATÉRIAUX</th>
 						<th> CUSTOM COL 1 </th>
 						<th> CUSTOM COL 2 </th>
 						<th> CUSTOM COL 3 </th>
 				  	</tr>
 			  	
 					<c:forEach var="product" items="${prodList}">
-						<tr>
+						<tr id="tempRow" class="tempRow">
 							<td> ${product.id}</td>
 							<td> ${product.name}</td>
 							<td> ${product.description}</td>
 							<td> ${product.sku}</td>
 							<td> ${product.cost} $</td>
 							<td> ${product.msrp} $</td>
+							<td> ${product.lowQuantityLevel}</td>
 							<td> ${product.unitofmeasure.name} </td>
 							<td> ${product.addedDate} </td>
+							
+							<td>
+								<c:forEach var="rawMat" items="${product.rawmaterials}">
+									${rawMat.rawmaterial.name} <br>
+								</c:forEach>
+							</td>
+							
 							<c:forEach var="custCol" items="${product.userCustomFields}" >
 								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
 							</c:forEach>									
@@ -205,7 +215,7 @@
 				 </table>
 		   			<div class="row mt-3 text-center">
 						<div class="col"> <button id="addTemplateBtn">AJOUTER</button> </div>
-						<div class="col"> <button>MODIFIER</button> </div>
+						<div class="col"> <button id="modTemplateBtn">MODIFIER</button> </div>
 						<div class="col"><button>SUPPRIMER</button> </div>
 					</div>
 				</div>
@@ -391,7 +401,7 @@
 					<div class="col "> <input id="modMaterialCost" class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" > </div>
 				</div>
 				
-				<h4 class="text-center">AJOUTER UN NOUVEAU CHAMP</h4>
+				<h4 class="text-center">MODIFIER LES CHAMPS</h4>
 				<div class="border">
 					<div class="row">
 						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldName1"  type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
@@ -472,7 +482,7 @@
 					</div>
 					
 					<div class="row my-1 border">
-						<div class="row m-1"> 
+						<div class="row"> 
 							<div class="col m-1 text-center">Nouveau Champ</div>
 							<div class="col m-1 text-center">Valeur</div>
 							<div class="col m-1 text-center">Unité</div>
@@ -589,13 +599,165 @@
 						</div>												
 					</div>
 					
-					<div class=" d-flex justify-content-center"> <input class="btn" type="submit" value="AJOUTER TEMPLATE"> </div>
+					<div class=" d-flex justify-content-center"> <input class="btn w-50" type="submit" value="AJOUTER TEMPLATE"> </div>
 					
 				</form >
 			</div>
 		</div>
 		
 		
+		
+		
+		
+		<!-- MODIFY TEMPLATE FORM -->
+		
+		<div class="addTemplateForm" id="modifyTemplateForm">
+			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
+			<div class="container mt-auto align-middle">
+				<form action="inventoryServlet" method="post">
+				
+					<input type="hidden" name="hiddenTemplateId" id="hiddenTemplateId">
+				
+					<div class="row ">
+						<h1 class="text-center"> MODIFIER UN TEMPLATE </h1>
+					</div>
+					
+					<div class="row m-1">
+						<input id="modTemplateName" type="text" placeholder="Entrer le nom du produit..." name="templateName" >
+					</div>
+					
+					<div class="row m-1">
+						<input id="modTemplateSKU" type="text" placeholder="Entrer le SKU du produit..." name="templateSKU" >
+					</div>
+					
+					<div class="row m-1">
+						<input id="modTemplateDesc" type="text" placeholder="Entrer la description du produit..." name="templateDesc" >
+					</div>
+					
+					<div class="row m-1">
+						<div class="col m-1"> <input id="modTemplateQuantity" class="w-100" type="number" placeholder="Entrer la quantité" name="templateQuantity" > </div>
+						<div class="col m-1"> 
+							<div class="selector">
+								<select id="modTemplateUOM" class="text-align" name="templateUOM">
+									<option value="0"> - Choisir l'unité... - </option>
+									<c:forEach var="unitOfMeasure" items="${uomList}">
+										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+									</c:forEach>
+								</select>
+							</div>
+						</div> 
+						<div class="col m-1"> <input id="modTemplateLQL" type="text" placeholder="Entrer le NBQ" name="templateLQL" > </div>
+					</div>
+					
+					<div class="row m-1">
+						<div class="col m-1"> <input id="modTemplateCost" class="w-100" type="number" step="any" placeholder="Entrer le coût..." name="templateCost" > </div>
+						<div class="col m-1"> <input id="modTemplatePrice" class="w-100" type="number" step="any" placeholder="Entrer le prix..." name="templatePrice" > </div>
+						<div class="col m-1"> <input id="modTemplateMSRP" class="w-100" type="number" step="any" placeholder="Entrer le MSRP..." name="templateMSRP" > </div>
+					</div>
+					
+					<div class="row m-1"> 
+						<div class="col m-1"> <input type="file" name="barcode" placeholder="Téléverser un code barre"> </div>
+						<div class="col m-1"> <input class="btn m-1" type="button" value="GÉNÉRER CODE BARRE" id="generateBarcodeBtn" onclick=""> </div>
+					</div>
+					
+					<div class="row my-1 border">
+						<div class="row"> 
+							<div class="col m-1 text-center">Nouveau Champ</div>
+							<div class="col m-1 text-center">Valeur</div>
+						</div>
+						
+	
+						<div class="row m-1">
+							<div class="col  text-center"> <input class="w-100" id="modNewFieldName1" type="text" placeholder="Entrer le nouveau champ..." name="newFieldName1" > </div>
+							<div class="col  text-center"> <input class="w-100" id="modNewFieldValue1" type="text" placeholder="Entrer la valeur..." name="newFieldValue1" > </div>
+						</div>
+						<div class="row m-1">
+							<div class="col  text-center"> <input class="w-100" id="modNewFieldName2" type="text" placeholder="Entrer le nouveau champ..." name="newFieldName2" > </div>
+							<div class="col  text-center"> <input class="w-100" id="modNewFieldValue2" type="text" placeholder="Entrer la valeur..." name="newFieldValue2" > </div>
+						</div>
+						<div class="row m-1">
+							<div class="col  text-center"> <input class="w-100" id="modNewFieldName3" type="text" placeholder="Entrer le nouveau champ..." name="newFieldName3" > </div>
+							<div class="col  text-center"> <input class="w-100" id="modNewFieldValue3" type="text" placeholder="Entrer la valeur..." name="newFieldValue3" > </div>
+						</div>
+					</div>
+					
+					<div class="row border">
+						<div class="row m-1">
+							<div class="col m-1 text-center">Matériaux</div>
+							<div class="col m-1 text-center">Quantité</div>
+							<div class="col m-1 text-center">Unité</div>
+						</div>
+					
+						<div class="row m-1">
+							<div class="col text-center">
+								<select id="modRawMaterialId1" class="text-align" name="rawMaterialId1">
+									<option value="0"> - Choisir du matériel... - </option>
+									<c:forEach var="rawMaterial" items="${rmList}">
+										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
+									</c:forEach>
+								</select>
+							</div>
+							
+							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity1" > </div>
+							
+							<div class="col text-center">
+								<select id="modRawMaterialUOM1" class="text-align" name="rawMaterialUOM1">
+									<option value="0"> - Choisir l'unité... - </option>
+									<c:forEach var="unitOfMeasure" items="${uomList}">
+										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="row m-1">
+							<div class="col text-center">
+								<select id="modRawMaterialId2" class="text-align" name="rawMaterialId2">
+									<option value="0"> - Choisir du matériel... - </option>
+									<c:forEach var="rawMaterial" items="${rmList}">
+										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
+									</c:forEach>
+								</select>
+							</div>
+							
+							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity2" > </div>
+							
+							<div class="col text-center">
+								<select id="modRawMaterialUOM2" class="text-align" name="rawMaterialUOM2">
+									<option value="0"> - Choisir l'unité... - </option>
+									<c:forEach var="unitOfMeasure" items="${uomList}">
+										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="row m-1">
+							<div class="col text-center">
+								<select id="modRawMaterialId3" class="text-align" name="rawMaterialId3">
+									<option value="0"> - Choisir du matériel... - </option>
+									<c:forEach var="rawMaterial" items="${rmList}">
+										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
+									</c:forEach>
+								</select>
+							</div>
+							
+							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity3" > </div>
+							
+							<div class="col text-center">
+								<select id="modRawMaterialUOM3" class="text-align" name="rawMaterialUOM3">
+									<option value="0"> - Choisir l'unité... - </option>
+									<c:forEach var="unitOfMeasure" items="${uomList}">
+										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>												
+					</div>
+					
+					<div class=" d-flex justify-content-center"> <input  class="btn w-50" type="submit" value="MODIFIER TEMPLATE"> </div>
+					
+				</form >
+			</div>
+		</div>		
 		
 		
 	</div>

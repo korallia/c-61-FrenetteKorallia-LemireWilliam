@@ -318,6 +318,10 @@ function closeWindow () {
 	var matNode = document.getElementById('materialForm');
 	var salesNode = document.getElementById('salesForm');
 	var templateNode = document.getElementById('addTemplateForm');
+	var modTemplateNode = document.getElementById('modifyTemplateForm');
+	
+	
+	
 	
 	if (!!node) {
 		if (node.style.display == "block") {
@@ -353,7 +357,13 @@ function closeWindow () {
 		if(modMaterialNode.style.display == "block"){
 			modMaterialNode.style.display = "none"
 		}
-	}		
+	}	
+	
+	if (!!modTemplateNode){
+		if(modTemplateNode.style.display == "block"){
+			modTemplateNode.style.display = "none"
+		}
+	}	
 	
 	itis=false;
 }

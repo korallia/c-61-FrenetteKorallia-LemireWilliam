@@ -60,7 +60,7 @@
 						
 						<div class="menuElement justify-content-center mt-2" id="changeProfilePic">
 							<h5>Modifier la photo de profil</h5>
-							<input type="file" placeholder="Téléverser" name="profilPic"> 
+							<input type="file" value="Téléverser" name="profilPic"> 
 
 						</div>						
 						

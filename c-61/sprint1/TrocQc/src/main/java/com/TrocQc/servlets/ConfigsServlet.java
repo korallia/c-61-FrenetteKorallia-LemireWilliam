@@ -25,8 +25,16 @@ public class ConfigsServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+		User user = (User)request.getSession().getAttribute("user"); 
+		if(request.getParameter("Name") != null || request.getParameter("Description") != null) {
+			
+			String name = request.getParameter("Name");
+			String desc = request.getParameter("Desscription");
+			
+			
+			
+		}
 	}
 	
 	

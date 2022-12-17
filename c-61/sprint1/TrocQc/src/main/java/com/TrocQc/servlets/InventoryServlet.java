@@ -124,6 +124,31 @@ public class InventoryServlet extends HttpServlet {
 
 		  }
 		  else if (request.getParameter("templateName") != null) {
+			  int hiddenTemplateId = 0;
+			  int rawMaterialName1 = 0;
+			  double rawMaterialQuantity1 = 0.0;
+			  int rawMaterialUOM1 = 0;
+			  int rawMaterialName2 = 0;
+			  double rawMaterialQuantity2 = 0.0;
+			  int rawMaterialUOM2 = 0;
+			  int rawMaterialName3 = 0;
+			  double rawMaterialQuantity3 = 0.0;
+			  int rawMaterialUOM3 = 0;
+			  String newFieldName1 = null;
+			  String newFieldValue1 = null;
+			  String newFieldName2 = null;
+			  String newFieldValue2 = null;
+			  String newFieldName3 = null;
+			  String newFieldValue3 = null;
+			  
+			  
+		  try {
+			  hiddenTemplateId = Integer.parseInt(request.getParameter("hiddenTemplateId"));
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			  
 			  String templateName = request.getParameter("templateName");
 			  String templateSKU = request.getParameter("templateSKU");
 			  String templateDesc = request.getParameter("templateDesc");
@@ -132,60 +157,124 @@ public class InventoryServlet extends HttpServlet {
 			  
 			  double templateCost = Double.parseDouble( request.getParameter("templateCost") ); 
 			  double templatePrice = Double.parseDouble( request.getParameter("templatePrice") ); 
-			  double templateMSRP = Double.parseDouble( request.getParameter("templateMSRP") ); 
+			  //double templateMSRP = Double.parseDouble( request.getParameter("templateMSRP") ); 
 			  
 			  //String barcode = request.getParameter("barcode"); 
 			  
 			  //Custom fields
-			  String newFieldName1 = request.getParameter("newFieldName1"); 
-			  String newFieldValue1 = request.getParameter("newFieldValue1"); 
-			  
-			  String newFieldName2 = request.getParameter("newFieldName2"); 
-			  String newFieldValue2 = request.getParameter("newFieldValue2"); 
-			  
-			  String newFieldName3 = request.getParameter("newFieldName3"); 
-			  String newFieldValue3 = request.getParameter("newFieldValue3"); 
+
 			  
 			  
 			  //Raw materials
-			  int rawMaterialName1 = Integer.parseInt(request.getParameter("rawMaterialId1")) ; 
-			  double rawMaterialQuantity1 = Double.parseDouble( request.getParameter("rawMaterialQuantity1") ); 
-			  int rawMaterialUOM1 = Integer.parseInt( request.getParameter("rawMaterialUOM1") );
 			  
-			  
-			  int rawMaterialName2 = Integer.parseInt(request.getParameter("rawMaterialId2")) ; 
-			  double rawMaterialQuantity2 = Double.parseDouble( request.getParameter("rawMaterialQuantity2") ); 
-			  int rawMaterialUOM2 = Integer.parseInt( request.getParameter("rawMaterialUOM2") );
-			  
-			  int rawMaterialName3 = Integer.parseInt(request.getParameter("rawMaterialId3")) ; 
-			  double rawMaterialQuantity3 = Double.parseDouble( request.getParameter("rawMaterialQuantity3") ); 
-			  int rawMaterialUOM3 = Integer.parseInt( request.getParameter("rawMaterialUOM3") );
-			  
-			  
-			  //BUILDER
-			  ProductCustomFields pcf = new ProductCustomFields(newFieldName1, newFieldValue1);
-			  List<ProductCustomFields> pcfList = new ArrayList<ProductCustomFields>();
-			  pcfList.add(pcf);
-			  RawMaterial rm = invDao.getRawMaterial(rawMaterialName1);
-			  List<RawMaterial> rmList = new ArrayList<RawMaterial>();
-			  rmList.add(rm);
 				try {
-					user = (User)request.getSession().getAttribute("user");
+					  newFieldName1 = request.getParameter("newFieldName1"); 
+					  newFieldValue1 = request.getParameter("newFieldValue1"); 
+					  rawMaterialName1 = Integer.parseInt(request.getParameter("rawMaterialId1")) ; 
+					  rawMaterialQuantity1 = Double.parseDouble( request.getParameter("rawMaterialQuantity1") ); 
+					  rawMaterialUOM1 = Integer.parseInt( request.getParameter("rawMaterialUOM1") );
+					
 				} catch (Exception e) {
-					response.sendRedirect("/TrocQc/Login");
+					// TODO: handle exception
+				}
+				
+				
+				try {
+					   newFieldName2 = request.getParameter("newFieldName2"); 
+					   newFieldValue2 = request.getParameter("newFieldValue2"); 
+					   rawMaterialName2 = Integer.parseInt(request.getParameter("rawMaterialId2")) ; 
+					   rawMaterialQuantity2 = Double.parseDouble( request.getParameter("rawMaterialQuantity2") ); 
+					   rawMaterialUOM2 = Integer.parseInt( request.getParameter("rawMaterialUOM2") );
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
+				
+				try {
+					   newFieldName3 = request.getParameter("newFieldName3"); 
+					   newFieldValue3 = request.getParameter("newFieldValue3"); 
+					   rawMaterialName3 = Integer.parseInt(request.getParameter("rawMaterialId3")) ; 
+					   rawMaterialQuantity3 = Double.parseDouble( request.getParameter("rawMaterialQuantity3") ); 
+					   rawMaterialUOM3 = Integer.parseInt( request.getParameter("rawMaterialUOM3") );
+					  
+					
+				} catch (Exception e) {
+					// TODO: handle exception
 				}
 			  
+				
+				  ProductCustomFields pcf = new ProductCustomFields(newFieldName1, newFieldValue1);
+				  ProductCustomFields pcf2 = new ProductCustomFields(newFieldName2, newFieldValue2);
+				  ProductCustomFields pcf3 = new ProductCustomFields(newFieldName3, newFieldValue3);
+				  List<ProductCustomFields> pcfList = new ArrayList<ProductCustomFields>();
+				  pcfList.add(pcf);
+				  pcfList.add(pcf2);
+				  pcfList.add(pcf3);
+				
+				
+				if (hiddenTemplateId > 0) {
+					//UPDATE PROD
+					
+					Product modProd = invDao.getProduct(hiddenTemplateId);
+					
+					modProd.setName(templateName);
+					modProd.setDescription(templateDesc);
+					modProd.setSku(templateSKU);
+					modProd.setCost(templateCost);
+					modProd.setMsrp(templatePrice);
+					modProd.setLowQuantityLevel(templateLQL);			
+					modProd.setIdUnitOfMeasure(templateUOM);
+					modProd.setUserCustomFields(pcfList);
+					
+					
+					
+					
+					//RM: IF EMPTY STRINGS, DONT RECREATE RM
+					
+					invDao.SaveProduct(modProd);
+					response.sendRedirect("/TrocQc/Inventaire");
+					
+				}
+				else {
+					//CREATE PROD
+					  //BUILDER
+
+					  RawMaterial rm = invDao.getRawMaterial(rawMaterialName1);
+					  RawMaterial rm2 = invDao.getRawMaterial(rawMaterialName2);
+					  RawMaterial rm3 = invDao.getRawMaterial(rawMaterialName3);
+					  List<RawMaterial> rmList = new ArrayList<RawMaterial>();
+					  rmList.add(rm);
+					  rmList.add(rm2);
+					  rmList.add(rm3);
+					  
+					  
+						try {
+							user = (User)request.getSession().getAttribute("user");
+						} catch (Exception e) {
+							response.sendRedirect("/TrocQc/Login");
+						}
+					  
+						
+					  
+					  Product.ProductBuilder pb = new Product.ProductBuilder(templateName, templateCost, templatePrice ,templateSKU);
+					  pb.description(templateDesc);
+					  pb.idUnitOfMeasure(templateUOM);
+					  pb.lowQuantityLevel(templateLQL);
+					  pb.UserCustomFields(pcfList);
+					  pb.RawMaterials(rmList);
+					  pb.userID(user.getId());
+					  Product newProduct = pb.build();
+					  
+					  //GENERATE SKU WITH SKU GENERATOR
+					  //SET SKU
+					  
+					  invDao.AddProduct(newProduct);
+					  response.sendRedirect("/TrocQc/Inventaire");
+				}
 			  
-			  Product.ProductBuilder pb = new Product.ProductBuilder(templateName, templateCost, templateMSRP ,templateSKU);
-			  pb.description(templateDesc);
-			  pb.idUnitOfMeasure(templateUOM);
-			  pb.lowQuantityLevel(templateLQL);
-			  pb.UserCustomFields(pcfList);
-			  pb.RawMaterials(rmList);
-			  pb.userID(user.getId());
-			  Product newProduct = pb.build();
-			  invDao.AddProduct(newProduct);
-			  response.sendRedirect("/TrocQc/Inventaire");
+
+
 		  }
 		  else if (request.getParameter("productId") != null) {
 			int prodId = Integer.parseInt(request.getParameter("productId"));
