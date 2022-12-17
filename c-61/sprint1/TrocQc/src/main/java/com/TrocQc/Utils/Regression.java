@@ -23,6 +23,8 @@ public class Regression {
 
 	public void setPoints(LinkedList<Point> points) {
 		this.points = points;
+		calcA();
+		calcB();
 	}
 	
 	public double sumX() {
@@ -238,6 +240,7 @@ public class Regression {
 		return (getA() * x) + getB();
 	}
 	
+	
 	public LinkedList<Point> getLinearPredictions(){
 		LinkedList<Point> predictions = new LinkedList<Point>();
 		for( int i = 0; i < getN(); i++) {
@@ -287,7 +290,24 @@ public class Regression {
 				return getLinearPredictions();
 		}
 	}
+	
+	public double getNamedY(String name, double x) {
+		switch(name) {
+		case "log":
+			return getlogY(x);
+		case "exponential":
+			return getExponentialY(x);
+		case "linear":
+		default:
+			return getLinearY(x);
+		}
+		
+	}
  
+	public double getBestY(double x) {
+		String modelname = getBestRegressionModel();
+		return getNamedY(modelname, x);
+	}
 	
 	public double getR(LinkedList<Point> prediction) {
 		// https://www.socscistatistics.com/tests/pearson/default2.aspx
@@ -373,6 +393,10 @@ public class Regression {
 		else {
 			return "exponential";
 		}
+	}
+	public LinkedList getBestPrediction() {
+		String modelname = getBestRegressionModel();
+		return getNamedPredictions(modelname);
 	}
 	
 }

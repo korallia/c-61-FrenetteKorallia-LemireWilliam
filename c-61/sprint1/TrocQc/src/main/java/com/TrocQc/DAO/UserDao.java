@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.TrocQc.Entity.RawMaterial;
 import com.TrocQc.Entity.User;
 import com.TrocQc.config.SpringJdbcConfig;
 
@@ -33,18 +34,10 @@ public class UserDao extends SpringJdbcConfig {
 		try {
 		User user = (User) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(User.class));
 		
-<<<<<<< HEAD
 		//BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
 		
 		if(user != null) {
 				//encoder.matches(password, user.getPassword()) || password == user.getPassword() ) {
-=======
-
-		//BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
-		
-		if(user != null /*&& encoder.matches(password, user.getPassword()) || password == user.getPassword() */ ) {
-
->>>>>>> 53898ada7073797e20c98dd1f7167d71d3f58f5b
 			return user;
 		}
 		
@@ -56,6 +49,28 @@ public class UserDao extends SpringJdbcConfig {
 		}
 	
 		
+	public int AddUser(User user) {
+		
+		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
+		
+		
+		return jdbcTemplate().update(
+			
+				"INSERT INTO user (productCategory, firstName,lastName,password,username,adress,city,postalcode, email,siteWeb,Avatar ) VALUES (?, ?, ?, ?,?,?,?, ?,?,?,null)",
+			    user.getProductCategory(), 
+			    user.getFirstName(), 
+			    user.getLastName(), 
+			    encoder.encode(user.getPassword()),
+			    user.getUsername(),
+			    user.getAdress(),
+			    user.getCity(),
+			    user.getPostalCode(),
+			    user.getEmail(),
+			    user.getSiteWeb()
+			    
+			    );
+			    
+	}
 	
 	public int AddUser(User user, InputStream file) {
 	
@@ -79,9 +94,21 @@ public class UserDao extends SpringJdbcConfig {
 			    );
 			    
 	}
+	public int SaveUser(User user) {
+
+		if (user.getId() == 0) {
+			return this.AddUser(user);
+		} else {
+
+			String sql = "UPDATE user SET productCategory=?, firstName=?,lastName=?,password=?,username=?,adress=?,city=?,postalcode=?, email=?,siteWeb=? WHERE id=?";
+			jdbcTemplate().update(sql, user.getProductCategory(), user.getFirstName(), 	user.getLastName(), user.getPassword(), 
+					user.getAdress(), user.getCity(), user.getPostalCode(), user.getEmail(), user.getSiteWeb(), user.getId());
+			return user.getId();
+		}
+	}
+
 	
 	
-	
-	//TODO: add siteweb and image avatar
+
 	
 }
