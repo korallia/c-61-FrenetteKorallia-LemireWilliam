@@ -24,7 +24,7 @@ public class LinkedList<T> implements Iterable<T> {
 
 		@Override
 		public T next() {
-			if ( current != null && current.getNext() != null) {
+			if ( current != null) {
 				T element = current.getElement();
 				current = current.getNext();
 				return element;

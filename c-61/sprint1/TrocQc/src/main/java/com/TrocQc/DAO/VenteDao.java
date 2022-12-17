@@ -64,6 +64,7 @@ public class VenteDao extends SpringJdbcConfig{
 		
 		
 	}
+	
 	private void SaveProductLots(Product product) {
 		
 		for( int i = 0; i < product.getLots().size(); i++) {

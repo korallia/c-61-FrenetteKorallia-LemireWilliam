@@ -7,6 +7,9 @@ public class DatePoint {
 	Date date;
 	double value;
 	
+	public DatePoint() {
+	}
+
 	public DatePoint(Date date, double value) {
 		this.date = date;
 		this.value = value;
