@@ -80,7 +80,6 @@ public class InventoryDao extends SpringJdbcConfig {
 			List<RawMaterial> rawmaterials = namedParameterJdbcTemplate().query("select * from rawmaterial", params,
 					BeanPropertyRowMapper.newInstance(RawMaterial.class));
 
-
 			if ( rawmaterials != null && !rawmaterials.isEmpty()) {
 				for( int i=0; i< rawmaterials.size(); i++){
 					if ( rawmaterials.get(i).getIdUnitOfMeasure() > 0) {
@@ -138,8 +137,8 @@ public class InventoryDao extends SpringJdbcConfig {
 						rawmaterials.get(i)
 								.setUnitofmeasure(this.getUnitOfMeasure(rawmaterials.get(i).getIdUnitOfMeasure()));
 					}
-
 					rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
+
 				}
 			}
 			return rawmaterials;

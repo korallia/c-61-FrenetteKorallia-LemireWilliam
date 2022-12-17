@@ -38,6 +38,7 @@ public class VentesServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		VenteDao vd = new VenteDao();
+		InventoryDao invDao = new InventoryDao();
 		
 		try {
 			user = (User)request.getSession().getAttribute("user");
@@ -50,7 +51,9 @@ public class VentesServlet extends HttpServlet {
 		Product p = inventorydao.getProduct(prodId);
 		String custName = request.getParameter("customerName");
 		double quantity = Double.parseDouble(request.getParameter("soldProductQuantity"));
-		Vente vente = new Vente(p, quantity, new java.sql.Date(System.currentTimeMillis()), user.getId());
+		
+		Product prod = invDao.getProduct(prodId);
+		Vente vente = new Vente(prod, quantity, new java.sql.Date(System.currentTimeMillis()), user.getId());
 		
 		
 		vd.addVente(vente);
