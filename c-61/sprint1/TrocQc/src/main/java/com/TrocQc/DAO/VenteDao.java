@@ -33,11 +33,16 @@ public class VenteDao extends SpringJdbcConfig{
 				SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(mysqlDataSource()).withTableName("vente").usingGeneratedKeyColumns("id");
 				
 				Map<String, Object> parameters = new HashMap<>();
+				long millis=System.currentTimeMillis();  
+			    java.sql.Time time=new java.sql.Time(millis);  
 				
 				parameters.put("productid", vente.getProductid());
 				parameters.put("quantity", vente.getQuantity());
 				parameters.put("userId", vente.getUserID());
-				parameters.put("ventedate", vente.getVentedate());
+				parameters.put("ventedate", time);
+				parameters.put("cost", vente.getCout());
+				parameters.put("montant", vente.getMontant());
+				
 				Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
 				vente.setId(id.intValue());
 			}
@@ -51,7 +56,7 @@ public class VenteDao extends SpringJdbcConfig{
 	public Vente addVente(Product product, double Quantity, int userid ) {
 		
 		Date date = new java.sql.Date(System.currentTimeMillis());
-		Vente vente = new Vente(product.getId(), (double)Quantity, date  );
+		Vente vente = new Vente(product, (double)Quantity, date  );
 		vente.setUserID(userid);
 		
 		

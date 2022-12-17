@@ -190,10 +190,7 @@ CREATE TABLE `rawmaterial` (
 
 LOCK TABLES `rawmaterial` WRITE;
 /*!40000 ALTER TABLE `rawmaterial` DISABLE KEYS */;
-
-
 INSERT INTO `rawmaterial` VALUES (1,'Belle chaise',8.00,'2022-11-26 12:49:08',1,4,1),(2,'Double chaise',6.00,'2022-11-26 12:49:08',5,4,1),(3,'triple chaise',9.00,'2022-11-26 12:49:08',6,4,1),(4,'4 chaise',23.00,'2022-11-20 14:25:19',2,6,1),(7,'Belle chaise2',0.00,'2022-12-06 18:47:20',0,4,0);
-
 /*!40000 ALTER TABLE `rawmaterial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,6 +414,5 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 
+
 -- Dump completed on 2022-12-13 10:25:29
-
-
