@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.TrocQc.DAO.InventoryDao; 
 import com.TrocQc.Entity.RawMaterialCustomField;
+import com.TrocQc.Entity.SkuGenerator;
 import com.TrocQc.Entity.ProductCustomFields;
 import com.TrocQc.Entity.Lot;
 import com.TrocQc.Entity.Product;
@@ -140,6 +141,7 @@ public class InventoryServlet extends HttpServlet {
 			  String newFieldValue2 = null;
 			  String newFieldName3 = null;
 			  String newFieldValue3 = null;
+			  String newSku = null;
 			  
 			  
 		  try {
@@ -220,15 +222,22 @@ public class InventoryServlet extends HttpServlet {
 					
 					modProd.setName(templateName);
 					modProd.setDescription(templateDesc);
-					modProd.setSku(templateSKU);
+					
+					if (templateSKU.equals("")) {
+					  newSku = SkuGenerator.generateSKU(hiddenTemplateId, templateName, newFieldValue1, newFieldValue2, newFieldValue3);
+					  modProd.setSku(newSku);
+						
+					}
+					else {
+						modProd.setSku(templateSKU);
+						
+					}
 					modProd.setCost(templateCost);
 					modProd.setMsrp(templatePrice);
 					modProd.setLowQuantityLevel(templateLQL);			
 					modProd.setIdUnitOfMeasure(templateUOM);
 					modProd.setUserCustomFields(pcfList);
-					
-					
-					
+
 					
 					//RM: IF EMPTY STRINGS, DONT RECREATE RM
 					
@@ -256,8 +265,10 @@ public class InventoryServlet extends HttpServlet {
 						}
 					  
 						
+
 					  
-					  Product.ProductBuilder pb = new Product.ProductBuilder(templateName, templateCost, templatePrice ,templateSKU);
+					  
+					  Product.ProductBuilder pb = new Product.ProductBuilder(templateName, templateCost, templatePrice , templateSKU);
 					  pb.description(templateDesc);
 					  pb.idUnitOfMeasure(templateUOM);
 					  pb.lowQuantityLevel(templateLQL);
@@ -266,8 +277,10 @@ public class InventoryServlet extends HttpServlet {
 					  pb.userID(user.getId());
 					  Product newProduct = pb.build();
 					  
-					  //GENERATE SKU WITH SKU GENERATOR
-					  //SET SKU
+					  if (templateSKU.equals("")) {
+						  newSku = SkuGenerator.generateSKU(hiddenTemplateId, templateName, newFieldValue1, newFieldValue2, newFieldValue3);
+						  newProduct.setSku(newSku);
+					  }
 					  
 					  invDao.AddProduct(newProduct);
 					  response.sendRedirect("/TrocQc/Inventaire");
