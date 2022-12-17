@@ -7,9 +7,9 @@ import java.util.Map;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import com.TrocQc.config.SpringJdbcConfig;
 
-public class CongifDao extends SpringJdbcConfig {
+public class ConfigDao extends SpringJdbcConfig {
 
-	public CongifDao() {
+	public ConfigDao() {
 		// TODO Auto-generated constructor stub
 	}
 	

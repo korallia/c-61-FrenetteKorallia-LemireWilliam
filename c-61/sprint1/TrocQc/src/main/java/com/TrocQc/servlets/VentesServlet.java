@@ -47,11 +47,12 @@ public class VentesServlet extends HttpServlet {
 		}
 		
 		int prodId = Integer.parseInt(request.getParameter("productId"));
+		InventoryDao inventorydao = new InventoryDao();
+		Product p = inventorydao.getProduct(prodId);
 		String custName = request.getParameter("customerName");
 		double quantity = Double.parseDouble(request.getParameter("soldProductQuantity"));
 		
 		Product prod = invDao.getProduct(prodId);
-		
 		Vente vente = new Vente(prod, quantity, new java.sql.Date(System.currentTimeMillis()), user.getId());
 		
 		

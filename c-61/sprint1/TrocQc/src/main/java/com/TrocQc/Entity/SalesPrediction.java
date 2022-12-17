@@ -3,6 +3,8 @@ package com.TrocQc.Entity;
 import java.sql.Date;
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
 
 import com.TrocQc.Utils.DatePoint;
 import com.TrocQc.Utils.LinkedList;
@@ -61,24 +63,24 @@ public class SalesPrediction {
 	}
 	
 	public double getPredictionForDate(Date requested) {
-		LocalDate ldrequest = requested.toLocalDate();
-		return getPredictionForDate(ldrequest);
+		long x = TimeUnit.DAYS.convert(requested.getTime() - startdate.getTime(), TimeUnit.MILLISECONDS)+1; // plus since since we start at 1
+		return regression.getBestY(x);
 	}
 	public double getPredictionForDate(LocalDate requested) {
-		LocalDate ldrequest = requested;
-		LocalDate ldstart = startdate.toLocalDate();
-		long x = Duration.between(ldrequest, ldstart).toDays() +1; // plus since since we start at 1
+		
+		Date req = Date.valueOf(requested);
+		long x = TimeUnit.DAYS.convert(req.getTime() - startdate.getTime(), TimeUnit.MILLISECONDS)+1; // plus since since we start at 1
 		return regression.getBestY(x);
 	}
 	
 	public LinkedList<DatePoint> getDatedPredictions() {
 		LinkedList<DatePoint> list = new LinkedList<DatePoint>();
 		LocalDate firstday = startdate.toLocalDate();
-		long days = Duration.between(firstday , enddate.toLocalDate()).toDays() +1; // plus one since we count start and end
+		long days = TimeUnit.DAYS.convert(enddate.getTime() - startdate.getTime(), TimeUnit.MILLISECONDS)+1; // plus one since we count start and end
 		
 		for(int i = 0; i < days; i++) {
 			Date currentday = Date.valueOf(firstday.plusDays(i));
-			double y = getPredictionForDate(currentday);
+			double y = Math.max(0, getPredictionForDate(currentday)); // in case prediction is negative
 			DatePoint point = new DatePoint(currentday , y);
 			list.add(point);
 		}

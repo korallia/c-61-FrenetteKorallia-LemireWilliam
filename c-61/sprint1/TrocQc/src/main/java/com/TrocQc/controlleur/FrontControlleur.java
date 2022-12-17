@@ -1,6 +1,7 @@
 package com.TrocQc.controlleur;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,19 +15,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.TrocQc.DAO.CongifDao;
+import com.TrocQc.DAO.ConfigDao;
 import com.TrocQc.DAO.FinanceDao;
 import com.TrocQc.DAO.InventoryDao;
 import com.TrocQc.DAO.LobbyDao;
 import com.TrocQc.DAO.VenteDao;
+import com.TrocQc.Entity.ExcelInventoryReport;
+import com.TrocQc.Entity.FinanceReport;
 import com.TrocQc.Entity.Note;
 //import com.TrocQc.DAO.InventoryDao;
 import com.TrocQc.Entity.Product;
 import com.TrocQc.Entity.ProductCustomFields;
 import com.TrocQc.Entity.RawMaterial;
 import com.TrocQc.Entity.RawMaterialsPerProduct;
+import com.TrocQc.Entity.SalesPrediction;
 import com.TrocQc.Entity.UnitOfMeasure;
 import com.TrocQc.Entity.User;
+import com.TrocQc.Utils.DatePoint;
 import com.TrocQc.Utils.LinkedList;
 import com.TrocQc.Utils.Point;
 import com.TrocQc.Utils.Regression;
@@ -247,11 +252,33 @@ public class FrontControlleur{
 		
 		
 		
+		
+		
+		
 		model.addAttribute("test", 13);
 		*/
 		
-		CongifDao configdao = new CongifDao();
-		configdao.addSkuPattern(1, "test1");
+		/*Date start = Date.valueOf("2022-11-01");
+		
+		SalesPrediction sp = new SalesPrediction(start );
+		
+		FinanceDao financedao = new FinanceDao( );
+		sp.setActualsales( financedao.GetDailySalesOfPeriod(sp.getStartdate(), sp.getEnddate()));
+		LinkedList<DatePoint> predictions = sp.getDatedPredictions();
+		*/
+		
+		//ExcelInventoryReport report = new ExcelInventoryReport(1);
+		//report.generateReport("C:\\Users\\koral\\Downloads\\test.xls");
+		
+		FinanceReport report = new FinanceReport(1);
+		Date start = Date.valueOf("2022-11-26");
+		Date end = Date.valueOf("2023-11-26");
+		report.generateReport("C:\\Users\\koral\\Downloads\\test2.xls", start, end);
+		
+		
+		//CongifDao configdao = new CongifDao();
+		//configdao.addSkuPattern(1, "test1");
+		
 		//configdao.deleteSku(2);
 		//configdao.modifySkuPattern(3, "test2");
 		return "NewFile"; //return the view

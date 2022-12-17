@@ -1,4 +1,4 @@
-/*
+
 package com.TrocQc.Entity;
 
 import java.io.*;
@@ -36,7 +36,7 @@ public class ExcelInventoryReport  {
 		this.userId = userId;
 	}  
 	
-	public void generateReport(String[]args) {  
+	public void generateReport(String filename) {  
 		
 		try {  
 			
@@ -46,7 +46,6 @@ public class ExcelInventoryReport  {
 			List<UnitOfMeasure> uomList = invDao.getUnitsOfMesure();
 			
 			//REF: https://www.javatpoint.com/java-create-excel-file
-			String filename = "F:\\Demo Data\\Balance.xlsx";  
 
 			HSSFWorkbook workbook = new HSSFWorkbook();  
 
@@ -63,23 +62,29 @@ public class ExcelInventoryReport  {
 			rowhead.createCell(3).setCellValue("Date d'ajout");  
 			rowhead.createCell(4).setCellValue("Quantité");  
 			rowhead.createCell(5).setCellValue("Unité de mesure");  
+			rowhead.createCell(6).setCellValue("Valeur en inventaire");
 			
 			
-			for (int i = 1; i <= rmList.size(); i++) {
+			for (int i = 0; i < rmList.size(); i++) {
 				//VARIABLE NAMING
-				HSSFRow row = sheetMateriaux.createRow((short)i);
+				HSSFRow row = sheetMateriaux.createRow((short)i+1);
 				row.createCell(0).setCellValue(rmList.get(i).getId());  
 				row.createCell(1).setCellValue(rmList.get(i).getName());  
-				row.createCell(2).setCellValue(rmList.get(i).getCost());  
-				row.createCell(3).setCellValue(rmList.get(i).getAddedDate());  
+				row.createCell(2).setCellValue(rmList.get(i).getCost());
+				if ( rmList.get(i).getAddedDate() != null) {
+					row.createCell(3).setCellValue(rmList.get(i).getAddedDate().toString());
+				}
 				row.createCell(4).setCellValue(rmList.get(i).getQuantity());  
-				row.createCell(5).setCellValue( uomList.get(rmList.get(i).getIdUnitOfMeasure()).getName() ); 
+				row.createCell(5).setCellValue( uomList.get(rmList.get(i).getIdUnitOfMeasure()).getName() );
+				row.createCell(6).setCellValue(rmList.get(i).getQuantity() *rmList.get(i).getCost() );
 				
 			}
 			
 			
+			
+			
 			//TEMPLATES
-			HSSFSheet sheetTemplates = workbook.createSheet("Gabarits");
+			HSSFSheet sheetTemplates = workbook.createSheet("Produits");
 			
 			rowhead = sheetTemplates.createRow((short)0); 
 			
@@ -91,27 +96,68 @@ public class ExcelInventoryReport  {
 			rowhead.createCell(5).setCellValue("MSRP");  
 			rowhead.createCell(6).setCellValue("Date d'ajout");  
 			rowhead.createCell(7).setCellValue("Unité de mesure");  
-			rowhead.createCell(8).setCellValue("Quantité");  
-			rowhead.createCell(9).setCellValue("NBQ");  
-			rowhead.createCell(10).setCellValue("QR Code");  
+			rowhead.createCell(8).setCellValue("Alerte de basse qty");  
+			rowhead.createCell(9).setCellValue("Inventaire");
+			rowhead.createCell(10).setCellValue("Valeur en inventaire");
+			  
 			
 			
-			for (int i = 1; i <= rmList.size(); i++) {
+			for (int i = 0; i < prodList.size(); i++) {
 				//VARIABLE NAMING
-				HSSFRow row = sheetTemplates.createRow((short)i);
+				HSSFRow row = sheetTemplates.createRow((short)i+1);
 				row.createCell(0).setCellValue(prodList.get(i).getId());  
 				row.createCell(1).setCellValue(prodList.get(i).getName());  
 				row.createCell(2).setCellValue(prodList.get(i).getSku()); 
 				row.createCell(3).setCellValue(prodList.get(i).getCost());
 				row.createCell(4).setCellValue(prodList.get(i).getDescription());  
-				row.createCell(5).setCellValue(prodList.get(i).getMsrp()); 
-				row.createCell(6).setCellValue(prodList.get(i).getAddedDate());  
+				row.createCell(5).setCellValue(prodList.get(i).getMsrp());
+				if ( prodList.get(i).getAddedDate() != null) {
+					row.createCell(6).setCellValue(prodList.get(i).getAddedDate().toString());
+				}
 				row.createCell(7).setCellValue( uomList.get(prodList.get(i).getIdUnitOfMeasure()).getName() ); 
-				row.createCell(8).setCellValue(prodList.get(i).getQuantity()); 
-				row.createCell(9).setCellValue(prodList.get(i).getLowQuantityLevel()); 
-				row.createCell(10).setCellValue(prodList.get(i).getQRcode()); 
+				row.createCell(8).setCellValue(prodList.get(i).getLowQuantityLevel()); 
+				row.createCell(9).setCellValue(prodList.get(i).getAvailableQuantity());
+				row.createCell(10).setCellValue(prodList.get(i).getAvailableQuantity() * prodList.get(i).getMsrp() );
+			 
 				
 			}
+			
+			//LOTS
+			HSSFSheet sheetLots = workbook.createSheet("Lots");
+			
+			rowhead = sheetLots.createRow((short)0); 
+			
+			rowhead.createCell(0).setCellValue("ID");  
+			rowhead.createCell(1).setCellValue("Produit");  
+			rowhead.createCell(2).setCellValue("SKU");  
+			rowhead.createCell(3).setCellValue("QTY Inventaire");  
+			rowhead.createCell(4).setCellValue("QTY Originale");  
+			rowhead.createCell(5).setCellValue("Date d'ajout");  
+			rowhead.createCell(6).setCellValue("Valeur en inventaire");
+			  
+			
+			
+			int rownumber= 1;
+			for (int i = 0; i < prodList.size(); i++) {
+				//VARIABLE NAMING
+				
+				for (int j = 0; j < prodList.get(i).getLots().size(); j++) {
+				
+					Lot lot = prodList.get(i).getLots().get(j);
+					HSSFRow row = sheetLots.createRow((short)rownumber);
+					row.createCell(0).setCellValue(lot.getId());  
+					row.createCell(1).setCellValue(prodList.get(i).getName());  
+					row.createCell(2).setCellValue(prodList.get(i).getSku()); 
+					row.createCell(3).setCellValue(lot.getAvailablequantity());
+					row.createCell(4).setCellValue(lot.getOriginalquantity());
+					if ( lot.getAddeddate() != null) {
+						row.createCell(5).setCellValue(lot.getAddeddate().toString());
+					}
+					row.createCell(6).setCellValue(lot.getAvailablequantity() * prodList.get(i).getMsrp());  
+					rownumber++;
+				}
+			}
+			
 			
 			
 			FileOutputStream fileOut = new FileOutputStream(filename);  
@@ -131,4 +177,3 @@ public class ExcelInventoryReport  {
 
 }  
 
-*/
