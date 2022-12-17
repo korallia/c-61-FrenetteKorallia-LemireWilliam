@@ -19,6 +19,7 @@ import com.TrocQc.DAO.ConfigDao;
 import com.TrocQc.DAO.FinanceDao;
 import com.TrocQc.DAO.InventoryDao;
 import com.TrocQc.DAO.LobbyDao;
+import com.TrocQc.DAO.UserDao;
 import com.TrocQc.DAO.VenteDao;
 import com.TrocQc.Entity.ExcelInventoryReport;
 import com.TrocQc.Entity.FinanceReport;
@@ -32,9 +33,11 @@ import com.TrocQc.Entity.SalesPrediction;
 import com.TrocQc.Entity.UnitOfMeasure;
 import com.TrocQc.Entity.User;
 import com.TrocQc.Utils.DatePoint;
+import com.TrocQc.Utils.EmailSender;
 import com.TrocQc.Utils.LinkedList;
 import com.TrocQc.Utils.Point;
 import com.TrocQc.Utils.Regression;
+import com.TrocQc.Utils.EmailSender;
 
 
 
@@ -270,14 +273,21 @@ public class FrontControlleur{
 		//ExcelInventoryReport report = new ExcelInventoryReport(1);
 		//report.generateReport("C:\\Users\\koral\\Downloads\\test.xls");
 		
-		FinanceReport report = new FinanceReport(1);
+		/*FinanceReport report = new FinanceReport(1);
 		Date start = Date.valueOf("2022-11-26");
 		Date end = Date.valueOf("2023-11-26");
 		report.generateReport("C:\\Users\\koral\\Downloads\\test2.xls", start, end);
+		*/
 		
+	//	EmailSender es = new EmailSender("koralliafrenette@gmail.com");
+	//	es.sendemail("koralliafrenette01@gmail.com", "This is the first test", "This is the body of the first test");
 		
 		//CongifDao configdao = new CongifDao();
 		//configdao.addSkuPattern(1, "test1");
+		
+		
+		UserDao userdao = new UserDao();
+		userdao.ResetUserPassword("test@gmail.com");
 		
 		//configdao.deleteSku(2);
 		//configdao.modifySkuPattern(3, "test2");

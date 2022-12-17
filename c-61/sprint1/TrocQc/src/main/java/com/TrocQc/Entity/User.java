@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.swing.ImageIcon;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.mysql.cj.jdbc.Blob;
 
 @Entity
@@ -187,6 +189,11 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public void setAndEncodePassword(String password) {
+		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
+		this.password = encoder.encode(password);
+		
 	}
 
 	public void setUsername(String username) {

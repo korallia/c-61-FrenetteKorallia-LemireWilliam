@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import com.TrocQc.Entity.RawMaterial;
 import com.TrocQc.Entity.User;
+import com.TrocQc.Utils.EmailSender;
 import com.TrocQc.config.SpringJdbcConfig;
 
 
@@ -48,7 +50,43 @@ public class UserDao extends SpringJdbcConfig {
 		
 		}
 	
+	public boolean ResetUserPassword(String email) {
 		
+		String sql = "Select * From user where email =:email";
+		
+		Map<String, String> params = new HashMap<>();
+		params.put("email", email);
+		
+				
+		try {
+		User user = (User) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(User.class));
+		
+		//
+		if(user != null) {
+				//encoder.matches(password, user.getPassword()) || password == user.getPassword() ) {
+			 String newpassword = RandomStringUtils.random(12, true, true);
+			 
+			 user.setAndEncodePassword(newpassword);
+			 System.out.println("The new password is : " + newpassword);
+			 EmailSender em = new EmailSender("service@trocqc.test");
+			 //em.sendemail(user.getEmail(), "Nouveau mot de passe pour TroqQC", "Votre nouveau mot de passe est: " + newpassword);
+			 SaveUser(user);
+
+			 return true; 
+
+		}
+			
+			
+		}
+		catch(Exception e) {
+			return false;
+		}
+		
+		
+		return false;
+		
+	}
+	
 	public int AddUser(User user) {
 		
 		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
