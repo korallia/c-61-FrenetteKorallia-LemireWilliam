@@ -1,4 +1,4 @@
-/*
+
 package com.TrocQc.Entity;
 
 import java.io.*;
@@ -91,9 +91,8 @@ public class ExcelInventoryReport  {
 			rowhead.createCell(5).setCellValue("MSRP");  
 			rowhead.createCell(6).setCellValue("Date d'ajout");  
 			rowhead.createCell(7).setCellValue("Unité de mesure");  
-			rowhead.createCell(8).setCellValue("Quantité");  
-			rowhead.createCell(9).setCellValue("NBQ");  
-			rowhead.createCell(10).setCellValue("QR Code");  
+			rowhead.createCell(8).setCellValue("NBQ");  
+			rowhead.createCell(9).setCellValue("QR Code");  
 			
 			
 			for (int i = 1; i <= rmList.size(); i++) {
@@ -107,9 +106,8 @@ public class ExcelInventoryReport  {
 				row.createCell(5).setCellValue(prodList.get(i).getMsrp()); 
 				row.createCell(6).setCellValue(prodList.get(i).getAddedDate());  
 				row.createCell(7).setCellValue( uomList.get(prodList.get(i).getIdUnitOfMeasure()).getName() ); 
-				row.createCell(8).setCellValue(prodList.get(i).getQuantity()); 
-				row.createCell(9).setCellValue(prodList.get(i).getLowQuantityLevel()); 
-				row.createCell(10).setCellValue(prodList.get(i).getQRcode()); 
+				row.createCell(8).setCellValue(prodList.get(i).getLowQuantityLevel()); 
+				row.createCell(9).setCellValue(prodList.get(i).getQRcode()); 
 				
 			}
 			
@@ -131,4 +129,3 @@ public class ExcelInventoryReport  {
 
 }  
 
-*/
