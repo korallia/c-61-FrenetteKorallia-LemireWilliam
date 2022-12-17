@@ -485,45 +485,20 @@
 						<div class="row"> 
 							<div class="col m-1 text-center">Nouveau Champ</div>
 							<div class="col m-1 text-center">Valeur</div>
-							<div class="col m-1 text-center">Unité</div>
 						</div>
 						
 	
 						<div class="row m-1">
-							<div class="col  text-center"> <input type="text" placeholder="Entrer le nouveau champ..." name="newFieldName1" > </div>
-							<div class="col  text-center"> <input type="text" placeholder="Entrer la valeur..." name="newFieldValue1" > </div>
-							<div class="col  text-center">
-								<select class="text-align" name="newFieldUnit1">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
+							<div class="col text-center"> <input class="w-100" type="text" placeholder="Entrer le nouveau champ..." name="newFieldName1" > </div>
+							<div class="col text-center"> <input class="w-100" type="text" placeholder="Entrer la valeur..." name="newFieldValue1" > </div>
 						</div>
 						<div class="row m-1">
-							<div class="col  text-center"> <input type="text" placeholder="Entrer le nouveau champ..." name="newFieldName2" > </div>
-							<div class="col  text-center"> <input type="text" placeholder="Entrer la valeur..." name="newFieldValue2" > </div>
-							<div class="col  text-center">
-								<select class="text-align" name="newFieldUnit2">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
+							<div class="col text-center"> <input class="w-100" type="text" placeholder="Entrer le nouveau champ..." name="newFieldName2" > </div>
+							<div class="col text-center"> <input class="w-100" type="text" placeholder="Entrer la valeur..." name="newFieldValue2" > </div>
 						</div>
 						<div class="row m-1">
-							<div class="col  text-center"> <input type="text" placeholder="Entrer le nouveau champ..." name="newFieldName3" > </div>
-							<div class="col  text-center"> <input type="text" placeholder="Entrer la valeur..." name="newFieldValue3" > </div>
-							<div class="col  text-center">
-								<select class="text-align" name="newFieldUnit3">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
+							<div class="col text-center"> <input class="w-100" type="text" placeholder="Entrer le nouveau champ..." name="newFieldName3" > </div>
+							<div class="col text-center"> <input class="w-100" type="text" placeholder="Entrer la valeur..." name="newFieldValue3" > </div>
 						</div>
 					</div>
 					
