@@ -269,12 +269,14 @@ public class Product {
 
 
 	public List<ProductCustomFields> getUserCustomFields() {
+
 		return this.userCustomFields;
 	}
 
 
 
 	public void setUserCustomFields(List<ProductCustomFields> userCustomFields) {
+
 		this.userCustomFields = userCustomFields;
 	}
 
@@ -296,6 +298,19 @@ public class Product {
 
 	public void setLots(List<Lot> lots) {
 		this.lots = lots;
+	}
+	
+	public double getFullCost() {
+		double totalcost = getCost();
+		if ( this.rawmaterials != null) {
+			for( int i=0; i < this.rawmaterials.size(); i++) {
+				if ( this.rawmaterials.get(i).getRawmaterial() != null) {				
+					totalcost += this.rawmaterials.get(i).getQuantity() + this.rawmaterials.get(i).getRawmaterial().getCost();
+				}
+			}
+			
+		}
+		return totalcost;
 	}
 
 

@@ -34,17 +34,26 @@ public class Vente {
 	@Column(name="userID")
 	private int userID;
 	
+	@Column(name="cout")
+	private double cout;
 	
-	public Vente(int productid, double quantity, Date date) {
+	@Column(name="montant")
+	private double montant;
+	
+	
+	public Vente(Product product, double quantity, Date date) {
 		super();
-		this.productid = productid;
+		this.productid = product.getId();
+		this.cout = product.getFullCost() * quantity;
 		this.quantity = quantity;
 		this.ventedate = date;
 	}
 	
-	public Vente(int productid, double quantity, Date date, int userId) {
+	public Vente(Product product, double quantity, Date date, int userId) {
 		super();
-		this.productid = productid;
+		this.productid = product.getId();
+		this.cout = product.getFullCost() * quantity;
+		this.montant = product.getMsrp() * quantity;
 		this.quantity = quantity;
 		this.ventedate = date;
 		this.userID = userId;
@@ -104,6 +113,23 @@ public class Vente {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
+
+	public double getCout() {
+		return cout;
+	}
+
+	public void setCout(double cout) {
+		this.cout = cout;
+	}
+	
+	public double getMontant() {
+		return montant;
+	}
+
+	public void setMontant(double montant) {
+		this.montant = montant;
+	}
+
 	
 	
 	
