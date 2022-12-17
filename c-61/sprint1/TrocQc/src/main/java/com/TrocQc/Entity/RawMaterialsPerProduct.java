@@ -25,9 +25,15 @@ public class RawMaterialsPerProduct {
 	private RawMaterial rawmaterial;
 	
 
-	public RawMaterialsPerProduct() {
+	public RawMaterialsPerProduct(int rawMaterialId, int productId, double quantity) {
+		this.rawmaterialid = rawMaterialId;
+		this.productid = productId;
+		this.quantity = quantity;
 	}
 
+	public RawMaterialsPerProduct() {
+	}
+	
 	public int getProductid() {
 		return productid;
 	}

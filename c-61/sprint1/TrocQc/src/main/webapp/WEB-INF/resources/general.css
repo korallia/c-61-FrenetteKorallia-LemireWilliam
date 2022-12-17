@@ -43,7 +43,7 @@ body {
 }
 
 .loginContainer {
-	height: 250px;
+	height: 275px;
 	align-items: center;
 	border: solid black 2px;
 	transition: 350ms;
@@ -528,7 +528,12 @@ img:active {
 .link{
 	color: #9fc5f8;
 }
-
+.linkBlk{
+	color: #000000;
+}
+.linkBlk:hover{
+	color: #ffffff;
+}
 
 ::-webkit-scrollbar-track-piece  {
 background-color: #9fc5f8;

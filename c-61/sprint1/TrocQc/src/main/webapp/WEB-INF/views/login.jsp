@@ -23,7 +23,8 @@
 							
 							<input type="submit" value="AUTHENTIFIER" /> 
 							<br> <br>
-							<a class="link" onclick="redirectTo('Inscription')">CRÉER UN COMPTE</a>
+							<a class="linkBlk" onclick="redirectTo('Inscription')">CRÉER UN COMPTE</a> <br>
+							<a class="linkBlk" onclick="">MOT DE PASSE OUBLIÉ</a>
 						</form>
 					</div>
 			</div>

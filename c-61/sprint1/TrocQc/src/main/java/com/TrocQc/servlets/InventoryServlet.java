@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.TrocQc.DAO.InventoryDao; 
 import com.TrocQc.Entity.RawMaterialCustomField;
+import com.TrocQc.Entity.RawMaterialsPerProduct;
 import com.TrocQc.Entity.SkuGenerator;
 import com.TrocQc.Entity.ProductCustomFields;
 import com.TrocQc.Entity.Lot;
@@ -249,6 +250,9 @@ public class InventoryServlet extends HttpServlet {
 					//CREATE PROD
 					  //BUILDER
 
+					
+					  //RawMaterialsPerProduct rmpp = new RawMaterialsPerProduct(rawMaterialUOM3, templateLQL, rawMaterialQuantity3)
+					
 					  RawMaterial rm = invDao.getRawMaterial(rawMaterialName1);
 					  RawMaterial rm2 = invDao.getRawMaterial(rawMaterialName2);
 					  RawMaterial rm3 = invDao.getRawMaterial(rawMaterialName3);

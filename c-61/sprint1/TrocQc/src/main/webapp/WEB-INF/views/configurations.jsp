@@ -73,7 +73,7 @@
 							</div> 										
 							
 						 	<div class="row justify-content-center mx-1"  >
-								<select class="select text-align" name="productCategory" >
+								<select class="select text-align" name="productCategory" value="<%=user.getProductCategory()%>" >
 								 <option value="0" >- CATÉGORIE DE PRODUITS - </option>
 								<c:forEach items="${ProductCategorySet}" var="category">
 								  <option value="${category}">${category}</option>
