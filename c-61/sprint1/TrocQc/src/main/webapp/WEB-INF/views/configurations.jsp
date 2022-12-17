@@ -43,26 +43,62 @@
 			<h1>CONFIGURATIONS</h1>
 			
 				<div class="configContainer justify-content-center align-items-center text-center">
-					<form action="configsServlet" method="post">
+					<form action="configsServlet" method="post" enctype="multipart/form-data">
 					
 						<div class="menuElement justify-content-center mt-2 id="SKUdiv">
-							<h5>Nombre de lettres par colonne</h5>
-							<input type="number" placeholder="Nom" name="Name"> 
-							<br>
-							<input type="number" placeholder="Description" name="Description">
-							<br>
-							<c:forEach var="prod" items="${prodList}"> 		
-									<c:forEach var="custCol" items="${prod.userCustomFields}">
-										<input type="number" placeholder="${custCol.fieldtypeName}" name="${custCol.fieldtypeName}"> <br>
-									</c:forEach>
-							</c:forEach>
+							<h5>Modifier infos personnelles</h5>
+							<div class="row mx-1">
+								<div class = "col"> <input class="w-100" type="text" placeholder="Prénom" value="<%=user.getFirstName()%>" name="firstName"> </div>
+								<div class = "col"> <input class="w-100" type="text" placeholder="Nom de Famille" value="<%=user.getLastName()%>" name="lastName"> </div>
+							 </div> 
+							<div class="row mx-1">
+								<div class = "col"> <input class="w-100" type="text" placeholder="Courriel" value="<%=user.getEmail()%>" name="email"> </div>
+							</div> 		
+							
+							<div class="row mx-1">
+								<div class = "col"> <input class="w-100" type="text" placeholder="Nom de compte" value="<%=user.getUsername()%>" name="username"> </div>
+							</div> 							
+			
+							<div class="row mx-1">
+								<div class = "col"> <input class="w-100" type="text" placeholder="Adresse" value="<%=user.getAdress()%>" name="address"> </div>
+							</div> 	
+							
+							<div class="row mx-1">
+								<div class = "col"> <input class="w-100" type="text" placeholder="Ville" value="<%=user.getCity()%>" name="city"> </div>
+								<div class = "col"> <input class="w-100" type="text" placeholder="Code Postal" value="<%=user.getPostalCode()%>" name="postalCode"> </div>
+							 </div> 	
+							 
+							<div class="row mx-1">
+								<div class = "col"> <input class="w-100" type="text" placeholder="Site web" value="<%=user.getSiteWeb()%>" name="url"> </div>
+							</div> 										
+							
+						 	<div class="row justify-content-center mx-1"  >
+								<select class="select text-align" name="productCategory" >
+								 <option value="0" >- CATÉGORIE DE PRODUITS - </option>
+								<c:forEach items="${ProductCategorySet}" var="category">
+								  <option value="${category}">${category}</option>
+								</c:forEach>
+								</select>
+							</div>						
 						</div>
 						
 						<div class="menuElement justify-content-center mt-2" id="changeProfilePic">
 							<h5>Modifier la photo de profil</h5>
-							<input type="file" value="Téléverser" name="profilPic"> 
+							<input type="file" placeholder="Téléverser" name="file" accept="image/png, image/jpeg"> 
 
 						</div>						
+						
+						<div class="menuElement justify-content-center mt-2" id="modifyPassword">
+							<h5>Modifier le mot de passe</h5>
+							<div class="row mx-1">
+								<div class = "col"> <input class="w-100" type="text" placeholder="Nouveau mot de passe" name="newPassword"> </div>
+							</div> 	
+							
+							<div class="row mx-1">
+								<div class = "col"> <input class="w-100" type="text" placeholder="Répétez le mot de passe" name="repeatPassword"> </div>
+							</div> 								
+						</div>						
+						
 						
 						<div class="  ">
 							<input class="btn w-100 btmBtn text-center" type="submit" value="SAUVEGARDER">

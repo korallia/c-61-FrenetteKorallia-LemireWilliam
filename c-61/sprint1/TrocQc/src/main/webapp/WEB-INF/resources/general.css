@@ -530,12 +530,16 @@ img:active {
 }
 
 
-div.scroll {
-	
+::-webkit-scrollbar-track-piece  {
+background-color: #9fc5f8;
 }
 
 #changeProfilePic:hover{
 	height: 75px;
+}
+
+#modifyPassword:hover{
+	height: 125px;
 }
 
 #moduleConfigs{

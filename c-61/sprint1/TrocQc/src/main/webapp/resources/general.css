@@ -538,6 +538,10 @@ background-color: #9fc5f8;
 	height: 75px;
 }
 
+#modifyPassword:hover{
+	height: 125px;
+}
+
 #moduleConfigs{
 	display: none;
 }

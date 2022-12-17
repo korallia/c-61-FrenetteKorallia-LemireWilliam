@@ -135,6 +135,8 @@ public class FrontControlleur{
 		theModel.addAttribute("prodList", prodList);
 		}		
 		
+		 theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
+		
 		return "configurations";
 	}
 	
