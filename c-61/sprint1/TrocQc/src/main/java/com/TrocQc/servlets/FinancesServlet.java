@@ -52,6 +52,7 @@ public class FinancesServlet extends HttpServlet {
 			// ONLY FOR THE DAY
 			SalesPrediction salesPrediction = new SalesPrediction(endDate);
 			double daySalePrediction = salesPrediction.getPredictionForDate(endDate);
+			
 			request.getSession().setAttribute("daySalePrediction", daySalePrediction);
 		}
 		else {

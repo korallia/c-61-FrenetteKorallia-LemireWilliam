@@ -5,31 +5,26 @@
 window.onload = function(){ 
 	document.getElementById('endDate').valueAsDate = new Date();
 	
+<<<<<<< HEAD
 	/*
+=======
+>>>>>>> 01ebb64efd445bce6521516343167de110e5d716
 	var nodes = document.getElementsByClassName("totalExpense");
   	for (i = 0; i < nodes.length; i++) {
 		var text = (nodes[i].innerHTML);
     	var value = parseFloat( text.substring(0, text.length -1));
     	if (value < 0.0) {
 			nodes[i].style.color = "#de5353";
-			nodes[i].addEventListener("mouseenter", event => {
-  				nodes[i].style.color = "#de5353"; //Hover is red
-  				
+			nodes[i].addEventListener("hover", event => {
+  				nodes[i].style.backgroundColor = "#de5353"; 
 			});
 		}
 		else if(value > 0.0) {
 			nodes[i].style.color = "#2fd10e";
 		}	
-    	
     }
-    
-    
-   	function closeChart() {
-		var node = document.getElementById('chart');
-		node.parentNode.removeChild(node);
-		console.log("Look Ma', no hands.")
-	}
 
+<<<<<<< HEAD
 	function openChart () {
 		
 		var div = document.createElement('div');
@@ -58,6 +53,8 @@ window.onload = function(){
 
 	}
 	*/	
+=======
+>>>>>>> 01ebb64efd445bce6521516343167de110e5d716
  }
  
  

@@ -43,6 +43,12 @@ window.onload = function(){
 	if(!!document.getElementById("modMaterialBtn")) {
 		document.getElementById("modMaterialBtn").addEventListener('click', openModMaterialForm);
 	}
+	if(!!document.getElementById("deleteTemplateBtn")) {
+		document.getElementById("deleteTemplateBtn").addEventListener('click', function() {
+			deleteTemplateId = document.getElementById("deleteTemplateId");
+			deleteTemplateId.value = true;
+		});
+	}
 	
 	var table = document.getElementById("matTable");
 	if (table) {
