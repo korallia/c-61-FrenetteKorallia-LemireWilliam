@@ -9,6 +9,12 @@
 	}
 %>
 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script>
+    <script type="text/javascript" src="/TrocQc/resources/scripts.js"></script>
+   	<script type="text/javascript" defer src="/TrocQc/resources/graph.js"></script>
+   	<script type="text/javascript" defer src="/TrocQc/resources/finances.js"></script>
+
 </head>
 
 <body>
@@ -93,8 +99,15 @@
 					<h4 id="regressionModel"><%= session.getAttribute("regModel") %></h4>
 				</div>
 				
-				
 				<canvas class="my-4" id="myChart" width="700" height="200" ></canvas>
+				
+				
+				<c:forEach var="xVal" items="${xVals}">
+					<c:forEach var="yVal" items="${yVals}">
+						<script type="text/javascript" src="/TrocQc/resources/graph.js">addGraphValues(${xVal}, ${yVal})</script>
+					</c:forEach >
+				</c:forEach>
+				
 			
 			</div>
 		</form>
@@ -102,10 +115,6 @@
 	
 
     
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script>
-    <script type="text/javascript" src="/TrocQc/resources/scripts.js"></script>
-   	<script type="text/javascript" defer src="/TrocQc/resources/graph.js"></script>
-   	<script type="text/javascript" defer src="/TrocQc/resources/finances.js"></script>
+
 </body>
 </html>

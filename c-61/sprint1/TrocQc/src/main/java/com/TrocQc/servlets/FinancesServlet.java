@@ -1,6 +1,7 @@
 package com.TrocQc.servlets;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import com.TrocQc.Entity.SalesPrediction;
 import com.TrocQc.Entity.User;
 import com.TrocQc.Utils.DatePoint;
 import com.TrocQc.Utils.LinkedList;
+import com.TrocQc.Utils.Point;
 
 
 
@@ -39,11 +41,11 @@ public class FinancesServlet extends HttpServlet {
 		
 		FinanceDao finDao = new FinanceDao();
 		
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
+		String startDateStr = request.getParameter("startDate");
+		String endDateStr = request.getParameter("endDate");
 		
-		Date startoDato = java.sql.Date.valueOf(startDate);
-		Date endoDato = java.sql.Date.valueOf(endDate);
+		Date startDate = java.sql.Date.valueOf(startDateStr);
+		Date endDate = java.sql.Date.valueOf(endDateStr);
 		
 		String regModel = "---";
 		request.getSession().setAttribute("regModel", regModel);
@@ -69,15 +71,35 @@ public class FinancesServlet extends HttpServlet {
 		
 		if (startDate == null) {
 			// ONLY FOR THE DAY
+			SalesPrediction salesPrediction = new SalesPrediction(endDate);
+			
+			request.getSession().setAttribute("regModel", regModel);
 		}
 		else {
 			// RANGE OF DATES
-			SalesPrediction salesPrediction = new SalesPrediction(startoDato, endoDato);
+			SalesPrediction salesPrediction = new SalesPrediction(startDate, endDate);
 			LinkedList <DatePoint> dpList = salesPrediction.getDatedPredictions();
+			LinkedList <DatePoint> pointList = finDao.GetDailySalesOfPeriodByDay(startDate, endDate);
+			String [] xVals = new String[dpList.size()];
+			String [] yVals = new String[dpList.size()];
 			
-			
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			regModel = salesPrediction.getRegression().getBestRegressionModel();
 			
+			
+			for (int i = 0; i < dpList.size(); i++) {
+				DatePoint dp = dpList.get(i);
+				Date date = dp.getDate();
+				xVals[i] = df.format(date);
+				yVals[i] = dp.getValue().toString();
+			}
+			
+			
+			
+			
+			
+			request.getSession().setAttribute("xVals", xVals);
+			request.getSession().setAttribute("yVals", yVals);
 			request.getSession().setAttribute("regModel", regModel);
 			
 			response.sendRedirect("/TrocQc/Finances");

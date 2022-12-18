@@ -116,6 +116,8 @@ public class FrontControlleur{
 	@GetMapping("/Finances")
 	public String GetFinances(Model theModel, HttpSession session) {
 		
+		//session.setAttribute("regModel", "---");
+		
 		return "finances";
 	}
 	
