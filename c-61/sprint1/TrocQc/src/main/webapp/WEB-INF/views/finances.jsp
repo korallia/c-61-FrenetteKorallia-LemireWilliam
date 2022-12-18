@@ -20,13 +20,9 @@
 <body>
 	<div class="container-fluid justify-content-center text-center text-align " id="financeContainer">
 		<form action="financesServlet" method="post">
-
-	
 			<div class="row mb-3">
 	
-				<div class="col">
-				
-				</div>
+				<div class="col"></div>
 				
 				<div class="col">
 					<div class="row justify-content-center" >
@@ -43,10 +39,7 @@
 						<div class="col-sm-3 mt-4 pe-5"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
 					</div>
 				</div>
-				</div>
 			</div>
-			
-			
 			
 			<div class="row justify-content-center">
 				<div class="financeContainer">
@@ -87,7 +80,7 @@
 					<div class="row justify-content-center">
 						<div class="col mt-3 text-center "><button class="btn" type="submit">METTRE À JOUR</button></div>
 						<div class="col mt-3 text-center">
-							<button class="btn" id="openGraphBtn" onclick="showGraph(['Bing bong', 'Zooptop'], [4, 15])">TENDANCE</button>
+							<button class="btn" id="openGraphBtn">TENDANCE</button>
 						</div>
 					</div>
 					
@@ -107,14 +100,10 @@
 						<script type="text/javascript" src="/TrocQc/resources/graph.js">addGraphValues(${xVal}, ${yVal})</script>
 					</c:forEach >
 				</c:forEach>
-				
-			
+
 			</div>
 		</form>
 	</div>
-	
-
-    
 
 </body>
 </html>

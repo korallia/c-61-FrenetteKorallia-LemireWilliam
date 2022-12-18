@@ -32,6 +32,8 @@
 				</div>
 			</div>
 		</div>
+		</div>
+		
 
 			
 		<div class="row align-items-center">

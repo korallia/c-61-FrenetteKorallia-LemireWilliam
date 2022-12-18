@@ -28,7 +28,6 @@ import java.util.List;
 
 @WebServlet("/inventoryServlet")
 public class InventoryServlet extends HttpServlet {
-
 	
 	User user;
 
@@ -40,7 +39,6 @@ public class InventoryServlet extends HttpServlet {
 		        HttpServletResponse response) throws ServletException, IOException {
 		  
 		  InventoryDao invDao = new InventoryDao();
-		  
 		  
 		  if (request.getParameter("materialName") != null) {
 			  int hiddenProdId = 0;
@@ -55,7 +53,7 @@ public class InventoryServlet extends HttpServlet {
 				  hiddenProdId = Integer.parseInt(request.getParameter("hiddenProdId"));
 				
 			} catch (Exception e) {
-				// TODO: handle exception
+
 			}
 
 			  String materialName = request.getParameter("materialName");
@@ -64,35 +62,21 @@ public class InventoryServlet extends HttpServlet {
 			  //double materialLQN = Double.parseDouble(request.getParameter("materialLQN"));
 			  double materialCost = Double.parseDouble(request.getParameter("materialCost"));
 			  
-			  //Customfields
+			
+			  
+			  
 			try {
 				  materialCustomFieldName1 = request.getParameter("materialNewFieldName1");
 				  materialCustomFieldValue1 = request.getParameter("materialNewFieldValue1");
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			  
-			  
-
-			try {
 				  materialCustomFieldName2 = request.getParameter("materialNewFieldName2");
 				  materialCustomFieldValue2 = request.getParameter("materialNewFieldValue2");
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			  
-			
-			  
-			try {
 				  materialCustomFieldName3 = request.getParameter("materialNewFieldName3");
 				  materialCustomFieldValue3 = request.getParameter("materialNewFieldValue3");
 				
 			} catch (Exception e) {
-				// TODO: handle exception
 			}
 			  
+
 
 			  
 			  UnitOfMeasure uom = invDao.getUnitOfMeasure(materialUOM);

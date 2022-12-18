@@ -1,9 +1,4 @@
-/**
- * 
- */
 
-
-window.onload = function () {
 	var ctx = document.getElementById("myChart");
 	console.log(ctx);
 	var data = [];
@@ -43,7 +38,7 @@ window.onload = function () {
 	      }
 	    }
 	  });
-	}
+	
 
 
 

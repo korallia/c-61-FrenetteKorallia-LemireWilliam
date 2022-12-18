@@ -18,11 +18,10 @@ import com.TrocQc.Entity.User;
 
 @WebServlet("/lobbyServlet")
 public class LobbyServlet extends HttpServlet {
-	
-	
+		
 	  public LobbyServlet() {
 	        super();
-	        // TODO Auto-generated constructor stub
+	
 	    }
 	  
 	  protected void doPost(HttpServletRequest request,

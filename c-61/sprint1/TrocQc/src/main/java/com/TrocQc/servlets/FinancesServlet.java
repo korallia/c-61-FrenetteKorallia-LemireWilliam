@@ -32,13 +32,11 @@ public class FinancesServlet extends HttpServlet {
 	
     public FinancesServlet() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
-
-
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
+	
 		FinanceDao finDao = new FinanceDao();
 		
 		String startDateStr = request.getParameter("startDate");
@@ -50,30 +48,11 @@ public class FinancesServlet extends HttpServlet {
 		String regModel = "---";
 		request.getSession().setAttribute("regModel", regModel);
 		
-		/*
-		Date parsedStartDate = null;
-		Date parsedEndDate = null;
-		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			parsedStartDate = (Date) format.parse(startDate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			parsedEndDate = (Date) format.parse(endDate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		
 		if (startDate == null) {
 			// ONLY FOR THE DAY
 			SalesPrediction salesPrediction = new SalesPrediction(endDate);
-			
-			request.getSession().setAttribute("regModel", regModel);
+			double daySalePrediction = salesPrediction.getPredictionForDate(endDate);
+			request.getSession().setAttribute("daySalePrediction", daySalePrediction);
 		}
 		else {
 			// RANGE OF DATES
@@ -94,10 +73,6 @@ public class FinancesServlet extends HttpServlet {
 				yVals[i] = dp.getValue().toString();
 			}
 			
-			
-			
-			
-			
 			request.getSession().setAttribute("xVals", xVals);
 			request.getSession().setAttribute("yVals", yVals);
 			request.getSession().setAttribute("regModel", regModel);
@@ -105,8 +80,6 @@ public class FinancesServlet extends HttpServlet {
 			response.sendRedirect("/TrocQc/Finances");
 			
 		}
-		
-		
 	}
 
 }

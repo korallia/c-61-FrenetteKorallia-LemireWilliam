@@ -47,40 +47,35 @@ public class FrontControlleur{
 	
 	@GetMapping("/Login")
 	public String GetAuthentification(Model theModel, HttpSession  session) {
+	    if (session!=null){
+	        session.invalidate();
+	    }
 		
-
-			    if (session!=null){
-			        session.invalidate();
-			    }
-		
-		return "login"; //return the view
+		return "login"; 
 	}
 	
 	@GetMapping("/Inscription")
 	public String GetInscription(Model theModel) {
 		 theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
-		return "creercompte"; //return the view
+		return "creercompte"; 
 	}
 	@GetMapping("/Lobby")
 	public String GetLobby(Model theModel,HttpSession session) {
-		 //theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
-		//Get all notes from DAO
 		ld = new LobbyDao();
 		User user = (User) session.getAttribute("user");
 		if(user == null) {
 			//https://stackoverflow.com/questions/21763321/change-url-in-spring-mvc
 			return  "redirect:/Login";
-			
-			
+
 		}
 		List<Note> noteList = ld.getLobbyNotesByUserId(user.getId());
 		theModel.addAttribute("noteList", noteList);
-		return "lobby"; //return the view
+		return "lobby"; 
 	}
 	
 	@GetMapping("/Inventaire")
 	public String GetInventaire(Model theModel,HttpSession session) {
-  	//List<Product> products = inventorydao.getProducts();
+
 		inventorydao = new InventoryDao();
 		User user = (User) session.getAttribute("user");
 		if(user == null) {
@@ -95,7 +90,7 @@ public class FrontControlleur{
 		theModel.addAttribute("rmList", rmList);
 		theModel.addAttribute("uomList", uomList);
 		theModel.addAttribute("prodList", prodList);
-		return "inventaire"; //return the view
+		return "inventaire"; 
 	}
 	
 	@GetMapping("/Ventes")
@@ -107,10 +102,9 @@ public class FrontControlleur{
 			return  "redirect:/Login";
 		}
 		
-		
 		List<Product> prodList = inventorydao.getProductsOfUserId(user.getId());
 		theModel.addAttribute("prodList", prodList);
-		return "ventes"; //return the view
+		return "ventes"; 
 	}
 	
 	@GetMapping("/Finances")
@@ -128,21 +122,8 @@ public class FrontControlleur{
 		if(user == null) {
 			return  "redirect:/Login";
 		}
-		 InventoryDao     inventorydao = new InventoryDao();
-		List<Product> prodList = inventorydao.getProductsOfUserId(user.getId());
-		List<ProductCustomFields> productCustomFieldsList = new ArrayList<>();
-		for (int i =0; i<prodList.size();i++) {
-			Product product = prodList.get(i);
-			if (product.getUserCustomFields().size()!=0) {
-				for (int j =0; j<prodList.size();j++) {
-				//productCustomFieldsList.add(product.getUserCustomFields())
-			}
-				
-		}
-		theModel.addAttribute("prodList", prodList);
-		}		
-		
-		 theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
+
+		theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
 		
 		return "configurations";
 	}

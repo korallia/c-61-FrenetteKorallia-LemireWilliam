@@ -28,21 +28,11 @@ import com.TrocQc.Entity.User;
 	)
 public class InscriptionUsagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public InscriptionUsagerServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		 javax.servlet.http.Part filePart = request.getPart("file");
@@ -51,15 +41,13 @@ public class InscriptionUsagerServlet extends HttpServlet {
 		    //source for upload code: https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Java-File-Upload-Servlet-Ajax-Example
 		
 		  String postalcode = request.getParameter("postalcode");
-		
 		  
 		  if (postalcode.length() >0) {
 			  if( !postalcode.matches("^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$")) {
 				  
 				  request.getSession().setAttribute("error", "Champ Code postal mal remplie");
 				  response.sendRedirect("/TrocQc/Inscription");}
-		  }
-			  
+		  } 
 		 
 		 if ( request.getParameter("firstname").length() > 0 && request.getParameter("lastname").length() > 0 && request.getParameter("email").length() > 0 && 
 			request.getParameter("password").length() > 0 && request.getParameter("accountname").length() > 0 ) {		 
@@ -75,11 +63,6 @@ public class InscriptionUsagerServlet extends HttpServlet {
 			 request.getSession().setAttribute("error", "Champ(s) obligatoire(s) non rempli(s)");
 			 response.sendRedirect("/TrocQc/Inscription");
 		 }
-    	
-    	
-    	
-		
-	
 		    
 	}
 		    
