@@ -16,24 +16,24 @@ import com.TrocQc.config.SpringJdbcConfig;
 
 public class FinanceDao extends SpringJdbcConfig {
 
-	private int UserId;
+	private int userId;
 
-	public FinanceDao(int UserId) {
-		this.UserId = UserId;
+	public FinanceDao(int userId) {
+		this.userId = userId;
 	}
 
 	public int getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public void setUserId(int userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 
 	public List<Vente> GetAllVentes() {
 
 		MapSqlParameterSource params = new MapSqlParameterSource();
-		params.addValue("userid", this.UserId);
+		params.addValue("userid", this.userId);
 
 		List<Vente> ventes = namedParameterJdbcTemplate().query("select * from vente WHERE userid=:userid ORDER BY id",
 				params, BeanPropertyRowMapper.newInstance(Vente.class));
@@ -45,7 +45,7 @@ public class FinanceDao extends SpringJdbcConfig {
 		try {
 
 			MapSqlParameterSource params = new MapSqlParameterSource();
-			params.addValue("userid", this.UserId);
+			params.addValue("userid", this.userId);
 
 			// +1 since we want to count the first day as day #1
 			List<Point> points = namedParameterJdbcTemplate().query(
@@ -69,7 +69,7 @@ public class FinanceDao extends SpringJdbcConfig {
 			MapSqlParameterSource params = new MapSqlParameterSource();
 			params.addValue("start", start.toString());
 			params.addValue("end", end.toString());
-			params.addValue("userid", this.UserId);
+			params.addValue("userid", this.userId);
 
 			// +1 since we want to count the first day as day #1
 			List<Point> points = namedParameterJdbcTemplate().query(
@@ -93,9 +93,8 @@ public class FinanceDao extends SpringJdbcConfig {
 			MapSqlParameterSource params = new MapSqlParameterSource();
 			params.addValue("start", start.toString());
 			params.addValue("end", end.toString());
-			params.addValue("userid", this.UserId);
+			params.addValue("userid", this.userId);
 
-			// +1 since we want to count the first day as day #1
 			List<DatePoint> points = namedParameterJdbcTemplate().query(
 					"select ventedate date, sum(montant) value  from vente WHERE userid=:userid AND ventedate>=:start AND ventedate<=:end  group by DATE(ventedate)  ORDER BY ventedate",
 					params, BeanPropertyRowMapper.newInstance(DatePoint.class));

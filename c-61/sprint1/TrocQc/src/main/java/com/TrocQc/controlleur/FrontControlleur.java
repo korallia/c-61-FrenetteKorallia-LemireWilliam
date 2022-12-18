@@ -273,11 +273,11 @@ public class FrontControlleur{
 		//ExcelInventoryReport report = new ExcelInventoryReport(1);
 		//report.generateReport("C:\\Users\\koral\\Downloads\\test.xls");
 		
-		/*FinanceReport report = new FinanceReport(1);
+		FinanceReport report = new FinanceReport(1);
 		Date start = Date.valueOf("2022-11-26");
 		Date end = Date.valueOf("2023-11-26");
 		report.generateReport("C:\\Users\\koral\\Downloads\\test2.xls", start, end);
-		*/
+		
 		
 	//	EmailSender es = new EmailSender("koralliafrenette@gmail.com");
 	//	es.sendemail("koralliafrenette01@gmail.com", "This is the first test", "This is the body of the first test");
@@ -286,8 +286,8 @@ public class FrontControlleur{
 		//configdao.addSkuPattern(1, "test1");
 		
 		
-		UserDao userdao = new UserDao();
-		userdao.ResetUserPassword("test@gmail.com");
+		//UserDao userdao = new UserDao();
+		//userdao.ResetUserPassword("test@gmail.com");
 		
 		//configdao.deleteSku(2);
 		//configdao.modifySkuPattern(3, "test2");
