@@ -214,6 +214,7 @@ public class InventoryServlet extends HttpServlet {
 					if (delProd.equals("true")) {
 						invDao.deleteProduct(modProd);
 						response.sendRedirect("/TrocQc/Inventaire");
+						return;
 					}
 										
 					modProd.setName(templateName);
@@ -247,15 +248,31 @@ public class InventoryServlet extends HttpServlet {
 
 					
 					  //RawMaterialsPerProduct rmpp = new RawMaterialsPerProduct(rawMaterialUOM3, templateLQL, rawMaterialQuantity3)
+					 List<RawMaterialsPerProduct> rmList = new ArrayList<RawMaterialsPerProduct>();
+					 
+					if ( rawMaterialQuantity1 > 0 && rawMaterialName1 > 0 ) {
+					 RawMaterialsPerProduct rmp = new RawMaterialsPerProduct();
+					 rmp.setQuantity(rawMaterialQuantity1);
+					 rmp.setRawmaterialid(rawMaterialName1);
+					 rmList.add(rmp);
+					}
 					
-					  RawMaterial rm = invDao.getRawMaterial(rawMaterialName1);
-					  RawMaterial rm2 = invDao.getRawMaterial(rawMaterialName2);
-					  RawMaterial rm3 = invDao.getRawMaterial(rawMaterialName3);
-					  List<RawMaterial> rmList = new ArrayList<RawMaterial>();
-					  rmList.add(rm);
-					  rmList.add(rm2);
-					  rmList.add(rm3);
-					  
+					if ( rawMaterialQuantity2 > 0 && rawMaterialName2 > 0 ) {
+					 RawMaterialsPerProduct rmp = new RawMaterialsPerProduct();
+					 rmp.setQuantity(rawMaterialQuantity2);
+					 rmp.setRawmaterialid(rawMaterialName2);
+					 rmList.add(rmp);
+					}
+					
+					
+					if ( rawMaterialQuantity3 > 0 && rawMaterialName3 > 0 ) {
+					 RawMaterialsPerProduct rmp = new RawMaterialsPerProduct();
+					 rmp.setQuantity(rawMaterialQuantity3);
+					 rmp.setRawmaterialid(rawMaterialName3);
+					 rmList.add(rmp);
+					}
+					
+					
 					  
 						try {
 							user = (User)request.getSession().getAttribute("user");
@@ -269,9 +286,9 @@ public class InventoryServlet extends HttpServlet {
 					  pb.idUnitOfMeasure(templateUOM);
 					  pb.lowQuantityLevel(templateLQL);
 					  pb.UserCustomFields(pcfList);
-					  pb.RawMaterials(rmList);
 					  pb.userID(user.getId());
 					  Product newProduct = pb.build();
+					  newProduct.setRawmaterials(rmList);
 					  
 					  if (templateSKU.equals("")) {
 						  newSku = SkuGenerator.generateSKU(hiddenTemplateId, templateName, newFieldValue1, newFieldValue2, newFieldValue3);
