@@ -39,6 +39,9 @@ public class InventoryServlet extends HttpServlet {
 		  
 		  try {
 				user = (User)request.getSession().getAttribute("user");
+				if ( user == null) {
+					response.sendRedirect("/TrocQc/Login");
+				}
 			} catch (Exception e) {
 				response.sendRedirect("/TrocQc/Login");
 			}
