@@ -13,7 +13,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,8 +49,8 @@ import com.TrocQc.Utils.EmailSender;
 public class FrontControlleur{	
 
 	LobbyDao ld;
-	
 	InventoryDao inventorydao;
+	
 	
 	@GetMapping("/Login")
 	public String GetAuthentification(Model theModel, HttpSession  session) {
@@ -84,17 +83,15 @@ public class FrontControlleur{
 	@GetMapping("/Inventaire")
 	public String GetInventaire(Model theModel,HttpSession session) {
 
-		inventorydao = new InventoryDao();
 		User user = (User) session.getAttribute("user");
 		if(user == null) {
 			return  "redirect:/Login";
 		}
 		
-		
-		List<RawMaterial> rmList = inventorydao.getRawMaterialsOfUserId(user.getId());
-		List<Product> productlist = inventorydao.getProductsOfUserId(user.getId());
+		inventorydao = new InventoryDao(user.getId());
+		List<RawMaterial> rmList = inventorydao.getRawMaterials();
 		List<UnitOfMeasure> uomList = inventorydao.getUnitsOfMesure();
-		List<Product> prodList = inventorydao.getProductsOfUserId(user.getId());
+		List<Product> prodList = inventorydao.getProducts();
 		theModel.addAttribute("rmList", rmList);
 		theModel.addAttribute("uomList", uomList);
 		theModel.addAttribute("prodList", prodList);
@@ -104,13 +101,13 @@ public class FrontControlleur{
 	@GetMapping("/Ventes")
 	public String GetVentes(Model theModel, HttpSession session) {
 		
-		inventorydao = new InventoryDao();
+		
 		User user = (User) session.getAttribute("user");
 		if(user == null) {
 			return  "redirect:/Login";
 		}
-		
-		List<Product> prodList = inventorydao.getProductsOfUserId(user.getId());
+		inventorydao = new InventoryDao(user.getId());
+		List<Product> prodList = inventorydao.getProducts();
 		theModel.addAttribute("prodList", prodList);
 		return "ventes"; 
 	}

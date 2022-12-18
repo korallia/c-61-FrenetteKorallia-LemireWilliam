@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 
 import com.TrocQc.DAO.InventoryDao; 
@@ -38,7 +37,12 @@ public class InventoryServlet extends HttpServlet {
 	  protected void doPost(HttpServletRequest request,
 		        HttpServletResponse response) throws ServletException, IOException {
 		  
-		  InventoryDao invDao = new InventoryDao();
+		  try {
+				user = (User)request.getSession().getAttribute("user");
+			} catch (Exception e) {
+				response.sendRedirect("/TrocQc/Login");
+			}
+		  InventoryDao invDao = new InventoryDao(user.getId());
 		  
 		  if (request.getParameter("materialName") != null) {
 			  int hiddenProdId = 0;
@@ -82,11 +86,7 @@ public class InventoryServlet extends HttpServlet {
 			  
 			  UnitOfMeasure uom = invDao.getUnitOfMeasure(materialUOM);
 
-				try {
-					user = (User)request.getSession().getAttribute("user");
-				} catch (Exception e) {
-					response.sendRedirect("/TrocQc/Login");
-				}
+				
 		
 			  RawMaterialCustomField rmcf1 = new RawMaterialCustomField(materialCustomFieldName1, materialCustomFieldValue1);
 			  RawMaterialCustomField rmcf2 = new RawMaterialCustomField(materialCustomFieldName2, materialCustomFieldValue2);

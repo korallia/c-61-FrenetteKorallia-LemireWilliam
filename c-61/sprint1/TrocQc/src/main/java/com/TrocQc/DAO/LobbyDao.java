@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 import javax.swing.tree.RowMapper;
 import javax.swing.tree.TreePath;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;

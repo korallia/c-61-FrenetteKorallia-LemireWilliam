@@ -19,7 +19,7 @@ public class VenteDao extends SpringJdbcConfig{
 	
 	public Vente addVente(Vente vente ) {
 		
-		InventoryDao inventorydao = new InventoryDao();
+		InventoryDao inventorydao = new InventoryDao(vente.getUserID());
 		Product product =  inventorydao.getProduct(vente.getProductid());
 		if ( product != null) {
 			

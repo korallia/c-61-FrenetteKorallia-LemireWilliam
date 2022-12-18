@@ -10,14 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 
 import com.TrocQc.DAO.UserDao;
 import com.TrocQc.Entity.User;
 
 
-//AUTOWIRE doesn't solve a big problem, there's no tight coupling, creating the dao here instead of injecting it changes nothing + autowire works differently in servlet so we have to do a work around to use it when it doesn't add much.
+//AUTO WIRE doesn't solve a big problem, there's no tight coupling, creating the dao here instead of injecting it changes nothing + auto wire works differently in servlet so we have to do a work around to use it when it doesn't add much.
 
 
 
