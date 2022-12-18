@@ -3,6 +3,7 @@ package com.TrocQc.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -85,20 +86,27 @@ public class InventoryServlet extends HttpServlet {
 			}
 			  
 
+			List<RawMaterialCustomField> rmcfList = new ArrayList<RawMaterialCustomField>();
 
 			  
 			  UnitOfMeasure uom = invDao.getUnitOfMeasure(materialUOM);
 
-				
+			  if (!materialCustomFieldName1.equals("") || !materialCustomFieldValue1.equals("")) {
+				  RawMaterialCustomField rmcf1 = new RawMaterialCustomField(materialCustomFieldName1, materialCustomFieldValue1);
+				  rmcfList.add(rmcf1);
+				  
+			  }
+			  if (!materialCustomFieldName2.equals("") || !materialCustomFieldValue2.equals("")) {
+				  RawMaterialCustomField rmcf2 = new RawMaterialCustomField(materialCustomFieldName2, materialCustomFieldValue2);
+				  rmcfList.add(rmcf2);
+				  
+			  }
+			  if (!materialCustomFieldName3.equals("") || !materialCustomFieldValue3.equals("")) {
+				  RawMaterialCustomField rmcf3 = new RawMaterialCustomField(materialCustomFieldName3, materialCustomFieldValue3);
+				  rmcfList.add(rmcf3);
+				  
+			  }
 		
-			  RawMaterialCustomField rmcf1 = new RawMaterialCustomField(materialCustomFieldName1, materialCustomFieldValue1);
-			  RawMaterialCustomField rmcf2 = new RawMaterialCustomField(materialCustomFieldName2, materialCustomFieldValue2);
-			  RawMaterialCustomField rmcf3 = new RawMaterialCustomField(materialCustomFieldName3, materialCustomFieldValue3);
-			  
-			  List<RawMaterialCustomField> rmcfList = new ArrayList<RawMaterialCustomField>();
-			  rmcfList.add(rmcf1);
-			  rmcfList.add(rmcf2);
-			  rmcfList.add(rmcf3);
 			  
 			  RawMaterial rawMaterial = new RawMaterial(materialName, materialCost, uom, materialQuantity, user.getId(), rmcfList);
 			  
@@ -194,14 +202,21 @@ public class InventoryServlet extends HttpServlet {
 					// TODO: handle exception
 				}
 			  
-				
-				  ProductCustomFields pcf = new ProductCustomFields(newFieldName1, newFieldValue1);
-				  ProductCustomFields pcf2 = new ProductCustomFields(newFieldName2, newFieldValue2);
-				  ProductCustomFields pcf3 = new ProductCustomFields(newFieldName3, newFieldValue3);
-				  List<ProductCustomFields> pcfList = new ArrayList<ProductCustomFields>();
-				  pcfList.add(pcf);
-				  pcfList.add(pcf2);
-				  pcfList.add(pcf3);
+				List<ProductCustomFields> pcfList = new ArrayList<ProductCustomFields>();
+
+				if (!newFieldName1.equals("") || !newFieldValue1.equals("")) {
+					ProductCustomFields pcf = new ProductCustomFields(newFieldName1, newFieldValue1);
+					pcfList.add(pcf);
+				}
+				if (!newFieldName2.equals("") || !newFieldValue2.equals("")) {
+					ProductCustomFields pcf2 = new ProductCustomFields(newFieldName2, newFieldValue2);
+					pcfList.add(pcf2);
+				}
+				if (!newFieldName3.equals("") || !newFieldValue3.equals("")) {
+					ProductCustomFields pcf3 = new ProductCustomFields(newFieldName3, newFieldValue3);
+					pcfList.add(pcf3);
+				}
+
 				
 				
 				if (hiddenTemplateId > 0) {
@@ -210,12 +225,21 @@ public class InventoryServlet extends HttpServlet {
 					Product modProd = invDao.getProduct(hiddenTemplateId);
 					
 					String delProd = request.getParameter("deleteProduct");
+					try {
 					
-					if (delProd.equals("true")) {
-						invDao.deleteProduct(modProd);
+						if (delProd.equals("true")) {
+							invDao.deleteProduct(modProd);
+							response.sendRedirect("/TrocQc/Inventaire");
+							return;
+						}
+					} catch (Exception e) {
+						// TODO: handle exception
 						response.sendRedirect("/TrocQc/Inventaire");
 						return;
+
 					}
+
+					
 										
 					modProd.setName(templateName);
 					modProd.setDescription(templateDesc);
@@ -315,8 +339,12 @@ public class InventoryServlet extends HttpServlet {
 
 			Lot lot = new Lot(prodId, prodQuantity, prodQuantity, new java.sql.Date(System.currentTimeMillis()) );
 			
-			invDao.addLot(prod, prodQuantity);
-
+			double addedLots = invDao.addLot(prod, prodQuantity);
+			String lotMsg = "Quantité désirée: " + prodQuantity + "." + " Lots créés: " + addedLots + ".";
+			
+			request.getSession().setAttribute("lotMsg", lotMsg);
+			//RequestDispatcher rd = request.getRequestDispatcher("/TrocQc/Inventaire");
+			//rd.include(request, response);
 			response.sendRedirect("/TrocQc/Inventaire");
 			
 		}
