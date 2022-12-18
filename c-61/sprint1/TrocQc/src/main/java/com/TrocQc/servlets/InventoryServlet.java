@@ -17,6 +17,7 @@ import com.TrocQc.Entity.RawMaterialCustomField;
 import com.TrocQc.Entity.RawMaterialsPerProduct;
 import com.TrocQc.Entity.SkuGenerator;
 import com.TrocQc.Entity.ProductCustomFields;
+import com.TrocQc.Entity.ExcelInventoryReport;
 import com.TrocQc.Entity.Lot;
 import com.TrocQc.Entity.Product;
 import com.TrocQc.Entity.Product.ProductBuilder;
@@ -34,19 +35,48 @@ public class InventoryServlet extends HttpServlet {
 	public InventoryServlet( ) {
 		super();
 	}
-	
+	  
+	/*
+	  protected void generateInventoryReport (HttpServletRequest request,
+		        HttpServletResponse response) throws ServletException, IOException {
+		  
+		  
+	  }
+	  */
+	  
 	  protected void doPost(HttpServletRequest request,
 		        HttpServletResponse response) throws ServletException, IOException {
 		  
 		  try {
 				user = (User)request.getSession().getAttribute("user");
-				if ( user == null) {
-					response.sendRedirect("/TrocQc/Login");
-				}
+
 			} catch (Exception e) {
 				response.sendRedirect("/TrocQc/Login");
 			}
 		  InventoryDao invDao = new InventoryDao(user.getId());
+		  
+		  
+		  
+		  if (request.getParameter("action").equals("generateInventoryReport")) {
+			  
+			  ExcelInventoryReport eir = new ExcelInventoryReport(user.getId());
+			  eir.generateReport("C:\\Reports\\Report.xls");
+			  
+			  response.sendRedirect("/TrocQc/Inventaire");
+			  
+		  }
+		  
+		  /*
+	  switch (request.getParameter("action")) {
+	  	case "generateInventoryReport":
+			return generateInventoryReport(request, response);
+
+		default:
+			break;
+		}
+		  */
+		  
+		  
 		  
 		  if (request.getParameter("materialName") != null) {
 			  int hiddenProdId = 0;

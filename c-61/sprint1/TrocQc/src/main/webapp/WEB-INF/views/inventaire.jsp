@@ -217,11 +217,11 @@
 			</div>
 			
 			<div id="Rapport" class="tabcontent text-center ">
-			  <h3>RAPPORT</h3>
-			  <p>Exportez un rapport des tous les produits et matériaux en inventaire.</p>
-			  <form action="" method="post">
-				  <button class="btn text-center">GÉNÉRER RAPPORT</button>
-			  
+				<h3>RAPPORT</h3>
+				<p>Exportez un rapport des tous les produits et matériaux en inventaire.</p>
+				<form action="inventoryServlet" method="post">
+			  		<input type="hidden" name="action" value="generateInventoryReport">
+			  		<button type="submit" class="btn text-center">GÉNÉRER RAPPORT</button>
 			  </form>
 			</div>
 		</div>
