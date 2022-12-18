@@ -83,20 +83,27 @@ public class InventoryServlet extends HttpServlet {
 			}
 			  
 
+			List<RawMaterialCustomField> rmcfList = new ArrayList<RawMaterialCustomField>();
 
 			  
 			  UnitOfMeasure uom = invDao.getUnitOfMeasure(materialUOM);
 
-				
+			  if (!materialCustomFieldName1.equals("") || !materialCustomFieldValue1.equals("")) {
+				  RawMaterialCustomField rmcf1 = new RawMaterialCustomField(materialCustomFieldName1, materialCustomFieldValue1);
+				  rmcfList.add(rmcf1);
+				  
+			  }
+			  if (!materialCustomFieldName2.equals("") || !materialCustomFieldValue2.equals("")) {
+				  RawMaterialCustomField rmcf2 = new RawMaterialCustomField(materialCustomFieldName2, materialCustomFieldValue2);
+				  rmcfList.add(rmcf2);
+				  
+			  }
+			  if (!materialCustomFieldName3.equals("") || !materialCustomFieldValue3.equals("")) {
+				  RawMaterialCustomField rmcf3 = new RawMaterialCustomField(materialCustomFieldName3, materialCustomFieldValue3);
+				  rmcfList.add(rmcf3);
+				  
+			  }
 		
-			  RawMaterialCustomField rmcf1 = new RawMaterialCustomField(materialCustomFieldName1, materialCustomFieldValue1);
-			  RawMaterialCustomField rmcf2 = new RawMaterialCustomField(materialCustomFieldName2, materialCustomFieldValue2);
-			  RawMaterialCustomField rmcf3 = new RawMaterialCustomField(materialCustomFieldName3, materialCustomFieldValue3);
-			  
-			  List<RawMaterialCustomField> rmcfList = new ArrayList<RawMaterialCustomField>();
-			  rmcfList.add(rmcf1);
-			  rmcfList.add(rmcf2);
-			  rmcfList.add(rmcf3);
 			  
 			  RawMaterial rawMaterial = new RawMaterial(materialName, materialCost, uom, materialQuantity, user.getId(), rmcfList);
 			  
@@ -209,10 +216,12 @@ public class InventoryServlet extends HttpServlet {
 					
 					String delProd = request.getParameter("deleteProduct");
 					
+					/*
 					if (delProd.equals("true")) {
 						invDao.deleteProduct(modProd);
 						response.sendRedirect("/TrocQc/Inventaire");
 					}
+					*/
 										
 					modProd.setName(templateName);
 					modProd.setDescription(templateDesc);
