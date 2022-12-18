@@ -265,6 +265,14 @@ window.onload = function(){
 		document.getElementById("modTemplateBtn").addEventListener('click', openModTemplateForm);
 	}
 	
+    tabcontent = document.getElementsByClassName("tabcontent");
+    tabcontent[0].style.display = "block";
+    
+	tablinks = document.getElementsByClassName("tablinks");
+	tablinks[0].className += " active";
+	 
+
+	
 	var table = document.getElementById("matTable");
 	if (table) {
 	  for (var i = 0; i < table.rows.length; i++) {

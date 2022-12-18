@@ -42,6 +42,7 @@ public class InventoryServlet extends HttpServlet {
 		  
 		  if (request.getParameter("materialName") != null) {
 			  int hiddenProdId = 0;
+
 			  String materialCustomFieldName1 = null;
 			  String materialCustomFieldValue1 = null;
 			  String materialCustomFieldName2 = null;
@@ -49,7 +50,7 @@ public class InventoryServlet extends HttpServlet {
 			  String materialCustomFieldName3 = null;
 			  String materialCustomFieldValue3 = null;
 			  
-			  try {
+			try {
 				  hiddenProdId = Integer.parseInt(request.getParameter("hiddenProdId"));
 				
 			} catch (Exception e) {
@@ -202,9 +203,16 @@ public class InventoryServlet extends HttpServlet {
 				
 				if (hiddenTemplateId > 0) {
 					//UPDATE PROD
-					
+										
 					Product modProd = invDao.getProduct(hiddenTemplateId);
 					
+					String delProd = request.getParameter("deleteProduct");
+					
+					if (delProd.equals("true")) {
+						invDao.deleteProduct(modProd);
+						response.sendRedirect("/TrocQc/Inventaire");
+					}
+										
 					modProd.setName(templateName);
 					modProd.setDescription(templateDesc);
 					
@@ -251,10 +259,7 @@ public class InventoryServlet extends HttpServlet {
 						} catch (Exception e) {
 							response.sendRedirect("/TrocQc/Login");
 						}
-					  
-						
 
-					  
 					  
 					  Product.ProductBuilder pb = new Product.ProductBuilder(templateName, templateCost, templatePrice , templateSKU);
 					  pb.description(templateDesc);
@@ -295,15 +300,8 @@ public class InventoryServlet extends HttpServlet {
 			response.sendRedirect("/TrocQc/Inventaire");
 			
 		}
-		  else if (request.getParameter("hiddenProdId") != null) {
-			
-			  
-			  
-			  
-			  
-			  
-		}
+
 		  
 	  }
-	
+	 
 }
