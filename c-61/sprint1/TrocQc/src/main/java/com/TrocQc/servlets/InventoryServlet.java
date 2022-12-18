@@ -202,14 +202,21 @@ public class InventoryServlet extends HttpServlet {
 					// TODO: handle exception
 				}
 			  
-				
-				  ProductCustomFields pcf = new ProductCustomFields(newFieldName1, newFieldValue1);
-				  ProductCustomFields pcf2 = new ProductCustomFields(newFieldName2, newFieldValue2);
-				  ProductCustomFields pcf3 = new ProductCustomFields(newFieldName3, newFieldValue3);
-				  List<ProductCustomFields> pcfList = new ArrayList<ProductCustomFields>();
-				  pcfList.add(pcf);
-				  pcfList.add(pcf2);
-				  pcfList.add(pcf3);
+				List<ProductCustomFields> pcfList = new ArrayList<ProductCustomFields>();
+
+				if (!newFieldName1.equals("") || !newFieldValue1.equals("")) {
+					ProductCustomFields pcf = new ProductCustomFields(newFieldName1, newFieldValue1);
+					pcfList.add(pcf);
+				}
+				if (!newFieldName2.equals("") || !newFieldValue2.equals("")) {
+					ProductCustomFields pcf2 = new ProductCustomFields(newFieldName2, newFieldValue2);
+					pcfList.add(pcf2);
+				}
+				if (!newFieldName3.equals("") || !newFieldValue3.equals("")) {
+					ProductCustomFields pcf3 = new ProductCustomFields(newFieldName3, newFieldValue3);
+					pcfList.add(pcf3);
+				}
+
 				
 				
 				if (hiddenTemplateId > 0) {
@@ -219,12 +226,17 @@ public class InventoryServlet extends HttpServlet {
 					
 					String delProd = request.getParameter("deleteProduct");
 					
-					/*
-					if (delProd.equals("true")) {
-						invDao.deleteProduct(modProd);
-						response.sendRedirect("/TrocQc/Inventaire");
+					
+					try {
+						if (delProd.equals("true")) {
+							invDao.deleteProduct(modProd);
+							response.sendRedirect("/TrocQc/Inventaire");
+						}
+					} catch (Exception e) {
+						// TODO: handle exception
 					}
-					*/
+
+					
 										
 					modProd.setName(templateName);
 					modProd.setDescription(templateDesc);
