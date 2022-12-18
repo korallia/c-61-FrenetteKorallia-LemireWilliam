@@ -386,7 +386,7 @@ public class InventoryDao extends SpringJdbcConfig {
 			parameters.put("cost", rawmaterial.getCost());
 			parameters.put("quantity", rawmaterial.getQuantity());
 			parameters.put("idUnitOfMeasure", rawmaterial.getIdUnitOfMeasure());
-			parameters.put("idUser", rawmaterial.getUserID());
+			parameters.put("userid", rawmaterial.getUserID());
 			Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
 			rawmaterial.setId(id.intValue());
 		}
