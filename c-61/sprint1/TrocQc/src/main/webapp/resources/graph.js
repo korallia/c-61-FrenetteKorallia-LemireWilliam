@@ -43,14 +43,13 @@
 
 
 
-window.onload = function () {
 	
 	function addGraphValues (xVal, yVal) {
+	console.log("Add Graph value:" + xVal + "," + yVal);
 	labels.push(xVal);
 	data.push(yVal);
 	
 	}
-}
 
 
 

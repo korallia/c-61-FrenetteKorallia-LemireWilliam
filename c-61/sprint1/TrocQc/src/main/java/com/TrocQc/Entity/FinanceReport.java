@@ -39,14 +39,14 @@ public class FinanceReport {
 		try {
 			
 			InventoryDao invDao = new InventoryDao();
-			List<Product> prodList = invDao.getProducts();
+			List<Product> prodList = invDao.getProductsOfUserId(this.userId);
 			
 			Map<Integer, Product> products = new HashMap<>();
 			for(int i= 0; i < prodList.size(); i++) {
 				products.put(prodList.get(i).getId(), prodList.get(i));
 			}
 			
-			FinanceDao financedao = new FinanceDao();
+			FinanceDao financedao = new FinanceDao(this.userId);
 			
 			HSSFWorkbook workbook = new HSSFWorkbook();  
 

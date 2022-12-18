@@ -2,9 +2,13 @@ package com.TrocQc.controlleur;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,11 +18,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.TrocQc.DAO.ConfigDao;
 import com.TrocQc.DAO.FinanceDao;
 import com.TrocQc.DAO.InventoryDao;
 import com.TrocQc.DAO.LobbyDao;
+import com.TrocQc.DAO.UserDao;
 import com.TrocQc.DAO.VenteDao;
 import com.TrocQc.Entity.ExcelInventoryReport;
 import com.TrocQc.Entity.FinanceReport;
@@ -32,9 +38,11 @@ import com.TrocQc.Entity.SalesPrediction;
 import com.TrocQc.Entity.UnitOfMeasure;
 import com.TrocQc.Entity.User;
 import com.TrocQc.Utils.DatePoint;
+import com.TrocQc.Utils.EmailSender;
 import com.TrocQc.Utils.LinkedList;
 import com.TrocQc.Utils.Point;
 import com.TrocQc.Utils.Regression;
+import com.TrocQc.Utils.EmailSender;
 
 
 
@@ -108,9 +116,90 @@ public class FrontControlleur{
 	}
 	
 	@GetMapping("/Finances")
-	public String GetFinances(Model theModel, HttpSession session) {
+	public String GetFinances(Model theModel, HttpSession session, @RequestParam Map<String,String> params) {
 		
-		//session.setAttribute("regModel", "---");
+		FinanceDao finDao = new FinanceDao(1);
+		
+		
+		String startDateStr = "2022-11-26";
+		String endDateStr = "2022-12-26";
+		
+		if (params.containsKey("startDate")) {
+			startDateStr = params.get("startDate");
+		}
+		if (params.containsKey("endDate")) {
+			endDateStr = params.get("endDate");
+		}
+		  
+		
+		Date startDate = java.sql.Date.valueOf(startDateStr);
+		Date endDate = java.sql.Date.valueOf(endDateStr);
+		
+		
+		String regModel = "---";
+		
+			// RANGE OF DATES
+		SalesPrediction salesPrediction = new SalesPrediction(startDate, endDate);
+		salesPrediction.setActualsales(finDao.GetDailySalesOfPeriod(startDate, endDate));
+		LinkedList <DatePoint> dpList = salesPrediction.getDatedPredictions();
+		LinkedList <DatePoint> salesList = finDao.GetDailySalesOfPeriodByDay(startDate, endDate);
+		String [] xVals = new String[dpList.size()];
+		String [] predVals = new String[dpList.size()];
+		String [] salesVals = new String[dpList.size()];
+		
+		List<Map> values = new ArrayList<>();
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		regModel = salesPrediction.getRegression().getBestRegressionModel();
+		
+		Iterator<DatePoint> venteIterator = salesList.iterator();
+		DatePoint nextvente = null;
+		if ( venteIterator.hasNext()) {
+			nextvente = (DatePoint) venteIterator.next();
+		}
+		
+		double actual = 0;
+		
+		for (int i = 0; i < dpList.size(); i++) {
+			DatePoint dp = dpList.get(i);
+			if ( nextvente != null && nextvente.getDate().toString().compareTo(dp.getDate().toString()) ==0 ) {
+				actual = nextvente.getValue();
+				nextvente = (DatePoint) venteIterator.next();
+			}
+			else {
+				actual  = 0;
+			}
+		
+			
+			Map<String, String> map = new HashMap<>();
+			map.put("date",dp.getDate().toString());
+			map.put("ventes",String.valueOf(actual));
+			map.put("prediction",dp.getValue().toString());
+			values.add(map);
+			
+				
+			//salesVals[i] = ;
+		}
+		
+		double productcost = finDao.GetProductCosts(startDate, endDate);
+		double rawmaterialcost = finDao.GetRawMaterialCosts(startDate, endDate);
+		double sales = finDao.GetTotalSalesOfPeriod(startDate, endDate);
+		double profit = sales - ( productcost + rawmaterialcost);
+		
+		theModel.addAttribute("productcost", productcost);
+		theModel.addAttribute("rawmaterialcost", rawmaterialcost);
+		theModel.addAttribute("sales", sales);
+		theModel.addAttribute("profit", profit);
+		
+		
+		theModel.addAttribute("regModel", regModel);
+		theModel.addAttribute("values", values);
+		
+		theModel.addAttribute("startDate",startDate.toString() );
+		theModel.addAttribute("endDate",endDate.toString() );
+		
+				
+		
 		
 		return "finances";
 	}
@@ -253,14 +342,21 @@ public class FrontControlleur{
 		//ExcelInventoryReport report = new ExcelInventoryReport(1);
 		//report.generateReport("C:\\Users\\koral\\Downloads\\test.xls");
 		
-		FinanceReport report = new FinanceReport(1);
+		/*FinanceReport report = new FinanceReport(1);
 		Date start = Date.valueOf("2022-11-26");
 		Date end = Date.valueOf("2023-11-26");
 		report.generateReport("C:\\Users\\koral\\Downloads\\test2.xls", start, end);
+		*/
 		
+	//	EmailSender es = new EmailSender("koralliafrenette@gmail.com");
+	//	es.sendemail("koralliafrenette01@gmail.com", "This is the first test", "This is the body of the first test");
 		
 		//CongifDao configdao = new CongifDao();
 		//configdao.addSkuPattern(1, "test1");
+		
+		
+		UserDao userdao = new UserDao();
+		userdao.ResetUserPassword("test@gmail.com");
 		
 		//configdao.deleteSku(2);
 		//configdao.modifySkuPattern(3, "test2");
