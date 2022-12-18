@@ -3,7 +3,9 @@
  */
  
 window.onload = function(){ 
-	console.log("Look ma', no hands.")
+	document.getElementById('endDate').valueAsDate = new Date();
+	
+	
 	var nodes = document.getElementsByClassName("totalExpense");
   	for (i = 0; i < nodes.length; i++) {
 		var text = (nodes[i].innerHTML);
