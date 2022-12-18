@@ -20,14 +20,13 @@ body {
 }
 
 .ventesContainer {
-	height: 350px;
+	height: 250px;
 	align-items: center;
 	border: solid black 2px;
 	border-radius: 7px;
 	transition: 350ms;
-	width: 350px;
-	margin-top: 20px;
-	position: relative;
+	width: 300px;
+	margin-top: 60px;
 }
 
 .configContainer {
@@ -37,13 +36,12 @@ body {
 	border-radius: 7px;
 	transition: 350ms;
 	width: 500px;
-	margin-top: 20px;
-	position: relative;
+	margin-top:20px;
 	
 }
 
 .loginContainer {
-	height: 275px;
+	height: 250px;
 	align-items: center;
 	border: solid black 2px;
 	transition: 350ms;
@@ -103,11 +101,11 @@ body {
 }
 
 .avatar {
-	
+	margin-top: 15px;
 	border-radius: 50%;
 	height: 75px;
 	width:75px;
-	border: 4px solid #9fc5f8;
+	border: 2px solid black;
 }
 
 .title {
@@ -286,8 +284,8 @@ textarea {
   	right: 0;
   	bottom: 0;
   	left: 0;
-  	width: 600px;
-  	height: 450px;
+  	width: 450px;
+  	height: 400px;
   	background-color: #ccc;
   	border-radius: 5px;
 }
@@ -347,10 +345,6 @@ tr:active {
 
 tr {
 	transition: 0.3s;
-}
-
-.activeRow {
-	background-color: #9fc5f8;
 }
 
 .centerTable {
@@ -488,11 +482,12 @@ img:active {
 	height: 300px;
 }
 
-.btmBtn{
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	left: 0;
+.SKUdiv {
+	width: 475px;
+	height: 300px;
+	border: black 2px solid;
+	border-radius: 6px;
+	overflow: auto; 
 }
 
 #noteBtn {
@@ -501,50 +496,6 @@ img:active {
 	left: auto;
 	width: 100%;
 	
-}
-
-.menuElement {
-	transition: 350ms;
-	width: 100%;
-	height: 33px;
-	border: black 2px solid;
-	border-radius: 6px;
-	overflow-y: hidden; 
-	overflow-x: hidden;
-	background-color: #9fc5f8;
-	color: white;
-	z-index: 0;
-	
-}
-
-.menuElement:hover {
-	transition: 350ms;
-	height: 200px;
-	overflow-y: auto; 
-	overflow-x: hidden;
-	z-index: 1;
-}
-
-.link{
-	color: #9fc5f8;
-}
-.linkBlk{
-	color: #000000;
-}
-.linkBlk:hover{
-	color: #ffffff;
-}
-
-::-webkit-scrollbar-track-piece  {
-background-color: #9fc5f8;
-}
-
-#changeProfilePic:hover{
-	height: 75px;
-}
-
-#modifyPassword:hover{
-	height: 125px;
 }
 
 #moduleConfigs{

@@ -14,17 +14,6 @@
 </head>
 
 <body>
-
-	<% String message = (String)session.getAttribute("lotMsg");%>
-	<script type="text/javascript">
-    var msg = "<%=message%>";
-    if (msg != "null"){
-	    alert(msg);
-    	
-    }
-	</script>
-	<% session.setAttribute("lotMsg", "null");%>
-	
 	<div class="container-fluid">
 		<div class="row mb-3">
 			<div class="col">
@@ -306,18 +295,40 @@
 				<h4 class="text-center">AJOUTER UN NOUVEAU CHAMP</h4>
 				<div class="border">
 					<div class="row">
-						<div class="col my-2"> <input class="w-100" type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
-						<div class="col my-2"> <input class="w-100" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
-							
+						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
+						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
+						<div class="col my-2">
+							<select class="text-align w-100" name="materialNewFieldUOM1">
+								<option value="0"> - Choisir l'unité... - </option>
+								<c:forEach var="unitOfMeasure" items="${uomList}">
+									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+								</c:forEach>
+							</select>
+						</div>							
 					</div>
 					<div class="row">
-						<div class="col my-2"> <input class="w-100" type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
-						<div class="col my-2"> <input class="w-100" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>
-					
+						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
+						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>
+						<div class="col my-2">
+							<select class="text-align w-100" name="materialNewFieldUOM2">
+								<option value="0"> - Choisir l'unité... - </option>
+								<c:forEach var="unitOfMeasure" items="${uomList}">
+									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+								</c:forEach>
+							</select>
+						</div>						
 					</div>
 					<div class="row ">
-						<div class="col my-2"> <input class="w-100" type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
-						<div class="col my-2"> <input class="w-100" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
+						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
+						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
+						<div class="col my-2">
+							<select class="text-align w-100" name="materialNewFieldUOM3">
+								<option value="0"> - Choisir l'unité... - </option>
+								<c:forEach var="unitOfMeasure" items="${uomList}">
+									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
+								</c:forEach>
+							</select>
+						</div>							
 					</div>		
 				</div>
 		

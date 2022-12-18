@@ -22,12 +22,6 @@
   	<description></description>
   	<servlet-class>com.TrocQc.servlets.VentesServlet</servlet-class>
   </servlet>
-  <servlet>
-  	<servlet-name>FinancesServlet</servlet-name>
-  	<display-name>FinancesServlet</display-name>
-  	<description></description>
-  	<servlet-class>com.TrocQc.servlets.FinancesServlet</servlet-class>
-  </servlet>
   <servlet-mapping>
   	<servlet-name>InscriptionUsagerServlet</servlet-name>
   	<url-pattern>/InscriptionUsagerServlet</url-pattern>
@@ -39,9 +33,5 @@
   <servlet-mapping>
   	<servlet-name>VentesServlet</servlet-name>
   	<url-pattern>/VentesServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>FinancesServlet</servlet-name>
-  	<url-pattern>/FinancesServlet</url-pattern>
   </servlet-mapping>
 </web-app>
