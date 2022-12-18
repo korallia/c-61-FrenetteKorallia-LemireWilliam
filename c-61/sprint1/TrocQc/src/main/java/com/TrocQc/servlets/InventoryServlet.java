@@ -3,6 +3,7 @@ package com.TrocQc.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -295,8 +296,12 @@ public class InventoryServlet extends HttpServlet {
 
 			Lot lot = new Lot(prodId, prodQuantity, prodQuantity, new java.sql.Date(System.currentTimeMillis()) );
 			
-			invDao.addLot(prod, prodQuantity);
-
+			double addedLots = invDao.addLot(prod, prodQuantity);
+			String lotMsg = "Quantité désirée: " + prodQuantity + "." + " Lots créés: " + addedLots + ".";
+			
+			request.getSession().setAttribute("lotMsg", lotMsg);
+			//RequestDispatcher rd = request.getRequestDispatcher("/TrocQc/Inventaire");
+			//rd.include(request, response);
 			response.sendRedirect("/TrocQc/Inventaire");
 			
 		}
