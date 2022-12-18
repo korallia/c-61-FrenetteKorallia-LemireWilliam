@@ -230,7 +230,10 @@
 			<div id="Rapport" class="tabcontent text-center ">
 			  <h3>RAPPORT</h3>
 			  <p>Exportez un rapport des tous les produits et matériaux en inventaire.</p>
-			  <button class="btn text-center">GÉNÉRER RAPPORT</button>
+			  <form action="" method="post">
+				  <button class="btn text-center">GÉNÉRER RAPPORT</button>
+			  
+			  </form>
 			</div>
 		</div>
 
@@ -261,10 +264,6 @@
 						<input type="number" step="any" placeholder="Entrer la quantité..." name="productQuantity" >
 					</div>
 					
-					<div class="row m-1">
-						Date de péremption:
-						<input type="date" name="productBestBeforeDate" >
-					</div>
 					
 					<div class=" d-flex justify-content-center"> <input class="btn btnprimary mt-3 " type="submit" value="AJOUTER À L'INVENTAIRE">  </div>
 				</form>	
