@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.TrocQc.DAO.InventoryDao; 
 import com.TrocQc.Entity.RawMaterialCustomField;
+import com.TrocQc.Entity.RawMaterialsPerProduct;
 import com.TrocQc.Entity.SkuGenerator;
 import com.TrocQc.Entity.ProductCustomFields;
 import com.TrocQc.Entity.Lot;
@@ -27,7 +28,6 @@ import java.util.List;
 
 @WebServlet("/inventoryServlet")
 public class InventoryServlet extends HttpServlet {
-
 	
 	User user;
 
@@ -40,9 +40,9 @@ public class InventoryServlet extends HttpServlet {
 		  
 		  InventoryDao invDao = new InventoryDao();
 		  
-		  
 		  if (request.getParameter("materialName") != null) {
 			  int hiddenProdId = 0;
+
 			  String materialCustomFieldName1 = null;
 			  String materialCustomFieldValue1 = null;
 			  String materialCustomFieldName2 = null;
@@ -50,11 +50,11 @@ public class InventoryServlet extends HttpServlet {
 			  String materialCustomFieldName3 = null;
 			  String materialCustomFieldValue3 = null;
 			  
-			  try {
+			try {
 				  hiddenProdId = Integer.parseInt(request.getParameter("hiddenProdId"));
 				
 			} catch (Exception e) {
-				// TODO: handle exception
+
 			}
 
 			  String materialName = request.getParameter("materialName");
@@ -63,35 +63,21 @@ public class InventoryServlet extends HttpServlet {
 			  //double materialLQN = Double.parseDouble(request.getParameter("materialLQN"));
 			  double materialCost = Double.parseDouble(request.getParameter("materialCost"));
 			  
-			  //Customfields
+			
+			  
+			  
 			try {
 				  materialCustomFieldName1 = request.getParameter("materialNewFieldName1");
 				  materialCustomFieldValue1 = request.getParameter("materialNewFieldValue1");
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			  
-			  
-
-			try {
 				  materialCustomFieldName2 = request.getParameter("materialNewFieldName2");
 				  materialCustomFieldValue2 = request.getParameter("materialNewFieldValue2");
-				
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			  
-			
-			  
-			try {
 				  materialCustomFieldName3 = request.getParameter("materialNewFieldName3");
 				  materialCustomFieldValue3 = request.getParameter("materialNewFieldValue3");
 				
 			} catch (Exception e) {
-				// TODO: handle exception
 			}
 			  
+
 
 			  
 			  UnitOfMeasure uom = invDao.getUnitOfMeasure(materialUOM);
@@ -217,9 +203,16 @@ public class InventoryServlet extends HttpServlet {
 				
 				if (hiddenTemplateId > 0) {
 					//UPDATE PROD
-					
+										
 					Product modProd = invDao.getProduct(hiddenTemplateId);
 					
+					String delProd = request.getParameter("deleteProduct");
+					
+					if (delProd.equals("true")) {
+						invDao.deleteProduct(modProd);
+						response.sendRedirect("/TrocQc/Inventaire");
+					}
+										
 					modProd.setName(templateName);
 					modProd.setDescription(templateDesc);
 					
@@ -249,6 +242,9 @@ public class InventoryServlet extends HttpServlet {
 					//CREATE PROD
 					  //BUILDER
 
+					
+					  //RawMaterialsPerProduct rmpp = new RawMaterialsPerProduct(rawMaterialUOM3, templateLQL, rawMaterialQuantity3)
+					
 					  RawMaterial rm = invDao.getRawMaterial(rawMaterialName1);
 					  RawMaterial rm2 = invDao.getRawMaterial(rawMaterialName2);
 					  RawMaterial rm3 = invDao.getRawMaterial(rawMaterialName3);
@@ -263,10 +259,7 @@ public class InventoryServlet extends HttpServlet {
 						} catch (Exception e) {
 							response.sendRedirect("/TrocQc/Login");
 						}
-					  
-						
 
-					  
 					  
 					  Product.ProductBuilder pb = new Product.ProductBuilder(templateName, templateCost, templatePrice , templateSKU);
 					  pb.description(templateDesc);
@@ -307,15 +300,8 @@ public class InventoryServlet extends HttpServlet {
 			response.sendRedirect("/TrocQc/Inventaire");
 			
 		}
-		  else if (request.getParameter("hiddenProdId") != null) {
-			
-			  
-			  
-			  
-			  
-			  
-		}
+
 		  
 	  }
-	
+	 
 }

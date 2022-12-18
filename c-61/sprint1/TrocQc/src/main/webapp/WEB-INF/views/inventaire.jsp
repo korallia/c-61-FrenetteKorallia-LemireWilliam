@@ -26,8 +26,7 @@
 				</div>
 			</div>
 			
-
-			
+	
 			<div class="col text-end ">
 				<div class="row align-items-center ">
 					<div class="col-sm-9 text-end">
@@ -39,7 +38,6 @@
 			</div>
 			
 		</div>
-		
 		
 		<div class="row " >
 			<!-- Tab links -->
@@ -53,79 +51,79 @@
 			
 			<!-- Tab content -->
 			<div id="Produits" class="tabcontent text-center">
-			  <h3>PRODUITS</h3>
-			  <p>La liste de tous les produits en inventaire.</p>
-			  <div class="tableDiv">
-			  	<table class="table">
-			  	<tr class="justify-content-center">
-
-			  		<th> ID </th>
-			  		<th>NOM</th>
-			  		<th>DESCRIPTION</th>
-			  		<th>SKU</th>
-			  		<th>QUANTITÉ</th>
-			  		<th>COÛT</th>
-			  		<th>PRIX</th>
-			  		<th>UNITÉ</th>
-			  		<th>MATÉRIAUX</th>
-			  		<th>N.B.Q.</th>
-			  		<th>DATE</th>
-					<th> CUSTOM COL 1 </th>
-					<th> CUSTOM COL 2 </th>
-					<th> CUSTOM COL 3 </th>	
-			  	</tr>
-			  	
-			  	
-				<c:forEach var="product" items="${prodList}">
-					<c:forEach var="lot" items="${product.lots}">
-						
-						<tr>
-							<td> ${product.id}</td>
-							<td> ${product.name}</td>
-							<td> ${product.description}</td>
-							<td> ${product.sku}</td>
-							<td>${lot.availablequantity}</td>
-							<td> ${product.cost} $</td>
-							<td> ${product.msrp} $</td>
-							<td> ${product.unitofmeasure.name} </td>
-							
-							<td>
-								<c:forEach var="rawMat" items="${product.rawmaterials}">
-									${rawMat.rawmaterial.name} <br>
-								</c:forEach>
-							</td>
-							
-							<td> ${product.lowQuantityLevel} </td>
-							<td> DATE </td>
-							
-							<c:forEach var="custCol" items="${product.userCustomFields}" >
-								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
-							</c:forEach>		
-						</tr>
-					
-					
-					</c:forEach>
-					
 			
-				</c:forEach>				  	
-			  	
-			  	
-			  </table>
-			  
-	  			<div class="row mt-3 text-center">
-					<div class="col"> <button id="addProductBtn">AJOUTER</button> </div>
-					<div class="col"> <button>MODIFIER</button> </div>
-					<div class="col"><button>SUPPRIMER</button> </div>
-				</div>			  
-			  </div>
-			  
-			  
+				<div class="row justify-content-center text-center">
+					<div class="col mt-2"> <button class="btn w-50" id="addProductBtn">AJOUTER</button> </div>
+					<div class="col">
+						<h3>PRODUITS</h3>
+						<p>Les produits en inventaire.</p>
+					</div>
+					<div class="col mt-2">  </div>
+				</div>		
+			
+	
+
+				<div class="tableDiv">
+				  	<table class="table">
+				  	<tr class="justify-content-center">
+				  		<th>ID</th>
+				  		<th>NOM</th>
+				  		<th>DESCRIPTION</th>
+				  		<th>SKU</th>
+				  		<th>QUANTITÉ</th>
+				  		<th>COÛT</th>
+				  		<th>PRIX</th>
+				  		<th>UNITÉ</th>
+				  		<th>MATÉRIAUX</th>
+				  		<th>N.B.Q.</th>
+				  		<th>DATE</th>
+						<th>CUSTOM COL</th>
+						<th>CUSTOM COL</th>
+						<th>CUSTOM COL</th>	
+				  	</tr>
+				  	
+					<c:forEach var="product" items="${prodList}">
+						<c:forEach var="lot" items="${product.lots}">
+							<tr>
+								<td> ${product.id}</td>
+								<td> ${product.name}</td>
+								<td> ${product.description}</td>
+								<td> ${product.sku}</td>
+								<td>${lot.availablequantity}</td>
+								<td> ${product.cost} $</td>
+								<td> ${product.msrp} $</td>
+								<td> ${product.unitofmeasure.name} </td>
+								<td>
+									<c:forEach var="rawMat" items="${product.rawmaterials}">
+										${rawMat.rawmaterial.name} <br>
+									</c:forEach>
+								</td>
+								<td> ${product.lowQuantityLevel} </td>
+								<td> ${product.addedDate} </td>
+								
+								<c:forEach var="custCol" items="${product.userCustomFields}" >
+									<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
+								</c:forEach>		
+							</tr>
+						</c:forEach>
+					</c:forEach>				  	
+				  	</table>
+	  
+			  	</div>
 			</div>
 			
 			<div id="Materiaux" class="tabcontent text-center">
-			  <h3>MATÉRIAUX</h3>
-			  <p>La liste de tous les matériaux en inventaire.</p>
-	  		  <div class="tableDiv" >
+			
+				<div class="row justify-content-center text-center">
+					<div class="col mt-2"> <button class="btn w-50" id="addMaterialBtn">AJOUTER</button> </div>
+					<div class="col">
+						<h3>MATÉRIAUX</h3>
+						<p>Les matériaux en inventaire.</p>
+					</div>
+					<div class="col mt-2"> <button class="btn w-50" id="modMaterialBtn">MODIFIER</button> </div>
+				</div>
+
+	  		 	<div class="tableDiv" >
 			  	<table class="table" id="matTable">
 				  	<tr class="justify-content-center">
 				  		<th> ID </th>
@@ -150,76 +148,72 @@
 							<c:forEach var="custCol" items="${rawMaterial.userCustomFields}" >
 								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td> 
 							</c:forEach>		
-							
-							<td>  </td>
 						</tr>
 					</c:forEach>			  	
 				 </table>
-		   			<div class="row mt-3 text-center">
-						<div class="col"> <button id="addMaterialBtn">AJOUTER</button> </div>
-						<div class="col"> <button id="modMaterialBtn">MODIFIER</button> </div>
-						<div class="col"><button>SUPPRIMER</button> </div>
-					</div>
 				</div>
 			</div>
 			
-			
-			
-			
-			
+
 			
 			<div id="Templates" class="tabcontent text-center">
-			  <h3>TEMPLATES</h3>
-			  <p>Différents templates pour la création de produits.</p>
-	   		  <div class="tableDiv">
-			  	<table class="table" id="tempTable">
-				  	<tr class="justify-content-center">
-				  		<th> ID </th>
-				  		<th>NOM</th>
-				  		<th>DESCRIPTION</th>
-				  		<th>SKU</th>
-				  		<th>COÛT</th>
-				  		<th>PRIX</th>
-				  		<th>NBQ</th>
-				  		<th>UNITÉ</th>
-				  		<th>DATE</th>
-				  		<th>MATÉRIAUX</th>
-						<th> CUSTOM COL 1 </th>
-						<th> CUSTOM COL 2 </th>
-						<th> CUSTOM COL 3 </th>
-				  	</tr>
-			  	
-					<c:forEach var="product" items="${prodList}">
-						<tr id="tempRow" class="tempRow">
-							<td> ${product.id}</td>
-							<td> ${product.name}</td>
-							<td> ${product.description}</td>
-							<td> ${product.sku}</td>
-							<td> ${product.cost} $</td>
-							<td> ${product.msrp} $</td>
-							<td> ${product.lowQuantityLevel}</td>
-							<td> ${product.unitofmeasure.name} </td>
-							<td> ${product.addedDate} </td>
-							
-							<td>
-								<c:forEach var="rawMat" items="${product.rawmaterials}">
-									${rawMat.rawmaterial.name} <br>
-								</c:forEach>
-							</td>
-							
-							<c:forEach var="custCol" items="${product.userCustomFields}" >
-								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
-							</c:forEach>									
-						</tr>
-					</c:forEach>			  	
-				 </table>
-		   			<div class="row mt-3 text-center">
-						<div class="col"> <button id="addTemplateBtn">AJOUTER</button> </div>
-						<div class="col"> <button id="modTemplateBtn">MODIFIER</button> </div>
-						<div class="col"><button>SUPPRIMER</button> </div>
+			
+				<div class="row justify-content-center text-center">
+					<div class="col mt-2"> <button class="btn w-50" id="addTemplateBtn">AJOUTER</button> </div>
+					<div class="col">
+						<h3>TEMPLATES</h3>
+						<p>Différents templates pour la création de produits.</p>
 					</div>
+					<div class="col mt-2"> <button class="btn w-50" id="modTemplateBtn">MODIFIER</button> </div>
 				</div>
-	   		  			  
+			
+			
+
+			  	<div class="tableDiv">
+				  	<table class="table" id="tempTable">
+					  	<tr class="justify-content-center">
+					  		<th> ID </th>
+					  		<th>NOM</th>
+					  		<th>DESCRIPTION</th>
+					  		<th>SKU</th>
+					  		<th>COÛT</th>
+					  		<th>PRIX</th>
+					  		<th>NBQ</th>
+					  		<th>UNITÉ</th>
+					  		<th>DATE</th>
+					  		<th>MATÉRIAUX</th>
+							<th> CUSTOM COL 1 </th>
+							<th> CUSTOM COL 2 </th>
+							<th> CUSTOM COL 3 </th>
+					  	</tr>
+				  	
+						<c:forEach var="product" items="${prodList}">
+							<tr id="tempRow" class="tempRow">
+								<td> ${product.id}</td>
+								<td> ${product.name}</td>
+								<td> ${product.description}</td>
+								<td> ${product.sku}</td>
+								<td> ${product.cost} $</td>
+								<td> ${product.msrp} $</td>
+								<td> ${product.lowQuantityLevel}</td>
+								<td> ${product.unitofmeasure.name} </td>
+								<td> ${product.addedDate} </td>
+								
+								<td>
+									<c:forEach var="rawMat" items="${product.rawmaterials}">
+										${rawMat.rawmaterial.name} <br>
+									</c:forEach>
+								</td>
+								
+								<c:forEach var="custCol" items="${product.userCustomFields}" >
+									<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
+								</c:forEach>									
+							</tr>
+						</c:forEach>			  	
+					 </table>
+					 
+
+				</div>		  
 			</div>
 			
 			<div id="Rapport" class="tabcontent text-center ">
@@ -228,16 +222,10 @@
 			  <button class="btn text-center">GÉNÉRER RAPPORT</button>
 			</div>
 		</div>
-		
 
-		
-		
 		<div class="row"></div>
 		
-		
-		
-		
-		
+
 		
 		<!-- ADD PRODUCT FORM -->
 		<div class="productForm justify-content-center" id="productForm">
@@ -245,7 +233,6 @@
 			
 			<div class="container mt-auto align-middle">
 				<form action="inventoryServlet" method="post">
-				
 					<div class="row">
 						<h1 class="text-center"> AJOUTER UN PRODUIT </h1>
 					</div>
@@ -269,14 +256,9 @@
 					</div>
 					
 					<div class=" d-flex justify-content-center"> <input class="btn btnprimary mt-3 " type="submit" value="AJOUTER À L'INVENTAIRE">  </div>
-					
 				</form>	
 			</div>
-		
 		</div>
-		
-		
-		
 		
 		
 		<!-- ADD MATERIAL FORM -->
@@ -284,7 +266,6 @@
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			
 			<form action="inventoryServlet" method="post">
-			
 				<div class="row ">
 					<h1 class="text-center"> AJOUTER DU MATÉRIEL </h1>
 				</div>
@@ -360,12 +341,6 @@
 		
 		
 		
-		
-		
-		
-		
-		
-		
 		<!-- MODIFY MATERIAL FORM -->
 		
 		<div class="materialForm" id="modifyMaterialForm">
@@ -424,14 +399,7 @@
 				</div>
 			</form >			
 		</div>
-		
-		
-		
-		
-		
-		
-		
-		
+			
 		
 		<!-- ADD TEMPLATE FORM -->
 		
@@ -476,10 +444,6 @@
 						<div class="col m-1"> <input class="w-100" type="number" step="any" placeholder="Entrer le MSRP..." name="templateMSRP" > </div>
 					</div>
 					
-					<div class="row m-1"> 
-						<div class="col m-1"> <input type="file" name="barcode" placeholder="Téléverser un code barre"> </div>
-						<div class="col m-1"> <input class="btn m-1" type="button" value="GÉNÉRER CODE BARRE" id="generateBarcodeBtn" onclick=""> </div>
-					</div>
 					
 					<div class="row my-1 border">
 						<div class="row"> 
@@ -581,9 +545,6 @@
 		</div>
 		
 		
-		
-		
-		
 		<!-- MODIFY TEMPLATE FORM -->
 		
 		<div class="addTemplateForm" id="modifyTemplateForm">
@@ -592,6 +553,7 @@
 				<form action="inventoryServlet" method="post">
 				
 					<input type="hidden" name="hiddenTemplateId" id="hiddenTemplateId">
+					
 				
 					<div class="row ">
 						<h1 class="text-center"> MODIFIER UN TEMPLATE </h1>
@@ -629,11 +591,7 @@
 						<div class="col m-1"> <input id="modTemplatePrice" class="w-100" type="number" step="any" placeholder="Entrer le prix..." name="templatePrice" > </div>
 						<div class="col m-1"> <input id="modTemplateMSRP" class="w-100" type="number" step="any" placeholder="Entrer le MSRP..." name="templateMSRP" > </div>
 					</div>
-					
-					<div class="row m-1"> 
-						<div class="col m-1"> <input type="file" name="barcode" placeholder="Téléverser un code barre"> </div>
-						<div class="col m-1"> <input class="btn m-1" type="button" value="GÉNÉRER CODE BARRE" id="generateBarcodeBtn" onclick=""> </div>
-					</div>
+
 					
 					<div class="row my-1 border">
 						<div class="row"> 
@@ -725,16 +683,27 @@
 									</c:forEach>
 								</select>
 							</div>
+							
+
+							
 						</div>												
 					</div>
+
 					
-					<div class=" d-flex justify-content-center"> <input  class="btn w-50" type="submit" value="MODIFIER TEMPLATE"> </div>
-					
+					<div class=" d-flex justify-content-center my-2"> 
+						<label class="text-center">
+							Supprimer produit?	<input type="checkbox" id="deleteProduct" name="deleteProduct" value="true">
+						</label	> 	
+					</div>
+
+
+					<div class=" d-flex justify-content-center"> 
+						<input  class="btn w-50 mx-1" type="submit" value="MODIFIER TEMPLATE"> 			
+					</div>
+				
 				</form >
 			</div>
-		</div>		
-		
-		
+		</div>	
 	</div>
 	
 	<script type="text/javascript" src="/TrocQc/resources/scripts.js"></script>

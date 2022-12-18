@@ -72,11 +72,6 @@ public class User {
 	 add("passe-temps");
 	 }};
 	
-	
-	
-	
-	
-	
 
 	public User() {
 		  

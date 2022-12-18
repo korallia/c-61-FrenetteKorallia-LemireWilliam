@@ -26,9 +26,10 @@ import com.TrocQc.config.SpringJdbcConfig;
 @Repository
 public class LobbyDao extends SpringJdbcConfig{
 
-	
+	private int userId;
 	//constructor
 	public LobbyDao() {
+		
 		super();
 	}
 	

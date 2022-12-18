@@ -11,19 +11,7 @@
  var selectedYPos;
  var shouldRefresh = false;
 window.onload = function(){
-	//https://stackoverflow.com/questions/45278879/how-to-pass-variable-values-from-java-to-javascript
-	function openNotePad () {
 
-		var node = document.getElementById("notePad");
-		node.style.display = "block";
-	}
-	
-		function openManualSaleForm () {
-
-		var node = document.getElementById("salesForm");
-		node.style.display = "block";
-	}
-	
 	if(!!document.getElementById("notePad")) {
 		var node = document.getElementById("notePad");
 		document.getElementById("range2").addEventListener('change', pinNote);
@@ -230,7 +218,6 @@ function modifyNote(id) {
 
 function deleteNote(id) {
 	
-	//console.log(id);
 	var form = document.createElement('form');
 	form.setAttribute("method", "post");
     form.setAttribute("action", "lobbyServlet");
@@ -320,9 +307,7 @@ function closeWindow () {
 	var templateNode = document.getElementById('addTemplateForm');
 	var modTemplateNode = document.getElementById('modifyTemplateForm');
 	
-	
-	
-	
+
 	if (!!node) {
 		if (node.style.display == "block") {
 			node.style.display="none";
@@ -366,6 +351,16 @@ function closeWindow () {
 	}	
 	
 	itis=false;
+}
+
+function openNotePad () {
+	var node = document.getElementById("notePad");
+	node.style.display = "block";
+}
+
+function openManualSaleForm () {
+	var node = document.getElementById("salesForm");
+	node.style.display = "block";
 }
 
 

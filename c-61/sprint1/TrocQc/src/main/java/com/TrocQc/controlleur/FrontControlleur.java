@@ -2,9 +2,13 @@ package com.TrocQc.controlleur;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.TrocQc.DAO.ConfigDao;
 import com.TrocQc.DAO.FinanceDao;
@@ -50,40 +55,35 @@ public class FrontControlleur{
 	
 	@GetMapping("/Login")
 	public String GetAuthentification(Model theModel, HttpSession  session) {
+	    if (session!=null){
+	        session.invalidate();
+	    }
 		
-
-			    if (session!=null){
-			        session.invalidate();
-			    }
-		
-		return "login"; //return the view
+		return "login"; 
 	}
 	
 	@GetMapping("/Inscription")
 	public String GetInscription(Model theModel) {
 		 theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
-		return "creercompte"; //return the view
+		return "creercompte"; 
 	}
 	@GetMapping("/Lobby")
 	public String GetLobby(Model theModel,HttpSession session) {
-		 //theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
-		//Get all notes from DAO
 		ld = new LobbyDao();
 		User user = (User) session.getAttribute("user");
 		if(user == null) {
 			//https://stackoverflow.com/questions/21763321/change-url-in-spring-mvc
 			return  "redirect:/Login";
-			
-			
+
 		}
 		List<Note> noteList = ld.getLobbyNotesByUserId(user.getId());
 		theModel.addAttribute("noteList", noteList);
-		return "lobby"; //return the view
+		return "lobby"; 
 	}
 	
 	@GetMapping("/Inventaire")
 	public String GetInventaire(Model theModel,HttpSession session) {
-  	//List<Product> products = inventorydao.getProducts();
+
 		inventorydao = new InventoryDao();
 		User user = (User) session.getAttribute("user");
 		if(user == null) {
@@ -98,7 +98,7 @@ public class FrontControlleur{
 		theModel.addAttribute("rmList", rmList);
 		theModel.addAttribute("uomList", uomList);
 		theModel.addAttribute("prodList", prodList);
-		return "inventaire"; //return the view
+		return "inventaire"; 
 	}
 	
 	@GetMapping("/Ventes")
@@ -110,14 +110,96 @@ public class FrontControlleur{
 			return  "redirect:/Login";
 		}
 		
-		
 		List<Product> prodList = inventorydao.getProductsOfUserId(user.getId());
 		theModel.addAttribute("prodList", prodList);
-		return "ventes"; //return the view
+		return "ventes"; 
 	}
 	
 	@GetMapping("/Finances")
-	public String GetFinances(Model theModel, HttpSession session) {
+	public String GetFinances(Model theModel, HttpSession session, @RequestParam Map<String,String> params) {
+		
+		FinanceDao finDao = new FinanceDao(1);
+		
+		
+		String startDateStr = "2022-11-26";
+		String endDateStr = "2022-12-26";
+		
+		if (params.containsKey("startDate")) {
+			startDateStr = params.get("startDate");
+		}
+		if (params.containsKey("endDate")) {
+			endDateStr = params.get("endDate");
+		}
+		  
+		
+		Date startDate = java.sql.Date.valueOf(startDateStr);
+		Date endDate = java.sql.Date.valueOf(endDateStr);
+		
+		
+		String regModel = "---";
+		
+			// RANGE OF DATES
+		SalesPrediction salesPrediction = new SalesPrediction(startDate, endDate);
+		salesPrediction.setActualsales(finDao.GetDailySalesOfPeriod(startDate, endDate));
+		LinkedList <DatePoint> dpList = salesPrediction.getDatedPredictions();
+		LinkedList <DatePoint> salesList = finDao.GetDailySalesOfPeriodByDay(startDate, endDate);
+		String [] xVals = new String[dpList.size()];
+		String [] predVals = new String[dpList.size()];
+		String [] salesVals = new String[dpList.size()];
+		
+		List<Map> values = new ArrayList<>();
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		regModel = salesPrediction.getRegression().getBestRegressionModel();
+		
+		Iterator<DatePoint> venteIterator = salesList.iterator();
+		DatePoint nextvente = null;
+		if ( venteIterator.hasNext()) {
+			nextvente = (DatePoint) venteIterator.next();
+		}
+		
+		double actual = 0;
+		
+		for (int i = 0; i < dpList.size(); i++) {
+			DatePoint dp = dpList.get(i);
+			if ( nextvente != null && nextvente.getDate().toString().compareTo(dp.getDate().toString()) ==0 ) {
+				actual = nextvente.getValue();
+				nextvente = (DatePoint) venteIterator.next();
+			}
+			else {
+				actual  = 0;
+			}
+		
+			
+			Map<String, String> map = new HashMap<>();
+			map.put("date",dp.getDate().toString());
+			map.put("ventes",String.valueOf(actual));
+			map.put("prediction",dp.getValue().toString());
+			values.add(map);
+			
+				
+			//salesVals[i] = ;
+		}
+		
+		double productcost = finDao.GetProductCosts(startDate, endDate);
+		double rawmaterialcost = finDao.GetRawMaterialCosts(startDate, endDate);
+		double sales = finDao.GetTotalSalesOfPeriod(startDate, endDate);
+		double profit = sales - ( productcost + rawmaterialcost);
+		
+		theModel.addAttribute("productcost", productcost);
+		theModel.addAttribute("rawmaterialcost", rawmaterialcost);
+		theModel.addAttribute("sales", sales);
+		theModel.addAttribute("profit", profit);
+		
+		
+		theModel.addAttribute("regModel", regModel);
+		theModel.addAttribute("values", values);
+		
+		theModel.addAttribute("startDate",startDate.toString() );
+		theModel.addAttribute("endDate",endDate.toString() );
+		
+				
+		
 		
 		return "finances";
 	}
@@ -129,21 +211,8 @@ public class FrontControlleur{
 		if(user == null) {
 			return  "redirect:/Login";
 		}
-		 InventoryDao     inventorydao = new InventoryDao();
-		List<Product> prodList = inventorydao.getProductsOfUserId(user.getId());
-		List<ProductCustomFields> productCustomFieldsList = new ArrayList<>();
-		for (int i =0; i<prodList.size();i++) {
-			Product product = prodList.get(i);
-			if (product.getUserCustomFields().size()!=0) {
-				for (int j =0; j<prodList.size();j++) {
-				//productCustomFieldsList.add(product.getUserCustomFields())
-			}
-				
-		}
-		theModel.addAttribute("prodList", prodList);
-		}		
-		
-		 theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
+
+		theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
 		
 		return "configurations";
 	}

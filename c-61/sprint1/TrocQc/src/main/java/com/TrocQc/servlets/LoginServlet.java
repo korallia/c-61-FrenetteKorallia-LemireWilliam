@@ -36,14 +36,13 @@ public class LoginServlet extends HttpServlet {
 	
     protected void doPost(HttpServletRequest request,
         HttpServletResponse response) throws ServletException, IOException {
+    	UserDao userDao = new UserDao();
     	String username = request.getParameter("username");
     	String password = request.getParameter("password");
-    	
-    	//requête DAo
-    	UserDao userDao = new UserDao();
+
     	User user = userDao.Authenticate(username, password);
+    	
     	if(user != null) {
-   			//rediriger vers lobby
     		HttpSession session = request.getSession();
     		session.setMaxInactiveInterval(600);
     		request.getSession().setAttribute("user", user);
