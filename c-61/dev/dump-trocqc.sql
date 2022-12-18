@@ -233,10 +233,17 @@ CREATE TABLE `rawmaterialperproduct` (
   `rawmaterialid` int NOT NULL,
   `quantity` float NOT NULL,
   UNIQUE KEY `MAIN` (`productid`,`rawmaterialid`) USING BTREE,
+<<<<<<< HEAD
   KEY `RMP_FK` (`productid`),
   KEY `RMP_FK_1` (`rawmaterialid`),
   CONSTRAINT `RMP_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `RMP_FK_1` FOREIGN KEY (`rawmaterialid`) REFERENCES `rawmaterial` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+=======
+  KEY `RawMaterialProducts_FK` (`productid`),
+  KEY `RawMaterialProducts_FK_1` (`rawmaterialid`),
+  CONSTRAINT `RawMaterialProducts_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `RawMaterialProducts_FK_1` FOREIGN KEY (`rawmaterialid`) REFERENCES `rawmaterial` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+>>>>>>> 22daa3bcf7d67e2ed2540768338aeb7017574965
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -413,4 +420,6 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+
 -- Dump completed on 2022-12-18 14:45:58
+
