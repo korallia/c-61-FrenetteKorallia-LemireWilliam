@@ -115,7 +115,7 @@ public class FinanceDao extends SpringJdbcConfig {
 	public double GetProductCosts(Date start, Date end) {
 		try {
 
-			InventoryDao invdao = new InventoryDao();
+			InventoryDao invdao = new InventoryDao(this.userId);
 			MapSqlParameterSource params = new MapSqlParameterSource();
 			params.addValue("start", start.toString());
 			params.addValue("end", end.toString());
@@ -143,7 +143,7 @@ public class FinanceDao extends SpringJdbcConfig {
 	public double GetRawMaterialCosts(Date start, Date end) {
 		try {
 
-			InventoryDao invdao = new InventoryDao();
+			InventoryDao invdao = new InventoryDao(this.userId);
 			MapSqlParameterSource params = new MapSqlParameterSource();
 			params.addValue("start", start.toString());
 			params.addValue("end", end.toString());

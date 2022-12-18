@@ -25,14 +25,15 @@ public class VentesServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		VenteDao vd = new VenteDao();
-		InventoryDao invDao = new InventoryDao();
 		
 		try {
 			user = (User)request.getSession().getAttribute("user");
 		} catch (Exception e) {
 			response.sendRedirect("/TrocQc/Login");
 		}
+
+		VenteDao vd = new VenteDao();
+		InventoryDao invDao = new InventoryDao(user.getId());
 		
 		int prodId = Integer.parseInt(request.getParameter("productId"));
 

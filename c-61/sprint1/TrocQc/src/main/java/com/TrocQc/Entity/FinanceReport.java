@@ -38,8 +38,8 @@ public class FinanceReport {
 		
 		try {
 			
-			InventoryDao invDao = new InventoryDao();
-			List<Product> prodList = invDao.getProductsOfUserId(this.userId);
+			InventoryDao invDao = new InventoryDao(this.userId);
+			List<Product> prodList = invDao.getProducts();
 			
 			Map<Integer, Product> products = new HashMap<>();
 			for(int i= 0; i < prodList.size(); i++) {

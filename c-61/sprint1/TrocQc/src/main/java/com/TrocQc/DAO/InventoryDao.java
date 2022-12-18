@@ -7,17 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import com.TrocQc.config.SpringJdbcConfig;
 import com.TrocQc.Entity.Lot;
@@ -31,14 +22,27 @@ import com.TrocQc.Entity.User;
 
 @Repository
 public class InventoryDao extends SpringJdbcConfig {
-	// TODO: GET ALL products for a specific user
-//TODO get all raw materials specific by a product id and an user id
-//TODO: Create product from template(insert product passed in parameters => check if avaible rawMaterial, when added subscrat the rawMateiral linked to product from the reserve of freeRawMaterial in the table
-//TODO: Create new CustomFields (create an object  for the custom field and add it than add the field to the linked table)
 
-	// constructor
+	private int userId;
+	
 	public InventoryDao() {
+		this.userId = 1;
+	}
+	
+	// constructor
+	public InventoryDao(int userId) {
 		super();
+		this.userId = userId;
+	}
+	
+	
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public List<UnitOfMeasure> getUnitsOfMesure() {
@@ -51,8 +55,9 @@ public class InventoryDao extends SpringJdbcConfig {
 	public List<Product> getProducts() {
 		try {
 
-			Map<String, String> params = new HashMap<>();
-			List<Product> products = namedParameterJdbcTemplate().query("select * from product", params,
+			Map<String, Object> params = new HashMap<>();
+			params.put("userid", userId);
+			List<Product> products = namedParameterJdbcTemplate().query("select * from product WHERE userid=:userid", params,
 					BeanPropertyRowMapper.newInstance(Product.class));
 
 			if (products != null && !products.isEmpty()) {
@@ -76,8 +81,9 @@ public class InventoryDao extends SpringJdbcConfig {
 	public List<RawMaterial> getRawMaterials() {
 		try {
 
-			Map<String, String> params = new HashMap<>();
-			List<RawMaterial> rawmaterials = namedParameterJdbcTemplate().query("select * from rawmaterial", params,
+			Map<String, Object> params = new HashMap<>();
+			params.put("userid", userId);
+			List<RawMaterial> rawmaterials = namedParameterJdbcTemplate().query("select * from rawmaterial WHERE userid=:userid", params,
 					BeanPropertyRowMapper.newInstance(RawMaterial.class));
 
 			if ( rawmaterials != null && !rawmaterials.isEmpty()) {
@@ -96,63 +102,12 @@ public class InventoryDao extends SpringJdbcConfig {
 		}
 	}
 
-	public List<Product> getProductsOfUserId(int userid) {
-		try {
-
-			Map<String, String> params = new HashMap<>();
-			params.put("userid", Integer.toString(userid));
-			List<Product> products = namedParameterJdbcTemplate().query("select * from product WHERE userid=:userid",
-					params, BeanPropertyRowMapper.newInstance(Product.class));
-
-			if (products != null && !products.isEmpty()) {
-				for (int i = 0; i < products.size(); i++) {
-					if (products.get(i).getIdUnitOfMeasure() > 0) {
-						products.get(i).setUnitofmeasure(this.getUnitOfMeasure(products.get(i).getIdUnitOfMeasure()));
-
-					}
-					products.get(i).setUserCustomFields(this.getProductCustomField(products.get(i).getId()) );
-					products.get(i).setRawmaterials(this.getrawmaterialperproduct(products.get(i).getId()));
-					products.get(i).setLots(this.getLotsFromProduct(products.get(i).getId()));
-				}
-			}
-			return products;
-
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	public List<RawMaterial> getRawMaterialsOfUserId(int userid) {
-		try {
-
-			Map<String, Object> params = new HashMap<>();
-			params.put("idUser", userid);
-			List<RawMaterial> rawmaterials = namedParameterJdbcTemplate().query(
-					"select * from rawmaterial WHERE idUser=:idUser", params,
-					BeanPropertyRowMapper.newInstance(RawMaterial.class));
-
-			if (rawmaterials != null && !rawmaterials.isEmpty()) {
-				for (int i = 0; i < rawmaterials.size(); i++) {
-					if (rawmaterials.get(i).getIdUnitOfMeasure() > 0) {
-						rawmaterials.get(i)
-								.setUnitofmeasure(this.getUnitOfMeasure(rawmaterials.get(i).getIdUnitOfMeasure()));
-					}
-					rawmaterials.get(i).setUserCustomFields(this.getRawMaterialCustomField(rawmaterials.get(i).getId()) );
-
-				}
-			}
-			return rawmaterials;
-
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
+	
 	public List<ProductCustomFields> getProductCustomField(int productid) {
 		try {
 
-			Map<String, String> params = new HashMap<>();
-			params.put("productid", Integer.toString(productid));
+			Map<String, Object> params = new HashMap<>();
+			params.put("productid", productid);
 			List<ProductCustomFields> productcustomfields = namedParameterJdbcTemplate().query(
 					"select * from productcustomfields WHERE productid=:productid", params,
 					BeanPropertyRowMapper.newInstance(ProductCustomFields.class));
@@ -166,8 +121,8 @@ public class InventoryDao extends SpringJdbcConfig {
 	public ProductCustomFields getNamedProductCustomField(int productid, String name) {
 		try {
 
-			Map<String, String> params = new HashMap<>();
-			params.put("productid", Integer.toString(productid));
+			Map<String, Object> params = new HashMap<>();
+			params.put("productid", productid);
 			params.put("name", name);
 			ProductCustomFields productcustomfield = namedParameterJdbcTemplate().queryForObject(
 					"select * from ProductCustomFields WHERE productid=:productid AND fieldtypeName=:name LIMIT 1",
@@ -180,10 +135,11 @@ public class InventoryDao extends SpringJdbcConfig {
 	}
 
 	public Product getProduct(int id) {
-		String sql = "Select * From product where id=:id";
+		String sql = "Select * From product  WHERE userid=:userid AND id=:id";
 
-		Map<String, String> params = new HashMap<>();
-		params.put("id", Integer.toString(id));
+		Map<String, Object> params = new HashMap<>();
+		params.put("userid", userId);
+		params.put("id", id);
 
 		try {
 			Product product = (Product) namedParameterJdbcTemplate().queryForObject(sql, params,
@@ -209,8 +165,9 @@ public class InventoryDao extends SpringJdbcConfig {
 	}
 
 	public int GetAvailableQuantityPerProduct(int productid) {
-		String sql = "Select sum(availablequantity) as qty From lot where productid=:productid";
+		String sql = "Select sum(availablequantity) as qty From lot where userid=:userid AND productid=:productid";
 		Map<String, Object> params = new HashMap<>();
+		params.put("userid", userId);
 		params.put("productid", productid);
 		try {
 
@@ -271,10 +228,11 @@ public class InventoryDao extends SpringJdbcConfig {
 	}
 
 	public RawMaterial getRawMaterial(int id) {
-		String sql = "Select * From rawmaterial where id=:id";
+		String sql = "Select * From rawmaterial where userid=:userid AND id=:id";
 
-		Map<String, String> params = new HashMap<>();
-		params.put("id", Integer.toString(id));
+		Map<String, Object> params = new HashMap<>();
+		params.put("userid", userId);
+		params.put("id", id);
 
 		try {
 			RawMaterial rawmaterial = (RawMaterial) namedParameterJdbcTemplate().queryForObject(sql, params,
@@ -300,8 +258,8 @@ public class InventoryDao extends SpringJdbcConfig {
 	public List<RawMaterialCustomField> getRawMaterialCustomField(int rawmaterialid) {
 		try {
 
-			Map<String, String> params = new HashMap<>();
-			params.put("rawMaterialid", Integer.toString(rawmaterialid));
+			Map<String, Object> params = new HashMap<>();
+			params.put("rawMaterialid", rawmaterialid);
 			List<RawMaterialCustomField> rawmaterialcustomfields = namedParameterJdbcTemplate().query(
 					"select * from rawmaterialcustomfields WHERE rawMaterialid=:rawMaterialid", params,
 					BeanPropertyRowMapper.newInstance(RawMaterialCustomField.class));
@@ -317,8 +275,8 @@ public class InventoryDao extends SpringJdbcConfig {
 	public RawMaterialCustomField getNamedRawMaterialCustomField(int rawmaterialid, String name) {
 		try {
 
-			Map<String, String> params = new HashMap<>();
-			params.put("rawMaterialid", Integer.toString(rawmaterialid));
+			Map<String, Object> params = new HashMap<>();
+			params.put("rawMaterialid", rawmaterialid);
 			params.put("fieldtypeName", name);
 			RawMaterialCustomField rawmaterialcustomfield = namedParameterJdbcTemplate().queryForObject(
 					"select * from rawmaterialcustomfields WHERE rawMaterialid=:rawMaterialid AND name=:name LIMIT 1",
@@ -333,8 +291,8 @@ public class InventoryDao extends SpringJdbcConfig {
 	public UnitOfMeasure getUnitOfMeasure(int id) {
 		String sql = "Select * From unitofmeasure where id=:id";
 
-		Map<String, String> params = new HashMap<>();
-		params.put("id", Integer.toString(id));
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
 
 		try {
 			UnitOfMeasure unitofmeasure = (UnitOfMeasure) namedParameterJdbcTemplate().queryForObject(sql, params,
@@ -474,9 +432,9 @@ public class InventoryDao extends SpringJdbcConfig {
 			SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(mysqlDataSource())
 					.withTableName("productcustomfields");
 
-			Map<String, String> parameters = new HashMap<>();
+			Map<String, Object> parameters = new HashMap<>();
 
-			parameters.put("productid", Integer.toString(productcustomfield.getProductid()));
+			parameters.put("productid", productcustomfield.getProductid());
 			parameters.put("fieldtypename", productcustomfield.getFieldtypeName());
 			parameters.put("fieldValue", productcustomfield.getFieldvalue());
 			simpleJdbcInsert.execute(parameters);
@@ -489,8 +447,8 @@ public class InventoryDao extends SpringJdbcConfig {
 	public List<Lot> getLotsFromProduct(int productid) {
 		try {
 
-			Map<String, String> params = new HashMap<>();
-			params.put("productid", Integer.toString(productid));
+			Map<String, Object> params = new HashMap<>();
+			params.put("productid", productid);
 			List<Lot> lots = namedParameterJdbcTemplate().query("select * from Lot WHERE productid=:productid", params,
 					BeanPropertyRowMapper.newInstance(Lot.class));
 			return lots;
@@ -621,11 +579,4 @@ public class InventoryDao extends SpringJdbcConfig {
 		return product.getId();
 
 	}
-
-//----------------VUE--------------:
-//Check low quantity (Different color)
-//Form to create custom field value(servlet (creation de l'objet => passer au dao ou faire get mapping si le switch de page devient un problème)
-//hable to show the list of products (one page) and the list of raw materials(another page) =toggle
-//Form to create template(servlet => passer au dao ou faire get mapping si le switch de page devient un problème)
-
 }

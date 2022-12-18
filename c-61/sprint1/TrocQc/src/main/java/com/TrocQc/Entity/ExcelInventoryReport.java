@@ -40,9 +40,9 @@ public class ExcelInventoryReport  {
 		
 		try {  
 			
-			InventoryDao invDao = new InventoryDao();
-			List<RawMaterial> rmList = invDao.getRawMaterialsOfUserId(this.userId);
-			List<Product> prodList = invDao.getProductsOfUserId(this.userId);
+			InventoryDao invDao = new InventoryDao(this.userId);
+			List<RawMaterial> rmList = invDao.getRawMaterials();
+			List<Product> prodList = invDao.getProducts();
 			List<UnitOfMeasure> uomList = invDao.getUnitsOfMesure();
 			
 			//REF: https://www.javatpoint.com/java-create-excel-file

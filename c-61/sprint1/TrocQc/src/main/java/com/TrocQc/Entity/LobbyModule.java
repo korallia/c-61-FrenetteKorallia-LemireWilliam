@@ -3,7 +3,6 @@ package com.TrocQc.Entity;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 class LobbyModule extends Module {
 	
@@ -15,7 +14,6 @@ class LobbyModule extends Module {
 	}
 	
 	
-	//@Autowired
 	private Note addNote(String noteSubject, String noteBody) {
 		
 		return null;
