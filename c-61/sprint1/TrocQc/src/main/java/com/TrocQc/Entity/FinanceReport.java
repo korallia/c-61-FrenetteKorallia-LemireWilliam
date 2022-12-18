@@ -46,7 +46,7 @@ public class FinanceReport {
 				products.put(prodList.get(i).getId(), prodList.get(i));
 			}
 			
-			FinanceDao financedao = new FinanceDao();
+			FinanceDao financedao = new FinanceDao(this.userId);
 			
 			HSSFWorkbook workbook = new HSSFWorkbook();  
 

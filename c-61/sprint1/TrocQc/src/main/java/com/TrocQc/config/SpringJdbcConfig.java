@@ -46,8 +46,7 @@ public class SpringJdbcConfig {
 	      return new NamedParameterJdbcTemplate(mysqlDataSource());
 	   }
 	
-	 @Bean
-	   public JdbcTemplate jdbcTemplate() {
-	      return new JdbcTemplate(mysqlDataSource());
-	   }
+	public JdbcTemplate jdbcTemplate() {
+	     return new JdbcTemplate(mysqlDataSource());
+	}
 }

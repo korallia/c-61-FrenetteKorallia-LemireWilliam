@@ -37,7 +37,7 @@ public class FinancesServlet extends HttpServlet {
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		FinanceDao finDao = new FinanceDao();
+		FinanceDao finDao = new FinanceDao(1);
 		
 		String startDateStr = request.getParameter("startDate");
 		String endDateStr = request.getParameter("endDate");
