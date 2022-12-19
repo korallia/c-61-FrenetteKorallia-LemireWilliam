@@ -14,8 +14,8 @@
 		<div class="row justify-content-center align-items-center">
 			<div class="loginContainer align-items-center">
 				<form action="loginServlet" method="post">
-					<br>
-					<div class="justify-content-center">
+					<p class="inputAlert">OOPS! Recommencez...</p>
+					<div class=" mt-1 justify-content-center">
 						COMPTE USAGER: <br> <input type="text" name="username" size="20"> <br>
 						MOT DE PASSE: <br> <input type="password" name="password" size="20"> <br>
 					<br>

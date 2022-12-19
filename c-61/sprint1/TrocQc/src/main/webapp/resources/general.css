@@ -43,7 +43,7 @@ body {
 }
 
 .loginContainer {
-	height: 275px;
+	height: 300px;
 	align-items: center;
 	border: solid black 2px;
 	transition: 350ms;
@@ -536,8 +536,14 @@ img:active {
 }
 
 .icon {
-	height: 25px;
+	height:25px;
 	width: auto;
+}
+
+.inputAlert {
+	visibility: hidden;
+	font-size: bold;
+	
 }
 
 ::-webkit-scrollbar-track-piece  {

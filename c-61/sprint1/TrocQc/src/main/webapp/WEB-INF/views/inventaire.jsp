@@ -14,6 +14,20 @@
 </head>
 
 <body>
+
+
+	<% String message = (String)session.getAttribute("lotMsg");%>
+	<script type="text/javascript">
+    var msg = "<%=message%>";
+    if (msg != "null"){
+	    alert(msg);
+    	
+    }
+	</script>
+	<% session.setAttribute("lotMsg", "null");%>
+
+
+
 	<div class="container-fluid">
 		<div class="row mb-3">
 			<div class="col">
