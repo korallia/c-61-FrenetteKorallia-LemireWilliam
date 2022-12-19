@@ -345,14 +345,7 @@ public class InventoryServlet extends HttpServlet {
 					  response.sendRedirect("/TrocQc/Inventaire");
 				}
 			  
-
-
 		  }
-		  else if (request.getParameter("productId") != null) {
-
-			
-		}
-
 		  
 	  }
 	 

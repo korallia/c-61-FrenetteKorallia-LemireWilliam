@@ -214,6 +214,11 @@ public class FrontControlleur{
 		return "configurations";
 	}
 	
+	@GetMapping("/logout")
+	public String GetLogout(Model theModel, HttpSession session) {
+		return "login";
+	}
+	
 	
 	@GetMapping("/test")
 	public String Gettest(Model model) {
