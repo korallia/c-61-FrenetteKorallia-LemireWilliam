@@ -44,28 +44,36 @@
 
 <body>
 	<div class="container-fluid justify-content-center text-center text-align " id="financeContainer">
-		<form action="/TrocQc/Finances" method="get">
-			<div class="row mb-3">
-	
-				<div class="col"></div>
-				
-				<div class="col">
-					<div class="row justify-content-center" >
-						<img alt="" src="resources/images/iconB250p.png" class="logo" onclick="redirectTo('Lobby')">
-					</div>
-				</div>
-				
-				<div class="col text-end ">
-					<div class="row align-items-center ">
-						<div class="col-sm-9 text-end">
-							<div class ="row align-items-center mt-3"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
-							<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
-						</div>
-						<div class="col-sm-3 mt-4 pe-5"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
-					</div>
+
+		<div class="row mb-3">
+
+			<div class="col"></div>
+			
+			<div class="col">
+				<div class="row justify-content-center" >
+					<img alt="" src="resources/images/iconB250p.png" class="logo" onclick="redirectTo('Lobby')">
 				</div>
 			</div>
 			
+			<div class="col text-end ">
+				<div class="row align-items-center ">
+					<div class="col-sm-9 text-end">
+						<div class ="row align-items-center mt-3"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
+						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
+					</div>
+					<div class="col-sm-3 mt-4 pe-5"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
+				</div>
+			</div>
+		</div>
+			
+		<form action="financesServlet" method="post">
+			<div class="col mt-6 text-center ">
+				<input type="hidden" name="action" value="generateFinanceReport">
+				<button class="btn" type="submit">RAPPORT</button>
+			</div>
+		</form> 			
+			
+		<form action="/TrocQc/Finances" method="get">	
 			<div class="row justify-content-center">
 				<div class="financeContainer">
 					 	<div class="row justify-content-center"  >
@@ -104,7 +112,7 @@
 	
 					<div class="row justify-content-center">
 						<div class="col mt-6 text-center "><button class="btn" type="submit">METTRE À JOUR</button></div>
-						
+												
 					</div>
 					
 													

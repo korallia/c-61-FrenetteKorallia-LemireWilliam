@@ -60,7 +60,7 @@ public class InventoryServlet extends HttpServlet {
 		  if (request.getParameter("action").equals("generateInventoryReport")) {
 			  
 			  ExcelInventoryReport eir = new ExcelInventoryReport(user.getId());
-			  eir.generateReport("C:\\Reports\\Report.xls");
+			  eir.generateReport("C:\\Reports\\InventoryReport.xls");
 			  
 			  response.sendRedirect("/TrocQc/Inventaire");
 			  

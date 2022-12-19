@@ -44,7 +44,7 @@
 			<div class="tab d-flex justify-content-center">
 			  <button class="tablinks" onclick="openTab(event, 'Produits')">PRODUITS</button>
 			  <button class="tablinks" onclick="openTab(event, 'Materiaux')">MATÉRIAUX</button>
-			  <button class="tablinks" onclick="openTab(event, 'Templates')">TEMPLATES</button>
+			  <button class="tablinks" onclick="openTab(event, 'Templates')">GABARITS</button>
 			  <button class="tablinks" onclick="openTab(event, 'Rapport')">RAPPORT</button>
 			  
 			</div>
@@ -161,8 +161,8 @@
 				<div class="row justify-content-center text-center">
 					<div class="col mt-2"> <button class="btn w-50" id="addTemplateBtn">AJOUTER</button> </div>
 					<div class="col">
-						<h3>TEMPLATES</h3>
-						<p>Différents templates pour la création de produits.</p>
+						<h3>GABARITS</h3>
+						<p>Différents gabarits pour la création de produits.</p>
 					</div>
 					<div class="col mt-2"> <button class="btn w-50" id="modTemplateBtn">MODIFIER</button> </div>
 				</div>
