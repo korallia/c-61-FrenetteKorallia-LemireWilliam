@@ -12,6 +12,7 @@ body {
 	background: radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#9fc5f8",GradientType=1);
 	overflow: auto; 
+	overflow-x: hidden; 
 }
 
 .logo {
@@ -30,6 +31,13 @@ body {
 	position: relative;
 }
 
+.ventesContainer:hover {
+	transition: 350ms;
+   	opacity: 0.95;
+    border: #9fc5f8 3px solid;
+    box-shadow: 0 0 1px;
+}
+
 .configContainer {
 	height: 500px;
 	align-items: center;
@@ -42,10 +50,17 @@ body {
 	
 }
 
+.configContainer:hover {
+	transition: 350ms;
+   	opacity: 0.95;
+    border: #9fc5f8 3px solid;
+    box-shadow: 0 0 1px;
+}
+
 .loginContainer {
-	height: 275px;
+	height: 300px;
 	align-items: center;
-	border: solid black 2px;
+	border: solid #9fc5f8 3px;
 	transition: 350ms;
 	width: 300px;
 	margin-top: 60px;
@@ -220,14 +235,12 @@ textarea {
 }
 
 
-/* Style the tab */
 .tab {
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
 }
 
-/* Style the buttons that are used to open the tab content */
 .tab button {
   background-color: inherit;
   float: left;
@@ -238,18 +251,15 @@ textarea {
   transition: 0.3s;
 }
 
-/* Change background color of buttons on hover */
 .tab button:hover {
   background-color: #d0e4ff;
 }
 
-/* Create an active/current tablink class */
 .tab button.active {
   background-color: #9fc5f8;
   color: white;
 }
 
-/* Style the tab content */
 .tabcontent {
   display: none;
   padding: 5px 10px;
@@ -272,7 +282,7 @@ textarea {
   	bottom: 0;
   	left: 0;
   	width: 500px;
-  	height: 300px;
+  	height: 250px;
   	background-color: #ccc;
   	border-radius: 3px;
 }
@@ -533,6 +543,17 @@ img:active {
 }
 .linkBlk:hover{
 	color: #ffffff;
+}
+
+.icon {
+	height:25px;
+	width: auto;
+}
+
+.inputAlert {
+	visibility: hidden;
+	font-size: bold;
+	
 }
 
 ::-webkit-scrollbar-track-piece  {

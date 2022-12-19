@@ -14,6 +14,20 @@
 </head>
 
 <body>
+
+
+	<% String message = (String)session.getAttribute("lotMsg");%>
+	<script type="text/javascript">
+    var msg = "<%=message%>";
+    if (msg != "null"){
+	    alert(msg);
+    	
+    }
+	</script>
+	<% session.setAttribute("lotMsg", "null");%>
+
+
+
 	<div class="container-fluid">
 		<div class="row mb-3">
 			<div class="col">
@@ -31,7 +45,7 @@
 				<div class="row align-items-center ">
 					<div class="col-sm-9 text-end">
 						<div class ="row align-items-center mt-3"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
-						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
+						<div class ="row "><a href="/TrocQc/logout" class="link">SE DÉCONNECTER</a></div>
 					</div>
 					<div class="col-sm-3 mt-4 pe-5"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
 				</div>
@@ -42,9 +56,9 @@
 		<div class="row " >
 			<!-- Tab links -->
 			<div class="tab d-flex justify-content-center">
-			  <button class="tablinks" onclick="openTab(event, 'Produits')">PRODUITS</button>
+			  <button class="tablinks" onclick="openTab(event, 'Produits')">LOTS</button>
 			  <button class="tablinks" onclick="openTab(event, 'Materiaux')">MATÉRIAUX</button>
-			  <button class="tablinks" onclick="openTab(event, 'Templates')">TEMPLATES</button>
+			  <button class="tablinks" onclick="openTab(event, 'Templates')">GABARITS</button>
 			  <button class="tablinks" onclick="openTab(event, 'Rapport')">RAPPORT</button>
 			  
 			</div>
@@ -55,8 +69,8 @@
 				<div class="row justify-content-center text-center">
 					<div class="col mt-2"> <button class="btn w-50" id="addProductBtn">AJOUTER</button> </div>
 					<div class="col">
-						<h3>PRODUITS</h3>
-						<p>Les produits en inventaire.</p>
+						<h3>LOTS</h3>
+						<p>Les lots en inventaire.</p>
 					</div>
 					<div class="col mt-2">  </div>
 				</div>		
@@ -161,8 +175,8 @@
 				<div class="row justify-content-center text-center">
 					<div class="col mt-2"> <button class="btn w-50" id="addTemplateBtn">AJOUTER</button> </div>
 					<div class="col">
-						<h3>TEMPLATES</h3>
-						<p>Différents templates pour la création de produits.</p>
+						<h3>GABARITS</h3>
+						<p>Différents gabarits pour la création de produits.</p>
 					</div>
 					<div class="col mt-2"> <button class="btn w-50" id="modTemplateBtn">MODIFIER</button> </div>
 				</div>
@@ -217,9 +231,12 @@
 			</div>
 			
 			<div id="Rapport" class="tabcontent text-center ">
-			  <h3>RAPPORT</h3>
-			  <p>Exportez un rapport des tous les produits et matériaux en inventaire.</p>
-			  <button class="btn text-center">GÉNÉRER RAPPORT</button>
+				<h3>RAPPORT</h3>
+				<p>Exportez un rapport des tous les produits et matériaux en inventaire.</p>
+				<form action="inventoryServlet" method="post">
+			  		<input type="hidden" name="action" value="generateInventoryReport">
+			  		<button type="submit" class="btn text-center">GÉNÉRER RAPPORT</button>
+			  </form>
 			</div>
 		</div>
 
@@ -233,6 +250,7 @@
 			
 			<div class="container mt-auto align-middle">
 				<form action="inventoryServlet" method="post">
+					<input type="hidden" name="action" value="addLot">
 					<div class="row">
 						<h1 class="text-center"> AJOUTER UN PRODUIT </h1>
 					</div>
@@ -250,10 +268,6 @@
 						<input type="number" step="any" placeholder="Entrer la quantité..." name="productQuantity" >
 					</div>
 					
-					<div class="row m-1">
-						Date de péremption:
-						<input type="date" name="productBestBeforeDate" >
-					</div>
 					
 					<div class=" d-flex justify-content-center"> <input class="btn btnprimary mt-3 " type="submit" value="AJOUTER À L'INVENTAIRE">  </div>
 				</form>	
@@ -266,11 +280,12 @@
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			
 			<form action="inventoryServlet" method="post">
+				<input type="hidden" name="action" value="addOrModifyMaterial">
 				<div class="row ">
 					<h1 class="text-center"> AJOUTER DU MATÉRIEL </h1>
 				</div>
 				
-				<div class="row m-1">
+				<div class="row m-3">
 					<input type="text" placeholder="Entrer le nom du matériel..." name="materialName">
 				</div>					
 				
@@ -295,45 +310,21 @@
 				
 				<h4 class="text-center">AJOUTER UN NOUVEAU CHAMP</h4>
 				<div class="border">
-					<div class="row">
-						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
-						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
-						<div class="col my-2">
-							<select class="text-align w-100" name="materialNewFieldUOM1">
-								<option value="0"> - Choisir l'unité... - </option>
-								<c:forEach var="unitOfMeasure" items="${uomList}">
-									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-								</c:forEach>
-							</select>
-						</div>							
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>						
 					</div>
-					<div class="row">
-						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
-						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>
-						<div class="col my-2">
-							<select class="text-align w-100" name="materialNewFieldUOM2">
-								<option value="0"> - Choisir l'unité... - </option>
-								<c:forEach var="unitOfMeasure" items="${uomList}">
-									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-								</c:forEach>
-							</select>
-						</div>						
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>					
 					</div>
-					<div class="row ">
-						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
-						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
-						<div class="col my-2">
-							<select class="text-align w-100" name="materialNewFieldUOM3">
-								<option value="0"> - Choisir l'unité... - </option>
-								<c:forEach var="unitOfMeasure" items="${uomList}">
-									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-								</c:forEach>
-							</select>
-						</div>							
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>						
 					</div>		
 				</div>
 		
-				<div class="row " id="noteBtn">
+				<div class="row mb-1" id="noteBtn">
 					<div class="d-flex justify-content-center"><input type="submit" class="btn " value="AJOUTER MATÉRIEL"></div>
 				</div>
 			</form >
@@ -347,13 +338,13 @@
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			
 			<form action="inventoryServlet" method="post">
-			
+				<input type="hidden" name="action" value="addOrModifyMaterial">
 				<input type="hidden" name="hiddenProdId" id="hiddenProdId">
 				<div class="row ">
 					<h1 class="text-center"> MODIFIER DU MATÉRIEL </h1>
 				</div>
 				
-				<div class="row m-1">
+				<div class="row m-3">
 					<input id="modMaterialName" type="text" placeholder="Entrer le nom du matériel..." name="materialName">
 				</div>					
 				
@@ -378,23 +369,23 @@
 				
 				<h4 class="text-center">MODIFIER LES CHAMPS</h4>
 				<div class="border">
-					<div class="row">
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldName1"  type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldValue1" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldName1"  type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldValue1" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
 						
 					</div>
-					<div class="row">
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldName2" type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldValue2" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>					
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldName2" type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldValue2" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>					
 					</div>
-					<div class="row ">
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldName3" type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldValue3" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldName3" type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldValue3" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
 						
 					</div>		
 				</div>
 		
-				<div class="row " id="noteBtn">
+				<div class="row mb-1" id="noteBtn">
 					<div class="d-flex justify-content-center"><input type="submit" class="btn " value="MODIFIER MATÉRIEL"></div>
 				</div>
 			</form >			
@@ -407,8 +398,9 @@
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			<div class="container mt-auto align-middle">
 				<form action="inventoryServlet" method="post">
+				<input type="hidden" name="action" value="addOrModifyTemplate">
 					<div class="row ">
-						<h1 class="text-center"> AJOUTER UN TEMPLATE </h1>
+						<h1 class="text-center"> AJOUTER UN GABARIT </h1>
 					</div>
 					
 					<div class="row m-1">
@@ -424,24 +416,22 @@
 					</div>
 					
 					<div class="row m-1">
-						<div class="col m-1"> <input class="w-100" type="number" placeholder="Entrer la quantité" name="templateQuantity" > </div>
 						<div class="col m-1"> 
 							<div class="selector">
-								<select class="text-align" name="templateUOM">
-									<option value="0"> - Choisir l'unité... - </option>
+								<select class="text-align " name="templateUOM">
+									<option value="0" > - Choisir l'unité... - </option>
 									<c:forEach var="unitOfMeasure" items="${uomList}">
 										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
 									</c:forEach>
 								</select>
 							</div>
 						</div> 
-						<div class="col m-1"> <input type="text" placeholder="Entrer le NBQ" name="templateLQL" > </div>
+						<div class="col m-1"> <input class="w-100" type="text" placeholder="Entrer le NBQ" name="templateLQL" > </div>
 					</div>
 					
 					<div class="row m-1">
 						<div class="col m-1"> <input class="w-100" type="number" step="any" placeholder="Entrer le coût..." name="templateCost" > </div>
 						<div class="col m-1"> <input class="w-100" type="number" step="any" placeholder="Entrer le prix..." name="templatePrice" > </div>
-						<div class="col m-1"> <input class="w-100" type="number" step="any" placeholder="Entrer le MSRP..." name="templateMSRP" > </div>
 					</div>
 					
 					
@@ -538,7 +528,7 @@
 						</div>												
 					</div>
 					
-					<div class=" d-flex justify-content-center"> <input class="btn w-50" type="submit" value="AJOUTER TEMPLATE"> </div>
+					<div class=" d-flex justify-content-center"> <input class="btn w-50 mt-4" type="submit" value="AJOUTER GABARIT"> </div>
 					
 				</form >
 			</div>
@@ -551,12 +541,12 @@
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			<div class="container mt-auto align-middle">
 				<form action="inventoryServlet" method="post">
-				
+					<input type="hidden" name="action" value="addOrModifyTemplate">
 					<input type="hidden" name="hiddenTemplateId" id="hiddenTemplateId">
 					
 				
 					<div class="row ">
-						<h1 class="text-center"> MODIFIER UN TEMPLATE </h1>
+						<h1 class="text-center"> MODIFIER UN GABARIT </h1>
 					</div>
 					
 					<div class="row m-1">
@@ -572,7 +562,6 @@
 					</div>
 					
 					<div class="row m-1">
-						<div class="col m-1"> <input id="modTemplateQuantity" class="w-100" type="number" placeholder="Entrer la quantité" name="templateQuantity" > </div>
 						<div class="col m-1"> 
 							<div class="selector">
 								<select id="modTemplateUOM" class="text-align" name="templateUOM">
@@ -583,13 +572,12 @@
 								</select>
 							</div>
 						</div> 
-						<div class="col m-1"> <input id="modTemplateLQL" type="text" placeholder="Entrer le NBQ" name="templateLQL" > </div>
+						<div class="col m-1"> <input id="modTemplateLQL" class="w-100" type="text" placeholder="Entrer le NBQ" name="templateLQL" > </div>
 					</div>
 					
 					<div class="row m-1">
 						<div class="col m-1"> <input id="modTemplateCost" class="w-100" type="number" step="any" placeholder="Entrer le coût..." name="templateCost" > </div>
 						<div class="col m-1"> <input id="modTemplatePrice" class="w-100" type="number" step="any" placeholder="Entrer le prix..." name="templatePrice" > </div>
-						<div class="col m-1"> <input id="modTemplateMSRP" class="w-100" type="number" step="any" placeholder="Entrer le MSRP..." name="templateMSRP" > </div>
 					</div>
 
 					
@@ -698,7 +686,7 @@
 
 
 					<div class=" d-flex justify-content-center"> 
-						<input  class="btn w-50 mx-1" type="submit" value="MODIFIER TEMPLATE"> 			
+						<input  class="btn w-50 mx-1" type="submit" value="MODIFIER GABARIT"> 			
 					</div>
 				
 				</form >

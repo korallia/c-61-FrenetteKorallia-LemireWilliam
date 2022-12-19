@@ -32,12 +32,13 @@ public class LoginServlet extends HttpServlet {
 	        // TODO Auto-generated constructor stub
 	    }
 	
+	
     protected void doPost(HttpServletRequest request,
         HttpServletResponse response) throws ServletException, IOException {
     	UserDao userDao = new UserDao();
     	String username = request.getParameter("username");
     	String password = request.getParameter("password");
-
+    	request.getSession().setAttribute("loginError", "false");
     	User user = userDao.Authenticate(username, password);
     	
     	if(user != null) {
@@ -48,7 +49,7 @@ public class LoginServlet extends HttpServlet {
     		// ou response.setHeader("Location", request.getContextPath() + "/lobby");
     	}
     	else {
-			 request.getSession().setAttribute("error", "Authentification échouée");
+			 request.getSession().setAttribute("loginError", "true");
 			 response.sendRedirect("/TrocQc/Login");
 		 }
    	

@@ -3,7 +3,7 @@
  */
  
 window.onload = function(){ 
-	document.getElementById('endDate').valueAsDate = new Date();
+	//document.getElementById('endDate').valueAsDate = new Date();
 	
 	var nodes = document.getElementsByClassName("totalExpense");
   	for (i = 0; i < nodes.length; i++) {

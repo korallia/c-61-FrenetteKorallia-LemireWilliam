@@ -55,7 +55,22 @@ public class ConfigsServlet extends HttpServlet {
 			String city = request.getParameter("city");
 			String postalCode = request.getParameter("postalCode");
 			String url = request.getParameter("url");
+			String prodCategory = request.getParameter("productCategory");
 			
+			String newPassword = request.getParameter("newPassword");
+			String repeatPassword = request.getParameter("repeatPassword");
+			
+			if (newPassword.length() > 0 && repeatPassword.length() > 0) {
+				if (newPassword.equals(repeatPassword)) {
+					user.setPassword(newPassword);
+				} 
+			}
+			if (prodCategory.length() > 0) {
+				user.setProductCategory(prodCategory);
+			}
+			
+			
+			//VALIDATION
 			
 			user.setFirstName(firstName);
 			user.setLastName(lastName);

@@ -28,6 +28,12 @@
   	<description></description>
   	<servlet-class>com.TrocQc.servlets.FinancesServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>UserLogout</servlet-name>
+  	<display-name>UserLogout</display-name>
+  	<description></description>
+  	<servlet-class>com.TrocQc.servlets.UserLogout</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>InscriptionUsagerServlet</servlet-name>
   	<url-pattern>/InscriptionUsagerServlet</url-pattern>
@@ -43,5 +49,9 @@
   <servlet-mapping>
   	<servlet-name>FinancesServlet</servlet-name>
   	<url-pattern>/FinancesServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserLogout</servlet-name>
+  	<url-pattern>/UserLogout</url-pattern>
   </servlet-mapping>
 </web-app>

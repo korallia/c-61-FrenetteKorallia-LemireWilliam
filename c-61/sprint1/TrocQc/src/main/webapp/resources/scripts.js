@@ -246,7 +246,6 @@ function pinNote() {
 	var newPostieSubj= document.createElement('p');
 	var newPostieBody= document.createElement('p');
 	var tempPost = document.getElementById("tempSubject")
-
 	
 	newPostieSubj.innerHTML = tempPost.value;
 	newPostieBody.innerHTML = document.getElementById("tempBody").value;

@@ -35,10 +35,9 @@ public class UserDao extends SpringJdbcConfig {
 		try {
 		User user = (User) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(User.class));
 		
-		//BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
+		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
 		
-		if(user != null) {
-				//encoder.matches(password, user.getPassword()) || password == user.getPassword() ) {
+		if(user != null && encoder.matches(password, user.getPassword()) || password == user.getPassword() ) {
 			return user;
 		}
 		
@@ -131,28 +130,16 @@ public class UserDao extends SpringJdbcConfig {
 			    );
 			    
 	}
-	public int SaveUser(User user) {
-
-		if (user.getId() == 0) {
-			return this.AddUser(user);
-		} else {
-
-			String sql = "UPDATE user SET productCategory=?, firstName=?,lastName=?,password=?,username=?,adress=?,city=?,postalcode=?, email=?,siteWeb=?,Avatar=? WHERE id=?";
-			jdbcTemplate().update(sql, user.getProductCategory(), user.getFirstName(), 	user.getLastName(), user.getPassword(), user.getUsername(),
-					user.getAdress(), user.getCity(), user.getPostalCode(), user.getEmail(), user.getSiteWeb(),user.getAvatar() ,user.getId());
-			return user.getId();
-		}
-	}
-
 	
 	public int SaveUser(User user, InputStream file) {
 		
+		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
 		if (user.getId() == 0) {
 			return this.AddUser(user);
 		} else {
 			
 			String sql = "UPDATE user SET productCategory=?, firstName=?,lastName=?,password=?,username=?,adress=?,city=?,postalcode=?, email=?,siteWeb=?,Avatar=? WHERE id=?";
-			jdbcTemplate().update(sql, user.getProductCategory(), user.getFirstName(), 	user.getLastName(), user.getPassword(), user.getUsername(),
+			jdbcTemplate().update(sql, user.getProductCategory(), user.getFirstName(), 	user.getLastName(),encoder.encode(user.getPassword()), user.getUsername(),
 					user.getAdress(), user.getCity(), user.getPostalCode(), user.getEmail(), user.getSiteWeb(),file ,user.getId());
 			return user.getId();
 		}

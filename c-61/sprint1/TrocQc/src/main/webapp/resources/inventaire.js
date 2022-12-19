@@ -91,6 +91,14 @@ function getTemplateRow(table, tableRow){
  	var modCustColValue3 = document.getElementById("modNewFieldValue3");
 
  	
+ 	modCustColName1.value = "";
+	modCustColValue1.value = "";
+	modCustColName2.value = "";
+	modCustColValue2.value = "";
+	modCustColName3.value = "";
+	modCustColValue3.value = "";
+ 	
+ 	
  	try {
 		var customCol1 = tableRow.childNodes[21].innerHTML.trim();
 		var customColArray1 =  customCol1.split(":");
@@ -143,21 +151,6 @@ function getTemplateRow(table, tableRow){
 	modUnit.value = uomDict[unit];
 	
 	
-	
-	 console.log(tableRow.childNodes[1]);
-	 console.log(tableRow.childNodes[3]);
-	 console.log(tableRow.childNodes[5]);
-	 console.log(tableRow.childNodes[7]);
-	 console.log(tableRow.childNodes[9]);
-	 console.log(tableRow.childNodes[11]);
-	 console.log(tableRow.childNodes[13]);
-	 console.log(tableRow.childNodes[15]);
-	 console.log(tableRow.childNodes[19]);
-	 console.log(tableRow.childNodes[21]);
-	 console.log(tableRow.childNodes[23]);
-	 console.log(tableRow.childNodes[25]);
-
-	
 }
 
 function getRawMaterialRow(table, tableRow){
@@ -191,7 +184,14 @@ function getRawMaterialRow(table, tableRow){
  	
  	var modCustColName3 = document.getElementById("modMaterialNewFieldName3");
  	var modCustColValue3 = document.getElementById("modMaterialNewFieldValue3");
-
+ 	
+ 	modCustColName1.innerHTML = "";
+	modCustColValue1.innerHTML = "";
+	modCustColName2.innerHTML = "";
+	modCustColValue2.innerHTML = "";
+	modCustColName3.innerHTML = "";
+	modCustColValue3.innerHTML = "";
+	
  	try {
 		var customCol1 = tableRow.childNodes[13].innerHTML.trim();
 		var customColArray1 =  customCol1.split(":");
@@ -240,8 +240,6 @@ function getRawMaterialRow(table, tableRow){
  	modQt.value = parseFloat(quantity); 
  	modUnit.value = uomDict[unit];
 
- 	console.log(tableRow);
- 	console.log(id, name, cost, quantity, unit, date, customCol1 );
 }
 
 
