@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.TrocQc.DAO.FinanceDao;
+import com.TrocQc.Entity.FinanceReport;
 import com.TrocQc.Entity.SalesPrediction;
 import com.TrocQc.Entity.User;
 import com.TrocQc.Utils.DatePoint;
@@ -36,7 +37,25 @@ public class FinancesServlet extends HttpServlet {
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
+		try {
+			user = (User)request.getSession().getAttribute("user");
+		
+		} catch (Exception e) {
+			response.sendRedirect("/TrocQc/Login");
+		}
+				
+		//Date startDate = java.sql.Date.valueOf(startDateStr);
+		if (request.getParameter("action").equals("generateFinanceReport")) {
+			FinanceReport fr = new FinanceReport(user.getId());
+			Date startDate = java.sql.Date.valueOf( (String) request.getSession().getAttribute("startDateSession") );
+			Date endDate = java.sql.Date.valueOf( (String) request.getSession().getAttribute("endDateSession") );
+			fr.generateReport("C:\\Reports\\FinancialReport.xls", startDate, endDate);
+			response.sendRedirect("/TrocQc/Finances");
+			return;
+		}
+		
+		
 		FinanceDao finDao = new FinanceDao(1);
 		
 		String startDateStr = request.getParameter("startDate");

@@ -26,7 +26,7 @@
 				<div class="row align-items-center ">
 					<div class="col-sm-9 text-end">
 						<div class ="row align-items-center mt-3"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
-						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
+						<div class ="row "><a href="/TrocQc/logout" class="link">SE DÉCONNECTER</a></div>
 					</div>
 					<div class="col-sm-3 mt-4 pe-5"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
 				</div>
@@ -50,7 +50,7 @@
 					<img alt="" class="" src="resources/images/troqcLogoBlue400p.png">
 					<br><br>
 					<h3>Bienvenue, <%=user.getFirstName()%>. </h3>
-					<p>Que fait-on ajourd'hui?</p>
+					<p>Que fait-on aujourd'hui?</p>
 				</div>			
 			
 				<div class="infoModule text-center" id="moduleVentes">

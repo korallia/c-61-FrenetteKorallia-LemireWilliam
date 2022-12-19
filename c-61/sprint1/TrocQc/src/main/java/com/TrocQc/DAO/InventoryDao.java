@@ -405,7 +405,7 @@ public class InventoryDao extends SpringJdbcConfig {
 
 	public void AddRawMaterialCustomField(RawMaterialCustomField rawmaterialcustomfield) {
 
-		if (this.getNamedRawMaterialCustomField(rawmaterialcustomfield.getRawMaterialid(),
+		if (rawmaterialcustomfield.getFieldtypeName().length() > 0 &&  this.getNamedRawMaterialCustomField(rawmaterialcustomfield.getRawMaterialid(),
 				rawmaterialcustomfield.getFieldtypeName()) == null) {
 
 			//
@@ -425,7 +425,7 @@ public class InventoryDao extends SpringJdbcConfig {
 
 	public void AddProductCustomField(ProductCustomFields productcustomfield) {
 
-		if (this.getNamedProductCustomField(productcustomfield.getProductid(),
+		if ( productcustomfield.getFieldtypeName().length() > 0 && this.getNamedProductCustomField(productcustomfield.getProductid(),
 				productcustomfield.getFieldtypeName()) == null) {
 
 			//

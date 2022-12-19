@@ -194,8 +194,8 @@ public class FrontControlleur{
 		
 		theModel.addAttribute("startDate",startDate.toString() );
 		theModel.addAttribute("endDate",endDate.toString() );
-		
-				
+		session.setAttribute("startDateSession", startDate.toString());
+		session.setAttribute("endDateSession", endDate.toString());
 		
 		
 		return "finances";
@@ -212,6 +212,11 @@ public class FrontControlleur{
 		theModel.addAttribute("ProductCategorySet", User.ProductCategorySet);
 		
 		return "configurations";
+	}
+	
+	@GetMapping("/logout")
+	public String GetLogout(Model theModel, HttpSession session) {
+		return "login";
 	}
 	
 	

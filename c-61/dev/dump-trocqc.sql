@@ -180,7 +180,7 @@ CREATE TABLE `rawmaterial` (
   PRIMARY KEY (`id`),
   KEY `rawmaterial_FK` (`idUnitOfMeasure`),
   CONSTRAINT `rawmaterial_FK` FOREIGN KEY (`idUnitOfMeasure`) REFERENCES `unitofmeasure` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,7 +189,7 @@ CREATE TABLE `rawmaterial` (
 
 LOCK TABLES `rawmaterial` WRITE;
 /*!40000 ALTER TABLE `rawmaterial` DISABLE KEYS */;
-INSERT INTO `rawmaterial` VALUES (1,'Belle chaise',8.00,'2022-11-26 12:49:08',1,4,1),(2,'Double chaise',6.00,'2022-11-26 12:49:08',5,4,1),(3,'triple chaise',9.00,'2022-11-26 12:49:08',6,4,1),(4,'4 chaise',23.00,'2022-11-20 14:25:19',2,6,1),(7,'Belle chaise2',0.00,'2022-12-06 18:47:20',0,4,0);
+INSERT INTO `rawmaterial` VALUES (1,'Belle chaise',8.00,'2022-11-26 12:49:08',1,4,1),(2,'Double chaise',6.00,'2022-11-26 12:49:08',5,4,1),(3,'triple chaise',9.00,'2022-11-26 12:49:08',6,4,1),(4,'4 chaise',23.00,'2022-11-20 14:25:19',2,6,1),(7,'Belle chaise2',0.00,'2022-12-06 18:47:20',0,4,0),(8,'tetst',3.00,'2022-12-18 14:26:44',34,4,1),(9,'tetst',34.00,'2022-12-18 14:32:03',2,4,1);
 /*!40000 ALTER TABLE `rawmaterial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,10 +233,10 @@ CREATE TABLE `rawmaterialperproduct` (
   `rawmaterialid` int NOT NULL,
   `quantity` float NOT NULL,
   UNIQUE KEY `MAIN` (`productid`,`rawmaterialid`) USING BTREE,
-  KEY `RawMaterialProducts_FK` (`productid`),
-  KEY `RawMaterialProducts_FK_1` (`rawmaterialid`),
-  CONSTRAINT `RawMaterialProducts_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `RawMaterialProducts_FK_1` FOREIGN KEY (`rawmaterialid`) REFERENCES `rawmaterial` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `RMP_FK` (`productid`),
+  KEY `RMP_FK_1` (`rawmaterialid`),
+  CONSTRAINT `RMP_FK` FOREIGN KEY (`productid`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `RMP_FK_1` FOREIGN KEY (`rawmaterialid`) REFERENCES `rawmaterial` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -413,4 +413,3 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-18 14:19:42

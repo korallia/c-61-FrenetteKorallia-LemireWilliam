@@ -28,7 +28,7 @@
 				<div class="row align-items-center ">
 					<div class="col-sm-9 text-end">
 						<div class ="row align-items-center mt-3"> <p>Salut, <%=user.getFirstName()%>!</p>  </div>
-						<div class ="row "><a class="link">SE DÉCONNECTER</a></div>
+						<div class ="row "><a href="/TrocQc/logout" class="link">SE DÉCONNECTER</a></div>
 					</div>
 					<div class="col-sm-3 mt-4 pe-5"><img class="avatar" src="/TrocQc/getUserAvatar" id="id"/></div>
 				</div>
@@ -83,12 +83,12 @@
 					
 					<div class="menuElement justify-content-center mt-2" id="modifyPassword">
 						<h5>Modifier le mot de passe</h5>
-						<div class="row mx-1">
-							<div class = "col"> <input class="w-100" type="text" placeholder="Nouveau mot de passe" name="newPassword"> </div>
+						<div class="row mx-1 mb-2">
+							<div class = "col"> <input class="w-100" type="password" placeholder="Nouveau mot de passe" name="newPassword"> </div>
 						</div> 	
 						
 						<div class="row mx-1">
-							<div class = "col"> <input class="w-100" type="text" placeholder="Répétez le mot de passe" name="repeatPassword"> </div>
+							<div class = "col"> <input class="w-100" type="password" placeholder="Répétez le mot de passe" name="repeatPassword"> </div>
 						</div> 								
 					</div>						
 					

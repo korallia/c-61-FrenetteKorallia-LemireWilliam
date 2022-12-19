@@ -37,6 +37,10 @@
 					 	</div>
 					 	
 					 	<div class="row ">
+					 		<div class="col text-center">R……CRIRE MOT DE PASSE: <br> <input type="password" name="passwordVerif" size="57"></div>
+					 	</div>
+					 	
+					 	<div class="row ">
 					 		<div class="col text-center">ADRESSE: <br> <input type="text" name="address" size="57"></div>
 					 	</div>
 					 	
@@ -55,11 +59,11 @@
 						</div>
 							
 					 	<div class="row ">
-					 		<div class="col text-center">SITE WEB: <br> <input type="text" name="url" size="20"></div > 
+					 		<div class="col text-center">SITE WEB: <br> <input type="text" name="url" ></div > 
 					 		
-					 		<div class="col avatar text-center">
-					 			<a class="align-items-center">T…L…VERSER AVATAR</a> <img alt="" src="resources/images/uploadBlk.png" >
-					 			<input type="file" name="file" accept="image/png, image/jpeg" />
+						 		<div class="col text-center">
+						 		<div class="row"> <span> <a class=" align-items-center pr-2">T…L…VERSER AVATAR</a><img class="icon"  src="resources/images/uploadBlk.png" > </span> </div>
+						 		<div class="row"><input type="file" name="file" accept="image/png, image/jpeg" /></div>					 			
 					 		</div> 
 					 	</div>
 					 	
