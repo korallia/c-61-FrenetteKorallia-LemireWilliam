@@ -310,62 +310,10 @@ public class Regression {
 	}
 	
 	public double getR(LinkedList<Point> prediction) {
-		// https://www.socscistatistics.com/tests/pearson/default2.aspx
-		/*
-		 Ici, X est le Y original, et le Y est la prédiction.  
-		 Nos valeurs de tests était:
-		2
-		4
-		6
-		14
-		16
-		et la prédiction linéaire:
-		2.047058823529412
-		4.1647058823529415
-		6.282352941176471
-		12.63529411764706
-		16.870588235294118	
-
-		Donc:
-			
-			X Values
-			∑ = 42
-			Mean = 8.4
-			∑(X - Mx)2 = SSx = 155.2
-
-			Y Values
-			∑ = 42
-			Mean = 8.4
-			∑(Y - My)2 = SSy = 152.471
-
-			X and Y Combined
-			N = 5
-			∑(X - Mx)(Y - My) = 152.471
-
-			R Calculation
-			r = ∑((X - My)(Y - Mx)) / √((SSx)(SSy))
-
-			r = 152.471 / √((155.2)(152.471)) = 0.9912
-
-			Meta Numerics (cross-check)
-			r = 0.9912
-			
-		*/
-		
-		double sumX = sumY(); // 42
-		double meanX = averageY(); // 8.4
-		double ssX = sumYMeanSquared(); // 155.2
-		
-		double sumY = sumY(prediction); // 42
-		double meanY = averageY(prediction); // 8.4
-		double ssY = sumYMeanSquared(prediction); // 152.471
-
-		double sscombined = sumYMeanCombined(prediction); // 142.471
-		
-		double r =  sscombined / Math.sqrt( ssX * ssY ); // 0.9912
-			
-		
-		return r;
+		double ssX = sumYMeanSquared(); 
+		double ssY = sumYMeanSquared(prediction); 
+		double sscombined = sumYMeanCombined(prediction); 
+		return sscombined / Math.sqrt( ssX * ssY ); 
 	}
 	
 	public double getR2(LinkedList<Point> prediction) {
