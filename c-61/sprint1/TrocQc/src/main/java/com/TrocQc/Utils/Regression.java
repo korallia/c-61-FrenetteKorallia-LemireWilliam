@@ -71,6 +71,7 @@ public class Regression {
 		return sumYMeanSquared(points);
 	}
 	public double sumYMeanSquared(LinkedList<Point> points) {
+		// https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
 		double mean = averageY(points);
 		double sum = 0;
 		for (int i = 0; i < getN(); i++) {
@@ -81,6 +82,7 @@ public class Regression {
 	
 	
 	public double sumYMeanCombined(LinkedList<Point> prediction) {
+		// https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
 		double mean = averageY(points);
 		double predmean = averageY(prediction);
 		double sum = 0;
@@ -152,6 +154,7 @@ public class Regression {
 	}
 	
 	public double stdDeviationX() {
+		// https://www.mathsisfun.com/data/standard-deviation-formulas.html
 		double deviation = 0;
 		if ( getN() > 1) {
 		
@@ -168,6 +171,7 @@ public class Regression {
 		return deviation;
 	}
 	public double stdDeviationY() {
+		// https://www.mathsisfun.com/data/standard-deviation-formulas.html
 		double deviation = 0;
 		if (getN() > 1) {
 			double mean = averageY();
@@ -208,6 +212,7 @@ public class Regression {
 	}
 
 	public double calcA() {
+		// http://faculty.cas.usf.edu/mbrannick/regression/Part3/RegBasics.html
 		if (getN() > 1 ) {
 			
 			double sumxy =sumXY();
@@ -232,6 +237,8 @@ public class Regression {
 		
 	}
 	public double calcB() {
+		// http://faculty.cas.usf.edu/mbrannick/regression/Part3/RegBasics.html
+		
 		setB(averageY() - (getA() * averageX()));
 		return getB();
 	}
@@ -310,6 +317,7 @@ public class Regression {
 	}
 	
 	public double getR(LinkedList<Point> prediction) {
+		// https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
 		double ssX = sumYMeanSquared(); 
 		double ssY = sumYMeanSquared(prediction); 
 		double sscombined = sumYMeanCombined(prediction); 
@@ -317,7 +325,7 @@ public class Regression {
 	}
 	
 	public double getR2(LinkedList<Point> prediction) {
-				
+		// https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
 		double r = getR(prediction);
 		return Math.pow(r, 2);
 	}
