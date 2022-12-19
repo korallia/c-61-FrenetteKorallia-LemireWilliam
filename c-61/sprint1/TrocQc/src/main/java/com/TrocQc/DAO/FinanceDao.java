@@ -119,10 +119,10 @@ public class FinanceDao extends SpringJdbcConfig {
 			MapSqlParameterSource params = new MapSqlParameterSource();
 			params.addValue("start", start.toString());
 			params.addValue("end", end.toString());
-			params.addValue("userid", this.userId);
+			params.addValue("userID", this.userId);
 
 			List<Lot> lots = namedParameterJdbcTemplate().query(
-					"select *  from lot WHERE productid IN (SELECT id FROM product WHERE userid=:userid) AND addeddate>=:start AND addeddate<=:end",
+					"select *  from lot WHERE productId IN (SELECT id FROM product WHERE userID=:userID) AND addeddate>=:start AND addeddate<=:end",
 					params, BeanPropertyRowMapper.newInstance(Lot.class));
 
 			

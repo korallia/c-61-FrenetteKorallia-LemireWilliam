@@ -89,11 +89,11 @@
 						
 						<tr class="w-100">
 							<td>MATÉRIAUX</td>
-							<td> <p id="totalProfit" class="totalExpense">-${productcost}$</p></td>
+							<td> <p id="totalProfit" class="totalExpense">-${rawmaterialcost}$</p></td>
 						</tr>
 						<tr>
 							<td>PRODUITS</td>
-							<td><p id="totalProfit" class="totalExpense">-${rawmaterialcost}$</p></td>
+							<td><p id="totalProfit" class="totalExpense">-${productcost}$</p></td>
 						</tr>
 						<tr>
 							<td>VENTES</td>

@@ -11,19 +11,7 @@
  var selectedYPos;
  var shouldRefresh = false;
 window.onload = function(){
-	//https://stackoverflow.com/questions/45278879/how-to-pass-variable-values-from-java-to-javascript
-	function openNotePad () {
 
-		var node = document.getElementById("notePad");
-		node.style.display = "block";
-	}
-	
-		function openManualSaleForm () {
-
-		var node = document.getElementById("salesForm");
-		node.style.display = "block";
-	}
-	
 	if(!!document.getElementById("notePad")) {
 		var node = document.getElementById("notePad");
 		document.getElementById("range2").addEventListener('change', pinNote);
@@ -40,6 +28,7 @@ window.onload = function(){
 	if(!!document.getElementById("manualSaleBtn")) {
 		document.getElementById("manualSaleBtn").addEventListener('click', openManualSaleForm);
 	}
+
 	
 	if (!!document.getElementsByName("postIt")) {
 		//PIN ALL NOTES FROM DB
@@ -229,7 +218,6 @@ function modifyNote(id) {
 
 function deleteNote(id) {
 	
-	//console.log(id);
 	var form = document.createElement('form');
 	form.setAttribute("method", "post");
     form.setAttribute("action", "lobbyServlet");
@@ -313,11 +301,13 @@ function closeWindow () {
 	var node = document.getElementById('notePad');
 	var modNode = document.getElementById('modifyPad');
 	var prodNode = document.getElementById('productForm');
-	//var materialNode = document.getElementById('materialForm');
+	var modMaterialNode = document.getElementById('modifyMaterialForm');
 	var matNode = document.getElementById('materialForm');
 	var salesNode = document.getElementById('salesForm');
 	var templateNode = document.getElementById('addTemplateForm');
+	var modTemplateNode = document.getElementById('modifyTemplateForm');
 	
+
 	if (!!node) {
 		if (node.style.display == "block") {
 			node.style.display="none";
@@ -347,9 +337,30 @@ function closeWindow () {
 		if(templateNode.style.display == "block"){
 			templateNode.style.display = "none"
 		}
+	}
+	if (!!modMaterialNode){
+		if(modMaterialNode.style.display == "block"){
+			modMaterialNode.style.display = "none"
+		}
+	}	
+	
+	if (!!modTemplateNode){
+		if(modTemplateNode.style.display == "block"){
+			modTemplateNode.style.display = "none"
+		}
 	}	
 	
 	itis=false;
+}
+
+function openNotePad () {
+	var node = document.getElementById("notePad");
+	node.style.display = "block";
+}
+
+function openManualSaleForm () {
+	var node = document.getElementById("salesForm");
+	node.style.display = "block";
 }
 
 

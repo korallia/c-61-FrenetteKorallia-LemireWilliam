@@ -115,8 +115,12 @@ public class FrontControlleur{
 	@GetMapping("/Finances")
 	public String GetFinances(Model theModel, HttpSession session, @RequestParam Map<String,String> params) {
 		
-		FinanceDao finDao = new FinanceDao(1);
-		
+		User user = (User) session.getAttribute("user");
+        if(user == null) {
+            return  "redirect:/Login";
+        }
+
+        FinanceDao finDao = new FinanceDao(user.getId());
 		
 		String startDateStr = "2022-11-26";
 		String endDateStr = "2022-12-26";
