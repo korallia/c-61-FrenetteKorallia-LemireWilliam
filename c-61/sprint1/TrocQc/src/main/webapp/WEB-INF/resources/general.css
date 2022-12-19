@@ -50,10 +50,17 @@ body {
 	
 }
 
+.configContainer:hover {
+	transition: 350ms;
+   	opacity: 0.95;
+    border: #9fc5f8 3px solid;
+    box-shadow: 0 0 1px;
+}
+
 .loginContainer {
 	height: 300px;
 	align-items: center;
-	border: solid black 2px;
+	border: solid #9fc5f8 3px;
 	transition: 350ms;
 	width: 300px;
 	margin-top: 60px;

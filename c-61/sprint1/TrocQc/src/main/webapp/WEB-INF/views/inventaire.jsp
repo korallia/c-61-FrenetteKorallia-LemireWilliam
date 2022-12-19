@@ -56,7 +56,7 @@
 		<div class="row " >
 			<!-- Tab links -->
 			<div class="tab d-flex justify-content-center">
-			  <button class="tablinks" onclick="openTab(event, 'Produits')">PRODUITS</button>
+			  <button class="tablinks" onclick="openTab(event, 'Produits')">LOTS</button>
 			  <button class="tablinks" onclick="openTab(event, 'Materiaux')">MATÉRIAUX</button>
 			  <button class="tablinks" onclick="openTab(event, 'Templates')">GABARITS</button>
 			  <button class="tablinks" onclick="openTab(event, 'Rapport')">RAPPORT</button>
@@ -69,8 +69,8 @@
 				<div class="row justify-content-center text-center">
 					<div class="col mt-2"> <button class="btn w-50" id="addProductBtn">AJOUTER</button> </div>
 					<div class="col">
-						<h3>PRODUITS</h3>
-						<p>Les produits en inventaire.</p>
+						<h3>LOTS</h3>
+						<p>Les lots en inventaire.</p>
 					</div>
 					<div class="col mt-2">  </div>
 				</div>		
