@@ -59,11 +59,11 @@
 						</div>
 							
 					 	<div class="row ">
-					 		<div class="col text-center">SITE WEB: <br> <input type="text" name="url" size="20"></div > 
+					 		<div class="col text-center">SITE WEB: <br> <input type="text" name="url" ></div > 
 					 		
-					 		<div class="col avatar text-center">
-					 			<a class="align-items-center">TÉLÉVERSER AVATAR</a> <img alt="" src="resources/images/uploadBlk.png" >
-					 			<input type="file" name="file" accept="image/png, image/jpeg" />
+						 		<div class="col text-center">
+						 		<div class="row"> <span> <a class=" align-items-center pr-2">TÉLÉVERSER AVATAR</a><img class="icon"  src="resources/images/uploadBlk.png" > </span> </div>
+						 		<div class="row"><input type="file" name="file" accept="image/png, image/jpeg" /></div>					 			
 					 		</div> 
 					 	</div>
 					 	

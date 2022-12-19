@@ -236,6 +236,7 @@
 			
 			<div class="container mt-auto align-middle">
 				<form action="inventoryServlet" method="post">
+					<input type="hidden" name="action" value="addLot">
 					<div class="row">
 						<h1 class="text-center"> AJOUTER UN PRODUIT </h1>
 					</div>
@@ -265,6 +266,7 @@
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			
 			<form action="inventoryServlet" method="post">
+				<input type="hidden" name="action" value="addOrModifyMaterial">
 				<div class="row ">
 					<h1 class="text-center"> AJOUTER DU MATÉRIEL </h1>
 				</div>
@@ -346,7 +348,7 @@
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			
 			<form action="inventoryServlet" method="post">
-			
+				<input type="hidden" name="action" value="addOrModifyMaterial">
 				<input type="hidden" name="hiddenProdId" id="hiddenProdId">
 				<div class="row ">
 					<h1 class="text-center"> MODIFIER DU MATÉRIEL </h1>
@@ -406,8 +408,9 @@
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			<div class="container mt-auto align-middle">
 				<form action="inventoryServlet" method="post">
+				<input type="hidden" name="action" value="addOrModifyTemplate">
 					<div class="row ">
-						<h1 class="text-center"> AJOUTER UN TEMPLATE </h1>
+						<h1 class="text-center"> AJOUTER UN GABARIT </h1>
 					</div>
 					
 					<div class="row m-1">
@@ -423,24 +426,22 @@
 					</div>
 					
 					<div class="row m-1">
-						<div class="col m-1"> <input class="w-100" type="number" placeholder="Entrer la quantité" name="templateQuantity" > </div>
 						<div class="col m-1"> 
 							<div class="selector">
-								<select class="text-align" name="templateUOM">
-									<option value="0"> - Choisir l'unité... - </option>
+								<select class="text-align " name="templateUOM">
+									<option value="0" > - Choisir l'unité... - </option>
 									<c:forEach var="unitOfMeasure" items="${uomList}">
 										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
 									</c:forEach>
 								</select>
 							</div>
 						</div> 
-						<div class="col m-1"> <input type="text" placeholder="Entrer le NBQ" name="templateLQL" > </div>
+						<div class="col m-1"> <input class="w-100" type="text" placeholder="Entrer le NBQ" name="templateLQL" > </div>
 					</div>
 					
 					<div class="row m-1">
 						<div class="col m-1"> <input class="w-100" type="number" step="any" placeholder="Entrer le coût..." name="templateCost" > </div>
 						<div class="col m-1"> <input class="w-100" type="number" step="any" placeholder="Entrer le prix..." name="templatePrice" > </div>
-						<div class="col m-1"> <input class="w-100" type="number" step="any" placeholder="Entrer le MSRP..." name="templateMSRP" > </div>
 					</div>
 					
 					
@@ -537,7 +538,7 @@
 						</div>												
 					</div>
 					
-					<div class=" d-flex justify-content-center"> <input class="btn w-50" type="submit" value="AJOUTER TEMPLATE"> </div>
+					<div class=" d-flex justify-content-center"> <input class="btn w-50 mt-4" type="submit" value="AJOUTER GABARIT"> </div>
 					
 				</form >
 			</div>
@@ -550,12 +551,12 @@
 			<div class="xbtn m-1" onclick="closeWindow()"> <img alt="" src="resources/images/xbtn50p.png"> </div>
 			<div class="container mt-auto align-middle">
 				<form action="inventoryServlet" method="post">
-				
+					<input type="hidden" name="action" value="addOrModifyTemplate">
 					<input type="hidden" name="hiddenTemplateId" id="hiddenTemplateId">
 					
 				
 					<div class="row ">
-						<h1 class="text-center"> MODIFIER UN TEMPLATE </h1>
+						<h1 class="text-center"> MODIFIER UN GABARIT </h1>
 					</div>
 					
 					<div class="row m-1">
@@ -571,7 +572,6 @@
 					</div>
 					
 					<div class="row m-1">
-						<div class="col m-1"> <input id="modTemplateQuantity" class="w-100" type="number" placeholder="Entrer la quantité" name="templateQuantity" > </div>
 						<div class="col m-1"> 
 							<div class="selector">
 								<select id="modTemplateUOM" class="text-align" name="templateUOM">
@@ -582,13 +582,12 @@
 								</select>
 							</div>
 						</div> 
-						<div class="col m-1"> <input id="modTemplateLQL" type="text" placeholder="Entrer le NBQ" name="templateLQL" > </div>
+						<div class="col m-1"> <input id="modTemplateLQL" class="w-100" type="text" placeholder="Entrer le NBQ" name="templateLQL" > </div>
 					</div>
 					
 					<div class="row m-1">
 						<div class="col m-1"> <input id="modTemplateCost" class="w-100" type="number" step="any" placeholder="Entrer le coût..." name="templateCost" > </div>
 						<div class="col m-1"> <input id="modTemplatePrice" class="w-100" type="number" step="any" placeholder="Entrer le prix..." name="templatePrice" > </div>
-						<div class="col m-1"> <input id="modTemplateMSRP" class="w-100" type="number" step="any" placeholder="Entrer le MSRP..." name="templateMSRP" > </div>
 					</div>
 
 					
@@ -697,7 +696,7 @@
 
 
 					<div class=" d-flex justify-content-center"> 
-						<input  class="btn w-50 mx-1" type="submit" value="MODIFIER TEMPLATE"> 			
+						<input  class="btn w-50 mx-1" type="submit" value="MODIFIER GABARIT"> 			
 					</div>
 				
 				</form >
