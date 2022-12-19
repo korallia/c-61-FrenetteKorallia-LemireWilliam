@@ -50,7 +50,7 @@
 					<img alt="" class="" src="resources/images/troqcLogoBlue400p.png">
 					<br><br>
 					<h3>Bienvenue, <%=user.getFirstName()%>. </h3>
-					<p>Que fait-on ajourd'hui?</p>
+					<p>Que fait-on aujourd'hui?</p>
 				</div>			
 			
 				<div class="infoModule text-center" id="moduleVentes">

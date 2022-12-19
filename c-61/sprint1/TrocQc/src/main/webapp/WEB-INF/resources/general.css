@@ -12,6 +12,7 @@ body {
 	background: radial-gradient(circle, rgba(255,255,255,0.0984768907563025) 86%, rgba(159,197,248,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#9fc5f8",GradientType=1);
 	overflow: auto; 
+	overflow-x: hidden; 
 }
 
 .logo {

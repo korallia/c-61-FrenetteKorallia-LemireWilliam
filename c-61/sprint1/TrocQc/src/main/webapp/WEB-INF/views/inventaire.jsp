@@ -285,7 +285,7 @@
 					<h1 class="text-center"> AJOUTER DU MATÉRIEL </h1>
 				</div>
 				
-				<div class="row m-1">
+				<div class="row m-3">
 					<input type="text" placeholder="Entrer le nom du matériel..." name="materialName">
 				</div>					
 				
@@ -310,45 +310,21 @@
 				
 				<h4 class="text-center">AJOUTER UN NOUVEAU CHAMP</h4>
 				<div class="border">
-					<div class="row">
-						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
-						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
-						<div class="col my-2">
-							<select class="text-align w-100" name="materialNewFieldUOM1">
-								<option value="0"> - Choisir l'unité... - </option>
-								<c:forEach var="unitOfMeasure" items="${uomList}">
-									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-								</c:forEach>
-							</select>
-						</div>							
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>						
 					</div>
-					<div class="row">
-						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
-						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>
-						<div class="col my-2">
-							<select class="text-align w-100" name="materialNewFieldUOM2">
-								<option value="0"> - Choisir l'unité... - </option>
-								<c:forEach var="unitOfMeasure" items="${uomList}">
-									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-								</c:forEach>
-							</select>
-						</div>						
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>					
 					</div>
-					<div class="row ">
-						<div class="col my-2"> <input type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
-						<div class="col my-2"> <input type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
-						<div class="col my-2">
-							<select class="text-align w-100" name="materialNewFieldUOM3">
-								<option value="0"> - Choisir l'unité... - </option>
-								<c:forEach var="unitOfMeasure" items="${uomList}">
-									<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-								</c:forEach>
-							</select>
-						</div>							
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
+						<div class="col my-1"> <input class="w-100" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>						
 					</div>		
 				</div>
 		
-				<div class="row " id="noteBtn">
+				<div class="row mb-1" id="noteBtn">
 					<div class="d-flex justify-content-center"><input type="submit" class="btn " value="AJOUTER MATÉRIEL"></div>
 				</div>
 			</form >
@@ -368,7 +344,7 @@
 					<h1 class="text-center"> MODIFIER DU MATÉRIEL </h1>
 				</div>
 				
-				<div class="row m-1">
+				<div class="row m-3">
 					<input id="modMaterialName" type="text" placeholder="Entrer le nom du matériel..." name="materialName">
 				</div>					
 				
@@ -393,23 +369,23 @@
 				
 				<h4 class="text-center">MODIFIER LES CHAMPS</h4>
 				<div class="border">
-					<div class="row">
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldName1"  type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldValue1" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldName1"  type="text" placeholder="Nom du champ..." name="materialNewFieldName1" > </div>
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldValue1" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue1" > </div>
 						
 					</div>
-					<div class="row">
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldName2" type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldValue2" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>					
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldName2" type="text" placeholder="Nom du champ..." name="materialNewFieldName2" > </div>
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldValue2" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue2" > </div>					
 					</div>
-					<div class="row ">
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldName3" type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
-						<div class="col my-2"> <input class="w-100" id="modMaterialNewFieldValue3" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
+					<div class="row m-1">
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldName3" type="text" placeholder="Nom du champ..." name="materialNewFieldName3" > </div>
+						<div class="col my-1"> <input class="w-100" id="modMaterialNewFieldValue3" type="text" placeholder="Valeur du champ..." name="materialNewFieldValue3" > </div>
 						
 					</div>		
 				</div>
 		
-				<div class="row " id="noteBtn">
+				<div class="row mb-1" id="noteBtn">
 					<div class="d-flex justify-content-center"><input type="submit" class="btn " value="MODIFIER MATÉRIEL"></div>
 				</div>
 			</form >			

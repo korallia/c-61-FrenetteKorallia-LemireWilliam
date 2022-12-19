@@ -83,12 +83,12 @@
 					
 					<div class="menuElement justify-content-center mt-2" id="modifyPassword">
 						<h5>Modifier le mot de passe</h5>
-						<div class="row mx-1">
-							<div class = "col"> <input class="w-100" type="text" placeholder="Nouveau mot de passe" name="newPassword"> </div>
+						<div class="row mx-1 mb-2">
+							<div class = "col"> <input class="w-100" type="password" placeholder="Nouveau mot de passe" name="newPassword"> </div>
 						</div> 	
 						
 						<div class="row mx-1">
-							<div class = "col"> <input class="w-100" type="text" placeholder="Répétez le mot de passe" name="repeatPassword"> </div>
+							<div class = "col"> <input class="w-100" type="password" placeholder="Répétez le mot de passe" name="repeatPassword"> </div>
 						</div> 								
 					</div>						
 					
