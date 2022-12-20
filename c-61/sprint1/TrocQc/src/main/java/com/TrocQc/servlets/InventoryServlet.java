@@ -142,6 +142,11 @@ public class InventoryServlet extends HttpServlet {
 		
 
 		  RawMaterial rawMaterial = new RawMaterial(materialName, materialCost, uom, materialQuantity, user.getId(), rmcfList);
+		  
+		  if ( hiddenProdId > 0 ) {
+			  rawMaterial.setId(hiddenProdId);
+		  }
+		  
 			  invDao.SaveRawMaterial(rawMaterial);
 		
 	 }
