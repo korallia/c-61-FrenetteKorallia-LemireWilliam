@@ -124,7 +124,7 @@ Par example, la page inventaire a:
     
 ## Contact
     Korallia Frenette <a href="mailto:koralliafrenette@gmail.com">koralliafrenette@gmail.com</a>
-    William Lemire
+    William Lemire <a href="mailto:wlemire.wl@gmail.com">wlemire.wl@gmail.com</a>
 
     
 ## Remerciements
