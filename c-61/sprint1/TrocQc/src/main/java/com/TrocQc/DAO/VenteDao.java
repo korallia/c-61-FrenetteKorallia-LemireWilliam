@@ -47,7 +47,7 @@ public class VenteDao extends SpringJdbcConfig{
 				parameters.put("quantity", vente.getQuantity());
 				parameters.put("userId", vente.getUserID());
 				parameters.put("ventedate", time);
-				parameters.put("cost", vente.getCout());
+				parameters.put("cout", vente.getCout());
 				parameters.put("montant", vente.getMontant());
 				
 				Number id = simpleJdbcInsert.executeAndReturnKey(parameters);

@@ -295,13 +295,12 @@ public class InventoryServlet extends HttpServlet {
 				
 				try {
 				
-					if (delProd.equals("true")) {
+					if (delProd != null && delProd.equals("true")) {
 						invDao.deleteProduct(product);
-						response.sendRedirect("/TrocQc/Inventaire");
 						return;
 					}
 				} catch (Exception e) {
-
+					return;
 				}
 			
 				
@@ -368,7 +367,9 @@ public class InventoryServlet extends HttpServlet {
 	 
 	 private void GenerateRapport() {
 		 ExcelInventoryReport eir = new ExcelInventoryReport(user.getId());
-		  eir.generateReport("C:\\Reports\\InventoryReport.xls");
+		 
+		 String home = System.getProperty("user.home");
+		  eir.generateReport(home+"/Downloads/" +"InventoryReport.xls");
 		  
 		  
 	 }

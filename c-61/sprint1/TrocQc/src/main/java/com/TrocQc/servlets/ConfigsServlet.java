@@ -97,6 +97,9 @@ public class ConfigsServlet extends HttpServlet {
 			else {
 				userDao.SaveUser(user);
 			}
+			
+			user = userDao.getuser(user.getId());
+			request.getSession().setAttribute("user", user);
 			response.sendRedirect("/TrocQc/Configurations");
 		}
 	}

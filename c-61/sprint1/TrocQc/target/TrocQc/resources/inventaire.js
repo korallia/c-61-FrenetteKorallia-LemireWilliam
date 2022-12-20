@@ -1,5 +1,7 @@
-/**
- * 
+/* Fichier javascript inventaire.js
+ * Auteur:  William Lemire
+ * Équipe: William et Korallia 
+ * Ce fichier gère le javascript de la page inventaire, notament les popup d'édition
  */
  
  var img;
@@ -187,7 +189,7 @@ function getRawMaterialRow(table, tableRow){
  	var name = tableRow.childNodes[3].innerHTML.trim();
  	var cost  = tableRow.childNodes[5].innerHTML.trim();
  	var quantity = tableRow.childNodes[7].innerHTML.trim();
- 	var unit = tableRow.childNodes[9].innerHTML.trim();
+ 	var unit = tableRow.childNodes[9].getAttribute("data-id");
  	var date = tableRow.childNodes[11].innerHTML.trim();
  	
 	

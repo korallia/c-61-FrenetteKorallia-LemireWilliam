@@ -1,10 +1,12 @@
-package com.TrocQc.Entity;
 
 /* Class Lot
  * Auteur: Korallia Frenette
  * Équipe: William et Korallia 
  * Cette entité store un lot de produit crée en une occasion
  */
+
+package com.TrocQc.Entity;
+
 
 
 import java.sql.Date;

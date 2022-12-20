@@ -222,7 +222,6 @@
 								<td> ${product.addedDate} </td>
 								
 								<td>
-									SULLY BOB
 									<c:forEach var="rawMat" items="${product.rawmaterials}">
 										${rawMat.rawmaterial.name} <br>
 									</c:forEach>
@@ -322,7 +321,6 @@
 				</div>
 				
 				<div class="row m-1">
-					<div class="col "> <input class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le NBQ" name="materialLQN" > </div>
 					<div class="col "> <input class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" > </div>
 				</div>
 				
@@ -381,8 +379,8 @@
 				</div>
 				
 				<div class="row m-1">
-					<div class="col "> <input id="modMaterialLQN" class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le NBQ" name="materialLQN" > </div>
-					<div class="col "> <input id="modMaterialCost" class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" > </div>
+				<div class="col" ><input id="cout" class="w-100" readonly="readonly" value="Entrer le coût:" /></div>
+					<div class="col "> <input id="modMaterialCost" class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" ></div>
 				</div>
 				
 				<h4 class="text-center">MODIFIER LES CHAMPS</h4>
@@ -478,13 +476,12 @@
 						<div class="row m-1">
 							<div class="col m-1 text-center">Matériaux</div>
 							<div class="col m-1 text-center">Quantité</div>
-							<div class="col m-1 text-center">Unité</div>
 						</div>
 					
 						<div class="row m-1">
 							<div class="col text-center">
 								<select class="text-align" name="rawMaterialId1">
-									<option value="0"> - Choisir du matériel... - </option>
+									<option value="0"> - Choisir le matériel... - </option>
 									<c:forEach var="rawMaterial" items="${rmList}">
 										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
 									</c:forEach>
@@ -493,19 +490,11 @@
 							
 							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity1" > </div>
 							
-							<div class="col text-center">
-								<select class="text-align" name="rawMaterialUOM1">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
 						</div>
 						<div class="row m-1">
 							<div class="col text-center">
 								<select class="text-align" name="rawMaterialId2">
-									<option value="0"> - Choisir du matériel... - </option>
+									<option value="0"> - Choisir le matériel... - </option>
 									<c:forEach var="rawMaterial" items="${rmList}">
 										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
 									</c:forEach>
@@ -514,19 +503,12 @@
 							
 							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity2" > </div>
 							
-							<div class="col text-center">
-								<select class="text-align" name="rawMaterialUOM2">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
+							
 						</div>
 						<div class="row m-1">
 							<div class="col text-center">
 								<select class="text-align" name="rawMaterialId3">
-									<option value="0"> - Choisir du matériel... - </option>
+									<option value="0"> - Choisir le matériel... - </option>
 									<c:forEach var="rawMaterial" items="${rmList}">
 										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
 									</c:forEach>
@@ -535,14 +517,6 @@
 							
 							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity3" > </div>
 							
-							<div class="col text-center">
-								<select class="text-align" name="rawMaterialUOM3">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
 						</div>												
 					</div>
 					
@@ -624,13 +598,12 @@
 						<div class="row m-1">
 							<div class="col m-1 text-center">Matériaux</div>
 							<div class="col m-1 text-center">Quantité</div>
-							<div class="col m-1 text-center">Unité</div>
 						</div>
 					
 						<div class="row m-1">
 							<div class="col text-center">
 								<select id="modRawMaterialId1" class="text-align" name="rawMaterialId1" >
-									<option value="0"> - Choisir du matériel... - </option>
+									<option value="0"> - Choisir le matériel... - </option>
 									<c:forEach var="rawMaterial" items="${rmList}">
 										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
 									</c:forEach>
@@ -643,7 +616,7 @@
 						<div class="row m-1">
 							<div class="col text-center">
 								<select id="modRawMaterialId2" class="text-align" name="rawMaterialId2">
-									<option value="0"> - Choisir du matériel... - </option>
+									<option value="0"> - Choisir le matériel... - </option>
 									<c:forEach var="rawMaterial" items="${rmList}">
 										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
 									</c:forEach>
@@ -657,7 +630,7 @@
 						<div class="row m-1">
 							<div class="col text-center">
 								<select id="modRawMaterialId3" class="text-align" name="rawMaterialId3">
-									<option value="0"> - Choisir du matériel... - </option>
+									<option value="0"> - Choisir le matériel... - </option>
 									<c:forEach var="rawMaterial" items="${rmList}">
 										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
 									</c:forEach>

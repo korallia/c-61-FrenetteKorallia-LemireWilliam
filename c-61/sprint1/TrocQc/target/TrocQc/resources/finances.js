@@ -1,6 +1,4 @@
-/**
- * 
- */
+
  /* Fichier javascript finance.js
  * Auteur:  William Lemire
  * Équipe: William et Korallia 
