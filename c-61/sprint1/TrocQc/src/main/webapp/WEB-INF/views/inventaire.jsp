@@ -26,8 +26,6 @@
 	</script>
 	<% session.setAttribute("lotMsg", "null");%>
 
-
-
 	<div class="container-fluid">
 		<div class="row mb-3">
 			<div class="col">
@@ -111,6 +109,8 @@
 									<c:forEach var="rawMat" items="${product.rawmaterials}">
 										${rawMat.rawmaterial.name} <br>
 									</c:forEach>
+									
+									
 								</td>
 								<td> ${product.lowQuantityLevel} </td>
 								<td> ${product.addedDate} </td>
@@ -157,7 +157,7 @@
 							<td> ${rawMaterial.name}</td>
 							<td> ${rawMaterial.cost} $</td>
 							<td> ${rawMaterial.quantity} </td>
-							<td> ${rawMaterial.unitofmeasure.name} </td>
+							<td data-id="${rawMaterial.unitofmeasure.id}"> ${rawMaterial.unitofmeasure.name} </td>
 							<td> ${rawMaterial.addedDate} </td>
 							<c:forEach var="custCol" items="${rawMaterial.userCustomFields}" >
 								<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td> 
@@ -196,9 +196,11 @@
 					  		<th>UNITÉ</th>
 					  		<th>DATE</th>
 					  		<th>MATÉRIAUX</th>
+					  		<th>LOTS</th>
 							<th> CUSTOM COL 1 </th>
 							<th> CUSTOM COL 2 </th>
 							<th> CUSTOM COL 3 </th>
+							
 					  	</tr>
 				  	
 						<c:forEach var="product" items="${prodList}">
@@ -210,18 +212,28 @@
 								<td> ${product.cost} $</td>
 								<td> ${product.msrp} $</td>
 								<td> ${product.lowQuantityLevel}</td>
-								<td> ${product.unitofmeasure.name} </td>
+								<td data-id="${product.unitofmeasure.id}"> ${product.unitofmeasure.name} </td>
 								<td> ${product.addedDate} </td>
 								
 								<td>
+									SULLY BOB
 									<c:forEach var="rawMat" items="${product.rawmaterials}">
 										${rawMat.rawmaterial.name} <br>
 									</c:forEach>
+									<span style="display:none" class="json">[<c:forEach var="rawMat" items="${product.rawmaterials}" varStatus="loop">{ "id": "${rawMat.rawmaterial.id}","name": "${rawMat.rawmaterial.name}","qty":${rawMat.quantity} }<c:if test="${!loop.last}">,</c:if></c:forEach>]
+									</span>
+								
+									
 								</td>
 								
+								
+								<td> ${product.lots.size()}</td>
 								<c:forEach var="custCol" items="${product.userCustomFields}" >
 									<td> ${custCol.fieldtypeName}:  ${custCol.fieldvalue}</td>
-								</c:forEach>									
+								</c:forEach>
+								
+								
+																	
 							</tr>
 						</c:forEach>			  	
 					 </table>
@@ -611,7 +623,7 @@
 					
 						<div class="row m-1">
 							<div class="col text-center">
-								<select id="modRawMaterialId1" class="text-align" name="rawMaterialId1">
+								<select id="modRawMaterialId1" class="text-align" name="rawMaterialId1" >
 									<option value="0"> - Choisir du matériel... - </option>
 									<c:forEach var="rawMaterial" items="${rmList}">
 										<option value="${rawMaterial.id}"> ${rawMaterial.name} </option>
@@ -619,16 +631,8 @@
 								</select>
 							</div>
 							
-							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity1" > </div>
-							
-							<div class="col text-center">
-								<select id="modRawMaterialUOM1" class="text-align" name="rawMaterialUOM1">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
+							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity1"  id="rawMaterialQuantity1"  > </div>
+						
 						</div>
 						<div class="row m-1">
 							<div class="col text-center">
@@ -640,16 +644,9 @@
 								</select>
 							</div>
 							
-							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity2" > </div>
+							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity2"  id="rawMaterialQuantity2" > </div>
 							
-							<div class="col text-center">
-								<select id="modRawMaterialUOM2" class="text-align" name="rawMaterialUOM2">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
+							
 						</div>
 						<div class="row m-1">
 							<div class="col text-center">
@@ -661,16 +658,8 @@
 								</select>
 							</div>
 							
-							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity3" > </div>
+							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity3" id="rawMaterialQuantity3"  > </div>
 							
-							<div class="col text-center">
-								<select id="modRawMaterialUOM3" class="text-align" name="rawMaterialUOM3">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
 							
 
 							
@@ -679,9 +668,12 @@
 
 					
 					<div class=" d-flex justify-content-center my-2"> 
-						<label class="text-center">
+						<label class="text-center" id="deleteProductLabel">
 							Supprimer produit?	<input type="checkbox" id="deleteProduct" name="deleteProduct" value="true">
 						</label	> 	
+						<label class="text-center" id="cantdeleteProductLabel" style="display:none;">
+							Ce produit a des lots et ne peut être supprimé
+						</label	>
 					</div>
 
 

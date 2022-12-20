@@ -50,37 +50,37 @@ public class InventoryServlet extends HttpServlet {
 		   invDao = new InventoryDao(user.getId());
 		  
 		  
+		   
+		   switch(request.getParameter("action")) {
+		   		case "generateInventoryReport":
+			   		this.GenerateRapport(); 
+					break;
+
+		   		case "addLot":
+		   			this.saveLot(request, response);
+					break;
+				
+		   		case "addOrModifyMaterial":
+		   			this.SaveRawMaterial(request, response);
+					break;
+					
+		   		case "addOrModifyTemplate":
+		   			this.SaveProduct(request, response);
+					break;
+		   			
+				
+		   }
+		   
+		   response.sendRedirect("/TrocQc/Inventaire");
+		   
 		  
-		  if (request.getParameter("action").equals("generateInventoryReport")) {
-			  this.GenerateRapport(); 
-			  response.sendRedirect("/TrocQc/Inventaire");
-		  }
-		  
-		  //ADD LOT
-		  if (request.getParameter("action").equals("addLot")) {
-				this.saveLot(request, response);
-				response.sendRedirect("/TrocQc/Inventaire");
-			  
-		  }
-		  
-		  
-		  //ADD/MOD MATERIAL
-		  if (request.getParameter("action").equals("addOrModifyMaterial")) {
-			  this.SaveRawMaterial(request, response);
-			  response.sendRedirect("/TrocQc/Inventaire");
-		  }
-		  
-		  //ADD/MOD GABARIT
-		  else if(request.getParameter("action").equals("addOrModifyTemplate")) {
-			  this.SaveProduct(request, response);
-			  response.sendRedirect("/TrocQc/Inventaire");
-		  }
 		  
 	  }
 	  
 	 private void SaveRawMaterial(HttpServletRequest request,
 		     HttpServletResponse response) throws ServletException, IOException {
-		  int hiddenProdId = 0;
+		  
+		 int hiddenProdId = 0;
 
 		  String materialCustomFieldName1 = null;
 		  String materialCustomFieldValue1 = null;
@@ -92,6 +92,9 @@ public class InventoryServlet extends HttpServlet {
 		  String materialName = request.getParameter("materialName");
 		  double materialQuantity = Double.parseDouble(request.getParameter("materialQuantity"));
 		  int materialUOM = Integer.parseInt(request.getParameter("materialUOM"));
+		  UnitOfMeasure uom =  invDao.getUnitOfMeasure(materialUOM);
+		  
+		  
 		  double materialCost = Double.parseDouble(request.getParameter("materialCost"));
 		  
 		  try {
@@ -113,9 +116,7 @@ public class InventoryServlet extends HttpServlet {
 		  }			
 		  
 		  List<RawMaterialCustomField> rmcfList = new ArrayList<RawMaterialCustomField>();
-
-			  
-		  UnitOfMeasure uom = invDao.getUnitOfMeasure(materialUOM);
+			
 		
 		  if (!materialCustomFieldName1.equals("") || !materialCustomFieldValue1.equals("")) {
 			  RawMaterialCustomField rmcf1 = new RawMaterialCustomField(materialCustomFieldName1, materialCustomFieldValue1);
@@ -140,16 +141,17 @@ public class InventoryServlet extends HttpServlet {
 	 
 	 private void SaveProduct(HttpServletRequest request,
 		     HttpServletResponse response) throws ServletException, IOException {
+		 
+		 
+		 
+		 
 		 int hiddenTemplateId = 0;
 		  int rawMaterialName1 = 0;
 		  double rawMaterialQuantity1 = 0.0;
-		  int rawMaterialUOM1 = 0;
 		  int rawMaterialName2 = 0;
 		  double rawMaterialQuantity2 = 0.0;
-		  int rawMaterialUOM2 = 0;
 		  int rawMaterialName3 = 0;
 		  double rawMaterialQuantity3 = 0.0;
-		  int rawMaterialUOM3 = 0;
 		  String newFieldName1 = null;
 		  String newFieldValue1 = null;
 		  String newFieldName2 = null;
@@ -170,6 +172,8 @@ public class InventoryServlet extends HttpServlet {
 		  String templateSKU = request.getParameter("templateSKU");
 		  String templateDesc = request.getParameter("templateDesc");
 		  int templateUOM = Integer.parseInt(request.getParameter("templateUOM"));
+		  
+		  
 		  int templateLQL = Integer.parseInt(request.getParameter("templateLQL")) ; 
 		  
 		  double templateCost = Double.parseDouble( request.getParameter("templateCost") ); 
@@ -180,10 +184,15 @@ public class InventoryServlet extends HttpServlet {
 			try {
 				  newFieldName1 = request.getParameter("newFieldName1"); 
 				  newFieldValue1 = request.getParameter("newFieldValue1"); 
+			
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		  try {
+			
 				  rawMaterialName1 = Integer.parseInt(request.getParameter("rawMaterialId1")) ; 
 				  rawMaterialQuantity1 = Double.parseDouble( request.getParameter("rawMaterialQuantity1") ); 
-				  rawMaterialUOM1 = Integer.parseInt( request.getParameter("rawMaterialUOM1") );
-				
+				  
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -191,10 +200,15 @@ public class InventoryServlet extends HttpServlet {
 			try {
 				   newFieldName2 = request.getParameter("newFieldName2"); 
 				   newFieldValue2 = request.getParameter("newFieldValue2"); 
+			
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		  try {
+			
 				   rawMaterialName2 = Integer.parseInt(request.getParameter("rawMaterialId2")) ; 
 				   rawMaterialQuantity2 = Double.parseDouble( request.getParameter("rawMaterialQuantity2") ); 
-				   rawMaterialUOM2 = Integer.parseInt( request.getParameter("rawMaterialUOM2") );
-				
+				  
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -202,10 +216,14 @@ public class InventoryServlet extends HttpServlet {
 			try {
 				   newFieldName3 = request.getParameter("newFieldName3"); 
 				   newFieldValue3 = request.getParameter("newFieldValue3"); 
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		  try {
+						
 				   rawMaterialName3 = Integer.parseInt(request.getParameter("rawMaterialId3")) ; 
 				   rawMaterialQuantity3 = Double.parseDouble( request.getParameter("rawMaterialQuantity3") ); 
-				   rawMaterialUOM3 = Integer.parseInt( request.getParameter("rawMaterialUOM3") );
-				  
 				
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -213,102 +231,97 @@ public class InventoryServlet extends HttpServlet {
 		  
 			List<ProductCustomFields> pcfList = new ArrayList<ProductCustomFields>();
 
-			if (!newFieldName1.equals("") || !newFieldValue1.equals("")) {
+			if (newFieldName1.length() > 0 && newFieldValue1.length() > 0 ) {
 				ProductCustomFields pcf = new ProductCustomFields(newFieldName1, newFieldValue1);
 				pcfList.add(pcf);
 			}
-			if (!newFieldName2.equals("") || !newFieldValue2.equals("")) {
+			if (newFieldName2.length() > 0 && newFieldValue2.length() > 0) {
 				ProductCustomFields pcf2 = new ProductCustomFields(newFieldName2, newFieldValue2);
 				pcfList.add(pcf2);
 			}
-			if (!newFieldName3.equals("") || !newFieldValue3.equals("")) {
+			if (newFieldName3.length() > 0 && newFieldValue3.length() > 0) {
 				ProductCustomFields pcf3 = new ProductCustomFields(newFieldName3, newFieldValue3);
 				pcfList.add(pcf3);
 			}
 
 
+			
+			  //RawMaterialsPerProduct rmpp = new RawMaterialsPerProduct(rawMaterialUOM3, templateLQL, rawMaterialQuantity3)
+			 List<RawMaterialsPerProduct> rmList = new ArrayList<RawMaterialsPerProduct>();
+			 
+			if ( rawMaterialQuantity1 > 0 && rawMaterialName1 > 0 ) {
+			 RawMaterialsPerProduct rmp = new RawMaterialsPerProduct();
+			 rmp.setQuantity(rawMaterialQuantity1);
+			 rmp.setRawmaterialid(rawMaterialName1);
+			 rmList.add(rmp);
+			}
+			
+			if ( rawMaterialQuantity2 > 0 && rawMaterialName2 > 0 ) {
+			 RawMaterialsPerProduct rmp = new RawMaterialsPerProduct();
+			 rmp.setQuantity(rawMaterialQuantity2);
+			 rmp.setRawmaterialid(rawMaterialName2);
+			 rmList.add(rmp);
+			}
+			
+			
+			if ( rawMaterialQuantity3 > 0 && rawMaterialName3 > 0 ) {
+			 RawMaterialsPerProduct rmp = new RawMaterialsPerProduct();
+			 rmp.setQuantity(rawMaterialQuantity3);
+			 rmp.setRawmaterialid(rawMaterialName3);
+			 rmList.add(rmp);
+			}
+		
+			
+			Product product = new Product();
+			
 			if (hiddenTemplateId > 0) {
 				//UPDATE PROD
 									
-				Product modProd = invDao.getProduct(hiddenTemplateId);
+				product = invDao.getProduct(hiddenTemplateId);
 				
 				String delProd = request.getParameter("deleteProduct");
 				
 				try {
 				
 					if (delProd.equals("true")) {
-						invDao.deleteProduct(modProd);
+						invDao.deleteProduct(product);
 						response.sendRedirect("/TrocQc/Inventaire");
 						return;
 					}
 				} catch (Exception e) {
 
 				}
+			
 				
 				//SET VALUES FROM FORM
-				modProd.setName(templateName);
-				modProd.setDescription(templateDesc);
+				product.setName(templateName);
+				product.setDescription(templateDesc);
+				
 				
 				if (templateSKU.equals("")) {
 				  newSku = SkuGenerator.generateSKU(hiddenTemplateId, templateName, newFieldValue1, newFieldValue2, newFieldValue3);
-				  modProd.setSku(newSku);
+				  product.setSku(newSku);
 					
 				}
 				else {
-					modProd.setSku(templateSKU);
+					product.setSku(templateSKU);
 					
 				}
-				modProd.setCost(templateCost);
-				modProd.setMsrp(templatePrice);
-				modProd.setLowQuantityLevel(templateLQL);			
-				modProd.setIdUnitOfMeasure(templateUOM);
-				modProd.setUserCustomFields(pcfList);
+				product.setCost(templateCost);
+				product.setMsrp(templatePrice);
+				product.setLowQuantityLevel(templateLQL);			
+				product.setIdUnitOfMeasure(templateUOM);
+				product.setUserCustomFields(pcfList);
+				product.setRawmaterials(rmList);
 				
-				
-				//RM: IF EMPTY STRINGS, DONT RECREATE RM
-				
-				invDao.SaveProduct(modProd);
-				response.sendRedirect("/TrocQc/Inventaire");
+				invDao.SaveProduct(product);
 				
 			}
 			else {
 				//CREATE PROD
 				  //BUILDER
 
-				
-				  //RawMaterialsPerProduct rmpp = new RawMaterialsPerProduct(rawMaterialUOM3, templateLQL, rawMaterialQuantity3)
-				 List<RawMaterialsPerProduct> rmList = new ArrayList<RawMaterialsPerProduct>();
-				 
-				if ( rawMaterialQuantity1 > 0 && rawMaterialName1 > 0 ) {
-				 RawMaterialsPerProduct rmp = new RawMaterialsPerProduct();
-				 rmp.setQuantity(rawMaterialQuantity1);
-				 rmp.setRawmaterialid(rawMaterialName1);
-				 rmList.add(rmp);
-				}
-				
-				if ( rawMaterialQuantity2 > 0 && rawMaterialName2 > 0 ) {
-				 RawMaterialsPerProduct rmp = new RawMaterialsPerProduct();
-				 rmp.setQuantity(rawMaterialQuantity2);
-				 rmp.setRawmaterialid(rawMaterialName2);
-				 rmList.add(rmp);
-				}
-				
-				
-				if ( rawMaterialQuantity3 > 0 && rawMaterialName3 > 0 ) {
-				 RawMaterialsPerProduct rmp = new RawMaterialsPerProduct();
-				 rmp.setQuantity(rawMaterialQuantity3);
-				 rmp.setRawmaterialid(rawMaterialName3);
-				 rmList.add(rmp);
-				}
-				
-				
-				  
-					try {
-					     	user = (User)request.getSession().getAttribute("user");
-					} catch (Exception e) {
-						response.sendRedirect("/TrocQc/Login");
-					}
-
+					
 				  
 					Product.ProductBuilder pb = new Product.ProductBuilder(templateName, templateCost, templatePrice , templateSKU);
 					pb.description(templateDesc);
@@ -317,7 +330,7 @@ public class InventoryServlet extends HttpServlet {
 					pb.UserCustomFields(pcfList);
 					pb.userID(user.getId());
 					Product newProduct = pb.build();
-				  newProduct.setRawmaterials(rmList);
+					newProduct.setRawmaterials(rmList);
 				  	
 				  if (templateSKU.equals("")) {
 					  newSku = SkuGenerator.generateSKU(hiddenTemplateId, templateName, newFieldValue1, newFieldValue2, newFieldValue3);

@@ -145,6 +145,19 @@ public class UserDao extends SpringJdbcConfig {
 		}
 	}
 	
-
+	public int SaveUser(User user) {
+		
+		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
+		if (user.getId() == 0) {
+			return this.AddUser(user);
+		} else {
+			
+			String sql = "UPDATE user SET productCategory=?, firstName=?,lastName=?,password=?,username=?,adress=?,city=?,postalcode=?, email=?,siteWeb=? WHERE id=?";
+			jdbcTemplate().update(sql, user.getProductCategory(), user.getFirstName(), 	user.getLastName(),encoder.encode(user.getPassword()), user.getUsername(),
+					user.getAdress(), user.getCity(), user.getPostalCode(), user.getEmail(), user.getSiteWeb(),user.getId());
+			return user.getId();
+		}
+	}
+	
 	
 }

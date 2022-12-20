@@ -311,6 +311,29 @@ public class InventoryDao extends SpringJdbcConfig {
 
 	}
 
+	public UnitOfMeasure getUnitOfMeasureFromName(String name) {
+		String sql = "Select * From unitofmeasure where name=:name";
+
+		Map<String, Object> params = new HashMap<>();
+		params.put("name", name);
+
+		try {
+			UnitOfMeasure unitofmeasure = (UnitOfMeasure) namedParameterJdbcTemplate().queryForObject(sql, params,
+					BeanPropertyRowMapper.newInstance(UnitOfMeasure.class));
+
+			if (unitofmeasure != null) {
+				return unitofmeasure;
+			}
+
+			else {
+				return null;
+			}
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
 	public void Addrawmaterialperproduct(RawMaterialsPerProduct rawmaterialproducts) {
 
 		if (getrawmaterialperproductAndRawMaterial(rawmaterialproducts.getProductid(),

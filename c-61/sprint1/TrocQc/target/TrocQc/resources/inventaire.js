@@ -4,29 +4,7 @@
  
  var img;
  var xdiv;
- var uomDict = {
-	"Unité": 4,
-	"Metre": 5,
-	"Centimetre": 6,
-	"Kilogramme": 7,
-	"gramme": 8,
-	"pouce": 9,
-	"pied": 10,
-	"litre": 11,
-	"millilitre": 12,
-	"decalitre": 13,
-	"gallon Américain": 14,
-	"pinte Américain": 15,
-	"tasse Américaine": 16,
-	"once liquide Américaine": 17,
-	"cuillière à soupe Américaine": 18,
-	"cuillère à thé Américaine": 19,
-	"livre": 20,
-	"once solide": 21,
-	"centilitre": 22,
-	"millimetre": 23
-}
- 
+  
 
  //https://www.w3schools.com/howto/howto_js_tabs.asp
  function openTab(evt, tabName) {
@@ -64,8 +42,15 @@ function getTemplateRow(table, tableRow){
  	var price = tableRow.childNodes[11].innerHTML.trim();
  	var lql = tableRow.childNodes[13].innerHTML.trim();
  	var unit = tableRow.childNodes[15].innerHTML.trim();
- 	//var materials = tableRow.childNodes[19].innerHTML.trim();
  	
+ 	
+ 	console.log("MATERIALS");
+ 	var materials = tableRow.childNodes[19].childNodes[1].innerHTML;
+ 	console.log(materials);
+ 	materials = tableRow.childNodes[19].childNodes[0].innerHTML;
+ 	console.log(materials);
+ 	materials = tableRow.childNodes[19].innerHTML;
+ 	console.log(materials);
  	
  	//var custCol1 = tableRow.childNodes[21].innerHTML.trim();
  	//var custCol2 = tableRow.childNodes[23].innerHTML.trim();
@@ -148,7 +133,7 @@ function getTemplateRow(table, tableRow){
 	modCost.value = parseFloat(cost);
 	modPrice.value = parseFloat(price);
 	modLQL.value = parseInt(lql);
-	modUnit.value = uomDict[unit];
+	modUnit.value = unit;
 	
 	
 }
@@ -238,7 +223,7 @@ function getRawMaterialRow(table, tableRow){
  	modName.value = name;
  	modCost.value = parseFloat(cost);
  	modQt.value = parseFloat(quantity); 
- 	modUnit.value = uomDict[unit];
+ 	modUnit.value = unit;
 
 }
 

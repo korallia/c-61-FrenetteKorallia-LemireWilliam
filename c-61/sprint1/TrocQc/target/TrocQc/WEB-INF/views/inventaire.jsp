@@ -26,8 +26,6 @@
 	</script>
 	<% session.setAttribute("lotMsg", "null");%>
 
-
-
 	<div class="container-fluid">
 		<div class="row mb-3">
 			<div class="col">
@@ -108,9 +106,14 @@
 								<td> ${product.msrp} $</td>
 								<td> ${product.unitofmeasure.name} </td>
 								<td>
+								SULLY BOB
 									<c:forEach var="rawMat" items="${product.rawmaterials}">
 										${rawMat.rawmaterial.name} <br>
 									</c:forEach>
+									<span style="display:none" class="json">[<c:forEach var="rawMat" items="${product.rawmaterials}" varStatus="loop">{ "name": "${rawMat.rawmaterial.name}","qty":${rawMat.quantity} }<c:if test="${!loop.last}">,</c:if></c:forEach>]
+									</span>
+									
+									
 								</td>
 								<td> ${product.lowQuantityLevel} </td>
 								<td> ${product.addedDate} </td>
@@ -620,15 +623,7 @@
 							</div>
 							
 							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity1" > </div>
-							
-							<div class="col text-center">
-								<select id="modRawMaterialUOM1" class="text-align" name="rawMaterialUOM1">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
+						
 						</div>
 						<div class="row m-1">
 							<div class="col text-center">
@@ -642,14 +637,7 @@
 							
 							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity2" > </div>
 							
-							<div class="col text-center">
-								<select id="modRawMaterialUOM2" class="text-align" name="rawMaterialUOM2">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
+							
 						</div>
 						<div class="row m-1">
 							<div class="col text-center">
@@ -663,14 +651,6 @@
 							
 							<div class="col text-center"> <input type="text" placeholder="Entrer la valeur..." name="rawMaterialQuantity3" > </div>
 							
-							<div class="col text-center">
-								<select id="modRawMaterialUOM3" class="text-align" name="rawMaterialUOM3">
-									<option value="0"> - Choisir l'unité... - </option>
-									<c:forEach var="unitOfMeasure" items="${uomList}">
-										<option value="${unitOfMeasure.id}"> ${unitOfMeasure.abbrievation} </option>
-									</c:forEach>
-								</select>
-							</div>
 							
 
 							

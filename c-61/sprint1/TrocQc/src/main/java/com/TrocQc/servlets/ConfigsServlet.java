@@ -24,6 +24,9 @@ import com.TrocQc.Entity.User;
 		)
 public class ConfigsServlet extends HttpServlet {
 	
+
+	private static final long serialVersionUID = 1L;
+	
 	User user;
 
 	public ConfigsServlet() {
