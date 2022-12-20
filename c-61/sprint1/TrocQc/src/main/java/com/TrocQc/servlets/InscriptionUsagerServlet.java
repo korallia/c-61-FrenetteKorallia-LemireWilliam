@@ -1,5 +1,12 @@
 package com.TrocQc.servlets;
 
+/* Class inscriptionUsagerServlet
+ * Auteur: William Lemire et Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce servlet gère l'inscription des usagers
+ */
+
+
 import java.io.IOException;
 import java.io.InputStream;
 

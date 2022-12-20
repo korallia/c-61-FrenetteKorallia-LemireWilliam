@@ -1,3 +1,9 @@
+/* Class Regression
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette classe offre un support mathématique pour des calculs de régressions
+ */
+
 package com.TrocQc.Utils;
 
 
@@ -71,7 +77,9 @@ public class Regression {
 		return sumYMeanSquared(points);
 	}
 	public double sumYMeanSquared(LinkedList<Point> points) {
-		// https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
+		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient</a>
+		// Ce lien explique comment calculer un coefficient de correlation, mathématiquement
+		// Le code JAVA est ensuite inféré depuis la formule.
 		double mean = averageY(points);
 		double sum = 0;
 		for (int i = 0; i < getN(); i++) {
@@ -82,7 +90,9 @@ public class Regression {
 	
 	
 	public double sumYMeanCombined(LinkedList<Point> prediction) {
-		// https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
+		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient</a>
+		// Ce lien explique comment calculer un coefficient de correlation, mathématiquement
+		// Le code JAVA est ensuite inféré depuis la formule.
 		double mean = averageY(points);
 		double predmean = averageY(prediction);
 		double sum = 0;
@@ -154,7 +164,8 @@ public class Regression {
 	}
 	
 	public double stdDeviationX() {
-		// https://www.mathsisfun.com/data/standard-deviation-formulas.html
+		// <a href="https://www.mathsisfun.com/data/standard-deviation-formulas.html">Formule d'écart type</a>
+		// Ce site liste comment faire un calcul d'écart type
 		double deviation = 0;
 		if ( getN() > 1) {
 		
@@ -171,7 +182,8 @@ public class Regression {
 		return deviation;
 	}
 	public double stdDeviationY() {
-		// https://www.mathsisfun.com/data/standard-deviation-formulas.html
+		// <a href="https://www.mathsisfun.com/data/standard-deviation-formulas.html">Formule d'écart type</a>
+		// Ce site liste comment faire un calcul d'écart type
 		double deviation = 0;
 		if (getN() > 1) {
 			double mean = averageY();
@@ -212,7 +224,8 @@ public class Regression {
 	}
 
 	public double calcA() {
-		// http://faculty.cas.usf.edu/mbrannick/regression/Part3/RegBasics.html
+		// <a href="http://faculty.cas.usf.edu/mbrannick/regression/Part3/RegBasics.html">Regression Basics</a>
+		// Ce lien donne plusieurs versions du calcul de A pour la regression. 
 		if (getN() > 1 ) {
 			
 			double sumxy =sumXY();
@@ -237,8 +250,8 @@ public class Regression {
 		
 	}
 	public double calcB() {
-		// http://faculty.cas.usf.edu/mbrannick/regression/Part3/RegBasics.html
-		
+		// <a href="http://faculty.cas.usf.edu/mbrannick/regression/Part3/RegBasics.html">Regression Basics</a>
+		// Ce lien donne plusieurs versions du calcul de B pour la regression. 
 		setB(averageY() - (getA() * averageX()));
 		return getB();
 	}
@@ -317,7 +330,9 @@ public class Regression {
 	}
 	
 	public double getR(LinkedList<Point> prediction) {
-		// https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
+		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient</a>
+		// Ce lien explique comment calculer un coefficient de correlation, mathématiquement
+		// Le code JAVA est ensuite inféré depuis la formule.
 		double ssX = sumYMeanSquared(); 
 		double ssY = sumYMeanSquared(prediction); 
 		double sscombined = sumYMeanCombined(prediction); 
@@ -325,7 +340,9 @@ public class Regression {
 	}
 	
 	public double getR2(LinkedList<Point> prediction) {
-		// https://en.wikipedia.org/wiki/Pearson_correlation_coefficient
+		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient</a>
+		// Ce lien explique comment calculer un coefficient de correlation, mathématiquement
+		// Le code JAVA est ensuite inféré depuis la formule.
 		double r = getR(prediction);
 		return Math.pow(r, 2);
 	}

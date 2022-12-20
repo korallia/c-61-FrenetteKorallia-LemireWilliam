@@ -20,6 +20,13 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/* Class SpringJdbcConfig
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce fichier permet la connection à la base de donnée
+ */
+
+
 @Configuration
 @EnableTransactionManagement
 @PropertySource({ "classpath:database.properties" })
@@ -29,7 +36,9 @@ public class SpringJdbcConfig {
 	
 	public static DriverManagerDataSource dataSource;
 	
-	
+	//<a href="https://www.baeldung.com/spring-jdbc-jdbctemplate">The JDBC Template</a>
+	//<a href="https://www.baeldung.com/jpa-entities">How to use jpa entities</a>
+	// deux resources sur comment Accéder à MySQl depuis Spring.
 	public DataSource mysqlDataSource() {
 		if ( this.dataSource == null) {
 			this.dataSource = new DriverManagerDataSource();

@@ -22,6 +22,11 @@ import com.TrocQc.Utils.DatePoint;
 import com.TrocQc.Utils.LinkedList;
 import com.TrocQc.Utils.Point;
 
+/* Class FinancesServlet
+ * Auteur: William Lemire
+ * Équipe: William et Korallia 
+ * Ce servlet met à jour le rapport de finance
+ */
 
 
 @WebServlet("/financesServlet")
@@ -50,7 +55,9 @@ public class FinancesServlet extends HttpServlet {
 			FinanceReport fr = new FinanceReport(user.getId());
 			Date startDate = java.sql.Date.valueOf( (String) request.getSession().getAttribute("startDateSession") );
 			Date endDate = java.sql.Date.valueOf( (String) request.getSession().getAttribute("endDateSession") );
-			fr.generateReport("C:\\Reports\\FinancialReport.xls", startDate, endDate);
+			
+			String home = System.getProperty("user.home");
+			fr.generateReport(home+"/Downloads/" +"FinancialReport.xls", startDate, endDate);
 			response.sendRedirect("/TrocQc/Finances");
 			return;
 		}

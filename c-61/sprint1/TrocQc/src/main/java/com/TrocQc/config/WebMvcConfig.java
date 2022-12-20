@@ -1,5 +1,12 @@
 package com.TrocQc.config;
 
+/* Class WebMvcConfig
+ * Auteur: Spring
+ * Équipe: William et Korallia 
+ * Ce fichier est auto-généré par spring pour gérer les resources
+ */
+
+
 import org.springframework.context.annotation.Bean;
 
 import org.springframework.context.annotation.ComponentScan;

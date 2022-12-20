@@ -1,4 +1,11 @@
+/* Class Vente
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité répresente une vente
+ */
+
 package com.TrocQc.Entity;
+
 
 import java.sql.Date;
 import java.sql.Time;
@@ -40,17 +47,22 @@ public class Vente {
 	@Column(name="montant")
 	private double montant;
 	
+	@Column(name="nom")
+	private String nom;
 	
-	public Vente(Product product, double quantity, Date date) {
+	
+	public Vente(String nom, Product product, double quantity, Date date) {
 		super();
+		this.nom = nom;
 		this.productid = product.getId();
 		this.cout = product.getFullCost() * quantity;
 		this.quantity = quantity;
 		this.ventedate = date;
 	}
 	
-	public Vente(Product product, double quantity, Date date, int userId) {
+	public Vente(String nom, Product product, double quantity, Date date, int userId) {
 		super();
+		this.nom = nom;
 		this.productid = product.getId();
 		this.cout = product.getFullCost() * quantity;
 		this.montant = product.getMsrp() * quantity;
@@ -128,6 +140,14 @@ public class Vente {
 
 	public void setMontant(double montant) {
 		this.montant = montant;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	

@@ -1,5 +1,12 @@
 package com.TrocQc.DAO;
 
+/* Class FinanceDao
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce Data Access Object permet la gestion en DB de la finance
+ */
+
+
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;

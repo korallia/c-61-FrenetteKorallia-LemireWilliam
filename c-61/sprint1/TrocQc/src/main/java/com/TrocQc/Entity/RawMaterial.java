@@ -1,3 +1,10 @@
+/* Class RawMaterial
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité contient matériaux avec lesquels faire un produit
+ */
+
+
 package com.TrocQc.Entity;
 import com.TrocQc.Entity.UnitOfMeasure;
 
@@ -11,6 +18,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name="rawmaterial")

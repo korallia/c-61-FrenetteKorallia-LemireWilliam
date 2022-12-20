@@ -1,4 +1,13 @@
+
+/* Class ProductCustomFields
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité note les champs custom des produits
+ */
 package com.TrocQc.Entity;
+
+
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

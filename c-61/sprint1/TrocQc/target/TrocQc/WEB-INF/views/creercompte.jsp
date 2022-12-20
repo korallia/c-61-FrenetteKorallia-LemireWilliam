@@ -1,3 +1,10 @@
+<!-- Fichier Jsp creercompte.jsp
+  Auteur:  William Lemire
+  Équipe: William et Korallia 
+  Ce fichier représente la vue de la page création de compte de notre application
+ -->
+
+
 <%@include file="header.jsp"%>
 <title>trOqc - Créer Compte</title>
 

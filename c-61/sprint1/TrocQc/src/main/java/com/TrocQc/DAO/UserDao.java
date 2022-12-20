@@ -1,4 +1,12 @@
+/* Class UserDao
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce Data Access Object permet la gestion en DB des usager
+ */
+
 package com.TrocQc.DAO;
+
+
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -25,6 +33,43 @@ import com.TrocQc.config.SpringJdbcConfig;
 public class UserDao extends SpringJdbcConfig {
 	
 	
+	public User getuser(int id) {
+		String sql = "Select * From user where id =:id";
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		
+				
+		try {
+		User user = (User) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(User.class));
+		
+			return user;
+		
+		}catch(Exception e ) {
+			return null;
+		}
+		
+	}
+	public User getuserByUsername(String username) {
+		String sql = "Select * From user where username =:username";
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("username", username);
+		
+				
+		try {
+		User user = (User) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(User.class));
+		
+			return user;
+		
+		}catch(Exception e ) {
+			return null;
+		}
+		
+	}
+	
+	
+	
 	public User Authenticate(String username, String password) {
 		String sql = "Select * From user where username =:username";
 		
@@ -37,7 +82,8 @@ public class UserDao extends SpringJdbcConfig {
 		
 		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
 		
-		if(user != null && encoder.matches(password, user.getPassword()) || password == user.getPassword() ) {
+			
+		if(user != null && (password.compareTo(user.getPassword()) == 0 || encoder.matches(password, user.getPassword())  ) ) {
 			return user;
 		}
 		
@@ -89,7 +135,7 @@ public class UserDao extends SpringJdbcConfig {
 		
 		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
 		
-		
+		try {
 		return jdbcTemplate().update(
 			
 				"INSERT INTO user (productCategory, firstName,lastName,password,username,adress,city,postalcode, email,siteWeb,Avatar ) VALUES (?, ?, ?, ?,?,?,?, ?,?,?,null)",
@@ -105,6 +151,10 @@ public class UserDao extends SpringJdbcConfig {
 			    user.getSiteWeb()
 			    
 			    );
+		}
+		catch(Exception e) {
+			return 0;
+		}
 			    
 	}
 	
@@ -145,6 +195,19 @@ public class UserDao extends SpringJdbcConfig {
 		}
 	}
 	
-
+	public int SaveUser(User user) {
+		
+		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
+		if (user.getId() == 0) {
+			return this.AddUser(user);
+		} else {
+			
+			String sql = "UPDATE user SET productCategory=?, firstName=?,lastName=?,password=?,username=?,adress=?,city=?,postalcode=?, email=?,siteWeb=? WHERE id=?";
+			jdbcTemplate().update(sql, user.getProductCategory(), user.getFirstName(), 	user.getLastName(),encoder.encode(user.getPassword()), user.getUsername(),
+					user.getAdress(), user.getCity(), user.getPostalCode(), user.getEmail(), user.getSiteWeb(),user.getId());
+			return user.getId();
+		}
+	}
+	
 	
 }

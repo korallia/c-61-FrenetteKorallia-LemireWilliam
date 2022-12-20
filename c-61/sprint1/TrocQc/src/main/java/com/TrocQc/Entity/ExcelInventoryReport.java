@@ -1,6 +1,13 @@
 
 package com.TrocQc.Entity;
 
+/* Class ExcelInventoryReport
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité génère un rapport d'inventaire
+ */
+
+
 import java.io.*;
 import java.util.List;
 
@@ -45,7 +52,8 @@ public class ExcelInventoryReport  {
 			List<Product> prodList = invDao.getProducts();
 			List<UnitOfMeasure> uomList = invDao.getUnitsOfMesure();
 			
-			//REF: https://www.javatpoint.com/java-create-excel-file
+			//<a href="https://www.javatpoint.com/java-create-excel-file">Create excel file in Java</a>
+			//Excellente source pour comment créer un fichier excel depuis Java
 
 			HSSFWorkbook workbook = new HSSFWorkbook();  
 

@@ -8,7 +8,6 @@ C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\SalesPrediction.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\servlets\UserLogout.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\ExcelInventoryReport.java
-C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\Module.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\servlets\InventoryServlet.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\servlets\FinancesServlet.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Utils\EmailSender.java
@@ -27,16 +26,13 @@ C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\servlets\ConfigsServlet.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\Vente.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\config\AppInitializer.java
-C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Builder\package-info.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\DAO\FinanceDao.java
-C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\DAO\ConfigDao.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\SkuGenerator.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\DAO\VenteDao.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\controlleur\FrontControlleur.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\config\SpringJdbcConfig.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\DAO\LobbyDao.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Utils\LinkedList.java
-C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\LobbyModule.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Entity\User.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\Utils\Regression.java
 C:\Users\koral\eclipse-workspace\c-61-FrenetteKorallia-LemireWilliam\c-61\sprint1\TrocQc\src\main\java\com\TrocQc\servlets\VentesServlet.java

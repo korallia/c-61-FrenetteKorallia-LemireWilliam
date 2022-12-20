@@ -1,5 +1,12 @@
 package com.TrocQc.DAO;
 
+/* Class LobbyDao
+ * Auteur: Willian Lemire
+ * Équipe: William et Korallia 
+ * Ce Data Access Object permet la gestion en DB des notes du lobby
+ */
+
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

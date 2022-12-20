@@ -1,5 +1,12 @@
 package com.TrocQc.servlets;
 
+/* Class LobbyServlet
+ * Auteur: William Lemire
+ * Équipe: William et Korallia 
+ * Ce servlet gère les notes du Lobby
+ */
+
+
 import java.io.IOException;
 import java.util.ArrayList;
 

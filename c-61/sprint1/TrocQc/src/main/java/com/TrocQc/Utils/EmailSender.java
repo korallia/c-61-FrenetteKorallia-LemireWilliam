@@ -1,4 +1,11 @@
+// Class EmailSender
+// Auteur: Korallia Frenette<
+// Équipe: William et Korallia 
+// Cette classe perment d'envoyer un courriel
+
 package com.TrocQc.Utils;
+
+
 
 import java.util.Date;
 import java.util.Properties;
@@ -32,14 +39,13 @@ public class EmailSender {
 
 	
 	public void sendemail(String to,String subject, String body ) {
+		//<a href="https://www.tutorialspoint.com/java/java_sending_email.htm">JAVA -sendin emails</a>
+		//Fourni un example de code pour envoyer un courriel, qui a été refactoré en une seule fonction
 		
 			
 		try {
 				Properties props = new Properties();
 				props.put("mail.smtp.host", this.smtpserver); //SMTP Host
-				//props.put("mail.smtp.socketFactory.port", this.smtpport); //SSL Port
-				//props.put("mail.smtp.socketFactory.class",
-				//		"javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
 				props.put("mail.smtp.auth", "true"); //Enabling SMTP Authentication
 				props.put("mail.smtp.port", this.smtpport); //SMTP Port
 				
@@ -69,9 +75,6 @@ public class EmailSender {
 		    catch (Exception e) {
 		      e.printStackTrace();
 		    }
-
-		        
-
 		}
 	}
 

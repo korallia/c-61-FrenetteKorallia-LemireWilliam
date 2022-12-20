@@ -1,3 +1,10 @@
+<!-- Fichier Jsp finance.jsp
+  Auteur:  William Lemire
+  Équipe: William et Korallia 
+  Ce fichier représente la vue de la page finance de notre application
+ -->
+
+
 <%@include file="header.jsp"%>
 <title>trOqc - Finances</title>
 

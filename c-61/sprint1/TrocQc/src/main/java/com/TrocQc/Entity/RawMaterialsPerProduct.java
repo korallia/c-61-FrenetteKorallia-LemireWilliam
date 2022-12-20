@@ -1,4 +1,12 @@
+/* Class RawMaterialsPerProduct
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité note combien de raw material sont requis pour un produit
+ */
+
+
 package com.TrocQc.Entity;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -14,6 +14,13 @@ import com.TrocQc.Entity.User;
 import com.TrocQc.Entity.Vente;
 import com.TrocQc.config.SpringJdbcConfig;
 
+/* Class VenteDao
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce Data Access Object permet la gestion en DB des ventes
+ */
+
+
 public class VenteDao extends SpringJdbcConfig{
 
 	
@@ -40,8 +47,9 @@ public class VenteDao extends SpringJdbcConfig{
 				parameters.put("quantity", vente.getQuantity());
 				parameters.put("userId", vente.getUserID());
 				parameters.put("ventedate", time);
-				parameters.put("cost", vente.getCout());
+				parameters.put("cout", vente.getCout());
 				parameters.put("montant", vente.getMontant());
+				parameters.put("nom", vente.getNom());
 				
 				Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
 				vente.setId(id.intValue());
@@ -53,10 +61,10 @@ public class VenteDao extends SpringJdbcConfig{
 		return vente;
 	}
 	
-	public Vente addVente(Product product, double Quantity, int userid ) {
+	public Vente addVente(String Nom, Product product, double Quantity, int userid ) {
 		
 		Date date = new java.sql.Date(System.currentTimeMillis());
-		Vente vente = new Vente(product, (double)Quantity, date  );
+		Vente vente = new Vente(Nom, product, (double)Quantity, date  );
 		vente.setUserID(userid);
 		
 		

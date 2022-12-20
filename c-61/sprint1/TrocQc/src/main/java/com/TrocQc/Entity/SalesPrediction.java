@@ -1,4 +1,11 @@
+/* Class SalesPrediction
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité encapsule une régression pour prédire des ventes
+ */
+
 package com.TrocQc.Entity;
+
 
 import java.sql.Date;
 import java.time.Duration;

@@ -1,3 +1,10 @@
+<!-- Fichier Jsp header.jsp
+  Auteur:  William Lemire
+  Équipe: William et Korallia 
+  Ce fichier est le header de tous nos vues
+ -->
+
+
 <%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>

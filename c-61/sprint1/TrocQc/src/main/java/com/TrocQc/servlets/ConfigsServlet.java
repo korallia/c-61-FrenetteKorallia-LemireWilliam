@@ -1,6 +1,13 @@
 package com.TrocQc.servlets;
 
 
+/* Class ConfigsServlet
+ * Auteur: William Lemire
+ * Équipe: William et Korallia 
+ * Ce servlet gère les paramêtres du compte usager
+ */
+
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -23,6 +30,9 @@ import com.TrocQc.Entity.User;
 		  maxRequestSize = 1024 * 1024 * 100   // 100 MB
 		)
 public class ConfigsServlet extends HttpServlet {
+	
+
+	private static final long serialVersionUID = 1L;
 	
 	User user;
 
@@ -87,6 +97,9 @@ public class ConfigsServlet extends HttpServlet {
 			else {
 				userDao.SaveUser(user);
 			}
+			
+			user = userDao.getuser(user.getId());
+			request.getSession().setAttribute("user", user);
 			response.sendRedirect("/TrocQc/Configurations");
 		}
 	}

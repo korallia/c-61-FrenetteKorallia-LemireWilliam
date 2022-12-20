@@ -1,3 +1,10 @@
+<!-- Fichier Jsp configuration.jsp
+  Auteur:  William Lemire
+  Équipe: William et Korallia 
+  Ce fichier représente la vue de la page configuration de notre application
+ -->
+
+
 <%@include file="header.jsp"%>
 
 <title>trOqc - Configurations</title>

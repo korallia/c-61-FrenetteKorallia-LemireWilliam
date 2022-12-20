@@ -1,5 +1,12 @@
 package com.TrocQc.DAO;
 
+/* Class InventoryDao
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce Data Access Object permet la gestion en DB de l'inventaire (produits, rawmaterial, lots et unité de mesure)
+ */
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -293,6 +300,29 @@ public class InventoryDao extends SpringJdbcConfig {
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", id);
+
+		try {
+			UnitOfMeasure unitofmeasure = (UnitOfMeasure) namedParameterJdbcTemplate().queryForObject(sql, params,
+					BeanPropertyRowMapper.newInstance(UnitOfMeasure.class));
+
+			if (unitofmeasure != null) {
+				return unitofmeasure;
+			}
+
+			else {
+				return null;
+			}
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
+	public UnitOfMeasure getUnitOfMeasureFromName(String name) {
+		String sql = "Select * From unitofmeasure where name=:name";
+
+		Map<String, Object> params = new HashMap<>();
+		params.put("name", name);
 
 		try {
 			UnitOfMeasure unitofmeasure = (UnitOfMeasure) namedParameterJdbcTemplate().queryForObject(sql, params,

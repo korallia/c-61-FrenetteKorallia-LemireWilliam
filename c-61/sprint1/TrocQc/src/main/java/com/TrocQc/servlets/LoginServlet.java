@@ -1,6 +1,13 @@
 package com.TrocQc.servlets;
 
 
+/* Class LoginServlet
+ * Auteur: William Lemire et Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce servlet permet le login des usagers
+ */
+
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -13,9 +20,6 @@ import javax.servlet.http.HttpSession;
 
 import com.TrocQc.DAO.UserDao;
 import com.TrocQc.Entity.User;
-
-
-//AUTO WIRE doesn't solve a big problem, there's no tight coupling, creating the dao here instead of injecting it changes nothing + auto wire works differently in servlet so we have to do a work around to use it when it doesn't add much.
 
 
 
@@ -38,10 +42,22 @@ public class LoginServlet extends HttpServlet {
     	UserDao userDao = new UserDao();
     	String username = request.getParameter("username");
     	String password = request.getParameter("password");
+    	String forgotpwd = request.getParameter("forgotpwd");
+    	
+    	if ( username.length() > 0 && forgotpwd.length() > 0 ) {
+    		
+    		User user = userDao.getuserByUsername(username);
+    		userDao.ResetUserPassword(user.getEmail());
+    		return;
+    	}
+    	
+    	
     	request.getSession().setAttribute("loginError", "false");
     	User user = userDao.Authenticate(username, password);
     	
     	if(user != null) {
+    		// <a href="https://www.digitalocean.com/community/tutorials/java-session-management-servlet-httpsession-url-rewriting">Session Management in Java</a>
+    		// explique comment gérer une session en Java
     		HttpSession session = request.getSession();
     		session.setMaxInactiveInterval(600);
     		request.getSession().setAttribute("user", user);

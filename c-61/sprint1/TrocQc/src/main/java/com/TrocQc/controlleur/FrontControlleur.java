@@ -1,5 +1,12 @@
 package com.TrocQc.controlleur;
 
+/* Class FrontControlleur
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ceci est le controlleur qui gères les fichiers JSP.
+ */
+
+
 import java.io.IOException;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -19,20 +26,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.TrocQc.DAO.ConfigDao;
 import com.TrocQc.DAO.FinanceDao;
 import com.TrocQc.DAO.InventoryDao;
 import com.TrocQc.DAO.LobbyDao;
 import com.TrocQc.DAO.UserDao;
-import com.TrocQc.DAO.VenteDao;
-import com.TrocQc.Entity.ExcelInventoryReport;
-import com.TrocQc.Entity.FinanceReport;
 import com.TrocQc.Entity.Note;
 //import com.TrocQc.DAO.InventoryDao;
 import com.TrocQc.Entity.Product;
-import com.TrocQc.Entity.ProductCustomFields;
 import com.TrocQc.Entity.RawMaterial;
-import com.TrocQc.Entity.RawMaterialsPerProduct;
 import com.TrocQc.Entity.SalesPrediction;
 import com.TrocQc.Entity.UnitOfMeasure;
 import com.TrocQc.Entity.User;
@@ -58,7 +59,12 @@ public class FrontControlleur{
 	        session.invalidate();
 	    }
 		
-		return "login"; 
+		return "index"; 
+	}
+	
+	@GetMapping("/")
+	public String GetRoot(Model theModel, HttpSession  session) {
+		return "index"; 
 	}
 	
 	@GetMapping("/Inscription")
