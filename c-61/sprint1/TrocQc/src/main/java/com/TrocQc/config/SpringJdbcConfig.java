@@ -36,8 +36,9 @@ public class SpringJdbcConfig {
 	
 	public static DriverManagerDataSource dataSource;
 	
-	//https://www.baeldung.com/spring-jdbc-jdbctemplate
-		//https://www.baeldung.com/jpa-entities
+	//<a href="https://www.baeldung.com/spring-jdbc-jdbctemplate">The JDBC Template</a>
+	//<a href="https://www.baeldung.com/jpa-entities">How to use jpa entities</a>
+	// deux resources sur comment Accéder à MySQl depuis Spring.
 	public DataSource mysqlDataSource() {
 		if ( this.dataSource == null) {
 			this.dataSource = new DriverManagerDataSource();
