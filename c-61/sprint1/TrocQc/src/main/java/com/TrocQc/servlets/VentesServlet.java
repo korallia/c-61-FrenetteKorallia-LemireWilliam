@@ -45,7 +45,7 @@ public class VentesServlet extends HttpServlet {
 		String custName = request.getParameter("customerName");
 		double quantity = Double.parseDouble(request.getParameter("soldProductQuantity"));
 		Product prod = invDao.getProduct(prodId);
-		Vente vente = new Vente(prod, quantity, new java.sql.Date(System.currentTimeMillis()), user.getId());
+		Vente vente = new Vente(custName, prod, quantity, new java.sql.Date(System.currentTimeMillis()), user.getId());
 		
 		vd.addVente(vente);
 		

@@ -1,10 +1,11 @@
-package com.TrocQc.DAO;
-
 /* Class UserDao
  * Auteur: Korallia Frenette
  * Équipe: William et Korallia 
  * Ce Data Access Object permet la gestion en DB des usager
  */
+
+package com.TrocQc.DAO;
+
 
 
 import java.io.InputStream;
@@ -49,6 +50,25 @@ public class UserDao extends SpringJdbcConfig {
 		}
 		
 	}
+	public User getuserByUsername(String username) {
+		String sql = "Select * From user where username =:username";
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("username", username);
+		
+				
+		try {
+		User user = (User) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(User.class));
+		
+			return user;
+		
+		}catch(Exception e ) {
+			return null;
+		}
+		
+	}
+	
+	
 	
 	public User Authenticate(String username, String password) {
 		String sql = "Select * From user where username =:username";
@@ -62,7 +82,8 @@ public class UserDao extends SpringJdbcConfig {
 		
 		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
 		
-		if(user != null && encoder.matches(password, user.getPassword()) || password == user.getPassword() ) {
+			
+		if(user != null && (password.compareTo(user.getPassword()) == 0 || encoder.matches(password, user.getPassword())  ) ) {
 			return user;
 		}
 		

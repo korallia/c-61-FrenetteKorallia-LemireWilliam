@@ -38,7 +38,7 @@
 					<input type="submit" value="AUTHENTIFIER" /> 
 					<br> <br>
 					<a class="linkBlk" onclick="redirectTo('Inscription')">CRÉER UN COMPTE</a> <br>
-					<a class="linkBlk" onclick="">MOT DE PASSE OUBLIÉ</a>
+					<input type="submit" name="forgotpwd" value="MOT DE PASSE OUBLIÉ" />
 				</form>
 			</div>
 		</div>

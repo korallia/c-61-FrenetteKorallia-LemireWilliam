@@ -49,6 +49,7 @@ public class VenteDao extends SpringJdbcConfig{
 				parameters.put("ventedate", time);
 				parameters.put("cout", vente.getCout());
 				parameters.put("montant", vente.getMontant());
+				parameters.put("nom", vente.getNom());
 				
 				Number id = simpleJdbcInsert.executeAndReturnKey(parameters);
 				vente.setId(id.intValue());
@@ -60,10 +61,10 @@ public class VenteDao extends SpringJdbcConfig{
 		return vente;
 	}
 	
-	public Vente addVente(Product product, double Quantity, int userid ) {
+	public Vente addVente(String Nom, Product product, double Quantity, int userid ) {
 		
 		Date date = new java.sql.Date(System.currentTimeMillis());
-		Vente vente = new Vente(product, (double)Quantity, date  );
+		Vente vente = new Vente(Nom, product, (double)Quantity, date  );
 		vente.setUserID(userid);
 		
 		
