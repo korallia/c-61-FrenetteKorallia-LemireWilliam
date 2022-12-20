@@ -32,6 +32,24 @@ import com.TrocQc.config.SpringJdbcConfig;
 public class UserDao extends SpringJdbcConfig {
 	
 	
+	public User getuser(int id) {
+		String sql = "Select * From user where id =:id";
+		
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		
+				
+		try {
+		User user = (User) namedParameterJdbcTemplate().queryForObject(sql, params,BeanPropertyRowMapper.newInstance(User.class));
+		
+			return user;
+		
+		}catch(Exception e ) {
+			return null;
+		}
+		
+	}
+	
 	public User Authenticate(String username, String password) {
 		String sql = "Select * From user where username =:username";
 		
