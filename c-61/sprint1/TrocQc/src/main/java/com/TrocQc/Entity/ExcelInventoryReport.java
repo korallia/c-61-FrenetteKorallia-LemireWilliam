@@ -1,6 +1,13 @@
 
 package com.TrocQc.Entity;
 
+/* Class ExcelInventoryReport
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité génère un rapport d'inventaire
+ */
+
+
 import java.io.*;
 import java.util.List;
 

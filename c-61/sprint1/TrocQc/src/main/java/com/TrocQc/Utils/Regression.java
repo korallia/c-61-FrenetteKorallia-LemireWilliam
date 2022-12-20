@@ -77,7 +77,7 @@ public class Regression {
 		return sumYMeanSquared(points);
 	}
 	public double sumYMeanSquared(LinkedList<Point> points) {
-		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient
+		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient</a>
 		// Ce lien explique comment calculer un coefficient de correlation, mathématiquement
 		// Le code JAVA est ensuite inféré depuis la formule.
 		double mean = averageY(points);
@@ -90,7 +90,7 @@ public class Regression {
 	
 	
 	public double sumYMeanCombined(LinkedList<Point> prediction) {
-		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient
+		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient</a>
 		// Ce lien explique comment calculer un coefficient de correlation, mathématiquement
 		// Le code JAVA est ensuite inféré depuis la formule.
 		double mean = averageY(points);
@@ -330,7 +330,7 @@ public class Regression {
 	}
 	
 	public double getR(LinkedList<Point> prediction) {
-		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient
+		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient</a>
 		// Ce lien explique comment calculer un coefficient de correlation, mathématiquement
 		// Le code JAVA est ensuite inféré depuis la formule.
 		double ssX = sumYMeanSquared(); 
@@ -340,7 +340,7 @@ public class Regression {
 	}
 	
 	public double getR2(LinkedList<Point> prediction) {
-		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient
+		// <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Colleration Coefficient</a>
 		// Ce lien explique comment calculer un coefficient de correlation, mathématiquement
 		// Le code JAVA est ensuite inféré depuis la formule.
 		double r = getR(prediction);

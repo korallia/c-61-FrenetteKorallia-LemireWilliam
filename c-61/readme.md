@@ -118,6 +118,9 @@ Par example, la page inventaire a:
 	- Ce lien donne plusieurs versions du calcul de A et B pour la regression. 
 - <a href="https://www.mathsisfun.com/data/standard-deviation-formulas.html">Formule d'écart type</a>
 	- Ce site liste comment faire un calcul d'écart type
+- <a href="https://www.javatpoint.com/java-create-excel-file">Create excel file in Java</a>
+	- Excellente source pour comment créer un fichier excel depuis Java
+
     
 ## Contact
     Korallia Frenette <a href="mailto:koralliafrenette@gmail.com">koralliafrenette@gmail.com</a>

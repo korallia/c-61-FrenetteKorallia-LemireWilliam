@@ -1,5 +1,10 @@
 package com.TrocQc.servlets;
 
+// Class VentesServlet
+// Auteur: William Lemire
+// Équipe: William et Korallia 
+// Servlet gérant les ventes
+
 import com.TrocQc.Entity.Vente;
 import com.TrocQc.DAO.VenteDao;
 import com.TrocQc.DAO.InventoryDao;

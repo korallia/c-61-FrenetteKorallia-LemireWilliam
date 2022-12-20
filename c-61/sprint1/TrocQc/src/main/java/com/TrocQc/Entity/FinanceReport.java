@@ -1,5 +1,12 @@
 package com.TrocQc.Entity;
 
+/* Class FinanceReport
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité génère un rapport financier
+ */
+
+
 import java.io.FileOutputStream;
 import java.sql.Date;
 import java.util.HashMap;

@@ -14,6 +14,13 @@ import com.TrocQc.Entity.User;
 import com.TrocQc.Entity.Vente;
 import com.TrocQc.config.SpringJdbcConfig;
 
+/* Class VenteDao
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce Data Access Object permet la gestion en DB des ventes
+ */
+
+
 public class VenteDao extends SpringJdbcConfig{
 
 	

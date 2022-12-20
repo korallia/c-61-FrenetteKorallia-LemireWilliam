@@ -1,5 +1,12 @@
 package com.TrocQc.DAO;
 
+/* Class InventoryDao
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce Data Access Object permet la gestion en DB de l'inventaire (produits, rawmaterial, lots et unité de mesure)
+ */
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

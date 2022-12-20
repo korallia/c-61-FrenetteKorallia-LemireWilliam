@@ -22,6 +22,11 @@ import com.TrocQc.Utils.DatePoint;
 import com.TrocQc.Utils.LinkedList;
 import com.TrocQc.Utils.Point;
 
+/* Class FinancesServlet
+ * Auteur: William Lemire
+ * Équipe: William et Korallia 
+ * Ce servlet met à jour le rapport de finance
+ */
 
 
 @WebServlet("/financesServlet")

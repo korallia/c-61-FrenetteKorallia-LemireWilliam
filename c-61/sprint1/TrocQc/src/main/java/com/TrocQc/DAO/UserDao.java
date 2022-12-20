@@ -1,5 +1,12 @@
 package com.TrocQc.DAO;
 
+/* Class UserDao
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce Data Access Object permet la gestion en DB des usager
+ */
+
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -89,7 +96,7 @@ public class UserDao extends SpringJdbcConfig {
 		
 		BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
 		
-		
+		try {
 		return jdbcTemplate().update(
 			
 				"INSERT INTO user (productCategory, firstName,lastName,password,username,adress,city,postalcode, email,siteWeb,Avatar ) VALUES (?, ?, ?, ?,?,?,?, ?,?,?,null)",
@@ -105,6 +112,10 @@ public class UserDao extends SpringJdbcConfig {
 			    user.getSiteWeb()
 			    
 			    );
+		}
+		catch(Exception e) {
+			return 0;
+		}
 			    
 	}
 	
