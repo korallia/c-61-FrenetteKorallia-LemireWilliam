@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
     	String password = request.getParameter("password");
     	String forgotpwd = request.getParameter("forgotpwd");
     	
-    	if ( username.length() > 0 && forgotpwd.length() > 0 ) {
+    	if ( forgotpwd != null && username.length() > 0 && forgotpwd.length() > 0 ) {
     		
     		User user = userDao.getuserByUsername(username);
     		userDao.ResetUserPassword(user.getEmail());
