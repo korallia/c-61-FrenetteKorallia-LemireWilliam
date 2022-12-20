@@ -1,4 +1,12 @@
+
+/* Class Point
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette classe est un type custom pour storer un point X et Y
+ */
+
 package com.TrocQc.Utils;
+
 
 public class Point {
 

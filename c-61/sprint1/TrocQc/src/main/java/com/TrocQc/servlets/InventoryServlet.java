@@ -1,5 +1,12 @@
 package com.TrocQc.servlets;
 
+/* Class LobbyServlet
+ * Auteur: William Lemire et Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce servlet gère les rêquetes de la page inventaire
+ */
+
+
 import java.io.IOException;
 import java.util.ArrayList;
 

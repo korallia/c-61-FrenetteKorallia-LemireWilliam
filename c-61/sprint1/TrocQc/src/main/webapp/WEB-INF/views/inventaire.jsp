@@ -1,3 +1,9 @@
+<!-- Fichier Jsp inventaire.jsp
+  Auteur:  William Lemire
+  Équipe: William et Korallia 
+  Ce fichier représente la vue de la page inventaire de notre application
+ -->
+
 <%@include file="header.jsp"%>
 <%@ page import="com.TrocQc.Entity.RawMaterial"%>
 <title>trOqc - Inventaire</title>
@@ -216,7 +222,6 @@
 								<td> ${product.addedDate} </td>
 								
 								<td>
-									SULLY BOB
 									<c:forEach var="rawMat" items="${product.rawmaterials}">
 										${rawMat.rawmaterial.name} <br>
 									</c:forEach>
@@ -316,7 +321,6 @@
 				</div>
 				
 				<div class="row m-1">
-					<div class="col "> <input class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le NBQ" name="materialLQN" > </div>
 					<div class="col "> <input class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" > </div>
 				</div>
 				
@@ -375,8 +379,8 @@
 				</div>
 				
 				<div class="row m-1">
-					<div class="col "> <input id="modMaterialLQN" class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le NBQ" name="materialLQN" > </div>
-					<div class="col "> <input id="modMaterialCost" class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" > </div>
+				<div class="col" ><input id="cout" class="w-100" readonly="readonly" value="Entrer le coût:" /></div>
+					<div class="col "> <input id="modMaterialCost" class="w-100" type="number" step="any" min="0.00" placeholder="Entrer le coût" name="materialCost" ></div>
 				</div>
 				
 				<h4 class="text-center">MODIFIER LES CHAMPS</h4>

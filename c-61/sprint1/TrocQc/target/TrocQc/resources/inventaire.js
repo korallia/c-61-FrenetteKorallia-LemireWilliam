@@ -41,16 +41,47 @@ function getTemplateRow(table, tableRow){
  	var cost = tableRow.childNodes[9].innerHTML.trim();
  	var price = tableRow.childNodes[11].innerHTML.trim();
  	var lql = tableRow.childNodes[13].innerHTML.trim();
- 	var unit = tableRow.childNodes[15].innerHTML.trim();
+ 	var unit = tableRow.childNodes[15].getAttribute("data-id");
+ 	var lots = tableRow.childNodes[21].innerHTML.trim();
  	
+ 	if (parseInt(lots) == 0){
+		document.getElementById("cantdeleteProductLabel").style.display = "none";
+		document.getElementById("deleteProductLabel").style.display = "block";
+	}
+	else{
+		document.getElementById("cantdeleteProductLabel").style.display = "block";
+		document.getElementById("deleteProductLabel").style.display = "none";
+	}
+
  	
- 	console.log("MATERIALS");
- 	var materials = tableRow.childNodes[19].childNodes[1].innerHTML;
- 	console.log(materials);
- 	materials = tableRow.childNodes[19].childNodes[0].innerHTML;
- 	console.log(materials);
- 	materials = tableRow.childNodes[19].innerHTML;
- 	console.log(materials);
+ 	var materialjson = JSON.parse(tableRow.childNodes[19].getElementsByTagName("span")[0].innerHTML);
+ 	
+ 	var rawMaterialId1 = document.getElementById("modRawMaterialId1");
+	var rawMaterialQuantity1 = document.getElementById("rawMaterialQuantity1");
+	
+	var rawMaterialId2 = document.getElementById("modRawMaterialId2");
+	var rawMaterialQuantity2 = document.getElementById("rawMaterialQuantity2");
+	
+	var rawMaterialId3 = document.getElementById("modRawMaterialId3");
+	var rawMaterialQuantity3 = document.getElementById("rawMaterialQuantity3");
+	
+	if ( !!materialjson[0] ){
+		rawMaterialId1.value =materialjson[0].id;
+		rawMaterialQuantity1.value =materialjson[0].qty; 
+		
+	}
+	if ( !!materialjson[1] ){
+		rawMaterialId2.value =materialjson[1].id;
+		rawMaterialQuantity2.value =materialjson[1].qty; 
+		
+	}
+	if ( !!materialjson[2] ){
+		rawMaterialId3.value =materialjson[2].id;
+		rawMaterialQuantity3.value =materialjson[2].qty; 
+		
+	}
+	 	
+ 	
  	
  	//var custCol1 = tableRow.childNodes[21].innerHTML.trim();
  	//var custCol2 = tableRow.childNodes[23].innerHTML.trim();
@@ -75,6 +106,9 @@ function getTemplateRow(table, tableRow){
  	var modCustColName3 = document.getElementById("modNewFieldName3");
  	var modCustColValue3 = document.getElementById("modNewFieldValue3");
 
+
+	
+
  	
  	modCustColName1.value = "";
 	modCustColValue1.value = "";
@@ -85,12 +119,14 @@ function getTemplateRow(table, tableRow){
  	
  	
  	try {
-		var customCol1 = tableRow.childNodes[21].innerHTML.trim();
+	if(tableRow.childNodes[23] != null){
+		var customCol1 = tableRow.childNodes[23].innerHTML.trim();
 		var customColArray1 =  customCol1.split(":");
 			if (modCustColName1 != "" || modCustColValue1 != ""){
 				modCustColName1.value = customColArray1[0].trim();
 		 		modCustColValue1.value = customColArray1[1].trim();
 			}		
+		}
 			
 	} catch (error) {
   		console.error(error);
@@ -98,8 +134,8 @@ function getTemplateRow(table, tableRow){
 	
  	try {
 		
-		if(tableRow.childNodes[23] != null){
-			var customCol2 = tableRow.childNodes[23].innerHTML.trim();
+		if(tableRow.childNodes[25] != null){
+			var customCol2 = tableRow.childNodes[25].innerHTML.trim();
 			var customColArray2 =  customCol2.split(":");	
 			
 			if (modCustColName2 != "" || modCustColValue2 != ""){
@@ -113,8 +149,8 @@ function getTemplateRow(table, tableRow){
 	}
 	
  	try {
-		if (tableRow.childNodes[25] != null){
-			var customCol3 = tableRow.childNodes[25].innerHTML.trim();
+		if (tableRow.childNodes[27] != null){
+			var customCol3 = tableRow.childNodes[27].innerHTML.trim();
 			var customColArray3 =  customCol3.split(":");
 			if (modCustColName3 != "" || modCustColValue3 != ""){
 				modCustColName3.value = customColArray3[0].trim();

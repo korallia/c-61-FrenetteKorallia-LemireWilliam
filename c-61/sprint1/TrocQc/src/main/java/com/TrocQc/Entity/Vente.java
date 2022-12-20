@@ -1,4 +1,11 @@
+/* Class Vente
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité répresente une vente
+ */
+
 package com.TrocQc.Entity;
+
 
 import java.sql.Date;
 import java.sql.Time;

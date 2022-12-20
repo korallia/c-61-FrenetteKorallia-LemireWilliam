@@ -1,4 +1,12 @@
+/* Class UnitOfMeasure
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité répresente une unité de mesure
+ */
+
 package com.TrocQc.Entity;
+
+
 
 import java.sql.Timestamp;
 

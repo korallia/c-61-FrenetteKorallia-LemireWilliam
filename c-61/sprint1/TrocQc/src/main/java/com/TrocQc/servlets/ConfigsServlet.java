@@ -1,6 +1,13 @@
 package com.TrocQc.servlets;
 
 
+/* Class ConfigsServlet
+ * Auteur: William Lemire
+ * Équipe: William et Korallia 
+ * Ce servlet gère les paramêtres du compte usager
+ */
+
+
 import java.io.IOException;
 import java.io.InputStream;
 

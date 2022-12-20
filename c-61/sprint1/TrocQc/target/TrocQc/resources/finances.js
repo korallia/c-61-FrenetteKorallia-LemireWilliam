@@ -1,6 +1,11 @@
 /**
  * 
  */
+ /* Fichier javascript finance.js
+ * Auteur:  William Lemire
+ * Équipe: William et Korallia 
+ * Ce fichier gère le style de couleur sur les champs de rapport de la page finance
+ */
  
 window.onload = function(){ 
 	//document.getElementById('endDate').valueAsDate = new Date();

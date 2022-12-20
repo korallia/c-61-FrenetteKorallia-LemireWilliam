@@ -1,3 +1,10 @@
+<!-- Fichier Jsp vente.jsp
+  Auteur:  William Lemire
+  Équipe: William et Korallia 
+  Ce fichier représente la vue de la page vente de notre application
+ -->
+
+
 <%@include file="header.jsp"%>
 
 <title>trOqc - Ventes</title>

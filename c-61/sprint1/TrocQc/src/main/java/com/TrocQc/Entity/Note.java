@@ -1,4 +1,13 @@
+
+/* Class Note
+ * Auteur: William Lemire
+ * Équipe: William et Korallia 
+ * Cette entité store un note du lobby
+ */
+
+
 package com.TrocQc.Entity;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +19,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="notes")
 public class Note {
+	
+
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

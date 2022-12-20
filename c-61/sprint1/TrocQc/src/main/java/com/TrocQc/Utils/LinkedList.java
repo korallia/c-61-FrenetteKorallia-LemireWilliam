@@ -1,14 +1,27 @@
+/* Class LinkedList
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+
+ * Cette classe fournie une linkedlist qui permet un type custom
+ */
+
 package com.TrocQc.Utils;
+
+
 
 import java.util.Iterator;
 
 public class LinkedList<T> implements Iterable<T> {
-
+	//<a href="https://docs.oracle.com/javase/tutorial/java/generics/types.html">Java Generics</a>
+	//Cette page officielle de Oracle explique les classes génériques (qui prennent un type)
+	
 	private Node head;
 	
 	
 	private class NodeIterator implements Iterator<T>{
-
+		//<a href="https://www.w3schools.com/java/java_iterator.asp">Java Iterator</a>
+		//Cette page explique comment implémenter un itérateur
+		
 		private Node current;
 		
 		

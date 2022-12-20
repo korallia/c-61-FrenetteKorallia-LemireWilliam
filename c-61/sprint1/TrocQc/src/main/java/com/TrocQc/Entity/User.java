@@ -1,4 +1,11 @@
+/* Class User
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité répresente un usager
+ */
+
 package com.TrocQc.Entity;
+
 
 import java.awt.Image;
 import java.io.InputStream;

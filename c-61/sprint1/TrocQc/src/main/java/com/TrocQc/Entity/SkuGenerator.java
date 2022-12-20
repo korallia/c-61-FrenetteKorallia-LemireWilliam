@@ -1,4 +1,12 @@
+/* Class SkuGenerator
+ * Auteur: William Lemire
+ * Équipe: William et Korallia 
+ * Cette entité sert à générer un sku
+ */
+
 package com.TrocQc.Entity;
+
+
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

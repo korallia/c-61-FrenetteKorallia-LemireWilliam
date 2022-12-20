@@ -1,5 +1,12 @@
 package com.TrocQc.servlets;
 
+/* Class inscriptionUsagerServlet
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Ce servlet simule un lien d'image de la base de donnée
+ */
+
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -20,14 +27,14 @@ public class getUserAvatar extends HttpServlet {
      */
     public getUserAvatar() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// <a href="https://www.geeksforgeeks.org/servlet-display-image/">Servlet Display Image</a>
+		// inspiration pour l'affichage d'une image
 		User user = (User)request.getSession().getAttribute("user"); 
 		byte[] byteArray = user.getAvatar() ;
 	     response.setContentType("image/gif");
@@ -40,7 +47,6 @@ public class getUserAvatar extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 		
 		

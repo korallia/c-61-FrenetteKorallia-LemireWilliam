@@ -1,3 +1,8 @@
+/* Class Product
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité note un produit
+ */
 package com.TrocQc.Entity;
 
 import java.sql.Timestamp;

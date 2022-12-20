@@ -1,5 +1,12 @@
 package com.TrocQc.config;
 
+/* Class AppInitializer
+ * Auteur: Spring
+ * Équipe: William et Korallia 
+ * Ce fichier est auto-généré par spring pour gérer l'app
+ */
+
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 

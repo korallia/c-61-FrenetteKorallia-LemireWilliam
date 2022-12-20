@@ -1,4 +1,10 @@
+// Class DatePoint
+// Auteur: Korallia Frenette
+// Équipe: William et Korallia 
+// Similaire à un point X et Y, mais avec une date et une valeur
+
 package com.TrocQc.Utils;
+
 
 import java.sql.Date;
 

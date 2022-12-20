@@ -1,4 +1,12 @@
+/* Class RawMaterialCustomField
+ * Auteur: Korallia Frenette
+ * Équipe: William et Korallia 
+ * Cette entité contient les champs customs pour un raw material
+ */
+
 package com.TrocQc.Entity;
+
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

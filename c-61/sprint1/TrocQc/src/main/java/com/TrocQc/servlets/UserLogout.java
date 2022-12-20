@@ -1,5 +1,11 @@
 package com.TrocQc.servlets;
 
+/* Class UserLogout
+ * Auteur: William Lemire
+ * Équipe: William et Korallia 
+ * Ce servlet permet le logout des usagers
+ */
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

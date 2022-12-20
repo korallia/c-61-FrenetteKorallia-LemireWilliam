@@ -1,4 +1,11 @@
+// Class EmailSender
+// Auteur: Korallia Frenette<
+// Équipe: William et Korallia 
+// Cette classe perment d'envoyer un courriel
+
 package com.TrocQc.Utils;
+
+
 
 import java.util.Date;
 import java.util.Properties;
@@ -32,6 +39,8 @@ public class EmailSender {
 
 	
 	public void sendemail(String to,String subject, String body ) {
+		//<a href="https://www.tutorialspoint.com/java/java_sending_email.htm">JAVA -sendin emails</a>
+		//Fourni un example de code pour envoyer un courriel, qui a été refactoré en une seule fonction
 		
 			
 		try {

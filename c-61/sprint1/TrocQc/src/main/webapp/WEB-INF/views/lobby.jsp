@@ -1,3 +1,12 @@
+<!-- Fichier Jsp lobby.jsp
+  Auteur:  William Lemire
+  Équipe: William et Korallia 
+  Ce fichier représente la vue de la page lobby de notre application
+ -->
+
+
+
+
 <%@include file="header.jsp"%>
 <%@ page import="com.TrocQc.Entity.User"%>
 
